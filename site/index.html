@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>o2o Wielermanager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@400;500;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="kop">
+    <div class="kop-binnen">
+      <img src="./logo-wit.svg" alt="o2o" class="logo">
+      <div class="kop-titel">
+        <h1>Wielermanager <span id="seizoen"></span></h1>
+        <p id="import-info" class="kop-sub"></p>
+      </div>
+      <div id="wie" class="wie"></div>
+    </div>
+    <nav class="tabs" id="tabs">
+      <button class="tab actief" data-tab="ploeg">Mijn ploeg</button>
+    </nav>
+  </header>
+
+  <main class="inhoud">
+    <div id="melding" class="melding" hidden></div>
+    <section id="laden" class="kaart">Even geduld, renners en uitslagen worden geladen…</section>
+
+    <section id="profiel" class="kaart profiel" hidden>
+      <h2>Welkom bij de Wielermanager</h2>
+      <p>Nog twee vragen voor de nevenklassementen. Je kunt dit later niet zelf meer wijzigen.</p>
+      <form id="profiel-form">
+        <label>In welk jaar speelde je voor het eerst mee?
+          <select id="debuutjaar"></select>
+        </label>
+        <fieldset>
+          <legend>Klassement</legend>
+          <label class="keuze"><input type="radio" name="categorie" value="deelnemer" checked> Deelnemer</label>
+          <label class="keuze"><input type="radio" name="categorie" value="deelneemster"> Deelneemster (telt ook mee in het damesklassement)</label>
+        </fieldset>
+        <button type="submit" class="knop">Opslaan en ploeg kiezen</button>
+      </form>
+    </section>
+
+    <section id="tab-ploeg" class="raster" hidden>
+      <div class="kaart mijn-ploeg">
+        <h2>Mijn ploeg</h2>
+        <p id="ploeg-status" class="status"></p>
+        <div class="meters">
+          <div class="meter">
+            <div class="meter-label"><span>Budget</span><strong id="budget-tekst"></strong></div>
+            <div class="balk"><div id="budget-balk" class="balk-vulling"></div></div>
+          </div>
+          <div class="meter">
+            <div class="meter-label"><span>Renners</span><strong id="aantal-tekst"></strong></div>
+            <div class="balk"><div id="aantal-balk" class="balk-vulling oranje"></div></div>
+          </div>
+        </div>
+        <ol id="ploeg-lijst" class="ploeg-lijst"></ol>
+      </div>
+
+      <div class="kaart pool">
+        <h2>Rennerspool</h2>
+        <div class="filters">
+          <input id="zoek" type="search" placeholder="Zoek renner, land of ploeg">
+          <select id="filter-type">
+            <option value="">Alle ploegtypes</option>
+            <option>WorldTeam</option>
+            <option>ProTeam</option>
+          </select>
+          <select id="filter-ploeg"><option value="">Alle ploegen</option></select>
+          <label class="keuze"><input id="filter-betaalbaar" type="checkbox"> Alleen betaalbaar</label>
+        </div>
+        <div class="tabel-wrap">
+          <table class="tabel">
+            <thead>
+              <tr>
+                <th data-sort="naam">Renner</th>
+                <th data-sort="land">Land</th>
+                <th data-sort="ploeg">Ploeg</th>
+                <th data-sort="punten" class="getal" id="kop-punten">CQ-punten</th>
+                <th data-sort="prijs" class="getal">Prijs</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="pool-lijst"></tbody>
+          </table>
+        </div>
+        <p id="pool-info" class="klein"></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="./vibers-stub.js"></script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
