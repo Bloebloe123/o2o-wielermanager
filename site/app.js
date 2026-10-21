@@ -122,12 +122,18 @@ function toonProfielformulier() {
   $("profiel-form").onsubmit = async (e) => {
     e.preventDefault();
     const knop = e.submitter;
+    const ploegnaam = $("ploegnaam").value.trim().replace(/\s+/g, " ");
+    if (!ploegnaam) return melding("Geef je ploeg een naam.", true);
     knop.disabled = true;
     try {
-      staat.profiel = await profielen.create({
-        debuutjaar: Number(select.value),
-        categorie: new FormData(e.target).get("categorie"),
-      });
+      // Elke ploegnaam mag maar één keer voorkomen (hoofdletters tellen niet mee).
+      const bestaande = await alleRecords(profielen, {});
+      if (bestaande.some((p) => (p.ploegnaam || "").toLowerCase() === ploegnaam.toLowerCase())) {
+        knop.disabled = false;
+        return melding(`De naam "${ploegnaam}" is al gekozen. Kies een andere naam.`, true);
+      }
+      staat.profiel = await profielen.create({ ploegnaam, debuutjaar: Number(select.value) });
+      melding("");
       $("profiel").hidden = true;
       toonPloeg();
     } catch (fout) {
@@ -147,6 +153,7 @@ function huidigePloeg() {
 
 function toonPloeg() {
   $("tab-ploeg").hidden = false;
+  $("mijn-ploegnaam").textContent = staat.profiel.ploegnaam || "Mijn ploeg";
   const ploegen = [...new Set(staat.renners.map((r) => r.ploeg))].sort();
   for (const p of ploegen) $("filter-ploeg").append(maak("option", { tekst: p }));
   for (const id of ["zoek", "filter-type", "filter-ploeg", "filter-betaalbaar"]) {
