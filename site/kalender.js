@@ -35,7 +35,7 @@ export function tekenKalender({ staat, maak, pt }) {
       : k.start <= vandaag && k.eind >= vandaag ? "Bezig"
       : k.eind < vandaag ? "Wacht op uitslag" : "";
     const opmerking = periodeStart && periodeEind && periodeStart.nr !== periodeEind.nr
-      ? `Loopt over in periode ${periodeEind.nr}: elke rit telt in de periode van zijn datum.` : "";
+      ? `Loopt door in periode ${periodeEind.nr}, maar telt volledig in periode ${periodeStart.nr}: de ploeg bij de eerste rit geldt voor de hele koers.` : "";
     return maak("li", { klasse: `koers ${k.eind < vandaag ? "voorbij" : ""}` }, [
       maak("span", { klasse: "koers-datum", tekst: k.start === k.eind ? kort(k.start) : `${kort(k.start)} – ${kort(k.eind)}` }),
       maak("span", { klasse: "koers-naam" }, [
@@ -76,7 +76,7 @@ export function tekenKalender({ staat, maak, pt }) {
         maak("strong", { tekst: `Transfers voor periode ${volgende.nr}` }),
         maak("span", {
           tekst: `Tijdens periode ${p.nr}, tot ${lang(volgende.start)}. Maximaal ${inst.max_transfers} transfers. ` +
-            `Wie je verkoopt, rijdt nog voor je tot en met ${kort(p.eind)}.`,
+            `Wie je verkoopt, rijdt nog voor je tot en met ${kort(p.eind)}, en ook in een rittenkoers die in periode ${p.nr} begon.`,
         }),
       ]));
     }

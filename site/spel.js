@@ -108,12 +108,26 @@ const OVERWINNING = new Set(["rit", "eendags", "eindklassement"]);
 
 // Alle punten die renners verdienden, per renner een lijst van resultaten:
 // { cq_raceid, naam, datum, periode, positie, punten, overwinning }.
-// Koersen buiten de periodes of geschrapte koersen tellen niet.
-export function rennerResultaten(koersen, correcties, inst) {
+// Een koers telt in de periode van haar peildatum (zie peildatums). Koersen buiten de
+// periodes of geschrapte koersen tellen niet.
+// Een rittenkoers telt volledig (alle ritten en klassementen) in de periode van haar
+// eerste rit: dan staat de ploeg op voor de hele koers, ook als er tussendoor een
+// nieuwe periode begint. `kalender` geeft de startdatum, ook als de uitslag van de
+// eerste rit nog ontbreekt.
+export function peildatums(koersen, kalender = []) {
+  const start = new Map(kalender.filter((k) => k.soort === "rittenkoers").map((k) => [k.naam, k.start]));
+  for (const k of koersen) {
+    if (k.type !== "eendags" && (!start.has(k.koers) || k.datum < start.get(k.koers))) start.set(k.koers, k.datum);
+  }
+  return new Map(koersen.map((k) => [k.cq_raceid, k.type === "eendags" ? k.datum : start.get(k.koers)]));
+}
+
+export function rennerResultaten(koersen, correcties, inst, kalender = []) {
   const perRenner = new Map();
+  const peildatum = peildatums(koersen, kalender);
   for (const koers of koersen) {
     if (koers.geannuleerd) continue;
-    const periode = periodeVan(koers.datum, inst);
+    const periode = periodeVan(peildatum.get(koers.cq_raceid), inst);
     if (!periode) continue;
     const schaal = schaalVoor(koers, inst);
     const factor = factorVoor(koers, inst);

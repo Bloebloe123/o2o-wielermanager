@@ -3,6 +3,7 @@ import {
 } from "./spel.js";
 import { toonAdmin } from "./admin.js";
 import { tekenKalender } from "./kalender.js";
+import { tekenRegels } from "./regels.js";
 
 const $ = (id) => document.getElementById(id);
 const profielen = window.vibers.db.collection("profielen");
@@ -124,7 +125,7 @@ async function start() {
 function herbereken() {
   staat.prijzen = berekenPrijzen(staat.renners, staat.inst);
   staat.correcties = staat.alleCorrecties.filter((c) => staat.inst.admins.includes(c.createdBy?.email));
-  staat.resultaten = rennerResultaten(staat.koersen.koersen, staat.correcties, staat.inst);
+  staat.resultaten = rennerResultaten(staat.koersen.koersen, staat.correcties, staat.inst, staat.kalender?.koersen);
 }
 
 function isAdmin() {
@@ -211,9 +212,10 @@ function zetTabsKlaar() {
   document.querySelectorAll(".tab").forEach((knop) => {
     knop.addEventListener("click", () => {
       document.querySelectorAll(".tab").forEach((k) => k.classList.toggle("actief", k === knop));
-      for (const tab of ["ploeg", "stand", "kalender", "admin"]) $(`tab-${tab}`).hidden = knop.dataset.tab !== tab;
+      for (const tab of ["ploeg", "stand", "kalender", "regels", "admin"]) $(`tab-${tab}`).hidden = knop.dataset.tab !== tab;
       if (knop.dataset.tab === "stand") toonStand();
       if (knop.dataset.tab === "kalender") tekenKalender({ staat, maak, pt });
+      if (knop.dataset.tab === "regels") tekenRegels({ staat, maak, pt });
       if (knop.dataset.tab === "admin") {
         toonAdmin({ staat, maak, melding, pt, datumTijd, correcties, alleRecords, herbereken, tekenAlles });
       }

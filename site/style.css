@@ -126,6 +126,14 @@ ul.transfers .in { color: var(--o2o-blue); }
 .klein { font-size: 0.8rem; color: var(--o2o-gray); }
 
 .stand-kop { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.regels { max-width: 900px; line-height: 1.55; }
+.regels h3 { font-family: var(--o2o-font-heading); color: var(--o2o-blue); font-size: 1.05rem; margin: 24px 0 8px; }
+.regels ul { padding-left: 20px; margin: 8px 0; }
+.regels li { margin-bottom: 4px; }
+.regels-tabel { max-height: none; margin: 8px 0 12px; }
+.regels-tabel th { position: static; white-space: normal; cursor: default; }
+.regels-tabel table { width: auto; min-width: 50%; }
+.regels-tabel th.getal, .regels-tabel td.getal { text-align: center; padding-left: 16px; padding-right: 16px; }
 #kalender-lijst { display: grid; gap: 12px; margin-top: 16px; }
 .periode-blok { border: 1px solid var(--o2o-gray-light); border-radius: var(--o2o-radius-card); padding: 16px 20px; }
 .periode-blok.bezig { border-color: var(--o2o-blue); box-shadow: 0 0 0 2px var(--o2o-tint-blue); }
