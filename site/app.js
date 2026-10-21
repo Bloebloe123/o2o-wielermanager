@@ -311,7 +311,6 @@ function tekenMijnPloeg() {
   const vertrekkers = m.modus === "transfers"
     ? ploegInPeriode(staat.mijnSelecties, m.huidige).filter((s) => s.tot_periode === m.huidige)
     : [];
-  const t = m.modus === "transfers" ? transfersVoorDoel(m) : { uit: [] };
 
   const lijst = $("ploeg-lijst");
   lijst.replaceChildren();
@@ -327,13 +326,7 @@ function tekenMijnPloeg() {
         disabled: staat.bezig || !!redenNiet(sel.cq_riderid, m), onclick: () => houd(sel),
       });
     } else {
-      const magNiet = m.modus === "gesloten" ||
-        (m.modus === "transfers" && !nieuw && t.uit.length >= inst.max_transfers);
-      knop = maak("button", {
-        klasse: "knop-klein knop-min", tekst: "−",
-        title: m.modus === "inschrijving" || nieuw ? "Uit je ploeg halen" : magNiet ? "Geen transfers meer over" : "Verkopen na deze periode",
-        disabled: staat.bezig || magNiet, onclick: () => verwijder(sel, m),
-      });
+      knop = minKnop(sel, m);
     }
     const label = vertrekt ? ` · gaat eruit na periode ${m.huidige}` : nieuw ? ` · nieuw vanaf periode ${m.doel}` : "";
     lijst.append(maak("li", { klasse: vertrekt ? "vertrekt" : nieuw ? "nieuw" : "" }, [
@@ -358,6 +351,21 @@ function tekenMijnPloeg() {
   if (alle.length) {
     blok.append(maak("h3", { tekst: "Mijn transfers" }), transferLijst(alle));
   }
+}
+
+// De knop om een renner uit je ploeg te halen (in je ploeg én in de rennerspool).
+// Voor het seizoen of bij een nieuwe aankoop: schrappen. Anders: verkopen na de lopende periode.
+function minKnop(sel, m) {
+  const nieuw = m.modus === "transfers" && sel.vanaf_periode === m.doel;
+  const magNiet = m.modus === "gesloten" ||
+    (m.modus === "transfers" && !nieuw && transfersVoorDoel(m).uit.length >= staat.inst.max_transfers);
+  return maak("button", {
+    klasse: "knop-klein knop-min", tekst: "−",
+    title: m.modus === "gesloten" ? "Je ploeg ligt vast tot de volgende transferperiode."
+      : m.modus === "inschrijving" || nieuw ? "Uit je ploeg halen"
+      : magNiet ? "Geen transfers meer over" : "Verkopen na deze periode",
+    disabled: staat.bezig || magNiet, onclick: () => verwijder(sel, m),
+  });
 }
 
 function tekenPool() {
@@ -399,11 +407,13 @@ function tekenPool() {
       maak("td", { tekst: r.ploeg }),
       maak("td", { klasse: "getal", tekst: r.cq_punten_vorig_seizoen }),
       maak("td", { klasse: "getal prijs", tekst: staat.prijzen.get(r.cq_riderid) }),
-      maak("td", {}, [maak("button", {
-        klasse: "knop-klein knop-plus", tekst: gekozen.has(r.cq_riderid) ? "✓" : "+",
-        title: reden || (m.modus === "transfers" ? `Kopen voor periode ${m.doel}` : "In je ploeg zetten"),
-        disabled: !!reden || staat.bezig, onclick: () => voegToe(r.cq_riderid),
-      })]),
+      maak("td", {}, [gekozen.has(r.cq_riderid)
+        ? minKnop(ploeg.find((s) => s.cq_riderid === r.cq_riderid), m)
+        : maak("button", {
+          klasse: "knop-klein knop-plus", tekst: "+",
+          title: reden || (m.modus === "transfers" ? `Kopen voor periode ${m.doel}` : "In je ploeg zetten"),
+          disabled: !!reden || staat.bezig, onclick: () => voegToe(r.cq_riderid),
+        })]),
     ]));
   }
   $("pool-info").textContent = rijen.length > maxRijen
