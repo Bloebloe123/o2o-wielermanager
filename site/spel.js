@@ -71,7 +71,7 @@ export function ploegInPeriode(selecties, nr) {
 // ---------- Punten ----------
 
 // De puntenschaal die bij een koers hoort.
-function schaalVoor(koers, inst) {
+export function schaalVoor(koers, inst) {
   const s = inst.puntenschaal;
   if (koers.type === "rit") return s.rit;
   if (["punten", "berg", "jongeren"].includes(koers.type)) return s.trui;
@@ -79,7 +79,7 @@ function schaalVoor(koers, inst) {
   return s.eendags_en_eindklassement; // eendagskoers of eindklassement van een andere rittenkoers
 }
 
-function factorVoor(koers, inst) {
+export function factorVoor(koers, inst) {
   return koers.is_grote_ronde ? inst.klassefactoren.grote_ronde : inst.klassefactoren[koers.klasse] ?? 0;
 }
 
@@ -87,7 +87,13 @@ function factorVoor(koers, inst) {
 // Een correctie zet renner X op positie P: wie automatisch op P stond, valt weg,
 // en X verdwijnt van zijn automatische plaats. Een correctie zonder renner maakt P leeg.
 export function uitslagMetCorrecties(koers, correcties) {
-  const eigen = correcties.filter((c) => c.cq_raceid === koers.cq_raceid);
+  // Per plaats telt de recentste correctie (als twee admins dezelfde plaats corrigeerden).
+  const perPositie = new Map();
+  for (const c of correcties.filter((c) => c.cq_raceid === koers.cq_raceid)) {
+    const vorige = perPositie.get(c.positie);
+    if (!vorige || (c.updatedAt || "") >= (vorige.updatedAt || "")) perPositie.set(c.positie, c);
+  }
+  const eigen = [...perPositie.values()];
   if (!eigen.length) return koers.uitslag;
   const posities = new Set(eigen.map((c) => c.positie));
   const renners = new Set(eigen.filter((c) => c.cq_riderid != null).map((c) => c.cq_riderid));

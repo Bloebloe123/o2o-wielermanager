@@ -1,6 +1,7 @@
 import {
   berekenPrijzen, berekenStand, magToevoegen, ploegInPeriode, ploegModus, rennerResultaten, transfersVan, vandaagISO,
 } from "./spel.js";
+import { toonAdmin } from "./admin.js";
 
 const $ = (id) => document.getElementById(id);
 const profielen = window.vibers.db.collection("profielen");
@@ -15,6 +16,7 @@ const staat = {
   prijzen: new Map(),
   koersen: null,
   resultaten: new Map(), // cq_riderid -> punten per koers (zie spel.js)
+  correcties: [], // enkel correcties gemaakt door een admin
   profiel: null,
   mijnSelecties: [],
   sorteer: { veld: "prijs", af: true },
@@ -96,9 +98,9 @@ async function start() {
     ]);
     staat.renners = renners.renners;
     staat.rennerOpId = new Map(staat.renners.map((r) => [r.cq_riderid, r]));
-    staat.prijzen = berekenPrijzen(staat.renners, staat.inst);
     staat.koersen = koersen;
-    staat.resultaten = rennerResultaten(koersen.koersen, alleCorrecties, staat.inst);
+    staat.alleCorrecties = alleCorrecties;
+    herbereken();
     staat.profiel = mijnProfielen.items[0] || null;
     staat.mijnSelecties = mijn;
     toonKop(renners);
@@ -110,6 +112,18 @@ async function start() {
     $("laden").hidden = true;
     melding(`Er liep iets mis bij het laden: ${fout.message}. Probeer de pagina te herladen.`, true);
   }
+}
+
+// Prijzen en punten opnieuw berekenen (na laden, na een correctie of na nieuwe instellingen).
+// Correcties tellen enkel als een admin ze maakte.
+function herbereken() {
+  staat.prijzen = berekenPrijzen(staat.renners, staat.inst);
+  staat.correcties = staat.alleCorrecties.filter((c) => staat.inst.admins.includes(c.createdBy?.email));
+  staat.resultaten = rennerResultaten(staat.koersen.koersen, staat.correcties, staat.inst);
+}
+
+function isAdmin() {
+  return staat.inst.admins.includes(staat.ik.email);
 }
 
 function toonKop(renners) {
@@ -187,12 +201,16 @@ function redenNiet(riderid, m = modus()) {
 // ---------- Tabs ----------
 
 function zetTabsKlaar() {
+  // De adminpagina bestaat enkel voor admins: voor anderen komt de tab er niet.
+  if (!isAdmin()) document.querySelector('.tab[data-tab="admin"]').remove();
   document.querySelectorAll(".tab").forEach((knop) => {
     knop.addEventListener("click", () => {
       document.querySelectorAll(".tab").forEach((k) => k.classList.toggle("actief", k === knop));
-      $("tab-ploeg").hidden = knop.dataset.tab !== "ploeg";
-      $("tab-stand").hidden = knop.dataset.tab !== "stand";
+      for (const tab of ["ploeg", "stand", "admin"]) $(`tab-${tab}`).hidden = knop.dataset.tab !== tab;
       if (knop.dataset.tab === "stand") toonStand();
+      if (knop.dataset.tab === "admin") {
+        toonAdmin({ staat, maak, melding, pt, datumTijd, correcties, alleRecords, herbereken, tekenAlles });
+      }
     });
   });
 }
@@ -438,6 +456,7 @@ async function toonStand() {
       keuze.append(maak("option", { value: p.nr, tekst: `Periode ${p.nr} (${van} – ${tot})` }));
     }
     keuze.addEventListener("input", tekenStand);
+    $("stand-groep").addEventListener("input", tekenStand);
   }
   $("stand-lijst").replaceChildren(maak("tr", {}, [maak("td", { colSpan: 5, tekst: "Stand wordt berekend…" })]));
   try {
@@ -445,6 +464,7 @@ async function toonStand() {
     const [alleSelecties, alleProfielen] = await Promise.all([alleRecords(selecties, {}), alleRecords(profielen, {})]);
     staat.alleSelecties = alleSelecties;
     staat.ploegnaamVan = new Map(alleProfielen.filter((p) => p.createdBy).map((p) => [p.createdBy.email, p.ploegnaam]));
+    staat.debutanten = new Set(alleProfielen.filter((p) => p.createdBy && p.debuutjaar === staat.inst.seizoen).map((p) => p.createdBy.email));
     staat.naamVan = new Map(alleSelecties.filter((s) => s.createdBy).map((s) => [s.createdBy.email, s.createdBy.name]));
     tekenStand();
   } catch (fout) {
@@ -454,11 +474,16 @@ async function toonStand() {
 
 function tekenStand() {
   const periodeNr = $("stand-keuze").value ? Number($("stand-keuze").value) : null;
-  const rijen = berekenStand(staat.alleSelecties, staat.resultaten, periodeNr);
+  // Debutantenklassement: enkel wie dit seizoen voor het eerst meespeelt (plaatsen opnieuw geteld).
+  const enkelDebutanten = $("stand-groep").value === "debutanten";
+  const meetellend = enkelDebutanten
+    ? staat.alleSelecties.filter((s) => staat.debutanten.has(s.createdBy?.email))
+    : staat.alleSelecties;
+  const rijen = berekenStand(meetellend, staat.resultaten, periodeNr);
   const tbody = $("stand-lijst");
   tbody.replaceChildren();
   if (!rijen.length) {
-    tbody.append(maak("tr", {}, [maak("td", { colSpan: 5, tekst: "Nog geen ploegen." })]));
+    tbody.append(maak("tr", {}, [maak("td", { colSpan: 5, tekst: $("stand-groep").value === "debutanten" ? "Nog geen debutanten." : "Nog geen ploegen." })]));
     return;
   }
   for (const rij of rijen) {

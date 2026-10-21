@@ -22,6 +22,7 @@
     <nav class="tabs" id="tabs">
       <button class="tab actief" data-tab="ploeg">Mijn ploeg</button>
       <button class="tab" data-tab="stand">Stand</button>
+      <button class="tab" data-tab="admin">Admin</button>
     </nav>
   </header>
 
@@ -94,7 +95,13 @@
     <section id="tab-stand" class="kaart" hidden>
       <div class="stand-kop">
         <h2>Stand</h2>
-        <select id="stand-keuze"></select>
+        <div class="stand-filters">
+          <select id="stand-groep">
+            <option value="">Alle deelnemers</option>
+            <option value="debutanten">Debutanten</option>
+          </select>
+          <select id="stand-keuze"></select>
+        </div>
       </div>
       <p class="klein">Gelijke stand? Dan beslist het aantal overwinningen (ritten, eendagskoersen en eindklassementen). Klik op een ploeg om te zien waar de punten vandaan komen.</p>
       <div class="tabel-wrap">
@@ -110,6 +117,36 @@
           </thead>
           <tbody id="stand-lijst"></tbody>
         </table>
+      </div>
+    </section>
+    <section id="tab-admin" hidden>
+      <div class="kaart">
+        <h2>Import</h2>
+        <p id="admin-import" class="status"></p>
+        <a id="admin-import-knop" class="knop" target="_blank" rel="noopener">Import nu starten</a>
+        <p class="klein">Opent de GitHub-pagina van de import in een nieuw tabblad. Klik daar op <strong>Run workflow</strong>. Na een paar minuten staan de nieuwe uitslagen klaar; herlaad dan deze pagina.</p>
+      </div>
+
+      <div class="kaart">
+        <h2>Correcties</h2>
+        <p class="klein">Een correctie gaat altijd voor op de automatische uitslag. Zet een renner op een plaats, of laat de plaats leeg (bijvoorbeeld na een diskwalificatie).</p>
+        <div class="filters">
+          <input id="admin-koers-zoek" type="search" placeholder="Zoek koers">
+          <select id="admin-koers"></select>
+        </div>
+        <div id="admin-uitslag"></div>
+        <form id="admin-correctie" class="correctie-form">
+          <label>Plaats <input id="correctie-positie" type="number" min="1" required></label>
+          <label class="breed">Renner <input id="correctie-renner" list="renners-lijst" placeholder="Typ een naam, of laat leeg om de plaats leeg te maken"></label>
+          <button type="submit" class="knop">Correctie opslaan</button>
+        </form>
+        <datalist id="renners-lijst"></datalist>
+      </div>
+
+      <div class="kaart">
+        <h2>Instellingen</h2>
+        <p class="klein">Lijsten scheid je met komma's. Prijsschijven noteer je als <em>punten:prijs</em>, bijvoorbeeld <em>800:7, 500:6</em>. Wijzigingen gelden meteen voor iedereen.</p>
+        <form id="admin-instellingen" class="instellingen-form"></form>
       </div>
     </section>
   </main>

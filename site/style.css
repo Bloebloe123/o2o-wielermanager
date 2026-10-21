@@ -126,6 +126,21 @@ ul.transfers .in { color: var(--o2o-blue); }
 .klein { font-size: 0.8rem; color: var(--o2o-gray); }
 
 .stand-kop { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.stand-filters { display: flex; gap: 8px; flex-wrap: wrap; }
+#tab-admin { display: grid; gap: 24px; }
+#tab-admin .knop { display: inline-block; text-decoration: none; margin-bottom: 8px; }
+#tab-admin h3 { font-family: var(--o2o-font-heading); font-size: 0.95rem; color: var(--o2o-blue); margin: 16px 0 8px; }
+.tabel-wrap.kort { max-height: 420px; margin: 8px 0 16px; }
+.tabel tr.gecorrigeerd td { background: var(--o2o-tint-orange); font-weight: 500; }
+ul.correcties { list-style: none; padding: 0; margin: 0 0 16px; display: grid; gap: 6px; }
+ul.correcties li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 6px 12px; background: var(--o2o-tint-orange); border-radius: 12px; font-size: 0.9rem; }
+.correctie-form, .instellingen-form { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px 16px; align-items: end; }
+.correctie-form label, .instellingen-form label { display: grid; gap: 4px; font-size: 0.85rem; color: var(--o2o-gray); }
+.correctie-form .breed, .instellingen-form .breed { grid-column: 1 / -1; }
+.correctie-form input, .instellingen-form input { padding: 8px 12px; border: 1px solid var(--o2o-gray-light); border-radius: 12px; font-family: var(--o2o-font-ui); }
+.correctie-form .knop, .instellingen-form .knop { justify-self: start; }
+.periode-rij { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 0.9rem; }
+.periode-rij strong { width: 80px; }
 .stand-kop select { padding: 8px 12px; border: 1px solid var(--o2o-gray-light); border-radius: 999px; }
 .tabel.stand { table-layout: fixed; }
 .tabel.stand th:nth-child(1) { width: 50px; }
