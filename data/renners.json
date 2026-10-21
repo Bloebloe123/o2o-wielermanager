@@ -1,0 +1,7658 @@
+{
+ "bijgewerkt": "2026-10-21T14:55:30+00:00",
+ "seizoen": 2027,
+ "ploegen_van_seizoen": 2026,
+ "punten_van_seizoen": 2026,
+ "punten_stand_op": "2026-10-11",
+ "aantal": 956,
+ "renners": [
+  {
+   "cq_riderid": 26526,
+   "naam": "POGACAR Tadej",
+   "land": "SLO",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 4196
+  },
+  {
+   "cq_riderid": 28377,
+   "naam": "EVENEPOEL Remco",
+   "land": "BEL",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 3065
+  },
+  {
+   "cq_riderid": 33556,
+   "naam": "DEL TORO ROMERO Isaac",
+   "land": "MEX",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 2732
+  },
+  {
+   "cq_riderid": 37050,
+   "naam": "SEIXAS Paul",
+   "land": "FRA",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 2338
+  },
+  {
+   "cq_riderid": 25740,
+   "naam": "VINGEGAARD HANSEN Jonas",
+   "land": "DEN",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 2111
+  },
+  {
+   "cq_riderid": 26392,
+   "naam": "PHILIPSEN Jasper",
+   "land": "BEL",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 1781
+  },
+  {
+   "cq_riderid": 27708,
+   "naam": "PIDCOCK Thomas",
+   "land": "GBR",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 1761
+  },
+  {
+   "cq_riderid": 27002,
+   "naam": "SCARONI Christian",
+   "land": "ITA",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 1455
+  },
+  {
+   "cq_riderid": 26383,
+   "naam": "GALL Felix",
+   "land": "AUT",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 1454
+  },
+  {
+   "cq_riderid": 29214,
+   "naam": "SCHMID Mauro",
+   "land": "SUI",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 1437
+  },
+  {
+   "cq_riderid": 20730,
+   "naam": "VAN AERT Wout",
+   "land": "BEL",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 1397
+  },
+  {
+   "cq_riderid": 21971,
+   "naam": "VAN DER POEL Mathieu",
+   "land": "NED",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 1369
+  },
+  {
+   "cq_riderid": 31567,
+   "naam": "JOHANNESSEN Tobias Halland",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 1349
+  },
+  {
+   "cq_riderid": 22794,
+   "naam": "MAS NICOLAU Enric",
+   "land": "ESP",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 1303
+  },
+  {
+   "cq_riderid": 32721,
+   "naam": "MARTINEZ Lenny",
+   "land": "FRA",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 1301
+  },
+  {
+   "cq_riderid": 21342,
+   "naam": "CARAPAZ MONTENEGRO Richard Antonio",
+   "land": "ECU",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 1280
+  },
+  {
+   "cq_riderid": 32766,
+   "naam": "GREGOIRE Romain",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 1257
+  },
+  {
+   "cq_riderid": 34555,
+   "naam": "MAGNIER Paul",
+   "land": "FRA",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 1246
+  },
+  {
+   "cq_riderid": 33100,
+   "naam": "PELLIZZARI Giulio",
+   "land": "ITA",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 1213
+  },
+  {
+   "cq_riderid": 21812,
+   "naam": "CICCONE Giulio",
+   "land": "ITA",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 1181
+  },
+  {
+   "cq_riderid": 24189,
+   "naam": "COSNEFROY Benoit",
+   "land": "FRA",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 1147
+  },
+  {
+   "cq_riderid": 26508,
+   "naam": "MCNULTY Brandon",
+   "land": "USA",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 1108
+  },
+  {
+   "cq_riderid": 31638,
+   "naam": "PITHIE Laurence",
+   "land": "NZL",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 1100
+  },
+  {
+   "cq_riderid": 28057,
+   "naam": "JORGENSON Matteo",
+   "land": "USA",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 1047
+  },
+  {
+   "cq_riderid": 30166,
+   "naam": "SKJELMOSE JENSEN Mattias",
+   "land": "DEN",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 1042
+  },
+  {
+   "cq_riderid": 30805,
+   "naam": "LIPOWITZ Florian",
+   "land": "GER",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 1037
+  },
+  {
+   "cq_riderid": 21992,
+   "naam": "PEDERSEN Mads",
+   "land": "DEN",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 1022
+  },
+  {
+   "cq_riderid": 20719,
+   "naam": "ROGLIC Primoz",
+   "land": "SLO",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 1020
+  },
+  {
+   "cq_riderid": 25704,
+   "naam": "GODON Dorian",
+   "land": "FRA",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 990
+  },
+  {
+   "cq_riderid": 23940,
+   "naam": "ARANBURU DEVA Alexander",
+   "land": "ESP",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 979
+  },
+  {
+   "cq_riderid": 31657,
+   "naam": "LUND ANDRESEN Tobias",
+   "land": "DEN",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 979
+  },
+  {
+   "cq_riderid": 35227,
+   "naam": "BRENNAN Matthew",
+   "land": "GBR",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 974
+  },
+  {
+   "cq_riderid": 32232,
+   "naam": "PIGANZOLI Davide",
+   "land": "ITA",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 953
+  },
+  {
+   "cq_riderid": 26421,
+   "naam": "MEEUS Jordi",
+   "land": "BEL",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 946
+  },
+  {
+   "cq_riderid": 32828,
+   "naam": "SILVA COUSSAN Guillermo Thomas",
+   "land": "URU",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 934
+  },
+  {
+   "cq_riderid": 17988,
+   "naam": "MERLIER Tim",
+   "land": "BEL",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 925
+  },
+  {
+   "cq_riderid": 29359,
+   "naam": "MILAN Jonathan",
+   "land": "ITA",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 900
+  },
+  {
+   "cq_riderid": 32588,
+   "naam": "BERCKMOES Jenno",
+   "land": "BEL",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 881
+  },
+  {
+   "cq_riderid": 14321,
+   "naam": "IZAGIRRE INSAUSTI Ion",
+   "land": "ESP",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 879
+  },
+  {
+   "cq_riderid": 30643,
+   "naam": "KOOIJ Olav",
+   "land": "NED",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 875
+  },
+  {
+   "cq_riderid": 30615,
+   "naam": "LAPEIRA Paul",
+   "land": "FRA",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 851
+  },
+  {
+   "cq_riderid": 30666,
+   "naam": "SIMMONS Quinn",
+   "land": "USA",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 824
+  },
+  {
+   "cq_riderid": 24057,
+   "naam": "GANNA Filippo",
+   "land": "ITA",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 802
+  },
+  {
+   "cq_riderid": 31654,
+   "naam": "AYUSO PESQUERA Juan",
+   "land": "ESP",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 801
+  },
+  {
+   "cq_riderid": 19238,
+   "naam": "GROENEWEGEN Dylan",
+   "land": "NED",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 782
+  },
+  {
+   "cq_riderid": 30649,
+   "naam": "TIBERI Antonio",
+   "land": "ITA",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 780
+  },
+  {
+   "cq_riderid": 32146,
+   "naam": "BAUDIN Alex",
+   "land": "FRA",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 777
+  },
+  {
+   "cq_riderid": 34430,
+   "naam": "CHRISTEN Jan",
+   "land": "SUI",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 776
+  },
+  {
+   "cq_riderid": 34305,
+   "naam": "RONDEL Mathys",
+   "land": "FRA",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 763
+  },
+  {
+   "cq_riderid": 18233,
+   "naam": "STUYVEN Jasper",
+   "land": "BEL",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 761
+  },
+  {
+   "cq_riderid": 29221,
+   "naam": "FANCELLU Alessandro",
+   "land": "ITA",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 758
+  },
+  {
+   "cq_riderid": 28234,
+   "naam": "TESFATSION Natnael Ocbit",
+   "land": "ERI",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 753
+  },
+  {
+   "cq_riderid": 19953,
+   "naam": "LAPORTE Christophe",
+   "land": "FRA",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 745
+  },
+  {
+   "cq_riderid": 31724,
+   "naam": "ONLEY Oscar",
+   "land": "GBR",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 730
+  },
+  {
+   "cq_riderid": 25653,
+   "naam": "KUSS Sepp",
+   "land": "USA",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 710
+  },
+  {
+   "cq_riderid": 29513,
+   "naam": "KUBIS Lukas",
+   "land": "SVK",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 701
+  },
+  {
+   "cq_riderid": 30685,
+   "naam": "ASKEY Lewis",
+   "land": "GBR",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 700
+  },
+  {
+   "cq_riderid": 27716,
+   "naam": "ARENSMAN Thymen",
+   "land": "NED",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 698
+  },
+  {
+   "cq_riderid": 32764,
+   "naam": "ROMEO ABAD Ivan",
+   "land": "ESP",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 692
+  },
+  {
+   "cq_riderid": 30859,
+   "naam": "EULALIO Afonso",
+   "land": "POR",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 683
+  },
+  {
+   "cq_riderid": 17881,
+   "naam": "BILBAO LOPEZ DE ARMENTIA Pello",
+   "land": "ESP",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 676
+  },
+  {
+   "cq_riderid": 23948,
+   "naam": "HINDLEY Jai",
+   "land": "AUS",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 657
+  },
+  {
+   "cq_riderid": 32611,
+   "naam": "ARRIETA LIZARRAGA Igor",
+   "land": "ESP",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 655
+  },
+  {
+   "cq_riderid": 29699,
+   "naam": "BUITRAGO SANCHEZ Santiago",
+   "land": "COL",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 649
+  },
+  {
+   "cq_riderid": 21428,
+   "naam": "VENTURINI Clément",
+   "land": "FRA",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 647
+  },
+  {
+   "cq_riderid": 29187,
+   "naam": "WAERENSKJOLD Søren",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 639
+  },
+  {
+   "cq_riderid": 31323,
+   "naam": "BRENNER Marco",
+   "land": "GER",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 636
+  },
+  {
+   "cq_riderid": 27749,
+   "naam": "ZANA Filippo",
+   "land": "ITA",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 636
+  },
+  {
+   "cq_riderid": 36682,
+   "naam": "OMRZEL Jakob",
+   "land": "SLO",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 635
+  },
+  {
+   "cq_riderid": 26813,
+   "naam": "TEJADA CANACUE Harold Alfonso",
+   "land": "COL",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 635
+  },
+  {
+   "cq_riderid": 29474,
+   "naam": "GIRMAY HAILU Biniam",
+   "land": "ERI",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 634
+  },
+  {
+   "cq_riderid": 31713,
+   "naam": "VACEK Mathias",
+   "land": "CZE",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 634
+  },
+  {
+   "cq_riderid": 34222,
+   "naam": "MORGADO Antonio Tomas",
+   "land": "POR",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 631
+  },
+  {
+   "cq_riderid": 31264,
+   "naam": "VAUQUELIN Kévin",
+   "land": "FRA",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 627
+  },
+  {
+   "cq_riderid": 29787,
+   "naam": "PLAPP Lucas",
+   "land": "AUS",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 623
+  },
+  {
+   "cq_riderid": 22077,
+   "naam": "HERMANS Quinten",
+   "land": "BEL",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 600
+  },
+  {
+   "cq_riderid": 32617,
+   "naam": "FRETIN Milan",
+   "land": "BEL",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 597
+  },
+  {
+   "cq_riderid": 24926,
+   "naam": "BERNAL GOMEZ Egan Arley",
+   "land": "COL",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 594
+  },
+  {
+   "cq_riderid": 27653,
+   "naam": "LEKNESSUND Andreas",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 593
+  },
+  {
+   "cq_riderid": 31559,
+   "naam": "RICCITELLO Matthew",
+   "land": "USA",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 591
+  },
+  {
+   "cq_riderid": 24961,
+   "naam": "KANTER Max",
+   "land": "GER",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 590
+  },
+  {
+   "cq_riderid": 26869,
+   "naam": "GEE-WEST Derek",
+   "land": "CAN",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 588
+  },
+  {
+   "cq_riderid": 32225,
+   "naam": "VAN EETVELT Lennert",
+   "land": "BEL",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 586
+  },
+  {
+   "cq_riderid": 26474,
+   "naam": "CHARMIG Anthon",
+   "land": "DEN",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 580
+  },
+  {
+   "cq_riderid": 22170,
+   "naam": "VENDRAME Andrea",
+   "land": "ITA",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 572
+  },
+  {
+   "cq_riderid": 28127,
+   "naam": "VERMEERSCH Florian",
+   "land": "BEL",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 572
+  },
+  {
+   "cq_riderid": 18714,
+   "naam": "COQUARD Bryan",
+   "land": "FRA",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 569
+  },
+  {
+   "cq_riderid": 30630,
+   "naam": "TULETT Ben",
+   "land": "GBR",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 568
+  },
+  {
+   "cq_riderid": 35822,
+   "naam": "BISIAUX Léo",
+   "land": "FRA",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 564
+  },
+  {
+   "cq_riderid": 25335,
+   "naam": "STORER Michael",
+   "land": "AUS",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 559
+  },
+  {
+   "cq_riderid": 34337,
+   "naam": "GRUEL Thibaud",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 551
+  },
+  {
+   "cq_riderid": 33567,
+   "naam": "SEGAERT Alec",
+   "land": "BEL",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 545
+  },
+  {
+   "cq_riderid": 18975,
+   "naam": "YATES Adam",
+   "land": "GBR",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 545
+  },
+  {
+   "cq_riderid": 34298,
+   "naam": "CRESCIOLI Ludovico",
+   "land": "ITA",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 536
+  },
+  {
+   "cq_riderid": 30519,
+   "naam": "DELETTRE Alexandre",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 527
+  },
+  {
+   "cq_riderid": 32860,
+   "naam": "JEGAT Jordan",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 523
+  },
+  {
+   "cq_riderid": 13066,
+   "naam": "MATTHEWS Michael",
+   "land": "AUS",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 521
+  },
+  {
+   "cq_riderid": 16722,
+   "naam": "WELLENS Tim",
+   "land": "BEL",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 521
+  },
+  {
+   "cq_riderid": 34396,
+   "naam": "ISIDORE Noa",
+   "land": "FRA",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 511
+  },
+  {
+   "cq_riderid": 28186,
+   "naam": "MULUBRHAN Henok",
+   "land": "ERI",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 510
+  },
+  {
+   "cq_riderid": 31400,
+   "naam": "FOLDAGER Anders",
+   "land": "DEN",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 509
+  },
+  {
+   "cq_riderid": 19165,
+   "naam": "TEUNISSEN Mike",
+   "land": "NED",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 506
+  },
+  {
+   "cq_riderid": 31495,
+   "naam": "PARET PEINTRE Valentin",
+   "land": "FRA",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 503
+  },
+  {
+   "cq_riderid": 31685,
+   "naam": "BARRENETXEA GOLZARRI Jon",
+   "land": "ESP",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 496
+  },
+  {
+   "cq_riderid": 29490,
+   "naam": "BERWICK Sebastian",
+   "land": "AUS",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 492
+  },
+  {
+   "cq_riderid": 29969,
+   "naam": "RENARD Alexis",
+   "land": "FRA",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 490
+  },
+  {
+   "cq_riderid": 21312,
+   "naam": "TURGIS Anthony",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 485
+  },
+  {
+   "cq_riderid": 13270,
+   "naam": "TRENTIN Matteo",
+   "land": "ITA",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 484
+  },
+  {
+   "cq_riderid": 30442,
+   "naam": "HAGENES Per Strand",
+   "land": "NOR",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 483
+  },
+  {
+   "cq_riderid": 24102,
+   "naam": "RODRIGUEZ MARTIN Cristian",
+   "land": "ESP",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 477
+  },
+  {
+   "cq_riderid": 35802,
+   "naam": "AUGUST Andrew",
+   "land": "USA",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 475
+  },
+  {
+   "cq_riderid": 25634,
+   "naam": "LONARDI Giovanni",
+   "land": "ITA",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 474
+  },
+  {
+   "cq_riderid": 30035,
+   "naam": "VERNON Ethan",
+   "land": "GBR",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 474
+  },
+  {
+   "cq_riderid": 37059,
+   "naam": "CASTELLON RIBALTA Jan",
+   "land": "ESP",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 470
+  },
+  {
+   "cq_riderid": 35570,
+   "naam": "GRISEL Matys",
+   "land": "FRA",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 469
+  },
+  {
+   "cq_riderid": 35592,
+   "naam": "NORDHAGEN Jørgen",
+   "land": "NOR",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 462
+  },
+  {
+   "cq_riderid": 31555,
+   "naam": "BITTNER Pavel",
+   "land": "CZE",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 456
+  },
+  {
+   "cq_riderid": 23467,
+   "naam": "MALUCELLI Matteo",
+   "land": "ITA",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 455
+  },
+  {
+   "cq_riderid": 24316,
+   "naam": "VLASOV Aleksandr",
+   "land": "RUS",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 455
+  },
+  {
+   "cq_riderid": 32834,
+   "naam": "COSTIOU Ewen",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 452
+  },
+  {
+   "cq_riderid": 33745,
+   "naam": "BERASATEGI GARMENDIA Xabier",
+   "land": "ESP",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 451
+  },
+  {
+   "cq_riderid": 29301,
+   "naam": "SHEEHAN Riley",
+   "land": "USA",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 451
+  },
+  {
+   "cq_riderid": 29492,
+   "naam": "STRONG Corbin",
+   "land": "NZL",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 450
+  },
+  {
+   "cq_riderid": 32221,
+   "naam": "DE LIE Arnaud",
+   "land": "BEL",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 449
+  },
+  {
+   "cq_riderid": 36569,
+   "naam": "JASCH Lennart",
+   "land": "GER",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 447
+  },
+  {
+   "cq_riderid": 27108,
+   "naam": "BERRADE FERNANDEZ Urko",
+   "land": "ESP",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 444
+  },
+  {
+   "cq_riderid": 30562,
+   "naam": "FISHER-BLACK Finn",
+   "land": "NZL",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 444
+  },
+  {
+   "cq_riderid": 25157,
+   "naam": "NARVAEZ PRADO Jhonatan Manuel",
+   "land": "ECU",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 443
+  },
+  {
+   "cq_riderid": 28445,
+   "naam": "FAGUNDEZ LIMA Antonio Eric",
+   "land": "URU",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 436
+  },
+  {
+   "cq_riderid": 35616,
+   "naam": "BIESTERBOS Frits",
+   "land": "NED",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 434
+  },
+  {
+   "cq_riderid": 30055,
+   "naam": "BARRE Louis",
+   "land": "FRA",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 426
+  },
+  {
+   "cq_riderid": 29332,
+   "naam": "VERMAERKE Kevin",
+   "land": "USA",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 425
+  },
+  {
+   "cq_riderid": 31621,
+   "naam": "LAURANCE Axel",
+   "land": "FRA",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 424
+  },
+  {
+   "cq_riderid": 32644,
+   "naam": "DEBRUYNE Ramses",
+   "land": "BEL",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 423
+  },
+  {
+   "cq_riderid": 19646,
+   "naam": "WALSCHEID Maximilian",
+   "land": "GER",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 422
+  },
+  {
+   "cq_riderid": 32252,
+   "naam": "LEMMEN Bart",
+   "land": "NED",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 421
+  },
+  {
+   "cq_riderid": 28846,
+   "naam": "HEALY Ben",
+   "land": "IRL",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 420
+  },
+  {
+   "cq_riderid": 34230,
+   "naam": "SÖDERQVIST Jakob",
+   "land": "SWE",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 420
+  },
+  {
+   "cq_riderid": 27126,
+   "naam": "MOSCHETTI Matteo",
+   "land": "ITA",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 418
+  },
+  {
+   "cq_riderid": 29463,
+   "naam": "PLUIMERS Rick",
+   "land": "NED",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 418
+  },
+  {
+   "cq_riderid": 31634,
+   "naam": "BERTHET Clément",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 417
+  },
+  {
+   "cq_riderid": 25600,
+   "naam": "RAJOVIC Dusan",
+   "land": "SRB",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 417
+  },
+  {
+   "cq_riderid": 21998,
+   "naam": "DE GENDT Aime",
+   "land": "BEL",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 416
+  },
+  {
+   "cq_riderid": 1999,
+   "naam": "POZZOVIVO Domenico",
+   "land": "ITA",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 415
+  },
+  {
+   "cq_riderid": 35565,
+   "naam": "WIDAR Jarno",
+   "land": "BEL",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 411
+  },
+  {
+   "cq_riderid": 23503,
+   "naam": "MARTINEZ POVEDA Daniel Felipe",
+   "land": "COL",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 409
+  },
+  {
+   "cq_riderid": 29568,
+   "naam": "VINE Jay",
+   "land": "AUS",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 409
+  },
+  {
+   "cq_riderid": 33133,
+   "naam": "ROMELE Alessandro",
+   "land": "ITA",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 408
+  },
+  {
+   "cq_riderid": 23763,
+   "naam": "O'CONNOR Ben",
+   "land": "AUS",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 403
+  },
+  {
+   "cq_riderid": 32905,
+   "naam": "VERCHER Matteo",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 399
+  },
+  {
+   "cq_riderid": 33101,
+   "naam": "PINARELLO Alessandro",
+   "land": "ITA",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 398
+  },
+  {
+   "cq_riderid": 10023,
+   "naam": "ULISSI Diego",
+   "land": "ITA",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 394
+  },
+  {
+   "cq_riderid": 19994,
+   "naam": "MARTIN GUYONNET Guillaume",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 391
+  },
+  {
+   "cq_riderid": 35568,
+   "naam": "DE SCHUYTENEER Steffen",
+   "land": "BEL",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 390
+  },
+  {
+   "cq_riderid": 30746,
+   "naam": "RUIZ SEDANO Ibon",
+   "land": "ESP",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 390
+  },
+  {
+   "cq_riderid": 35626,
+   "naam": "TUCKWELL Luke",
+   "land": "AUS",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 390
+  },
+  {
+   "cq_riderid": 28037,
+   "naam": "MOZZATO Luca",
+   "land": "ITA",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 384
+  },
+  {
+   "cq_riderid": 29883,
+   "naam": "TESSON Jason",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 384
+  },
+  {
+   "cq_riderid": 27977,
+   "naam": "VOISARD Yannis",
+   "land": "SUI",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 383
+  },
+  {
+   "cq_riderid": 28446,
+   "naam": "WRIGHT Fred",
+   "land": "GBR",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 383
+  },
+  {
+   "cq_riderid": 26509,
+   "naam": "HIRSCHI Marc",
+   "land": "SUI",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 381
+  },
+  {
+   "cq_riderid": 35608,
+   "naam": "DECOMBLE Maxime",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 380
+  },
+  {
+   "cq_riderid": 19448,
+   "naam": "CORT NIELSEN Magnus",
+   "land": "DEN",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 378
+  },
+  {
+   "cq_riderid": 26378,
+   "naam": "SOSA CUERVO Ivan Ramiro",
+   "land": "COL",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 377
+  },
+  {
+   "cq_riderid": 24940,
+   "naam": "ANIOLKOWSKI Stanislaw",
+   "land": "POL",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 376
+  },
+  {
+   "cq_riderid": 34405,
+   "naam": "RACCAGNI NOVIERO Andrea",
+   "land": "ITA",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 375
+  },
+  {
+   "cq_riderid": 22596,
+   "naam": "DE KLEIJN Arvid",
+   "land": "NED",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 373
+  },
+  {
+   "cq_riderid": 27153,
+   "naam": "CHAMPOUSSIN Clément",
+   "land": "FRA",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 372
+  },
+  {
+   "cq_riderid": 37070,
+   "naam": "PERICAS CAPDEVILA Adria",
+   "land": "ESP",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 369
+  },
+  {
+   "cq_riderid": 30642,
+   "naam": "VAN DIJKE Tim",
+   "land": "NED",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 369
+  },
+  {
+   "cq_riderid": 18247,
+   "naam": "VERMEERSCH Gianni",
+   "land": "BEL",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 369
+  },
+  {
+   "cq_riderid": 24103,
+   "naam": "DIAZ GALLEGO Jose Manuel",
+   "land": "ESP",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 368
+  },
+  {
+   "cq_riderid": 32709,
+   "naam": "HUENS Axel",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 366
+  },
+  {
+   "cq_riderid": 22233,
+   "naam": "ABRAHAMSEN Jonas",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 364
+  },
+  {
+   "cq_riderid": 20847,
+   "naam": "POLITT Nils",
+   "land": "GER",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 361
+  },
+  {
+   "cq_riderid": 25165,
+   "naam": "ZIMMERMANN Georg",
+   "land": "GER",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 352
+  },
+  {
+   "cq_riderid": 33533,
+   "naam": "GAUTHERAT Pierre",
+   "land": "FRA",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 351
+  },
+  {
+   "cq_riderid": 29288,
+   "naam": "JEANNIERE Emilien",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 350
+  },
+  {
+   "cq_riderid": 34030,
+   "naam": "CAMPRUBI PIJUAN Marcel",
+   "land": "ESP",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 346
+  },
+  {
+   "cq_riderid": 35459,
+   "naam": "GUALDI Simone",
+   "land": "ITA",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 343
+  },
+  {
+   "cq_riderid": 29545,
+   "naam": "OLIVER Ben",
+   "land": "NZL",
+   "ploeg": "Modern Adventure Pro Cycling",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 341
+  },
+  {
+   "cq_riderid": 34364,
+   "naam": "PEDERSEN Henrik Breiner",
+   "land": "DEN",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 341
+  },
+  {
+   "cq_riderid": 35548,
+   "naam": "BELOKI FERNANDEZ Markel",
+   "land": "ESP",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 340
+  },
+  {
+   "cq_riderid": 32179,
+   "naam": "DONALDSON Robert",
+   "land": "GBR",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 337
+  },
+  {
+   "cq_riderid": 19391,
+   "naam": "KAMP Alexander",
+   "land": "DEN",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 337
+  },
+  {
+   "cq_riderid": 31833,
+   "naam": "LAMPERTI Luke",
+   "land": "USA",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 337
+  },
+  {
+   "cq_riderid": 19548,
+   "naam": "GROSSSCHARTNER Felix",
+   "land": "AUT",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 336
+  },
+  {
+   "cq_riderid": 32743,
+   "naam": "SVESTAD-BAARDSENG Embret",
+   "land": "NOR",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 335
+  },
+  {
+   "cq_riderid": 31857,
+   "naam": "TEUTENBERG Tim Torn",
+   "land": "GER",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 335
+  },
+  {
+   "cq_riderid": 34126,
+   "naam": "BREUILLARD Nicolas",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 333
+  },
+  {
+   "cq_riderid": 30836,
+   "naam": "RODRIGUEZ CANO Carlos",
+   "land": "ESP",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 333
+  },
+  {
+   "cq_riderid": 27033,
+   "naam": "SOBRERO Matteo",
+   "land": "ITA",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 333
+  },
+  {
+   "cq_riderid": 30678,
+   "naam": "GARCIA PIERNA Raul",
+   "land": "ESP",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 332
+  },
+  {
+   "cq_riderid": 26420,
+   "naam": "KRON Andreas Lorentz",
+   "land": "DEN",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 332
+  },
+  {
+   "cq_riderid": 25552,
+   "naam": "FORTUNATO Lorenzo",
+   "land": "ITA",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 329
+  },
+  {
+   "cq_riderid": 35809,
+   "naam": "L'HOTE Antoine",
+   "land": "FRA",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 328
+  },
+  {
+   "cq_riderid": 28470,
+   "naam": "LOOCKX Lander",
+   "land": "BEL",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 328
+  },
+  {
+   "cq_riderid": 34335,
+   "naam": "HOBBS Noah",
+   "land": "GBR",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 325
+  },
+  {
+   "cq_riderid": 20697,
+   "naam": "BETTIOL Alberto",
+   "land": "ITA",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 323
+  },
+  {
+   "cq_riderid": 25026,
+   "naam": "HIGUITA GARCIA Sergio Andres",
+   "land": "COL",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 322
+  },
+  {
+   "cq_riderid": 18123,
+   "naam": "VALGREN HUNDAHL Michael",
+   "land": "DEN",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 322
+  },
+  {
+   "cq_riderid": 32891,
+   "naam": "DEL GROSSO Tibor",
+   "land": "NED",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 321
+  },
+  {
+   "cq_riderid": 30708,
+   "naam": "CANAL BLANCO Carlos",
+   "land": "ESP",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 317
+  },
+  {
+   "cq_riderid": 27964,
+   "naam": "DONOVAN Mark",
+   "land": "GBR",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 316
+  },
+  {
+   "cq_riderid": 32609,
+   "naam": "MIQUEL DELGADO Pau",
+   "land": "ESP",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 316
+  },
+  {
+   "cq_riderid": 30020,
+   "naam": "BRAZ AFONSO Clément",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 315
+  },
+  {
+   "cq_riderid": 20960,
+   "naam": "KÜNG Stefan",
+   "land": "SUI",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 315
+  },
+  {
+   "cq_riderid": 30686,
+   "naam": "PENHOËT Paul",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 315
+  },
+  {
+   "cq_riderid": 28580,
+   "naam": "VANSEVENANT Mauri",
+   "land": "BEL",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 315
+  },
+  {
+   "cq_riderid": 30721,
+   "naam": "STEINHAUSER Georg",
+   "land": "GER",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 314
+  },
+  {
+   "cq_riderid": 31277,
+   "naam": "COBO CAYON Ivan",
+   "land": "ESP",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 313
+  },
+  {
+   "cq_riderid": 22010,
+   "naam": "BIERMANS Jenthe",
+   "land": "BEL",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 311
+  },
+  {
+   "cq_riderid": 35372,
+   "naam": "MEEHAN Jamie",
+   "land": "IRL",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 311
+  },
+  {
+   "cq_riderid": 33562,
+   "naam": "VERSTRYNGE Emiel",
+   "land": "BEL",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 311
+  },
+  {
+   "cq_riderid": 32181,
+   "naam": "DELBOVE Joris",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 310
+  },
+  {
+   "cq_riderid": 31803,
+   "naam": "UIJTDEBROEKS Cian",
+   "land": "BEL",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 310
+  },
+  {
+   "cq_riderid": 24873,
+   "naam": "FOSS Tobias Svendsen",
+   "land": "NOR",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 309
+  },
+  {
+   "cq_riderid": 34508,
+   "naam": "MÜLLER Tobias",
+   "land": "GER",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 303
+  },
+  {
+   "cq_riderid": 25623,
+   "naam": "TILLER Rasmus Fossum",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 303
+  },
+  {
+   "cq_riderid": 27085,
+   "naam": "THIJSSEN Gerben",
+   "land": "BEL",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 301
+  },
+  {
+   "cq_riderid": 32653,
+   "naam": "PEDERSEN Rasmus Søjberg",
+   "land": "DEN",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 300
+  },
+  {
+   "cq_riderid": 34269,
+   "naam": "SHMIDT Artem",
+   "land": "USA",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 300
+  },
+  {
+   "cq_riderid": 28521,
+   "naam": "VAN GILS Maxim",
+   "land": "BEL",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 300
+  },
+  {
+   "cq_riderid": 17078,
+   "naam": "HIRT Jan",
+   "land": "CZE",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 299
+  },
+  {
+   "cq_riderid": 32392,
+   "naam": "VINOKUROV Nicolya",
+   "land": "KAZ",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 299
+  },
+  {
+   "cq_riderid": 34399,
+   "naam": "KULSET Johannes",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 297
+  },
+  {
+   "cq_riderid": 22702,
+   "naam": "HOFSTETTER Hugo",
+   "land": "FRA",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 295
+  },
+  {
+   "cq_riderid": 12843,
+   "naam": "QUINTANA ROJAS Nairo Alexander",
+   "land": "COL",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 294
+  },
+  {
+   "cq_riderid": 24326,
+   "naam": "AULAR SANABRIA Orluis Alberto",
+   "land": "VEN",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 293
+  },
+  {
+   "cq_riderid": 33158,
+   "naam": "NERURKAR Lukas",
+   "land": "GBR",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 293
+  },
+  {
+   "cq_riderid": 33579,
+   "naam": "GILMORE Brady",
+   "land": "AUS",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 291
+  },
+  {
+   "cq_riderid": 29436,
+   "naam": "HEIDUK Kim",
+   "land": "GER",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 287
+  },
+  {
+   "cq_riderid": 21128,
+   "naam": "MÜHLBERGER Gregor",
+   "land": "AUT",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 287
+  },
+  {
+   "cq_riderid": 27072,
+   "naam": "OLDANI Stefano",
+   "land": "ITA",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 287
+  },
+  {
+   "cq_riderid": 20793,
+   "naam": "KRAGH ANDERSEN Søren",
+   "land": "DEN",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 284
+  },
+  {
+   "cq_riderid": 31563,
+   "naam": "REINDERINK Pepijn",
+   "land": "NED",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 284
+  },
+  {
+   "cq_riderid": 24152,
+   "naam": "FIORELLI Filippo",
+   "land": "ITA",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 282
+  },
+  {
+   "cq_riderid": 29828,
+   "naam": "VAN WILDER Ilan",
+   "land": "BEL",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 281
+  },
+  {
+   "cq_riderid": 32606,
+   "naam": "SLOCK Liam",
+   "land": "BEL",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 279
+  },
+  {
+   "cq_riderid": 26482,
+   "naam": "ALMEIDA Joao Pedro Gonçalves",
+   "land": "POR",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 278
+  },
+  {
+   "cq_riderid": 31437,
+   "naam": "ZAMBANINI Edoardo",
+   "land": "ITA",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 276
+  },
+  {
+   "cq_riderid": 31888,
+   "naam": "BURNETT Josh",
+   "land": "NZL",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 275
+  },
+  {
+   "cq_riderid": 33001,
+   "naam": "KOPECKY Matyas",
+   "land": "CZE",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 275
+  },
+  {
+   "cq_riderid": 28288,
+   "naam": "MUNTON Byron",
+   "land": "RSA",
+   "ploeg": "Modern Adventure Pro Cycling",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 275
+  },
+  {
+   "cq_riderid": 17908,
+   "naam": "TEUNS Dylan",
+   "land": "BEL",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 275
+  },
+  {
+   "cq_riderid": 27134,
+   "naam": "MARTIN SANZ Gotzon",
+   "land": "ESP",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 272
+  },
+  {
+   "cq_riderid": 28958,
+   "naam": "PESENTI Thomas",
+   "land": "ITA",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 271
+  },
+  {
+   "cq_riderid": 35934,
+   "naam": "BORGO Alessandro",
+   "land": "ITA",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 268
+  },
+  {
+   "cq_riderid": 27469,
+   "naam": "ADRIA OLIVERAS Roger",
+   "land": "ESP",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 265
+  },
+  {
+   "cq_riderid": 28392,
+   "naam": "HERREGODTS Rune",
+   "land": "BEL",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 265
+  },
+  {
+   "cq_riderid": 25066,
+   "naam": "HARPER Chris",
+   "land": "AUS",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 263
+  },
+  {
+   "cq_riderid": 36482,
+   "naam": "IZQUIERDO Clément",
+   "land": "FRA",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 263
+  },
+  {
+   "cq_riderid": 28448,
+   "naam": "VAN MOER Brent",
+   "land": "BEL",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 261
+  },
+  {
+   "cq_riderid": 22910,
+   "naam": "CAVAGNA Rémi",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 259
+  },
+  {
+   "cq_riderid": 22906,
+   "naam": "ARMIRAIL Bruno",
+   "land": "FRA",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 258
+  },
+  {
+   "cq_riderid": 6177,
+   "naam": "CARUSO Damiano",
+   "land": "ITA",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 254
+  },
+  {
+   "cq_riderid": 23549,
+   "naam": "CEPEDA HERNANDEZ Jefferson Alveiro",
+   "land": "ECU",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 254
+  },
+  {
+   "cq_riderid": 23517,
+   "naam": "WELSFORD Sam",
+   "land": "AUS",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 254
+  },
+  {
+   "cq_riderid": 7751,
+   "naam": "POELS Wout",
+   "land": "NED",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 251
+  },
+  {
+   "cq_riderid": 29321,
+   "naam": "TOLIO Alex",
+   "land": "ITA",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 251
+  },
+  {
+   "cq_riderid": 19242,
+   "naam": "VAN POPPEL Danny",
+   "land": "NED",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 249
+  },
+  {
+   "cq_riderid": 29297,
+   "naam": "ENGELHARDT Felix",
+   "land": "GER",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 248
+  },
+  {
+   "cq_riderid": 27709,
+   "naam": "HOOLE Daan",
+   "land": "NED",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 248
+  },
+  {
+   "cq_riderid": 21145,
+   "naam": "MOHORIC Matej",
+   "land": "SLO",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 248
+  },
+  {
+   "cq_riderid": 23416,
+   "naam": "TAMINIAUX Lionel",
+   "land": "BEL",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 247
+  },
+  {
+   "cq_riderid": 27674,
+   "naam": "VAN DEN BERG Marijn",
+   "land": "NED",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 247
+  },
+  {
+   "cq_riderid": 30640,
+   "naam": "BALMER Alexandre",
+   "land": "SUI",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 246
+  },
+  {
+   "cq_riderid": 23558,
+   "naam": "ASGREEN Kasper",
+   "land": "DEN",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 244
+  },
+  {
+   "cq_riderid": 34588,
+   "naam": "PESCADOR CASTRO Diego",
+   "land": "COL",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 244
+  },
+  {
+   "cq_riderid": 34135,
+   "naam": "CASTRILLO ZAPATER Pablo",
+   "land": "ESP",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 243
+  },
+  {
+   "cq_riderid": 32705,
+   "naam": "VADIC Baptiste",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 243
+  },
+  {
+   "cq_riderid": 12254,
+   "naam": "BENNETT George",
+   "land": "NZL",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 242
+  },
+  {
+   "cq_riderid": 31658,
+   "naam": "GAROFOLI Gianmarco",
+   "land": "ITA",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 242
+  },
+  {
+   "cq_riderid": 34079,
+   "naam": "BALDERSTONE ROUMENS Abel",
+   "land": "ESP",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 241
+  },
+  {
+   "cq_riderid": 15171,
+   "naam": "KELDERMAN Wilco",
+   "land": "NED",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 241
+  },
+  {
+   "cq_riderid": 23463,
+   "naam": "MOLANO BENAVIDES Juan Sebastian",
+   "land": "COL",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 241
+  },
+  {
+   "cq_riderid": 32636,
+   "naam": "LE BERRE Mathis",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 239
+  },
+  {
+   "cq_riderid": 36365,
+   "naam": "MAISONOBE Sam",
+   "land": "FRA",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 238
+  },
+  {
+   "cq_riderid": 31598,
+   "naam": "SHEFFIELD Magnus",
+   "land": "USA",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 238
+  },
+  {
+   "cq_riderid": 31750,
+   "naam": "UMBA LOPEZ Abner Santiago",
+   "land": "COL",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 238
+  },
+  {
+   "cq_riderid": 16936,
+   "naam": "CATTANEO Mattia",
+   "land": "ITA",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 237
+  },
+  {
+   "cq_riderid": 31547,
+   "naam": "ARTZ Huub",
+   "land": "NED",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 235
+  },
+  {
+   "cq_riderid": 33155,
+   "naam": "BOICHIS Adrien",
+   "land": "FRA",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 234
+  },
+  {
+   "cq_riderid": 35808,
+   "naam": "CRABBE Tom",
+   "land": "BEL",
+   "ploeg": "Team Flanders - Baloise",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 233
+  },
+  {
+   "cq_riderid": 26177,
+   "naam": "COVILI Luca",
+   "land": "ITA",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 232
+  },
+  {
+   "cq_riderid": 30641,
+   "naam": "VAN DIJKE Mick",
+   "land": "NED",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 232
+  },
+  {
+   "cq_riderid": 34218,
+   "naam": "HERZOG Emil",
+   "land": "GER",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 231
+  },
+  {
+   "cq_riderid": 17534,
+   "naam": "HERRADA LOPEZ Jesus",
+   "land": "ESP",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 230
+  },
+  {
+   "cq_riderid": 30566,
+   "naam": "VAN DER TUUK Axel",
+   "land": "NED",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 230
+  },
+  {
+   "cq_riderid": 25655,
+   "naam": "DEWULF Stan",
+   "land": "BEL",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 229
+  },
+  {
+   "cq_riderid": 34438,
+   "naam": "SVARRE Tobias",
+   "land": "DEN",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 229
+  },
+  {
+   "cq_riderid": 28085,
+   "naam": "MOLENAAR Alex",
+   "land": "NED",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 225
+  },
+  {
+   "cq_riderid": 16739,
+   "naam": "SKUJINS Toms",
+   "land": "LAT",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 225
+  },
+  {
+   "cq_riderid": 21930,
+   "naam": "BOL Cees",
+   "land": "NED",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 224
+  },
+  {
+   "cq_riderid": 28553,
+   "naam": "DVERSNES LAVIK Fredrik",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 223
+  },
+  {
+   "cq_riderid": 20798,
+   "naam": "SCHACHMANN Maximilian",
+   "land": "GER",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 223
+  },
+  {
+   "cq_riderid": 32640,
+   "naam": "GACHIGNARD Thomas",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 222
+  },
+  {
+   "cq_riderid": 36481,
+   "naam": "CAVIA SANZ Daniel",
+   "land": "ESP",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 218
+  },
+  {
+   "cq_riderid": 33802,
+   "naam": "THIERRY Pierre",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 214
+  },
+  {
+   "cq_riderid": 28583,
+   "naam": "DUJARDIN Sandy",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 213
+  },
+  {
+   "cq_riderid": 31859,
+   "naam": "WENZEL Mats",
+   "land": "LUX",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 213
+  },
+  {
+   "cq_riderid": 29206,
+   "naam": "JOHANNINK Jelle",
+   "land": "NED",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 212
+  },
+  {
+   "cq_riderid": 27752,
+   "naam": "JOHANSEN Julius",
+   "land": "DEN",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 212
+  },
+  {
+   "cq_riderid": 14319,
+   "naam": "LANDA MEANA Mikel",
+   "land": "ESP",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 212
+  },
+  {
+   "cq_riderid": 23299,
+   "naam": "SOLER GIMENEZ Marc",
+   "land": "ESP",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 212
+  },
+  {
+   "cq_riderid": 32557,
+   "naam": "CALZONI Walter",
+   "land": "ITA",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 211
+  },
+  {
+   "cq_riderid": 25087,
+   "naam": "STORK Florian",
+   "land": "GER",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 211
+  },
+  {
+   "cq_riderid": 29309,
+   "naam": "FEDOROV Yevgeniy",
+   "land": "KAZ",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 210
+  },
+  {
+   "cq_riderid": 33970,
+   "naam": "GIDDINGS Joshua",
+   "land": "GBR",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 210
+  },
+  {
+   "cq_riderid": 30776,
+   "naam": "GUDMESTAD Tord",
+   "land": "NOR",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 210
+  },
+  {
+   "cq_riderid": 26775,
+   "naam": "CEPEDA ORTIZ Jefferson Alexander",
+   "land": "ECU",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 207
+  },
+  {
+   "cq_riderid": 31664,
+   "naam": "APARICIO MUÑOZ Mario",
+   "land": "ESP",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 204
+  },
+  {
+   "cq_riderid": 34660,
+   "naam": "MARTI SORIANO Pau",
+   "land": "ESP",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 203
+  },
+  {
+   "cq_riderid": 32134,
+   "naam": "TRONCHON Bastien",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 203
+  },
+  {
+   "cq_riderid": 27598,
+   "naam": "BOU COMPANY Joan",
+   "land": "ESP",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 202
+  },
+  {
+   "cq_riderid": 22020,
+   "naam": "BALLERINI Davide",
+   "land": "ITA",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 200
+  },
+  {
+   "cq_riderid": 27079,
+   "naam": "BARCELO ARAGON Fernando",
+   "land": "ESP",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 200
+  },
+  {
+   "cq_riderid": 35691,
+   "naam": "TURCONI Filippo",
+   "land": "ITA",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 200
+  },
+  {
+   "cq_riderid": 20073,
+   "naam": "MAESTRI Mirco",
+   "land": "ITA",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 199
+  },
+  {
+   "cq_riderid": 28641,
+   "naam": "MARIT Arne",
+   "land": "BEL",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 199
+  },
+  {
+   "cq_riderid": 31678,
+   "naam": "ROMO OLIVER Javier",
+   "land": "ESP",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 198
+  },
+  {
+   "cq_riderid": 29074,
+   "naam": "PARRA CUERDA Jose Felix",
+   "land": "ESP",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 197
+  },
+  {
+   "cq_riderid": 32229,
+   "naam": "LECERF William Junior",
+   "land": "BEL",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 196
+  },
+  {
+   "cq_riderid": 30808,
+   "naam": "VERRE Alessandro",
+   "land": "ITA",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 196
+  },
+  {
+   "cq_riderid": 29801,
+   "naam": "BRAET Vito",
+   "land": "BEL",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 195
+  },
+  {
+   "cq_riderid": 25049,
+   "naam": "LARSEN Niklas",
+   "land": "DEN",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 195
+  },
+  {
+   "cq_riderid": 29896,
+   "naam": "BLOEM Joren",
+   "land": "NED",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 194
+  },
+  {
+   "cq_riderid": 29845,
+   "naam": "MARCELLUSI Martin",
+   "land": "ITA",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 194
+  },
+  {
+   "cq_riderid": 35578,
+   "naam": "SCHIFFER Anton",
+   "land": "GER",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 194
+  },
+  {
+   "cq_riderid": 26437,
+   "naam": "SWIFT Connor",
+   "land": "GBR",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 194
+  },
+  {
+   "cq_riderid": 27762,
+   "naam": "COLNAGHI Luca",
+   "land": "ITA",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 193
+  },
+  {
+   "cq_riderid": 26277,
+   "naam": "CONCI Nicola",
+   "land": "ITA",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 192
+  },
+  {
+   "cq_riderid": 30663,
+   "naam": "PAGE Hugo",
+   "land": "FRA",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 192
+  },
+  {
+   "cq_riderid": 32787,
+   "naam": "GRAAT Tijmen",
+   "land": "NED",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 191
+  },
+  {
+   "cq_riderid": 25629,
+   "naam": "HONORE Mikkel Frølich",
+   "land": "DEN",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 191
+  },
+  {
+   "cq_riderid": 31829,
+   "naam": "LEITAO Iuri Gabriel Dantas",
+   "land": "POR",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 191
+  },
+  {
+   "cq_riderid": 24180,
+   "naam": "MENTEN Milan",
+   "land": "BEL",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 191
+  },
+  {
+   "cq_riderid": 24030,
+   "naam": "OLIVEIRA Rui Filipe Alves",
+   "land": "POR",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 191
+  },
+  {
+   "cq_riderid": 34232,
+   "naam": "CHRISTOPHERSEN Cedrik Bakke",
+   "land": "NOR",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 190
+  },
+  {
+   "cq_riderid": 5139,
+   "naam": "MOLLEMA Bauke",
+   "land": "NED",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 190
+  },
+  {
+   "cq_riderid": 30047,
+   "naam": "QUARTUCCI Lorenzo",
+   "land": "ITA",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 189
+  },
+  {
+   "cq_riderid": 30023,
+   "naam": "AGIRRE EGAÑA Jon",
+   "land": "ESP",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 188
+  },
+  {
+   "cq_riderid": 23888,
+   "naam": "DE BOD Stefan",
+   "land": "RSA",
+   "ploeg": "Modern Adventure Pro Cycling",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 188
+  },
+  {
+   "cq_riderid": 28442,
+   "naam": "REX Laurenz",
+   "land": "BEL",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 187
+  },
+  {
+   "cq_riderid": 30827,
+   "naam": "UHLIG Henri",
+   "land": "GER",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 187
+  },
+  {
+   "cq_riderid": 31263,
+   "naam": "ZINGLE Axel",
+   "land": "FRA",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 187
+  },
+  {
+   "cq_riderid": 27923,
+   "naam": "TURNER Ben",
+   "land": "GBR",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 186
+  },
+  {
+   "cq_riderid": 24806,
+   "naam": "FABBRO Matteo",
+   "land": "ITA",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 185
+  },
+  {
+   "cq_riderid": 34613,
+   "naam": "RODRIGUEZ CONTRERAS Juan Felipe",
+   "land": "COL",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 185
+  },
+  {
+   "cq_riderid": 20165,
+   "naam": "MEURISSE Xandro",
+   "land": "BEL",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 184
+  },
+  {
+   "cq_riderid": 37003,
+   "naam": "WITHEN PHILIPSEN Albert",
+   "land": "DEN",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 183
+  },
+  {
+   "cq_riderid": 29873,
+   "naam": "NICOLAU BELTRAN Joel",
+   "land": "ESP",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 182
+  },
+  {
+   "cq_riderid": 24110,
+   "naam": "PARET PEINTRE Aurélien",
+   "land": "FRA",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 182
+  },
+  {
+   "cq_riderid": 27594,
+   "naam": "PRODHOMME Nicolas",
+   "land": "FRA",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 181
+  },
+  {
+   "cq_riderid": 34551,
+   "naam": "THORNLEY Callum",
+   "land": "GBR",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 181
+  },
+  {
+   "cq_riderid": 28452,
+   "naam": "BAGIOLI Andrea",
+   "land": "ITA",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 180
+  },
+  {
+   "cq_riderid": 27721,
+   "naam": "DOUBLE Paul",
+   "land": "GBR",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 180
+  },
+  {
+   "cq_riderid": 27025,
+   "naam": "HAYTER Ethan",
+   "land": "GBR",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 180
+  },
+  {
+   "cq_riderid": 25513,
+   "naam": "OLIVEIRA Ivo Emanuel Alves",
+   "land": "POR",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 180
+  },
+  {
+   "cq_riderid": 34221,
+   "naam": "SORARRAIN AGIRREZABALA Gorka",
+   "land": "ESP",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 180
+  },
+  {
+   "cq_riderid": 22662,
+   "naam": "VELASCO Simone",
+   "land": "ITA",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 180
+  },
+  {
+   "cq_riderid": 31419,
+   "naam": "LØLAND Sakarias Koller",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 176
+  },
+  {
+   "cq_riderid": 19418,
+   "naam": "VERVAEKE Louis",
+   "land": "BEL",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 176
+  },
+  {
+   "cq_riderid": 34593,
+   "naam": "HATHERLY Alan",
+   "land": "RSA",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 175
+  },
+  {
+   "cq_riderid": 32895,
+   "naam": "PICKERING Finlay",
+   "land": "GBR",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 175
+  },
+  {
+   "cq_riderid": 29523,
+   "naam": "BUDZINSKI Marcin",
+   "land": "POL",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 173
+  },
+  {
+   "cq_riderid": 23497,
+   "naam": "GARCIA CORTINA Ivan",
+   "land": "ESP",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 173
+  },
+  {
+   "cq_riderid": 29320,
+   "naam": "FRIGO Marco",
+   "land": "ITA",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 172
+  },
+  {
+   "cq_riderid": 26796,
+   "naam": "SWEENY Harrison",
+   "land": "AUS",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 172
+  },
+  {
+   "cq_riderid": 35698,
+   "naam": "ERZEN Zak",
+   "land": "SLO",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 171
+  },
+  {
+   "cq_riderid": 34195,
+   "naam": "BELLETTA Dario Igor",
+   "land": "ITA",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 170
+  },
+  {
+   "cq_riderid": 36512,
+   "naam": "FOX Matthew",
+   "land": "AUS",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 170
+  },
+  {
+   "cq_riderid": 20760,
+   "naam": "HOELGAARD Markus",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 170
+  },
+  {
+   "cq_riderid": 32161,
+   "naam": "WATSON Samuel",
+   "land": "GBR",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 169
+  },
+  {
+   "cq_riderid": 25761,
+   "naam": "BLIKRA Erlend Jordbrekk",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 168
+  },
+  {
+   "cq_riderid": 22005,
+   "naam": "DE BONDT Dries",
+   "land": "BEL",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 168
+  },
+  {
+   "cq_riderid": 26388,
+   "naam": "BJERG Mikkel Norsgaard",
+   "land": "DEN",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 167
+  },
+  {
+   "cq_riderid": 35000,
+   "naam": "ERMAKOV Roman",
+   "land": "SLO",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 165
+  },
+  {
+   "cq_riderid": 12400,
+   "naam": "PRADES REVERTER Eduard",
+   "land": "ESP",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 165
+  },
+  {
+   "cq_riderid": 33514,
+   "naam": "TONEATTI Davide",
+   "land": "ITA",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 165
+  },
+  {
+   "cq_riderid": 22017,
+   "naam": "AERTS Toon",
+   "land": "BEL",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 164
+  },
+  {
+   "cq_riderid": 30471,
+   "naam": "CHUMIL GONZALEZ Sergio Geovani",
+   "land": "GUA",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 164
+  },
+  {
+   "cq_riderid": 24758,
+   "naam": "MADOUAS Valentin",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 164
+  },
+  {
+   "cq_riderid": 20406,
+   "naam": "GOVEKAR Matevz",
+   "land": "SLO",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 163
+  },
+  {
+   "cq_riderid": 26283,
+   "naam": "RIVERA VARGAS Brandon Smith",
+   "land": "COL",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 163
+  },
+  {
+   "cq_riderid": 28451,
+   "naam": "ALEOTTI Giovanni",
+   "land": "ITA",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 162
+  },
+  {
+   "cq_riderid": 21244,
+   "naam": "BENOOT Tiesj",
+   "land": "BEL",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 162
+  },
+  {
+   "cq_riderid": 24236,
+   "naam": "RUSSO Clément",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 162
+  },
+  {
+   "cq_riderid": 26376,
+   "naam": "BISSEGGER Stefan",
+   "land": "SUI",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 161
+  },
+  {
+   "cq_riderid": 33440,
+   "naam": "MACIAS ESTRADA Cesar",
+   "land": "MEX",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 161
+  },
+  {
+   "cq_riderid": 32240,
+   "naam": "BONNET Thomas",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 160
+  },
+  {
+   "cq_riderid": 30509,
+   "naam": "DAUPHIN Florian",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 160
+  },
+  {
+   "cq_riderid": 32185,
+   "naam": "NYS Thibau",
+   "land": "BEL",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 160
+  },
+  {
+   "cq_riderid": 13153,
+   "naam": "GATE Aaron",
+   "land": "NZL",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 159
+  },
+  {
+   "cq_riderid": 20777,
+   "naam": "GAVIRIA RENDON Fernando",
+   "land": "COL",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 158
+  },
+  {
+   "cq_riderid": 29927,
+   "naam": "SYRITSA Gleb",
+   "land": "RUS",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 158
+  },
+  {
+   "cq_riderid": 18098,
+   "naam": "SÜTTERLIN Jasha",
+   "land": "GER",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 158
+  },
+  {
+   "cq_riderid": 26176,
+   "naam": "COTE Pier-André",
+   "land": "CAN",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 156
+  },
+  {
+   "cq_riderid": 20917,
+   "naam": "ACKERMANN Pascal",
+   "land": "GER",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 155
+  },
+  {
+   "cq_riderid": 12719,
+   "naam": "DE LA CRUZ MELGAREJO David",
+   "land": "ESP",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 155
+  },
+  {
+   "cq_riderid": 32777,
+   "naam": "BRUSTENGA MASAGUE Marc",
+   "land": "ESP",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 154
+  },
+  {
+   "cq_riderid": 27151,
+   "naam": "BURGAUDEAU Mathieu",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 154
+  },
+  {
+   "cq_riderid": 27111,
+   "naam": "JUARISTI ARRIETA Txomin",
+   "land": "ESP",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 153
+  },
+  {
+   "cq_riderid": 21212,
+   "naam": "HAIG Jack",
+   "land": "AUS",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 152
+  },
+  {
+   "cq_riderid": 34111,
+   "naam": "MUÑOZ LLANA Francisco",
+   "land": "ESP",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 152
+  },
+  {
+   "cq_riderid": 25560,
+   "naam": "SEVILLA LOPEZ Diego Pablo",
+   "land": "ESP",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 152
+  },
+  {
+   "cq_riderid": 30040,
+   "naam": "VAN DEN BOSSCHE Fabio",
+   "land": "BEL",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 152
+  },
+  {
+   "cq_riderid": 31106,
+   "naam": "PEÑUELA SANDOVAL Francisco Joel",
+   "land": "VEN",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 151
+  },
+  {
+   "cq_riderid": 28364,
+   "naam": "ZANONCELLO Enrico",
+   "land": "ITA",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 151
+  },
+  {
+   "cq_riderid": 18463,
+   "naam": "WARBASSE Lawrence",
+   "land": "USA",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 150
+  },
+  {
+   "cq_riderid": 30677,
+   "naam": "KOPECKY Tomas",
+   "land": "CZE",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 149
+  },
+  {
+   "cq_riderid": 31725,
+   "naam": "KRETSCHY Moritz",
+   "land": "GER",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 149
+  },
+  {
+   "cq_riderid": 34303,
+   "naam": "FERNANDEZ GARCIA Samuel",
+   "land": "ESP",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 148
+  },
+  {
+   "cq_riderid": 34283,
+   "naam": "LEONARD Michael",
+   "land": "CAN",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 148
+  },
+  {
+   "cq_riderid": 17994,
+   "naam": "VERONA QUINTANILLA Carlos",
+   "land": "ESP",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 148
+  },
+  {
+   "cq_riderid": 34304,
+   "naam": "GUTIERREZ GONZALEZ Jorge",
+   "land": "ESP",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 146
+  },
+  {
+   "cq_riderid": 21931,
+   "naam": "OOMEN Sam",
+   "land": "NED",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 146
+  },
+  {
+   "cq_riderid": 27024,
+   "naam": "RUBIO REYES Einer Augusto",
+   "land": "COL",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 146
+  },
+  {
+   "cq_riderid": 23641,
+   "naam": "THOMAS Benjamin",
+   "land": "FRA",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 146
+  },
+  {
+   "cq_riderid": 24139,
+   "naam": "ALBANESE Vincenzo",
+   "land": "ITA",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 145
+  },
+  {
+   "cq_riderid": 20861,
+   "naam": "BAUHAUS Phil",
+   "land": "GER",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 145
+  },
+  {
+   "cq_riderid": 24698,
+   "naam": "LASTRA MARTINEZ Jonathan",
+   "land": "ESP",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 145
+  },
+  {
+   "cq_riderid": 22938,
+   "naam": "SKAARSETH Anders",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 145
+  },
+  {
+   "cq_riderid": 34297,
+   "naam": "TARLING Joshua",
+   "land": "GBR",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 145
+  },
+  {
+   "cq_riderid": 18504,
+   "naam": "VAN ASBROECK Tom",
+   "land": "BEL",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 145
+  },
+  {
+   "cq_riderid": 32798,
+   "naam": "BEVORT Carl-Frederik",
+   "land": "DEN",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 143
+  },
+  {
+   "cq_riderid": 35636,
+   "naam": "CHAMBERLAIN Oscar",
+   "land": "AUS",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 143
+  },
+  {
+   "cq_riderid": 31268,
+   "naam": "MURGUIALDAY ELORZA Jokin",
+   "land": "ESP",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 143
+  },
+  {
+   "cq_riderid": 26438,
+   "naam": "RUTSCH Jonas",
+   "land": "GER",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 143
+  },
+  {
+   "cq_riderid": 32738,
+   "naam": "BUSATTO Francesco",
+   "land": "ITA",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 142
+  },
+  {
+   "cq_riderid": 17794,
+   "naam": "VAN BAARLE Dylan",
+   "land": "NED",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 141
+  },
+  {
+   "cq_riderid": 30660,
+   "naam": "AZPARREN IRURZUN Xabier Mikel",
+   "land": "ESP",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 140
+  },
+  {
+   "cq_riderid": 32595,
+   "naam": "HENNEQUIN Paul",
+   "land": "FRA",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 140
+  },
+  {
+   "cq_riderid": 33821,
+   "naam": "VEISTROFFER Baptiste",
+   "land": "FRA",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 140
+  },
+  {
+   "cq_riderid": 20770,
+   "naam": "BOUWMAN Koen",
+   "land": "NED",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 139
+  },
+  {
+   "cq_riderid": 12923,
+   "naam": "KWIATKOWSKI Michal",
+   "land": "POL",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 139
+  },
+  {
+   "cq_riderid": 32584,
+   "naam": "BONNEU Kamiel",
+   "land": "BEL",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 138
+  },
+  {
+   "cq_riderid": 21405,
+   "naam": "EIKING Odd Christian",
+   "land": "NOR",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 138
+  },
+  {
+   "cq_riderid": 11818,
+   "naam": "MOLARD Rudy",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 138
+  },
+  {
+   "cq_riderid": 33118,
+   "naam": "ARVANITOU Nikiforos",
+   "land": "GRE",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 136
+  },
+  {
+   "cq_riderid": 37500,
+   "naam": "BESSEGA Gabriele",
+   "land": "ITA",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 135
+  },
+  {
+   "cq_riderid": 36364,
+   "naam": "KOERDT Bjoern",
+   "land": "GBR",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 135
+  },
+  {
+   "cq_riderid": 31622,
+   "naam": "MIFSUD Andréa",
+   "land": "MLT",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 135
+  },
+  {
+   "cq_riderid": 34394,
+   "naam": "MOURIS Wessel",
+   "land": "NED",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 134
+  },
+  {
+   "cq_riderid": 31696,
+   "naam": "BAGATIN Christian",
+   "land": "ITA",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 133
+  },
+  {
+   "cq_riderid": 37723,
+   "naam": "THONNON Senne",
+   "land": "BEL",
+   "ploeg": "Team Flanders - Baloise",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 133
+  },
+  {
+   "cq_riderid": 26354,
+   "naam": "ZUKOWSKY Nickolas",
+   "land": "CAN",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 133
+  },
+  {
+   "cq_riderid": 13274,
+   "naam": "OLIVEIRA Nelson Filipe Santos Simoes",
+   "land": "POR",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 131
+  },
+  {
+   "cq_riderid": 29331,
+   "naam": "QUINN Sean",
+   "land": "USA",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 131
+  },
+  {
+   "cq_riderid": 21374,
+   "naam": "RICKAERT Jonas",
+   "land": "BEL",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 131
+  },
+  {
+   "cq_riderid": 33654,
+   "naam": "ALLENO Clément",
+   "land": "FRA",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 130
+  },
+  {
+   "cq_riderid": 31278,
+   "naam": "LOPEZ CARAVACA Jordi",
+   "land": "ESP",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 130
+  },
+  {
+   "cq_riderid": 35104,
+   "naam": "MANENTI Marco",
+   "land": "ITA",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 130
+  },
+  {
+   "cq_riderid": 31800,
+   "naam": "GLIVAR Gal",
+   "land": "SLO",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 129
+  },
+  {
+   "cq_riderid": 34209,
+   "naam": "PALETTI Luca",
+   "land": "ITA",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 129
+  },
+  {
+   "cq_riderid": 27751,
+   "naam": "PEÑALVER ANIORTE Manuel",
+   "land": "ESP",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 129
+  },
+  {
+   "cq_riderid": 31462,
+   "naam": "TJØTTA Martin",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 128
+  },
+  {
+   "cq_riderid": 38250,
+   "naam": "UGARTE LARREA Gari",
+   "land": "ESP",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 128
+  },
+  {
+   "cq_riderid": 18296,
+   "naam": "LIEPINS Emils",
+   "land": "LAT",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 127
+  },
+  {
+   "cq_riderid": 18455,
+   "naam": "LUTSENKO Alexey",
+   "land": "KAZ",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 125
+  },
+  {
+   "cq_riderid": 29528,
+   "naam": "PLOWRIGHT Jensen",
+   "land": "AUS",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 125
+  },
+  {
+   "cq_riderid": 27198,
+   "naam": "VALTER Attila",
+   "land": "HUN",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 125
+  },
+  {
+   "cq_riderid": 33568,
+   "naam": "VAN TRICHT Floris",
+   "land": "BEL",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 125
+  },
+  {
+   "cq_riderid": 23357,
+   "naam": "BERNARD Julien",
+   "land": "FRA",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 124
+  },
+  {
+   "cq_riderid": 32706,
+   "naam": "LABROSSE Jordan",
+   "land": "FRA",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 124
+  },
+  {
+   "cq_riderid": 23362,
+   "naam": "BARTA William",
+   "land": "USA",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 122
+  },
+  {
+   "cq_riderid": 31719,
+   "naam": "CHRISTEN Fabio",
+   "land": "SUI",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 122
+  },
+  {
+   "cq_riderid": 27315,
+   "naam": "EINHORN Itamar",
+   "land": "ISR",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 122
+  },
+  {
+   "cq_riderid": 30646,
+   "naam": "MERIS Sergio",
+   "land": "ITA",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 122
+  },
+  {
+   "cq_riderid": 37061,
+   "naam": "MUÑOZ GABIÑA Hodei",
+   "land": "ESP",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 121
+  },
+  {
+   "cq_riderid": 16697,
+   "naam": "THEUNS Edward",
+   "land": "BEL",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 121
+  },
+  {
+   "cq_riderid": 33648,
+   "naam": "VAN DEN BROEK Frank",
+   "land": "NED",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 121
+  },
+  {
+   "cq_riderid": 34217,
+   "naam": "KOCKELMANN Mathieu",
+   "land": "LUX",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 120
+  },
+  {
+   "cq_riderid": 33137,
+   "naam": "RAISBERG Nadav",
+   "land": "ISR",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 120
+  },
+  {
+   "cq_riderid": 34340,
+   "naam": "VAN MECHELEN Vlad",
+   "land": "BEL",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 120
+  },
+  {
+   "cq_riderid": 26965,
+   "naam": "DAINESE Alberto",
+   "land": "ITA",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 119
+  },
+  {
+   "cq_riderid": 31786,
+   "naam": "PICKRELL Riley",
+   "land": "CAN",
+   "ploeg": "Modern Adventure Pro Cycling",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 119
+  },
+  {
+   "cq_riderid": 21113,
+   "naam": "NEILANDS Krists",
+   "land": "LAT",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 118
+  },
+  {
+   "cq_riderid": 17006,
+   "naam": "BIZKARRA ETXEGIBEL Mikel",
+   "land": "ESP",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 116
+  },
+  {
+   "cq_riderid": 24257,
+   "naam": "CRAS Steff",
+   "land": "BEL",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 116
+  },
+  {
+   "cq_riderid": 23765,
+   "naam": "DUNBAR Edward",
+   "land": "IRL",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 116
+  },
+  {
+   "cq_riderid": 31902,
+   "naam": "KOGUT Oded",
+   "land": "ISR",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 116
+  },
+  {
+   "cq_riderid": 35974,
+   "naam": "DARDER GARI Sergi",
+   "land": "ESP",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 115
+  },
+  {
+   "cq_riderid": 29779,
+   "naam": "MAGLI Filippo",
+   "land": "ITA",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 115
+  },
+  {
+   "cq_riderid": 20163,
+   "naam": "PACHER Quentin",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 115
+  },
+  {
+   "cq_riderid": 12748,
+   "naam": "TRATNIK Jan",
+   "land": "SLO",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 115
+  },
+  {
+   "cq_riderid": 26377,
+   "naam": "FROIDEVAUX Robin",
+   "land": "SUI",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 114
+  },
+  {
+   "cq_riderid": 22909,
+   "naam": "LEROUX Samuel",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 114
+  },
+  {
+   "cq_riderid": 18739,
+   "naam": "BUCHMANN Emanuel",
+   "land": "GER",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 113
+  },
+  {
+   "cq_riderid": 38438,
+   "naam": "CROZZOLO Fabricio German",
+   "land": "ARG",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 113
+  },
+  {
+   "cq_riderid": 32946,
+   "naam": "MIHKELS Madis",
+   "land": "EST",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 113
+  },
+  {
+   "cq_riderid": 32610,
+   "naam": "ROULAND Louis",
+   "land": "FRA",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 112
+  },
+  {
+   "cq_riderid": 24932,
+   "naam": "EENKHOORN Pascal",
+   "land": "NED",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 111
+  },
+  {
+   "cq_riderid": 19858,
+   "naam": "GOGL Michael",
+   "land": "AUT",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 111
+  },
+  {
+   "cq_riderid": 33656,
+   "naam": "HAUG Kieran",
+   "land": "USA",
+   "ploeg": "Modern Adventure Pro Cycling",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 111
+  },
+  {
+   "cq_riderid": 31297,
+   "naam": "TSARENKO Kyrylo",
+   "land": "UKR",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 111
+  },
+  {
+   "cq_riderid": 20184,
+   "naam": "CAMPENAERTS Victor",
+   "land": "BEL",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 110
+  },
+  {
+   "cq_riderid": 28298,
+   "naam": "COVI Alessandro",
+   "land": "ITA",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 110
+  },
+  {
+   "cq_riderid": 34395,
+   "naam": "GEENS Jonas",
+   "land": "BEL",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 110
+  },
+  {
+   "cq_riderid": 29907,
+   "naam": "LEEMREIZE Gijs",
+   "land": "NED",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 110
+  },
+  {
+   "cq_riderid": 35651,
+   "naam": "MARTINSEN Toralf Rydningen",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 110
+  },
+  {
+   "cq_riderid": 35894,
+   "naam": "TORRES ARIAS Pablo",
+   "land": "ESP",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 110
+  },
+  {
+   "cq_riderid": 21392,
+   "naam": "NAESEN Oliver",
+   "land": "BEL",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 109
+  },
+  {
+   "cq_riderid": 34363,
+   "naam": "DHONDT Robbe",
+   "land": "BEL",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 108
+  },
+  {
+   "cq_riderid": 29982,
+   "naam": "LOUVEL Matîs",
+   "land": "FRA",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 108
+  },
+  {
+   "cq_riderid": 20535,
+   "naam": "MASNADA Fausto",
+   "land": "ITA",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 108
+  },
+  {
+   "cq_riderid": 31752,
+   "naam": "MILESI Lorenzo",
+   "land": "ITA",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 107
+  },
+  {
+   "cq_riderid": 30711,
+   "naam": "BLUME LEVY William",
+   "land": "DEN",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 106
+  },
+  {
+   "cq_riderid": 28375,
+   "naam": "FERRON Valentin",
+   "land": "FRA",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 106
+  },
+  {
+   "cq_riderid": 23885,
+   "naam": "HAMILTON Christopher",
+   "land": "AUS",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 106
+  },
+  {
+   "cq_riderid": 32833,
+   "naam": "LAMBRECHT Michiel",
+   "land": "BEL",
+   "ploeg": "Team Flanders - Baloise",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 106
+  },
+  {
+   "cq_riderid": 24546,
+   "naam": "SHAW James",
+   "land": "GBR",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 106
+  },
+  {
+   "cq_riderid": 31449,
+   "naam": "GLOAG Thomas",
+   "land": "GBR",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 105
+  },
+  {
+   "cq_riderid": 32613,
+   "naam": "TERCERO LOPEZ Fernando",
+   "land": "ESP",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 105
+  },
+  {
+   "cq_riderid": 24068,
+   "naam": "TRAEEN Torstein",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 105
+  },
+  {
+   "cq_riderid": 23361,
+   "naam": "VAN DEN BERG Julius",
+   "land": "NED",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 105
+  },
+  {
+   "cq_riderid": 31420,
+   "naam": "JOHANNESSEN Anders Halland",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 104
+  },
+  {
+   "cq_riderid": 26241,
+   "naam": "BAIS Mattia",
+   "land": "ITA",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 103
+  },
+  {
+   "cq_riderid": 37002,
+   "naam": "DE LA CALLE ARANGO Hugo",
+   "land": "ESP",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 103
+  },
+  {
+   "cq_riderid": 32347,
+   "naam": "KEPPLINGER Rainer",
+   "land": "AUT",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 103
+  },
+  {
+   "cq_riderid": 23429,
+   "naam": "PEDERSEN Casper",
+   "land": "DEN",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 103
+  },
+  {
+   "cq_riderid": 30647,
+   "naam": "PERSICO Davide",
+   "land": "ITA",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 103
+  },
+  {
+   "cq_riderid": 19903,
+   "naam": "SENECHAL Florian",
+   "land": "FRA",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 103
+  },
+  {
+   "cq_riderid": 29419,
+   "naam": "BARONCINI Filippo",
+   "land": "ITA",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 101
+  },
+  {
+   "cq_riderid": 27655,
+   "naam": "DE PESTEL Sander",
+   "land": "BEL",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 101
+  },
+  {
+   "cq_riderid": 37671,
+   "naam": "GAFFURI Mattia",
+   "land": "ITA",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 101
+  },
+  {
+   "cq_riderid": 36416,
+   "naam": "GIMENO FERRER Nil",
+   "land": "ESP",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 101
+  },
+  {
+   "cq_riderid": 21958,
+   "naam": "ROTA Lorenzo",
+   "land": "ITA",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 101
+  },
+  {
+   "cq_riderid": 20921,
+   "naam": "MULLEN Ryan",
+   "land": "IRL",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 100
+  },
+  {
+   "cq_riderid": 25164,
+   "naam": "SCOTSON Callum",
+   "land": "AUS",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 100
+  },
+  {
+   "cq_riderid": 21504,
+   "naam": "DENZ Nico",
+   "land": "GER",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 99
+  },
+  {
+   "cq_riderid": 30167,
+   "naam": "HOLTER Aadne",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 99
+  },
+  {
+   "cq_riderid": 21952,
+   "naam": "VAN GESTEL Dries",
+   "land": "BEL",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 99
+  },
+  {
+   "cq_riderid": 31597,
+   "naam": "VAN BOVEN Luca",
+   "land": "BEL",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 98
+  },
+  {
+   "cq_riderid": 22069,
+   "naam": "NOVAK Domen",
+   "land": "SLO",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 97
+  },
+  {
+   "cq_riderid": 37501,
+   "naam": "BESSEGA Tommaso",
+   "land": "ITA",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 96
+  },
+  {
+   "cq_riderid": 29238,
+   "naam": "MARSMAN Tim",
+   "land": "NED",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 96
+  },
+  {
+   "cq_riderid": 22667,
+   "naam": "MOSCA Jacopo",
+   "land": "ITA",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 96
+  },
+  {
+   "cq_riderid": 33813,
+   "naam": "RENARD HAQUIN Henri-François",
+   "land": "FRA",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 96
+  },
+  {
+   "cq_riderid": 32785,
+   "naam": "ISASA LARRAÑAGA Xabier",
+   "land": "ESP",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 94
+  },
+  {
+   "cq_riderid": 35760,
+   "naam": "LANHOVE Milan",
+   "land": "BEL",
+   "ploeg": "Team Flanders - Baloise",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 94
+  },
+  {
+   "cq_riderid": 34989,
+   "naam": "TSVETKOV Nikita",
+   "land": "UZB",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 94
+  },
+  {
+   "cq_riderid": 32720,
+   "naam": "VADER Milan",
+   "land": "NED",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 94
+  },
+  {
+   "cq_riderid": 18467,
+   "naam": "REINDERS Elmar",
+   "land": "NED",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 93
+  },
+  {
+   "cq_riderid": 36323,
+   "naam": "SUTTON Louis",
+   "land": "GBR",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 93
+  },
+  {
+   "cq_riderid": 36516,
+   "naam": "BOULAHOITE Rayan",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 92
+  },
+  {
+   "cq_riderid": 9851,
+   "naam": "DEGENKOLB John",
+   "land": "GER",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 92
+  },
+  {
+   "cq_riderid": 34163,
+   "naam": "DONNENWIRTH Tom",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 92
+  },
+  {
+   "cq_riderid": 34229,
+   "naam": "FOUGNER Eivind Broholt",
+   "land": "NOR",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 92
+  },
+  {
+   "cq_riderid": 38432,
+   "naam": "GIULIANO Dario",
+   "land": "FRA",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 92
+  },
+  {
+   "cq_riderid": 33756,
+   "naam": "ROLLAND Brieuc",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 92
+  },
+  {
+   "cq_riderid": 36972,
+   "naam": "ETXEBERRIA ANSALAS Haimar",
+   "land": "ESP",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 91
+  },
+  {
+   "cq_riderid": 35892,
+   "naam": "GIAIMI Luca",
+   "land": "ITA",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 91
+  },
+  {
+   "cq_riderid": 15281,
+   "naam": "HALLER Marco",
+   "land": "AUT",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 91
+  },
+  {
+   "cq_riderid": 25195,
+   "naam": "JACOBS Johan",
+   "land": "SUI",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 91
+  },
+  {
+   "cq_riderid": 32700,
+   "naam": "DEWEIRDT Siebe",
+   "land": "BEL",
+   "ploeg": "Team Flanders - Baloise",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 90
+  },
+  {
+   "cq_riderid": 27941,
+   "naam": "MACIEJUK Filip",
+   "land": "POL",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 90
+  },
+  {
+   "cq_riderid": 27006,
+   "naam": "OTRUBA Jakub",
+   "land": "CZE",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 90
+  },
+  {
+   "cq_riderid": 26001,
+   "naam": "SAMUDIO CARRERA Carlos Ariel",
+   "land": "PAN",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 90
+  },
+  {
+   "cq_riderid": 25230,
+   "naam": "FINKST Tilen",
+   "land": "SLO",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 89
+  },
+  {
+   "cq_riderid": 23652,
+   "naam": "MALECKI Kamil",
+   "land": "POL",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 89
+  },
+  {
+   "cq_riderid": 18610,
+   "naam": "ALAPHILIPPE Julian",
+   "land": "FRA",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 87
+  },
+  {
+   "cq_riderid": 29382,
+   "naam": "KLUCKERS Arthur",
+   "land": "LUX",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 87
+  },
+  {
+   "cq_riderid": 24308,
+   "naam": "PLANCKAERT Edward",
+   "land": "BEL",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 87
+  },
+  {
+   "cq_riderid": 32068,
+   "naam": "SU Haoyu",
+   "land": "CHN",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 87
+  },
+  {
+   "cq_riderid": 16058,
+   "naam": "KONRAD Patrick",
+   "land": "AUT",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 86
+  },
+  {
+   "cq_riderid": 24934,
+   "naam": "SIVAKOV Pavel",
+   "land": "FRA",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 86
+  },
+  {
+   "cq_riderid": 31717,
+   "naam": "VAN BEKKUM Darren",
+   "land": "NED",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 86
+  },
+  {
+   "cq_riderid": 22616,
+   "naam": "ALLEGAERT Piet",
+   "land": "BEL",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 85
+  },
+  {
+   "cq_riderid": 33581,
+   "naam": "BLEDDYN Oliver",
+   "land": "AUS",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 85
+  },
+  {
+   "cq_riderid": 28613,
+   "naam": "HESTERS Jules",
+   "land": "BEL",
+   "ploeg": "Team Flanders - Baloise",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 85
+  },
+  {
+   "cq_riderid": 34194,
+   "naam": "HUISING Menno",
+   "land": "NED",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 85
+  },
+  {
+   "cq_riderid": 31820,
+   "naam": "BURATTI Nicolo",
+   "land": "ITA",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 84
+  },
+  {
+   "cq_riderid": 32634,
+   "naam": "DEHAIRS Simon",
+   "land": "BEL",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 84
+  },
+  {
+   "cq_riderid": 28237,
+   "naam": "IRIBAR JAUREGI Unai",
+   "land": "ESP",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 84
+  },
+  {
+   "cq_riderid": 34152,
+   "naam": "MINTEGI CLAVER Iker",
+   "land": "ESP",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 84
+  },
+  {
+   "cq_riderid": 23566,
+   "naam": "THALMANN Roland",
+   "land": "SUI",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 84
+  },
+  {
+   "cq_riderid": 36268,
+   "naam": "ØXENBERG HANSEN Peter",
+   "land": "DEN",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 84
+  },
+  {
+   "cq_riderid": 33154,
+   "naam": "DONZE Robin",
+   "land": "SUI",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 83
+  },
+  {
+   "cq_riderid": 31511,
+   "naam": "RAFFERTY Darren",
+   "land": "IRL",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 83
+  },
+  {
+   "cq_riderid": 37012,
+   "naam": "REMIJN Senna",
+   "land": "NED",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 83
+  },
+  {
+   "cq_riderid": 35121,
+   "naam": "VAN DER LEE Jardi",
+   "land": "NED",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 83
+  },
+  {
+   "cq_riderid": 28578,
+   "naam": "URIANSTAD BUGGE Martin",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 82
+  },
+  {
+   "cq_riderid": 25867,
+   "naam": "GUERNALEC Thibault",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 81
+  },
+  {
+   "cq_riderid": 29525,
+   "naam": "LOPEZ GRANIZO Harold Martin",
+   "land": "ECU",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 81
+  },
+  {
+   "cq_riderid": 23306,
+   "naam": "BAX Sjoerd",
+   "land": "NED",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 80
+  },
+  {
+   "cq_riderid": 28569,
+   "naam": "BOUCHARD Geoffrey",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 80
+  },
+  {
+   "cq_riderid": 28189,
+   "naam": "KIELICH Timo",
+   "land": "BEL",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 80
+  },
+  {
+   "cq_riderid": 21482,
+   "naam": "GHEBREIGZABHIER Amanuel",
+   "land": "ERI",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 79
+  },
+  {
+   "cq_riderid": 26331,
+   "naam": "MONIQUET Sylvain",
+   "land": "BEL",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 79
+  },
+  {
+   "cq_riderid": 26409,
+   "naam": "STANNARD Robert",
+   "land": "AUS",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 79
+  },
+  {
+   "cq_riderid": 31551,
+   "naam": "VAN BELLE Loe",
+   "land": "NED",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 79
+  },
+  {
+   "cq_riderid": 33571,
+   "naam": "CRAPS Lars",
+   "land": "BEL",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 78
+  },
+  {
+   "cq_riderid": 29675,
+   "naam": "PORTER Rudy",
+   "land": "AUS",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 78
+  },
+  {
+   "cq_riderid": 30684,
+   "naam": "SERRANO RODRIGUEZ Javier",
+   "land": "ESP",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 78
+  },
+  {
+   "cq_riderid": 30815,
+   "naam": "CRETTI Luca",
+   "land": "ITA",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 77
+  },
+  {
+   "cq_riderid": 34064,
+   "naam": "HOOGENDOORN Roy",
+   "land": "NED",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 77
+  },
+  {
+   "cq_riderid": 20784,
+   "naam": "KUDUS Merhawi Gebremedhin",
+   "land": "ERI",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 77
+  },
+  {
+   "cq_riderid": 27132,
+   "naam": "LOPEZ PEREZ Juan Pedro",
+   "land": "ESP",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 77
+  },
+  {
+   "cq_riderid": 30010,
+   "naam": "CARR Simon",
+   "land": "GBR",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 76
+  },
+  {
+   "cq_riderid": 22849,
+   "naam": "LIVYNS Arjen",
+   "land": "BEL",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 76
+  },
+  {
+   "cq_riderid": 34596,
+   "naam": "VERGALLITO Luca",
+   "land": "ITA",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 76
+  },
+  {
+   "cq_riderid": 31635,
+   "naam": "GERMANI Lorenzo",
+   "land": "ITA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 75
+  },
+  {
+   "cq_riderid": 35747,
+   "naam": "INGEBRIGTSEN Storm",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 75
+  },
+  {
+   "cq_riderid": 33112,
+   "naam": "SCHRETTL Marco",
+   "land": "AUT",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 75
+  },
+  {
+   "cq_riderid": 28437,
+   "naam": "STEWART Jake",
+   "land": "GBR",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 75
+  },
+  {
+   "cq_riderid": 31286,
+   "naam": "GARCIA PIERNA Carlos",
+   "land": "ESP",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 74
+  },
+  {
+   "cq_riderid": 27113,
+   "naam": "O'BRIEN Kelland",
+   "land": "AUS",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 74
+  },
+  {
+   "cq_riderid": 27156,
+   "naam": "BARTHE Cyril",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 73
+  },
+  {
+   "cq_riderid": 34457,
+   "naam": "FAURA ASENSIO Jose Luis",
+   "land": "ESP",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 73
+  },
+  {
+   "cq_riderid": 38251,
+   "naam": "HEBERT Théo",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 73
+  },
+  {
+   "cq_riderid": 29412,
+   "naam": "PETER Jannis",
+   "land": "GER",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 73
+  },
+  {
+   "cq_riderid": 32737,
+   "naam": "D'AIUTO Filippo",
+   "land": "ITA",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 72
+  },
+  {
+   "cq_riderid": 19545,
+   "naam": "KIRSCH Alex",
+   "land": "LUX",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 72
+  },
+  {
+   "cq_riderid": 30026,
+   "naam": "KOLZE CHANGIZI Sebastian",
+   "land": "DEN",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 72
+  },
+  {
+   "cq_riderid": 34204,
+   "naam": "MATTIO Pietro",
+   "land": "ITA",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 72
+  },
+  {
+   "cq_riderid": 24289,
+   "naam": "SAINBAYAR Jambaljamts",
+   "land": "MGL",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 72
+  },
+  {
+   "cq_riderid": 16731,
+   "naam": "DILLIER Silvan",
+   "land": "SUI",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 71
+  },
+  {
+   "cq_riderid": 34780,
+   "naam": "MARTINEZ HUERTAS Juan Guillermo",
+   "land": "COL",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 71
+  },
+  {
+   "cq_riderid": 34223,
+   "naam": "AUGE Ronan",
+   "land": "FRA",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 70
+  },
+  {
+   "cq_riderid": 29788,
+   "naam": "DINHAM Matthew",
+   "land": "AUS",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 70
+  },
+  {
+   "cq_riderid": 30635,
+   "naam": "HAYTER Leo",
+   "land": "GBR",
+   "ploeg": "Modern Adventure Pro Cycling",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 70
+  },
+  {
+   "cq_riderid": 23427,
+   "naam": "KÄMNA Lennard",
+   "land": "GER",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 70
+  },
+  {
+   "cq_riderid": 30956,
+   "naam": "MACKELLAR Alastair",
+   "land": "AUS",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 70
+  },
+  {
+   "cq_riderid": 34228,
+   "naam": "REX Tim",
+   "land": "BEL",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 70
+  },
+  {
+   "cq_riderid": 31491,
+   "naam": "ZWIEHOFF Ben",
+   "land": "GER",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 70
+  },
+  {
+   "cq_riderid": 17627,
+   "naam": "BARGUIL Warren",
+   "land": "FRA",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 69
+  },
+  {
+   "cq_riderid": 24255,
+   "naam": "GAUDU David",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 69
+  },
+  {
+   "cq_riderid": 9896,
+   "naam": "JUUL JENSEN Christopher",
+   "land": "DEN",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 68
+  },
+  {
+   "cq_riderid": 35510,
+   "naam": "ALUSTIZA GOENAGA Nicolas",
+   "land": "ESP",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 67
+  },
+  {
+   "cq_riderid": 38341,
+   "naam": "BOLLE Bert",
+   "land": "BEL",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 67
+  },
+  {
+   "cq_riderid": 12982,
+   "naam": "BOUGLAS Georgios",
+   "land": "GRE",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 67
+  },
+  {
+   "cq_riderid": 28647,
+   "naam": "GONZALEZ LOPEZ David",
+   "land": "ESP",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 67
+  },
+  {
+   "cq_riderid": 30564,
+   "naam": "HESSMANN Michel",
+   "land": "GER",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 67
+  },
+  {
+   "cq_riderid": 27685,
+   "naam": "MÄRKL Niklas",
+   "land": "GER",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 67
+  },
+  {
+   "cq_riderid": 29884,
+   "naam": "TAROZZI Manuele",
+   "land": "ITA",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 67
+  },
+  {
+   "cq_riderid": 32732,
+   "naam": "VAN HEMELEN Vincent",
+   "land": "BEL",
+   "ploeg": "Team Flanders - Baloise",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 67
+  },
+  {
+   "cq_riderid": 32795,
+   "naam": "DALBY Simon",
+   "land": "DEN",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 66
+  },
+  {
+   "cq_riderid": 21907,
+   "naam": "GONZALEZ CASTILLERO Roberto Carlos",
+   "land": "PAN",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 66
+  },
+  {
+   "cq_riderid": 25580,
+   "naam": "BEULLENS Cédric",
+   "land": "BEL",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 65
+  },
+  {
+   "cq_riderid": 31464,
+   "naam": "HELLEMOSE Asbjørn",
+   "land": "DEN",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 65
+  },
+  {
+   "cq_riderid": 30532,
+   "naam": "MARIS Elias",
+   "land": "BEL",
+   "ploeg": "Team Flanders - Baloise",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 65
+  },
+  {
+   "cq_riderid": 30645,
+   "naam": "MARTINELLI Alessio",
+   "land": "ITA",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 65
+  },
+  {
+   "cq_riderid": 22676,
+   "naam": "MOSCON Gianni",
+   "land": "ITA",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 65
+  },
+  {
+   "cq_riderid": 35246,
+   "naam": "SENTJENS Sente",
+   "land": "BEL",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 65
+  },
+  {
+   "cq_riderid": 33759,
+   "naam": "MASCIARELLI Lorenzo",
+   "land": "ITA",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 64
+  },
+  {
+   "cq_riderid": 30387,
+   "naam": "MIKUTIS Aivaras",
+   "land": "LTU",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 64
+  },
+  {
+   "cq_riderid": 32767,
+   "naam": "SVRCEK Martin",
+   "land": "SVK",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 64
+  },
+  {
+   "cq_riderid": 28523,
+   "naam": "BAIS Davide",
+   "land": "ITA",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 63
+  },
+  {
+   "cq_riderid": 34208,
+   "naam": "CONFORTI Lorenzo",
+   "land": "ITA",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 63
+  },
+  {
+   "cq_riderid": 34136,
+   "naam": "RETEGI GOÑI Mikel",
+   "land": "ESP",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 63
+  },
+  {
+   "cq_riderid": 34108,
+   "naam": "ROJAS NARANJO Vicente Rodrigo",
+   "land": "CHI",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 63
+  },
+  {
+   "cq_riderid": 28600,
+   "naam": "ZOCCARATO Samuele",
+   "land": "ITA",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 63
+  },
+  {
+   "cq_riderid": 29079,
+   "naam": "VANHOOF Ward",
+   "land": "BEL",
+   "ploeg": "Team Flanders - Baloise",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 62
+  },
+  {
+   "cq_riderid": 26129,
+   "naam": "DINA Marton",
+   "land": "HUN",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 61
+  },
+  {
+   "cq_riderid": 33240,
+   "naam": "AVONDTS Mathis",
+   "land": "BEL",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 60
+  },
+  {
+   "cq_riderid": 22669,
+   "naam": "CAPIOT Amaury",
+   "land": "BEL",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 60
+  },
+  {
+   "cq_riderid": 16466,
+   "naam": "DURBRIDGE Luke",
+   "land": "AUS",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 60
+  },
+  {
+   "cq_riderid": 25763,
+   "naam": "GENIETS Kévin",
+   "land": "LUX",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 60
+  },
+  {
+   "cq_riderid": 31700,
+   "naam": "MIHOLJEVIC Fran",
+   "land": "CRO",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 60
+  },
+  {
+   "cq_riderid": 22744,
+   "naam": "SCHULTZ Nicholas",
+   "land": "AUS",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 60
+  },
+  {
+   "cq_riderid": 31556,
+   "naam": "GELDERS Gil",
+   "land": "BEL",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 59
+  },
+  {
+   "cq_riderid": 13438,
+   "naam": "HOULE Hugo",
+   "land": "CAN",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 59
+  },
+  {
+   "cq_riderid": 34291,
+   "naam": "NOVAK Pavel",
+   "land": "CZE",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 59
+  },
+  {
+   "cq_riderid": 34066,
+   "naam": "VERSCHUREN Killian",
+   "land": "FRA",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 59
+  },
+  {
+   "cq_riderid": 27649,
+   "naam": "ZIJLAARD Maikel",
+   "land": "NED",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 59
+  },
+  {
+   "cq_riderid": 22681,
+   "naam": "CONSONNI Simone",
+   "land": "ITA",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 58
+  },
+  {
+   "cq_riderid": 24924,
+   "naam": "NORSGAARD Mathias Sunekaer",
+   "land": "DEN",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 58
+  },
+  {
+   "cq_riderid": 32718,
+   "naam": "RASENBERG Martijn",
+   "land": "NED",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 58
+  },
+  {
+   "cq_riderid": 35761,
+   "naam": "ARRIOLABENGOA BEITIA Julen",
+   "land": "ESP",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 57
+  },
+  {
+   "cq_riderid": 31745,
+   "naam": "DE PRETTO Davide",
+   "land": "ITA",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 57
+  },
+  {
+   "cq_riderid": 23351,
+   "naam": "DE VRIES Hartthijs",
+   "land": "NED",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 56
+  },
+  {
+   "cq_riderid": 26475,
+   "naam": "RESELL Erik Nordsaeter",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 56
+  },
+  {
+   "cq_riderid": 30682,
+   "naam": "THOMPSON Reuben",
+   "land": "NZL",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 56
+  },
+  {
+   "cq_riderid": 13400,
+   "naam": "GRADEK Kamil",
+   "land": "POL",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 55
+  },
+  {
+   "cq_riderid": 26397,
+   "naam": "LANGELLOTTI Victor",
+   "land": "MON",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 55
+  },
+  {
+   "cq_riderid": 21036,
+   "naam": "SMITH Dion",
+   "land": "NZL",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 55
+  },
+  {
+   "cq_riderid": 32968,
+   "naam": "ZAMPERINI Edoardo",
+   "land": "ITA",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 55
+  },
+  {
+   "cq_riderid": 24794,
+   "naam": "AFFINI Edoardo",
+   "land": "ITA",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 53
+  },
+  {
+   "cq_riderid": 34225,
+   "naam": "BOWER Lewis",
+   "land": "NZL",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 52
+  },
+  {
+   "cq_riderid": 20678,
+   "naam": "DOULL Owain",
+   "land": "GBR",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 52
+  },
+  {
+   "cq_riderid": 33132,
+   "naam": "KAJAMINI Florian Samuel",
+   "land": "ITA",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 52
+  },
+  {
+   "cq_riderid": 27291,
+   "naam": "MAYER Alexandre",
+   "land": "MRI",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 52
+  },
+  {
+   "cq_riderid": 25102,
+   "naam": "TOWNSEND Rory",
+   "land": "IRL",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 52
+  },
+  {
+   "cq_riderid": 27717,
+   "naam": "VAN DER TUUK Danny",
+   "land": "POL",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 52
+  },
+  {
+   "cq_riderid": 30636,
+   "naam": "VAN UDEN Casper",
+   "land": "NED",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 52
+  },
+  {
+   "cq_riderid": 18608,
+   "naam": "BYSTRØM Sven Erik",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 51
+  },
+  {
+   "cq_riderid": 32845,
+   "naam": "WEISS Fabian",
+   "land": "SUI",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 51
+  },
+  {
+   "cq_riderid": 27932,
+   "naam": "BAYER Tobias",
+   "land": "AUT",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 50
+  },
+  {
+   "cq_riderid": 30617,
+   "naam": "GRIGNARD Sébastien",
+   "land": "BEL",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 50
+  },
+  {
+   "cq_riderid": 31636,
+   "naam": "PALENI Enzo",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 50
+  },
+  {
+   "cq_riderid": 39042,
+   "naam": "ROMEO ABAD Sergio",
+   "land": "ESP",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 50
+  },
+  {
+   "cq_riderid": 25671,
+   "naam": "SERRANO RODRIGUEZ Gonzalo",
+   "land": "ESP",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 50
+  },
+  {
+   "cq_riderid": 31550,
+   "naam": "STAUNE-MITTET Johannes",
+   "land": "NOR",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 50
+  },
+  {
+   "cq_riderid": 19901,
+   "naam": "TONELLI Alessandro",
+   "land": "ITA",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 50
+  },
+  {
+   "cq_riderid": 29858,
+   "naam": "VANDENABEELE Henri",
+   "land": "BEL",
+   "ploeg": "Team Flanders - Baloise",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 50
+  },
+  {
+   "cq_riderid": 32965,
+   "naam": "BRUTTOMESSO Alberto",
+   "land": "ITA",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 49
+  },
+  {
+   "cq_riderid": 19941,
+   "naam": "LAMPAERT Yves",
+   "land": "BEL",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 49
+  },
+  {
+   "cq_riderid": 37631,
+   "naam": "PEREZ LOPEZ Cesar",
+   "land": "ESP",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 49
+  },
+  {
+   "cq_riderid": 32735,
+   "naam": "POLLEFLIET Gianluca",
+   "land": "BEL",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 49
+  },
+  {
+   "cq_riderid": 31835,
+   "naam": "WALKER Max",
+   "land": "GBR",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 49
+  },
+  {
+   "cq_riderid": 26266,
+   "naam": "GHYS Robbe",
+   "land": "BEL",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 48
+  },
+  {
+   "cq_riderid": 28450,
+   "naam": "BATTISTELLA Samuele",
+   "land": "ITA",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 47
+  },
+  {
+   "cq_riderid": 18239,
+   "naam": "HOWSON Damien",
+   "land": "AUS",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 47
+  },
+  {
+   "cq_riderid": 27637,
+   "naam": "SAMITIER SAMITIER Sergio",
+   "land": "ESP",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 47
+  },
+  {
+   "cq_riderid": 33144,
+   "naam": "MILAN Matteo",
+   "land": "ITA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 46
+  },
+  {
+   "cq_riderid": 34289,
+   "naam": "NESPOLI Lorenzo",
+   "land": "ITA",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 46
+  },
+  {
+   "cq_riderid": 26461,
+   "naam": "STITES Tyler",
+   "land": "USA",
+   "ploeg": "Modern Adventure Pro Cycling",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 46
+  },
+  {
+   "cq_riderid": 25289,
+   "naam": "HAMILTON Lucas",
+   "land": "AUS",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 45
+  },
+  {
+   "cq_riderid": 29981,
+   "naam": "KELEMEN Petr",
+   "land": "CZE",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 45
+  },
+  {
+   "cq_riderid": 4443,
+   "naam": "KRUIJSWIJK Steven",
+   "land": "NED",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 45
+  },
+  {
+   "cq_riderid": 27103,
+   "naam": "PAASSCHENS Mathijs",
+   "land": "NED",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 45
+  },
+  {
+   "cq_riderid": 31817,
+   "naam": "PIRAS Andrea",
+   "land": "ITA",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 45
+  },
+  {
+   "cq_riderid": 24753,
+   "naam": "ROCHAS Rémy",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 45
+  },
+  {
+   "cq_riderid": 21288,
+   "naam": "VERGAERDE Otto",
+   "land": "BEL",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 45
+  },
+  {
+   "cq_riderid": 30710,
+   "naam": "WANDAHL Frederik",
+   "land": "DEN",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 45
+  },
+  {
+   "cq_riderid": 16323,
+   "naam": "ARNDT Nikias",
+   "land": "GER",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 44
+  },
+  {
+   "cq_riderid": 24106,
+   "naam": "DE PLUS Laurens",
+   "land": "BEL",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 44
+  },
+  {
+   "cq_riderid": 32824,
+   "naam": "VAN HAUTEGEM Leander",
+   "land": "BEL",
+   "ploeg": "Team Flanders - Baloise",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 44
+  },
+  {
+   "cq_riderid": 31340,
+   "naam": "MAIRE Adrien",
+   "land": "FRA",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 43
+  },
+  {
+   "cq_riderid": 34370,
+   "naam": "PLACE Maxence",
+   "land": "BEL",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 43
+  },
+  {
+   "cq_riderid": 33146,
+   "naam": "SKERL Daniel",
+   "land": "ITA",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 43
+  },
+  {
+   "cq_riderid": 37298,
+   "naam": "TAKACS Zsombor",
+   "land": "HUN",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 43
+  },
+  {
+   "cq_riderid": 35143,
+   "naam": "URIARTE BELZUNEGI Diego",
+   "land": "ESP",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 43
+  },
+  {
+   "cq_riderid": 37735,
+   "naam": "CORRES IBAÑEZ DE OPAKUA Gorka",
+   "land": "ESP",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 42
+  },
+  {
+   "cq_riderid": 29192,
+   "naam": "MAYRHOFER Marius",
+   "land": "GER",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 42
+  },
+  {
+   "cq_riderid": 13362,
+   "naam": "BENNETT Sam",
+   "land": "IRL",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 41
+  },
+  {
+   "cq_riderid": 15789,
+   "naam": "MEZGEC Luka",
+   "land": "SLO",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 41
+  },
+  {
+   "cq_riderid": 29330,
+   "naam": "NABERMAN Tim",
+   "land": "NED",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 41
+  },
+  {
+   "cq_riderid": 34353,
+   "naam": "FAURE PROST Alexy",
+   "land": "FRA",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 40
+  },
+  {
+   "cq_riderid": 20643,
+   "naam": "FRISON Frederik",
+   "land": "BEL",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 40
+  },
+  {
+   "cq_riderid": 31669,
+   "naam": "MORO Manlio",
+   "land": "ITA",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 40
+  },
+  {
+   "cq_riderid": 23509,
+   "naam": "OURSELIN Paul",
+   "land": "FRA",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 40
+  },
+  {
+   "cq_riderid": 24719,
+   "naam": "DOUBEY Fabien",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 39
+  },
+  {
+   "cq_riderid": 32788,
+   "naam": "SIMMONS Colby",
+   "land": "USA",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 39
+  },
+  {
+   "cq_riderid": 34292,
+   "naam": "VANDENSTORME Dylan",
+   "land": "BEL",
+   "ploeg": "Team Flanders - Baloise",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 39
+  },
+  {
+   "cq_riderid": 28243,
+   "naam": "WRIGHT Paul",
+   "land": "NZL",
+   "ploeg": "Modern Adventure Pro Cycling",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 39
+  },
+  {
+   "cq_riderid": 24902,
+   "naam": "POWLESS Neilson",
+   "land": "USA",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 38
+  },
+  {
+   "cq_riderid": 31655,
+   "naam": "SANCHEZ MAYO Pelayo",
+   "land": "ESP",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 38
+  },
+  {
+   "cq_riderid": 35441,
+   "naam": "VERCOUILLIE Victor",
+   "land": "BEL",
+   "ploeg": "Team Flanders - Baloise",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 38
+  },
+  {
+   "cq_riderid": 30739,
+   "naam": "WILKSCH Hannes",
+   "land": "GER",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 38
+  },
+  {
+   "cq_riderid": 31493,
+   "naam": "FERNANDEZ RODRIGUEZ Sinuhe",
+   "land": "ESP",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 37
+  },
+  {
+   "cq_riderid": 27671,
+   "naam": "HVIDEBERG Jonas Hem",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 37
+  },
+  {
+   "cq_riderid": 30914,
+   "naam": "KENCH Joshua",
+   "land": "NZL",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 37
+  },
+  {
+   "cq_riderid": 24277,
+   "naam": "KUZMIN Anton",
+   "land": "KAZ",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 37
+  },
+  {
+   "cq_riderid": 29418,
+   "naam": "PARISINI Nicolo",
+   "land": "ITA",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 37
+  },
+  {
+   "cq_riderid": 37006,
+   "naam": "CRUZ MARTINEZ Edward Santiago",
+   "land": "COL",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 36
+  },
+  {
+   "cq_riderid": 25652,
+   "naam": "VANHOUCKE Harm",
+   "land": "BEL",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 36
+  },
+  {
+   "cq_riderid": 24514,
+   "naam": "ARCAS PEÑA Jorge",
+   "land": "ESP",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 35
+  },
+  {
+   "cq_riderid": 26075,
+   "naam": "ARCHIBOLD CASTILLO Franklin",
+   "land": "PAN",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 35
+  },
+  {
+   "cq_riderid": 31825,
+   "naam": "BASTIAENS Ayco",
+   "land": "BEL",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 35
+  },
+  {
+   "cq_riderid": 38391,
+   "naam": "CAUDELL Ezra",
+   "land": "USA",
+   "ploeg": "Modern Adventure Pro Cycling",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 35
+  },
+  {
+   "cq_riderid": 37000,
+   "naam": "FLOREZ GARCES Samuel Alejandro",
+   "land": "COL",
+   "ploeg": "Modern Adventure Pro Cycling",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 35
+  },
+  {
+   "cq_riderid": 34299,
+   "naam": "REGNANTI Matteo",
+   "land": "ITA",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 35
+  },
+  {
+   "cq_riderid": 32176,
+   "naam": "STOCKWELL Oliver",
+   "land": "GBR",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 35
+  },
+  {
+   "cq_riderid": 7606,
+   "naam": "SWIFT Ben",
+   "land": "GBR",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 35
+  },
+  {
+   "cq_riderid": 27209,
+   "naam": "WIRTGEN Luc",
+   "land": "LUX",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 35
+  },
+  {
+   "cq_riderid": 33239,
+   "naam": "AMBROSINI Matteo",
+   "land": "ITA",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 34
+  },
+  {
+   "cq_riderid": 37007,
+   "naam": "HERREÑO POLANIA Martin Santiago",
+   "land": "COL",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 34
+  },
+  {
+   "cq_riderid": 32977,
+   "naam": "FELDMANN Karsten Larsen",
+   "land": "NOR",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 33
+  },
+  {
+   "cq_riderid": 32717,
+   "naam": "KRIJNSEN Jelte",
+   "land": "NED",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 33
+  },
+  {
+   "cq_riderid": 32129,
+   "naam": "NENCINI Tommaso",
+   "land": "ITA",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 33
+  },
+  {
+   "cq_riderid": 34435,
+   "naam": "CHESINI Cesare",
+   "land": "ITA",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 32
+  },
+  {
+   "cq_riderid": 29931,
+   "naam": "FLYNN Sean",
+   "land": "GBR",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 32
+  },
+  {
+   "cq_riderid": 34497,
+   "naam": "LOPEZ DE SAN ROMAN Ian",
+   "land": "USA",
+   "ploeg": "Modern Adventure Pro Cycling",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 32
+  },
+  {
+   "cq_riderid": 36747,
+   "naam": "BROOKES Joseph",
+   "land": "GBR",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 31
+  },
+  {
+   "cq_riderid": 37687,
+   "naam": "DE LONGHI Lorenzo",
+   "land": "ITA",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 31
+  },
+  {
+   "cq_riderid": 27805,
+   "naam": "PRICE-PEJTERSEN Johan",
+   "land": "DEN",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 31
+  },
+  {
+   "cq_riderid": 32638,
+   "naam": "ALVAREZ RODRIGUEZ Rodrigo",
+   "land": "ESP",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 30
+  },
+  {
+   "cq_riderid": 31600,
+   "naam": "DE POOTER Dries",
+   "land": "BEL",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 30
+  },
+  {
+   "cq_riderid": 35654,
+   "naam": "DEMAN Brem",
+   "land": "BEL",
+   "ploeg": "Team Flanders - Baloise",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 30
+  },
+  {
+   "cq_riderid": 29864,
+   "naam": "DJURIC Djordje",
+   "land": "SRB",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 30
+  },
+  {
+   "cq_riderid": 27920,
+   "naam": "ERIKSSON Jacob",
+   "land": "SWE",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 30
+  },
+  {
+   "cq_riderid": 23403,
+   "naam": "KNOX James",
+   "land": "GBR",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 30
+  },
+  {
+   "cq_riderid": 11213,
+   "naam": "LAENGEN Vegard Stake",
+   "land": "NOR",
+   "ploeg": "UAE Team Emirates - XRG",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 30
+  },
+  {
+   "cq_riderid": 23350,
+   "naam": "MAAS Jan",
+   "land": "NED",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 30
+  },
+  {
+   "cq_riderid": 27066,
+   "naam": "PEAK Barnabas",
+   "land": "HUN",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 30
+  },
+  {
+   "cq_riderid": 19483,
+   "naam": "VAN LERBERGHE Bert",
+   "land": "BEL",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 30
+  },
+  {
+   "cq_riderid": 27702,
+   "naam": "GAZZOLI Michele",
+   "land": "ITA",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 29
+  },
+  {
+   "cq_riderid": 30163,
+   "naam": "JOALLAND Yael",
+   "land": "FRA",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 29
+  },
+  {
+   "cq_riderid": 31990,
+   "naam": "RIDOLFO Filippo",
+   "land": "ITA",
+   "ploeg": "Team Novo Nordisk",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 29
+  },
+  {
+   "cq_riderid": 30560,
+   "naam": "BALLERSTEDT Maurice",
+   "land": "GER",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 28
+  },
+  {
+   "cq_riderid": 26962,
+   "naam": "BRUNEL Alexys",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 28
+  },
+  {
+   "cq_riderid": 35708,
+   "naam": "GRUSZCZYNSKI Filip",
+   "land": "POL",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 28
+  },
+  {
+   "cq_riderid": 31637,
+   "naam": "PIDCOCK Joseph",
+   "land": "GBR",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 28
+  },
+  {
+   "cq_riderid": 29824,
+   "naam": "JOUSSEAUME Alan",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 27
+  },
+  {
+   "cq_riderid": 37148,
+   "naam": "CETTOLIN Filippo",
+   "land": "ITA",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 26
+  },
+  {
+   "cq_riderid": 28651,
+   "naam": "PIETROBON Andrea",
+   "land": "ITA",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 26
+  },
+  {
+   "cq_riderid": 37013,
+   "naam": "ØRN-KRISTOFF Felix",
+   "land": "NOR",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 26
+  },
+  {
+   "cq_riderid": 38239,
+   "naam": "BENITO GONZALEZ Adrian",
+   "land": "ESP",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 25
+  },
+  {
+   "cq_riderid": 10856,
+   "naam": "BOIVIN Guillaume",
+   "land": "CAN",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 25
+  },
+  {
+   "cq_riderid": 28087,
+   "naam": "DE JONG Timo",
+   "land": "NED",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 25
+  },
+  {
+   "cq_riderid": 30563,
+   "naam": "GELEIJN Owen",
+   "land": "NED",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 25
+  },
+  {
+   "cq_riderid": 35522,
+   "naam": "IBAÑEZ BELTRAN DE SALAZAR Javier",
+   "land": "ESP",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 25
+  },
+  {
+   "cq_riderid": 20350,
+   "naam": "LIENHARD Fabian",
+   "land": "SUI",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 25
+  },
+  {
+   "cq_riderid": 35764,
+   "naam": "PEACE Oliver",
+   "land": "GBR",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 25
+  },
+  {
+   "cq_riderid": 26406,
+   "naam": "STOCKMAN Abram",
+   "land": "BEL",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 25
+  },
+  {
+   "cq_riderid": 32884,
+   "naam": "VERVENNE Jonathan",
+   "land": "BEL",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 25
+  },
+  {
+   "cq_riderid": 34434,
+   "naam": "BOZZOLA Mirko",
+   "land": "ITA",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 24
+  },
+  {
+   "cq_riderid": 34714,
+   "naam": "MCKENZIE Hamish",
+   "land": "AUS",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 24
+  },
+  {
+   "cq_riderid": 35859,
+   "naam": "SCHWARZBACHER Matthias",
+   "land": "SVK",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 24
+  },
+  {
+   "cq_riderid": 29870,
+   "naam": "GONOV Lev",
+   "land": "RUS",
+   "ploeg": "XDS - Astana Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 23
+  },
+  {
+   "cq_riderid": 34080,
+   "naam": "LOPEZ CUESTA Joseba",
+   "land": "ESP",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 23
+  },
+  {
+   "cq_riderid": 26827,
+   "naam": "VIVIANI Attilio",
+   "land": "ITA",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 23
+  },
+  {
+   "cq_riderid": 34689,
+   "naam": "DOCKX Aaron",
+   "land": "BEL",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 22
+  },
+  {
+   "cq_riderid": 22018,
+   "naam": "GEOGHEGAN HART Tao",
+   "land": "GBR",
+   "ploeg": "Lidl - Trek",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 22
+  },
+  {
+   "cq_riderid": 23426,
+   "naam": "JAKOBSEN Fabio",
+   "land": "NED",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 22
+  },
+  {
+   "cq_riderid": 35767,
+   "naam": "GEERAERTS Ferre",
+   "land": "BEL",
+   "ploeg": "Team Flanders - Baloise",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 21
+  },
+  {
+   "cq_riderid": 32844,
+   "naam": "GRANGER Ben",
+   "land": "GBR",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 21
+  },
+  {
+   "cq_riderid": 32677,
+   "naam": "ORINS Robin",
+   "land": "BEL",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 21
+  },
+  {
+   "cq_riderid": 33535,
+   "naam": "RACCAGNI Gabriele",
+   "land": "ITA",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 21
+  },
+  {
+   "cq_riderid": 31565,
+   "naam": "VAN SINTMAARTENSDIJK Roel",
+   "land": "NED",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 21
+  },
+  {
+   "cq_riderid": 35520,
+   "naam": "CARRASCOSA MILLER Pablo",
+   "land": "ESP",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 20
+  },
+  {
+   "cq_riderid": 37485,
+   "naam": "CHARRET Camille",
+   "land": "FRA",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 20
+  },
+  {
+   "cq_riderid": 36735,
+   "naam": "DIAZ ALVAREZ Alex",
+   "land": "ESP",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 20
+  },
+  {
+   "cq_riderid": 28419,
+   "naam": "DRIZNERS Jarrad",
+   "land": "AUS",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 20
+  },
+  {
+   "cq_riderid": 25096,
+   "naam": "GAMPER Patrick",
+   "land": "AUT",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 20
+  },
+  {
+   "cq_riderid": 36471,
+   "naam": "HOUCOU Emmanuel",
+   "land": "FRA",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 20
+  },
+  {
+   "cq_riderid": 35159,
+   "naam": "MARCEROU Nicola",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 20
+  },
+  {
+   "cq_riderid": 31785,
+   "naam": "TENE Rotem",
+   "land": "ISR",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 20
+  },
+  {
+   "cq_riderid": 29868,
+   "naam": "RETAILLEAU Valentin",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 19
+  },
+  {
+   "cq_riderid": 37357,
+   "naam": "SIMS Oliver",
+   "land": "AUS",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 19
+  },
+  {
+   "cq_riderid": 29827,
+   "naam": "SCALA Jr Hugo",
+   "land": "USA",
+   "ploeg": "Modern Adventure Pro Cycling",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 18
+  },
+  {
+   "cq_riderid": 37683,
+   "naam": "TAKHIROV Diyor",
+   "land": "UZB",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 17
+  },
+  {
+   "cq_riderid": 35519,
+   "naam": "AZNAR VIJUESCA Hugo",
+   "land": "ESP",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 16
+  },
+  {
+   "cq_riderid": 26216,
+   "naam": "RODRIGUEZ GARAICOECHEA Oscar",
+   "land": "ESP",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 16
+  },
+  {
+   "cq_riderid": 31895,
+   "naam": "BELMANS Lennert",
+   "land": "BEL",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 15
+  },
+  {
+   "cq_riderid": 26986,
+   "naam": "ELOSEGUI MOMEÑE Iñigo",
+   "land": "ESP",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 15
+  },
+  {
+   "cq_riderid": 17901,
+   "naam": "JUNGELS Bob",
+   "land": "LUX",
+   "ploeg": "Netcompany - INEOS",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 15
+  },
+  {
+   "cq_riderid": 18234,
+   "naam": "LE GAC Olivier",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 15
+  },
+  {
+   "cq_riderid": 20083,
+   "naam": "LOZANO RIBA David",
+   "land": "ESP",
+   "ploeg": "Team Novo Nordisk",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 15
+  },
+  {
+   "cq_riderid": 21343,
+   "naam": "MANZIN Lorrenzo",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 15
+  },
+  {
+   "cq_riderid": 37147,
+   "naam": "STENICO Mattia",
+   "land": "ITA",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 15
+  },
+  {
+   "cq_riderid": 23644,
+   "naam": "STEWART Mark",
+   "land": "GBR",
+   "ploeg": "Modern Adventure Pro Cycling",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 15
+  },
+  {
+   "cq_riderid": 34976,
+   "naam": "AGUIRRE SUBIJANA Yago",
+   "land": "ESP",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 14
+  },
+  {
+   "cq_riderid": 32043,
+   "naam": "BUTTIGIEG Aidan",
+   "land": "MLT",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 14
+  },
+  {
+   "cq_riderid": 37453,
+   "naam": "HUYSMANS Nolan",
+   "land": "BEL",
+   "ploeg": "Team Flanders - Baloise",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 14
+  },
+  {
+   "cq_riderid": 31334,
+   "naam": "OKAMIKA BENGOETXEA Ander",
+   "land": "ESP",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 14
+  },
+  {
+   "cq_riderid": 25980,
+   "naam": "ROSTOVTSEV Sergey",
+   "land": "UZB",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 14
+  },
+  {
+   "cq_riderid": 26991,
+   "naam": "BRAND Sam",
+   "land": "GBR",
+   "ploeg": "Team Novo Nordisk",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 13
+  },
+  {
+   "cq_riderid": 37140,
+   "naam": "FERRARO Santiago",
+   "land": "ITA",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 13
+  },
+  {
+   "cq_riderid": 23787,
+   "naam": "TOUPALIK Adam",
+   "land": "CZE",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 13
+  },
+  {
+   "cq_riderid": 33039,
+   "naam": "KESSLER Cole",
+   "land": "USA",
+   "ploeg": "Modern Adventure Pro Cycling",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 11
+  },
+  {
+   "cq_riderid": 34696,
+   "naam": "AGOSTINACCHIO Filippo",
+   "land": "ITA",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 10
+  },
+  {
+   "cq_riderid": 35584,
+   "naam": "BEHRENS Niklas",
+   "land": "GER",
+   "ploeg": "Team Visma - Lease a Bike",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 10
+  },
+  {
+   "cq_riderid": 35634,
+   "naam": "CIPOLLINI Edoardo",
+   "land": "ITA",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 10
+  },
+  {
+   "cq_riderid": 3366,
+   "naam": "CLARKE Simon",
+   "land": "AUS",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 10
+  },
+  {
+   "cq_riderid": 35266,
+   "naam": "CONOR Paul",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 10
+  },
+  {
+   "cq_riderid": 30341,
+   "naam": "CORKERY Dillon",
+   "land": "IRL",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 10
+  },
+  {
+   "cq_riderid": 19274,
+   "naam": "DE BUYST Jasper",
+   "land": "BEL",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 10
+  },
+  {
+   "cq_riderid": 26637,
+   "naam": "GROVES Kaden",
+   "land": "AUS",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 10
+  },
+  {
+   "cq_riderid": 33111,
+   "naam": "HAJEK Alexander",
+   "land": "AUT",
+   "ploeg": "Red Bull - BORA - hansgrohe",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 10
+  },
+  {
+   "cq_riderid": 30989,
+   "naam": "PINAZZI Mattia",
+   "land": "ITA",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 10
+  },
+  {
+   "cq_riderid": 34604,
+   "naam": "POLGA Antonio",
+   "land": "ITA",
+   "ploeg": "Team Novo Nordisk",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 10
+  },
+  {
+   "cq_riderid": 37992,
+   "naam": "RAMOS MURILLO Unai",
+   "land": "ESP",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 10
+  },
+  {
+   "cq_riderid": 16578,
+   "naam": "TORRES BARCELO Albert",
+   "land": "ESP",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 10
+  },
+  {
+   "cq_riderid": 19897,
+   "naam": "VAN DER HOORN Taco",
+   "land": "NED",
+   "ploeg": "Lotto - Intermarché",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 10
+  },
+  {
+   "cq_riderid": 34341,
+   "naam": "VAN DER MEULEN Max",
+   "land": "NED",
+   "ploeg": "Bahrain Victorious",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 10
+  },
+  {
+   "cq_riderid": 31233,
+   "naam": "VANGHELUWE Warre",
+   "land": "BEL",
+   "ploeg": "Soudal - Quick Step",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 10
+  },
+  {
+   "cq_riderid": 35509,
+   "naam": "GUARDEÑO ROMA Jaume",
+   "land": "ESP",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 9
+  },
+  {
+   "cq_riderid": 37005,
+   "naam": "REY VAZQUEZ Martin",
+   "land": "ESP",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 9
+  },
+  {
+   "cq_riderid": 36585,
+   "naam": "ARMITT Hamish",
+   "land": "GBR",
+   "ploeg": "Team Novo Nordisk",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 8
+  },
+  {
+   "cq_riderid": 37700,
+   "naam": "VILLAR GALDEANO Iker",
+   "land": "ESP",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 8
+  },
+  {
+   "cq_riderid": 36634,
+   "naam": "AZANZA BURUSCO Ibai",
+   "land": "ESP",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 7
+  },
+  {
+   "cq_riderid": 30933,
+   "naam": "BILYI Maksym",
+   "land": "UKR",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 7
+  },
+  {
+   "cq_riderid": 28506,
+   "naam": "MCGILL Scott",
+   "land": "USA",
+   "ploeg": "Modern Adventure Pro Cycling",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 7
+  },
+  {
+   "cq_riderid": 4021,
+   "naam": "ARASHIRO Yukiya",
+   "land": "JPN",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 6
+  },
+  {
+   "cq_riderid": 21295,
+   "naam": "CONTI Valerio",
+   "land": "ITA",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 6
+  },
+  {
+   "cq_riderid": 37736,
+   "naam": "FERNANDEZ HERES Samuel",
+   "land": "ESP",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 6
+  },
+  {
+   "cq_riderid": 35665,
+   "naam": "FONTAINE Titouan",
+   "land": "FRA",
+   "ploeg": "Groupama - FDJ United",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 6
+  },
+  {
+   "cq_riderid": 37734,
+   "naam": "GOMEZ LOPEZ DE GOICOECHEA Iker",
+   "land": "ESP",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 6
+  },
+  {
+   "cq_riderid": 37078,
+   "naam": "TORNEY Artuur",
+   "land": "BEL",
+   "ploeg": "Team Flanders - Baloise",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 6
+  },
+  {
+   "cq_riderid": 34286,
+   "naam": "BRACALENTE Diego",
+   "land": "ITA",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 19299,
+   "naam": "CARPENTER Robin",
+   "land": "USA",
+   "ploeg": "Modern Adventure Pro Cycling",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 33979,
+   "naam": "CHRISTIAN Sean",
+   "land": "USA",
+   "ploeg": "Modern Adventure Pro Cycling",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 28649,
+   "naam": "CONCA Filippo",
+   "land": "ITA",
+   "ploeg": "Team Jayco - AlUla",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 26429,
+   "naam": "EEKHOFF Nils",
+   "land": "NED",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 37991,
+   "naam": "FAJARDO TOLEDO Adrian",
+   "land": "ESP",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 18749,
+   "naam": "FORMOLO Davide",
+   "land": "ITA",
+   "ploeg": "Movistar Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 32797,
+   "naam": "FREDHEIM Stian",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 32635,
+   "naam": "GARCIA FRANCES Pablo",
+   "land": "ESP",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 29213,
+   "naam": "IACCHI Alessandro",
+   "land": "ITA",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 32414,
+   "naam": "KMINEK Vojtech",
+   "land": "CZE",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 37697,
+   "naam": "LARRONDE Ellande",
+   "land": "FRA",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 36961,
+   "naam": "LEVEQUE Théo",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 37123,
+   "naam": "MARTIN CUEVAS Marco",
+   "land": "ESP",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 34150,
+   "naam": "MARTIN MUÑOZ Jose Maria",
+   "land": "ESP",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 29373,
+   "naam": "MEO Felix James",
+   "land": "NZL",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 25759,
+   "naam": "POLI Umberto",
+   "land": "ITA",
+   "ploeg": "Team Novo Nordisk",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 21365,
+   "naam": "ROOSEN Timo",
+   "land": "NED",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 34211,
+   "naam": "SAVIOZ Colin",
+   "land": "FRA",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 27256,
+   "naam": "SUTER Joel",
+   "land": "SUI",
+   "ploeg": "Tudor Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 33952,
+   "naam": "TOWERS Lucas",
+   "land": "GBR",
+   "ploeg": "Modern Adventure Pro Cycling",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 38462,
+   "naam": "TURCONI Matteo",
+   "land": "ITA",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 37226,
+   "naam": "VAN DEN HAUTE Milan",
+   "land": "BEL",
+   "ploeg": "Team Flanders - Baloise",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 34215,
+   "naam": "VANDENBRANDEN Noah",
+   "land": "BEL",
+   "ploeg": "Team Flanders - Baloise",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 33271,
+   "naam": "WATTELLE Célestin",
+   "land": "FRA",
+   "ploeg": "Team Novo Nordisk",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 5
+  },
+  {
+   "cq_riderid": 36876,
+   "naam": "NEMATOV Abdurahmon",
+   "land": "UZB",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 4
+  },
+  {
+   "cq_riderid": 22582,
+   "naam": "SOTO GUIRAO Antonio Jesus",
+   "land": "ESP",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 4
+  },
+  {
+   "cq_riderid": 38021,
+   "naam": "LAJARIN ROJAS Luis Alberto",
+   "land": "ESP",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 3
+  },
+  {
+   "cq_riderid": 32696,
+   "naam": "MCDONALD Brody",
+   "land": "USA",
+   "ploeg": "Modern Adventure Pro Cycling",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 3
+  },
+  {
+   "cq_riderid": 37156,
+   "naam": "PAVIS Evan",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 2
+  },
+  {
+   "cq_riderid": 35692,
+   "naam": "AZNAR VIJUESCA Unai",
+   "land": "ESP",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 1
+  },
+  {
+   "cq_riderid": 34602,
+   "naam": "DE GRAEVE Quinten",
+   "land": "BEL",
+   "ploeg": "Team Novo Nordisk",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 1
+  },
+  {
+   "cq_riderid": 37146,
+   "naam": "MONTAGNER Andrea",
+   "land": "ITA",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 1
+  },
+  {
+   "cq_riderid": 39142,
+   "naam": "ORMAZABAL GALDOS Kepa",
+   "land": "ESP",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 1
+  },
+  {
+   "cq_riderid": 38351,
+   "naam": "AGOSTINACCHIO Mattia",
+   "land": "ITA",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 34447,
+   "naam": "AGUILERA JORBA Nil",
+   "land": "ESP",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 24246,
+   "naam": "BADILATTI Matteo",
+   "land": "SUI",
+   "ploeg": "Pinarello - Q36.5 Pro Cycling Team",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 37455,
+   "naam": "BASSO Santiago",
+   "land": "ITA",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 30064,
+   "naam": "BEADLE Hamish",
+   "land": "NZL",
+   "ploeg": "Team Novo Nordisk",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 34973,
+   "naam": "BLACKMORE Joseph",
+   "land": "GBR",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 28687,
+   "naam": "BOARDMAN Samuel",
+   "land": "USA",
+   "ploeg": "Modern Adventure Pro Cycling",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 36644,
+   "naam": "CALABUIG VAZQUEZ Estanislao",
+   "land": "ESP",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 33269,
+   "naam": "COLLADON Jacopo",
+   "land": "ITA",
+   "ploeg": "Team Novo Nordisk",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 31445,
+   "naam": "DAUGE Lucas",
+   "land": "FRA",
+   "ploeg": "Team Novo Nordisk",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 22773,
+   "naam": "DE VYLDER Lindsay",
+   "land": "BEL",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 28514,
+   "naam": "DEBEAUMARCHE Nicolas",
+   "land": "FRA",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 33387,
+   "naam": "DENS Tuur",
+   "land": "BEL",
+   "ploeg": "Team Flanders - Baloise",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 39510,
+   "naam": "ERRASTI URTEAGA Unax",
+   "land": "ESP",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 35364,
+   "naam": "GANZABAL BILBAO Ander",
+   "land": "ESP",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 39511,
+   "naam": "GARCIA GOMEZ Emilio",
+   "land": "ESP",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 30694,
+   "naam": "GOMEZ BECERRA German Dario",
+   "land": "COL",
+   "ploeg": "Team Polti - VisitMalta",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 21307,
+   "naam": "GRELLIER Fabien",
+   "land": "FRA",
+   "ploeg": "TotalEnergies",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 35887,
+   "naam": "HO Yen Yi",
+   "land": "TPE",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 29089,
+   "naam": "IRVINE Declan",
+   "land": "AUS",
+   "ploeg": "Team Novo Nordisk",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 39535,
+   "naam": "JACQUELIN Emilien",
+   "land": "FRA",
+   "ploeg": "Decathlon - CMA CMG Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 34785,
+   "naam": "JANIKULOV Samandar",
+   "land": "UZB",
+   "ploeg": "Bardiani - CSF - 7 Saber",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 32707,
+   "naam": "KNIGHT Oliver",
+   "land": "GBR",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 29282,
+   "naam": "KOYAMA Tomoya",
+   "land": "JPN",
+   "ploeg": "Burgos - Burpellet - BH",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 26197,
+   "naam": "LAFAY Victor",
+   "land": "FRA",
+   "ploeg": "Unibet - Rose Rockets",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 38392,
+   "naam": "LASKER Harry",
+   "land": "USA",
+   "ploeg": "Modern Adventure Pro Cycling",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 37436,
+   "naam": "LOPEZ RODRIGUEZ Juan Jose",
+   "land": "ESP",
+   "ploeg": "Team Novo Nordisk",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 38247,
+   "naam": "LOSPITAO GONZALEZ Pablo",
+   "land": "ESP",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 38577,
+   "naam": "MACKIE Donovan",
+   "land": "AUS",
+   "ploeg": "Team Novo Nordisk",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 37296,
+   "naam": "MAKRAI Balint",
+   "land": "HUN",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 35036,
+   "naam": "MCDONALD Bailey",
+   "land": "AUS",
+   "ploeg": "Team Novo Nordisk",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 35734,
+   "naam": "MULLER Anton",
+   "land": "FRA",
+   "ploeg": "Team Novo Nordisk",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 39287,
+   "naam": "OTEGI ARIZTIMUÑO Ander",
+   "land": "ESP",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 19343,
+   "naam": "PERON Andrea",
+   "land": "ITA",
+   "ploeg": "Team Novo Nordisk",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 32809,
+   "naam": "POOLE Max",
+   "land": "GBR",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 36099,
+   "naam": "POSNIC Louis-Marie",
+   "land": "FRA",
+   "ploeg": "Team Novo Nordisk",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 17793,
+   "naam": "RIESEBEEK Oscar",
+   "land": "NED",
+   "ploeg": "Alpecin - Premier Tech",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 20893,
+   "naam": "ROBEET Ludovic",
+   "land": "BEL",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 39524,
+   "naam": "RUBIROLA VILA Marc",
+   "land": "ESP",
+   "ploeg": "Caja Rural - Seguros RGA",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 30565,
+   "naam": "RYAN Archie",
+   "land": "IRL",
+   "ploeg": "EF Education - EasyPost",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 31992,
+   "naam": "SMITH Nathan",
+   "land": "GBR",
+   "ploeg": "Team Novo Nordisk",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 36639,
+   "naam": "SUAREZ FERNANDEZ Alain",
+   "land": "ESP",
+   "ploeg": "Euskaltel - Euskadi",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 39512,
+   "naam": "TAPIZ Hugo",
+   "land": "FRA",
+   "ploeg": "Equipo Kern Pharma",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 37438,
+   "naam": "TERRIER Lucas",
+   "land": "FRA",
+   "ploeg": "Team Novo Nordisk",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 24767,
+   "naam": "TOUZE Damien",
+   "land": "FRA",
+   "ploeg": "Cofidis",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 34520,
+   "naam": "VALENT Mark",
+   "land": "HUN",
+   "ploeg": "MBH Bank - CSB - Telecom Fort",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 37255,
+   "naam": "VERRANDO Luca",
+   "land": "ITA",
+   "ploeg": "Solution Tech - Nippo - Rali",
+   "ploegtype": "ProTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 24933,
+   "naam": "WELTEN Bram",
+   "land": "NED",
+   "ploeg": "Team Picnic - PostNL",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 24346,
+   "naam": "WILLIAMS Stephen",
+   "land": "GBR",
+   "ploeg": "NSN Cycling Team",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 0
+  },
+  {
+   "cq_riderid": 38566,
+   "naam": "ØKSNES Haakon Eiksund",
+   "land": "NOR",
+   "ploeg": "Uno-X Mobility",
+   "ploegtype": "WorldTeam",
+   "cq_punten_vorig_seizoen": 0
+  }
+ ]
+}
