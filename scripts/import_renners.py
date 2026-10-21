@@ -136,6 +136,7 @@ def main():
                 "naam": naam,
                 "land": land,
                 "ploeg": ploegnaam,
+                "ploegcode": code,
                 "ploegtype": ploegtype,
                 "cq_punten_vorig_seizoen": punten.get(riderid, 0),
             }

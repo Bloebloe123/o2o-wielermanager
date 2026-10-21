@@ -3,5 +3,12 @@
   "ploegklassen": {
     "WTT": "WorldTeam",
     "PROT": "ProTeam"
-  }
+  },
+  "koersklassen": {
+    "GT": "^GT\\d$",
+    "WT": "^[12]\\.WT\\d$",
+    "PS": "^[12]\\.PS$"
+  },
+  "uitslag_max_positie": 30,
+  "opgeven_na_dagen": 60
 }

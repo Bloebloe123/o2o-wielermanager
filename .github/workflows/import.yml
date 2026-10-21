@@ -1,0 +1,74 @@
+name: Import CQ-data
+
+on:
+  # Elke dag om 18u30 Belgische tijd. GitHub rekent in UTC, dus we plannen
+  # twee tijdstippen: 16u30 UTC (zomertijd) en 17u30 UTC (wintertijd).
+  # De stap "Juiste tijdstip?" laat er telkens maar één doorgaan.
+  schedule:
+    - cron: "30 16 * * *"
+    - cron: "30 17 * * *"
+  # Manueel starten via Actions > Import CQ-data > Run workflow.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: import
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Juiste tijdstip?
+        id: tijd
+        run: |
+          offset=$(TZ=Europe/Brussels date +%z)
+          schema="${{ github.event.schedule }}"
+          if [ -z "$schema" ] \
+             || { [ "$schema" = "30 16 * * *" ] && [ "$offset" = "+0200" ]; } \
+             || { [ "$schema" = "30 17 * * *" ] && [ "$offset" = "+0100" ]; }; then
+            echo "doorgaan=ja" >> "$GITHUB_OUTPUT"
+          else
+            echo "Overgeslagen: in België is het nu $offset, dit tijdstip hoort bij het andere seizoen."
+            echo "doorgaan=nee" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.tijd.outputs.doorgaan == 'ja'
+
+      - uses: actions/setup-python@v5
+        if: steps.tijd.outputs.doorgaan == 'ja'
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Installeer pakketten
+        if: steps.tijd.outputs.doorgaan == 'ja'
+        run: pip install -r requirements.txt
+
+      - name: Renners ophalen
+        if: steps.tijd.outputs.doorgaan == 'ja'
+        # Lukt dit niet, dan gaan we toch verder met de uitslagen (met de vorige rennerslijst).
+        continue-on-error: true
+        working-directory: scripts
+        run: python import_renners.py
+
+      - name: Uitslagen ophalen
+        if: steps.tijd.outputs.doorgaan == 'ja'
+        working-directory: scripts
+        run: python import_koersen.py
+
+      - name: Opslaan als er iets veranderd is
+        if: steps.tijd.outputs.doorgaan == 'ja'
+        run: |
+          git add data
+          if git diff --cached --quiet; then
+            echo "Geen wijzigingen."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Import CQ-data $(TZ=Europe/Brussels date '+%Y-%m-%d %H:%M')"
+            git push
+          fi
