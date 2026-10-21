@@ -15,6 +15,8 @@ en schrijft ze als JSON-bestanden in de map `data/`.
 | `.github/workflows/import.yml` | Draait beide scripts elke dag om 18u30 Belgische tijd |
 | `data/renners.json` | Alle renners van de WorldTeams en ProTeams |
 | `data/koersen.json` | Uitslagen van de WorldTour- en ProSeries-koersen van het seizoen |
+| `data/kalender.json` | Alle WorldTour- en ProSeries-koersen van het seizoen, ook de nog te rijden |
+| `data/voorbeeld/kalender-2026.json` | De kalender van 2026, om de spelsite mee te testen |
 | `data/voorbeeld/koersen-2026.json` | Uitslagen van 2026, om de spelsite mee te testen |
 
 De bestanden staan ook op GitHub Pages:
@@ -77,6 +79,12 @@ Op GitHub: **Actions > Import CQ-data > Run workflow**.
 - Het script doorloopt elke dag de hele CQ-kalender van het seizoen tot vandaag.
   Zo komt een uitslag die CQ later online zet of die een mislukte run miste,
   alsnog binnen. Na 60 dagen zonder uitslag stopt het met zoeken.
+
+## kalender.json
+
+Per koers: `naam`, `start`, `eind`, `klasse` (WT/PS), `cq_categorie`, `is_grote_ronde`,
+`soort` (eendags/rittenkoers), `cq_raceid` (bij een rittenkoers: het eindklassement) en
+`cq_tourid`. Leeg zolang CQ de kalender van het seizoen nog niet publiceerde.
 
 ## Lokaal draaien
 

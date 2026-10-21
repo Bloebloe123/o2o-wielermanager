@@ -2,6 +2,7 @@ import {
   berekenPrijzen, berekenStand, magToevoegen, ploegInPeriode, ploegModus, rennerResultaten, transfersVan, vandaagISO,
 } from "./spel.js";
 import { toonAdmin } from "./admin.js";
+import { tekenKalender } from "./kalender.js";
 
 const $ = (id) => document.getElementById(id);
 const profielen = window.vibers.db.collection("profielen");
@@ -69,10 +70,11 @@ function datumTijd(iso) {
 
 // De gedeelde instellingen. Bestaan ze nog niet, dan gebruiken we de standaardwaarden;
 // een admin schrijft die meteen weg zodat iedereen dezelfde instellingen ziet.
+// Komt er later een nieuwe instelling bij, dan vullen de standaardwaarden die aan.
 async function laadInstellingen() {
   const rij = await window.storage.get("instellingen", true);
-  if (rij) return JSON.parse(rij.value);
   const standaard = await (await fetch("./standaard-instellingen.json")).json();
+  if (rij) return { ...standaard, ...JSON.parse(rij.value) };
   if (standaard.admins.includes(staat.ik.email)) {
     await window.storage.set("instellingen", JSON.stringify(standaard), true);
   }
@@ -89,16 +91,19 @@ async function start() {
   try {
     staat.ik = await window.vibers.me();
     staat.inst = await laadInstellingen();
-    const [renners, koersen, mijnProfielen, mijn, alleCorrecties] = await Promise.all([
+    const [renners, koersen, mijnProfielen, mijn, alleCorrecties, kalender] = await Promise.all([
       haalJson(staat.inst.renners_url),
       haalJson(staat.inst.koersen_url),
       profielen.find({ mine: true, limit: 1 }),
       alleRecords(selecties, { mine: true }),
       alleRecords(correcties, {}),
+      // De kalender is mooi meegenomen; lukt hij niet, dan werkt de rest gewoon verder.
+      haalJson(staat.inst.kalender_url).catch(() => null),
     ]);
     staat.renners = renners.renners;
     staat.rennerOpId = new Map(staat.renners.map((r) => [r.cq_riderid, r]));
     staat.koersen = koersen;
+    staat.kalender = kalender;
     staat.alleCorrecties = alleCorrecties;
     herbereken();
     staat.profiel = mijnProfielen.items[0] || null;
@@ -206,8 +211,9 @@ function zetTabsKlaar() {
   document.querySelectorAll(".tab").forEach((knop) => {
     knop.addEventListener("click", () => {
       document.querySelectorAll(".tab").forEach((k) => k.classList.toggle("actief", k === knop));
-      for (const tab of ["ploeg", "stand", "admin"]) $(`tab-${tab}`).hidden = knop.dataset.tab !== tab;
+      for (const tab of ["ploeg", "stand", "kalender", "admin"]) $(`tab-${tab}`).hidden = knop.dataset.tab !== tab;
       if (knop.dataset.tab === "stand") toonStand();
+      if (knop.dataset.tab === "kalender") tekenKalender({ staat, maak, pt });
       if (knop.dataset.tab === "admin") {
         toonAdmin({ staat, maak, melding, pt, datumTijd, correcties, alleRecords, herbereken, tekenAlles });
       }

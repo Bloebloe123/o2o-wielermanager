@@ -183,6 +183,7 @@ const VELDEN = [
   ["admins", "Admins (e-mailadressen)", "emails"],
   ["renners_url", "Adres renners.json", "tekst"],
   ["koersen_url", "Adres koersen.json", "tekst"],
+  ["kalender_url", "Adres kalender.json", "tekst"],
   ["workflow_url", "Adres van de GitHub-workflow", "tekst"],
 ];
 

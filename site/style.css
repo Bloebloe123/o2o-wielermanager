@@ -126,6 +126,23 @@ ul.transfers .in { color: var(--o2o-blue); }
 .klein { font-size: 0.8rem; color: var(--o2o-gray); }
 
 .stand-kop { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+#kalender-lijst { display: grid; gap: 12px; margin-top: 16px; }
+.periode-blok { border: 1px solid var(--o2o-gray-light); border-radius: var(--o2o-radius-card); padding: 16px 20px; }
+.periode-blok.bezig { border-color: var(--o2o-blue); box-shadow: 0 0 0 2px var(--o2o-tint-blue); }
+.periode-blok.buiten { opacity: 0.7; }
+.periode-blok h3 { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-family: var(--o2o-font-heading); color: var(--o2o-blue); font-size: 1rem; margin: 0 0 10px; }
+ul.koersen { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+ul.koersen li { display: grid; grid-template-columns: 120px minmax(0, 1fr) auto 120px; gap: 12px; align-items: center; padding: 6px 10px; border-radius: 10px; font-size: 0.9rem; }
+ul.koersen li:nth-child(odd) { background: var(--o2o-off-white); }
+ul.koersen li.voorbij { color: var(--o2o-gray); }
+.koers-datum { font-family: var(--o2o-font-ui); font-size: 0.85rem; white-space: nowrap; }
+.koers-naam { display: grid; }
+.koers-status { font-size: 0.8rem; color: var(--o2o-gray); text-align: right; }
+.badge { font-family: var(--o2o-font-ui); font-size: 0.75rem; font-weight: 600; padding: 2px 10px; border-radius: 999px; white-space: nowrap; }
+.badge.gt { background: var(--o2o-orange); color: var(--o2o-text); }
+.badge.wt { background: var(--o2o-tint-blue); color: var(--o2o-blue); }
+.badge.ps { background: var(--o2o-tint-purple); color: var(--o2o-purple); }
+.transfermoment { display: grid; gap: 2px; padding: 10px 20px; border-left: 4px solid var(--o2o-orange); background: var(--o2o-tint-orange); border-radius: 12px; font-size: 0.9rem; }
 .stand-filters { display: flex; gap: 8px; flex-wrap: wrap; }
 #tab-admin { display: grid; gap: 24px; }
 #tab-admin .knop { display: inline-block; text-decoration: none; margin-bottom: 8px; }
@@ -167,4 +184,6 @@ ul.correcties li { display: flex; justify-content: space-between; align-items: c
 @media (max-width: 900px) {
   .kop-binnen, .tabs, .inhoud { padding-left: 30px; padding-right: 30px; }
   .raster { grid-template-columns: 1fr; }
+  ul.koersen li { grid-template-columns: 1fr auto; }
+  .koers-status { display: none; }
 }

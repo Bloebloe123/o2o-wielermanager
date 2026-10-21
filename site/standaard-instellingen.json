@@ -2,6 +2,7 @@
   "seizoen": 2027,
   "renners_url": "https://bloebloe123.github.io/o2o-wielermanager/data/renners.json",
   "koersen_url": "https://bloebloe123.github.io/o2o-wielermanager/data/koersen.json",
+  "kalender_url": "https://bloebloe123.github.io/o2o-wielermanager/data/kalender.json",
   "workflow_url": "https://github.com/Bloebloe123/o2o-wielermanager/actions/workflows/import.yml",
   "budget": 125,
   "ploeggrootte": 25,
