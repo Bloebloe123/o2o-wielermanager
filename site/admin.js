@@ -1,6 +1,6 @@
 // Adminpagina: import starten, correcties op uitslagen en de instellingen.
 // Enkel admins krijgen deze tab te zien (zie zetTabsKlaar in app.js).
-import { factorVoor, schaalVoor, uitslagMetCorrecties } from "./spel.js";
+import { factorVoor, normaliseer, schaalVoor, uitslagMetCorrecties } from "./spel.js";
 
 const $ = (id) => document.getElementById(id);
 let ctx = null;
@@ -279,6 +279,28 @@ function uitTekst(tekst, soort, label) {
   return tekst.trim();
 }
 
+function transferRij(tp = { open: "", sluit: "" }) {
+  const { maak } = ctx;
+  const rij = maak("div", { klasse: "periode-rij transfer-rij" }, [
+    maak("strong", { klasse: "tp-nr" }),
+    maak("input", { type: "date", klasse: "tp-open", value: tp.open }),
+    maak("span", { tekst: "tot en met" }),
+    maak("input", { type: "date", klasse: "tp-sluit", value: tp.sluit }),
+    maak("button", {
+      type: "button", klasse: "knop-klein knop-min", tekst: "−", title: "Transferperiode schrappen",
+      onclick: () => { rij.remove(); nummer(); },
+    }),
+  ]);
+  return rij;
+}
+
+// Nummert de transferperiodes opnieuw na toevoegen of schrappen.
+function nummer() {
+  document.querySelectorAll("#admin-instellingen .transfer-rij .tp-nr").forEach((el, i) => {
+    el.textContent = `Transferperiode ${i + 1}`;
+  });
+}
+
 function tekenInstellingen() {
   const { staat, maak } = ctx;
   const inst = staat.inst;
@@ -287,16 +309,24 @@ function tekenInstellingen() {
     label,
     maak("input", { name: pad, value: alsTekst(lees(inst, pad), soort), type: "text" }),
   ]));
-  const periodes = maak("fieldset", { klasse: "breed" }, [
-    maak("legend", { tekst: "Periodes (een koers telt in de periode waarin zijn datum valt)" }),
-    ...[...inst.periodes].sort((a, b) => a.nr - b.nr).map((p) => maak("div", { klasse: "periode-rij" }, [
-      maak("strong", { tekst: `Periode ${p.nr}` }),
-      maak("input", { type: "date", name: `periode-${p.nr}-start`, value: p.start }),
+  const rijen = maak("div", { klasse: "transfer-rijen" }, inst.transferperiodes.map((tp) => transferRij(tp)));
+  const kalender = maak("fieldset", { klasse: "breed" }, [
+    maak("legend", { tekst: "Seizoen en transferperiodes" }),
+    maak("div", { klasse: "periode-rij" }, [
+      maak("strong", { tekst: "Seizoen" }),
+      maak("input", { type: "date", name: "seizoen_start", value: inst.seizoen_start }),
       maak("span", { tekst: "tot en met" }),
-      maak("input", { type: "date", name: `periode-${p.nr}-eind`, value: p.eind }),
-    ])),
+      maak("input", { type: "date", name: "seizoen_einde", value: inst.seizoen_einde }),
+    ]),
+    maak("p", { klasse: "klein", tekst: "Ploegen kiezen kan tot de seizoensstart. Elke transferperiode sluit een periode af: de volgende periode begint de dag na het einde van de transferperiode." }),
+    rijen,
+    maak("button", {
+      type: "button", klasse: "knop knop-klein-tekst", tekst: "+ Transferperiode",
+      onclick: () => { rijen.append(transferRij()); nummer(); },
+    }),
   ]);
-  form.replaceChildren(...velden, periodes, maak("button", { type: "submit", klasse: "knop", tekst: "Instellingen opslaan" }));
+  form.replaceChildren(...velden, kalender, maak("button", { type: "submit", klasse: "knop", tekst: "Instellingen opslaan" }));
+  nummer();
   form.onsubmit = bewaarInstellingen;
 }
 
@@ -307,12 +337,27 @@ async function bewaarInstellingen(e) {
   const nieuw = structuredClone(staat.inst);
   try {
     for (const [pad, label, soort] of VELDEN) zet(nieuw, pad, uitTekst(data.get(pad), soort, label));
-    nieuw.periodes = nieuw.periodes.map((p) => ({ ...p, start: data.get(`periode-${p.nr}-start`), eind: data.get(`periode-${p.nr}-eind`) }));
-    const volgorde = [...nieuw.periodes].sort((a, b) => a.nr - b.nr);
-    volgorde.forEach((p, i) => {
-      if (!p.start || !p.eind || p.start > p.eind) throw new Error(`Periode ${p.nr}: het einde ligt voor het begin.`);
-      if (i && p.start <= volgorde[i - 1].eind) throw new Error(`Periode ${p.nr} begint voor periode ${volgorde[i - 1].nr} gedaan is.`);
+    nieuw.seizoen_start = data.get("seizoen_start");
+    nieuw.seizoen_einde = data.get("seizoen_einde");
+    if (!nieuw.seizoen_start || !nieuw.seizoen_einde || nieuw.seizoen_start >= nieuw.seizoen_einde) {
+      throw new Error("Het seizoen moet een begin- en einddatum hebben, met het einde na het begin.");
+    }
+    const vensters = [...e.target.querySelectorAll(".transfer-rij")].map((rij) => ({
+      open: rij.querySelector(".tp-open").value, sluit: rij.querySelector(".tp-sluit").value,
+    }));
+    // Elke transferperiode ligt binnen het seizoen, na de vorige, en met het einde na het begin.
+    let vorigeSluit = null;
+    [...vensters].sort((a, b) => a.open.localeCompare(b.open)).forEach((tp, i) => {
+      const naam = `Transferperiode ${i + 1}`;
+      if (!tp.open || !tp.sluit) throw new Error(`${naam}: vul een begin- en einddatum in.`);
+      if (tp.open > tp.sluit) throw new Error(`${naam}: het einde ligt voor het begin.`);
+      if (tp.open < nieuw.seizoen_start) throw new Error(`${naam} begint voor de seizoensstart.`);
+      if (tp.sluit >= nieuw.seizoen_einde) throw new Error(`${naam} eindigt niet voor het seizoenseinde.`);
+      if (vorigeSluit && tp.open <= vorigeSluit) throw new Error(`${naam} begint voor transferperiode ${i} gedaan is.`);
+      vorigeSluit = tp.sluit;
     });
+    nieuw.transferperiodes = vensters;
+    delete nieuw.periodes; // die worden berekend, niet bewaard
     if (!nieuw.admins.includes(staat.ik.email) &&
         !confirm("Je staat niet meer bij de admins. Daarna zie je deze pagina niet meer. Doorgaan?")) return;
   } catch (fout) {
@@ -322,7 +367,7 @@ async function bewaarInstellingen(e) {
   knop.disabled = true;
   try {
     await window.storage.set("instellingen", JSON.stringify(nieuw), true);
-    staat.inst = nieuw;
+    staat.inst = normaliseer(nieuw);
     ctx.herbereken();
     ctx.tekenAlles();
     toonAdmin(ctx);

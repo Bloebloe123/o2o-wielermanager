@@ -54,7 +54,7 @@ export function tekenKalender({ staat, maak, pt }) {
   if (periodes.length) {
     vak.append(maak("div", { klasse: "transfermoment" }, [
       maak("strong", { tekst: "Ploeg kiezen" }),
-      maak("span", { tekst: `Stel je ploeg vrij samen tot ${lang(periodes[0].start)}. Daarna ligt ze vast tot de eerste transfers.` }),
+      maak("span", { tekst: `Stel je ploeg vrij samen tot ${lang(periodes[0].start)}. Daarna ligt ze vast tot de eerste transferperiode.` }),
     ]));
   }
 
@@ -70,12 +70,14 @@ export function tekenKalender({ staat, maak, pt }) {
         ? maak("ul", { klasse: "koersen" }, inPeriode.map(rij))
         : maak("p", { klasse: "klein", tekst: "Geen WorldTour- of ProSeries-koersen." }),
     ]));
-    const volgende = periodes.find((q) => q.nr === p.nr + 1);
-    if (volgende) {
-      vak.append(maak("div", { klasse: "transfermoment" }, [
-        maak("strong", { tekst: `Transfers voor periode ${volgende.nr}` }),
+    // De transferperiode op het einde van deze periode bepaalt de ploeg voor de volgende.
+    const tp = inst.transferperiodes.find((t) => t.nr === p.nr);
+    if (tp) {
+      const open = tp.open <= vandaag && vandaag <= tp.sluit;
+      vak.append(maak("div", { klasse: `transfermoment${open ? " open" : ""}` }, [
+        maak("strong", { tekst: `Transferperiode ${tp.nr}: ${lang(tp.open)} tot en met ${lang(tp.sluit)}${open ? " · nu open" : ""}` }),
         maak("span", {
-          tekst: `Tijdens periode ${p.nr}, tot ${lang(volgende.start)}. Maximaal ${inst.max_transfers} transfers. ` +
+          tekst: `Maximaal ${inst.max_transfers} transfers voor periode ${tp.nr + 1}. Buiten deze dagen ligt je ploeg vast. ` +
             `Wie je verkoopt, rijdt nog voor je tot en met ${kort(p.eind)}, en ook in een rittenkoers die in periode ${p.nr} begon.`,
         }),
       ]));

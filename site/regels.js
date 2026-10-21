@@ -74,11 +74,14 @@ export function tekenRegels({ staat, maak, pt }) {
       "Bij een ploegentijdrit krijgt elke renner de plaats van zijn ploeg. Geschrapte koersen of ritten tellen niet."),
 
     h("Periodes en transfers"),
-    p(`Het seizoen bestaat uit ${periodes.length} periodes:`),
-    tabel(["Periode", "Van", "Tot en met"], periodes.map((x) => [`${x.nr}`, datum(x.start), datum(x.eind)])),
+    p(`Het seizoen bestaat uit ${periodes.length} periodes. Op het einde van elke periode (behalve de laatste) is er een transferperiode:`),
+    tabel(["Periode", "Van", "Tot en met", "Transferperiode"], periodes.map((x) => {
+      const tp = inst.transferperiodes.find((t) => t.nr === x.nr);
+      return [`${x.nr}`, datum(x.start), datum(x.eind), tp ? `${datum(tp.open)} – ${datum(tp.sluit)}` : "–"];
+    })),
     lijst([
-      `Tijdens een periode plan je je transfers voor de volgende periode: hoogstens ${inst.max_transfers} renners verkopen en ${inst.max_transfers} kopen, binnen het budget.`,
-      "Tot de volgende periode begint, kun je je transfers nog aanpassen of ongedaan maken.",
+      `Enkel tijdens een transferperiode kun je transfers doen voor de volgende periode: hoogstens ${inst.max_transfers} renners verkopen en ${inst.max_transfers} kopen, binnen het budget. Daarbuiten ligt je ploeg vast.`,
+      "Zolang de transferperiode loopt, kun je je transfers nog aanpassen of ongedaan maken.",
       "Een renner scoort voor jou enkel in de periodes waarin hij in je ploeg zat.",
       "Een koers telt in de periode waarin ze plaatsvindt. Een rittenkoers telt volledig in de periode van haar eerste rit: " +
         "de ploeg die je had bij de eerste rit, geldt voor de hele koers, ook als er tussendoor een nieuwe periode begint.",

@@ -1,5 +1,5 @@
 import {
-  berekenPrijzen, berekenStand, magToevoegen, ploegInPeriode, ploegModus, rennerResultaten, transfersVan, vandaagISO,
+  berekenPrijzen, berekenStand, magToevoegen, normaliseer, ploegInPeriode, ploegModus, rennerResultaten, transfersVan, vandaagISO,
 } from "./spel.js";
 import { toonAdmin } from "./admin.js";
 import { tekenKalender } from "./kalender.js";
@@ -77,11 +77,16 @@ function datumTijd(iso) {
 async function laadInstellingen() {
   const rij = await window.storage.get("instellingen", true);
   const standaard = await (await fetch("./standaard-instellingen.json")).json();
-  if (rij) return { ...standaard, ...JSON.parse(rij.value) };
+  if (rij) {
+    const opgeslagen = JSON.parse(rij.value);
+    // Oude instellingen met enkel periodes: geen standaard-transferperiodes eroverheen leggen.
+    if (opgeslagen.periodes && !opgeslagen.transferperiodes) delete standaard.transferperiodes;
+    return normaliseer({ ...standaard, ...opgeslagen });
+  }
   if (standaard.admins.includes(staat.ik.email)) {
     await window.storage.set("instellingen", JSON.stringify(standaard), true);
   }
-  return standaard;
+  return normaliseer(standaard);
 }
 
 async function haalJson(url) {
@@ -134,12 +139,12 @@ function herbereken() {
   for (const w of [...staat.alleNaamwijzigingen].sort((a, b) => (a.updatedAt || "").localeCompare(b.updatedAt || ""))) {
     if (staat.inst.admins.includes(w.createdBy?.email)) staat.nieuweNaam.set(w.email, w.ploegnaam);
   }
+  staat.resultaten = rennerResultaten(staat.koersen.koersen, staat.correcties, staat.inst, staat.kalender?.koersen);
 }
 
 // De ploegnaam van een deelnemer: die van de admin als die hem wijzigde, anders die uit het profiel.
 function ploegnaamVan(email, profielnaam) {
   return staat.nieuweNaam.get(email) ?? profielnaam;
-  staat.resultaten = rennerResultaten(staat.koersen.koersen, staat.correcties, staat.inst, staat.kalender?.koersen);
 }
 
 function isAdmin() {
@@ -211,7 +216,7 @@ function datumLang(iso) {
 
 // Waarom mag deze renner er niet bij? null als het wel mag.
 function redenNiet(riderid, m = modus()) {
-  if (m.modus === "gesloten") return "De ploegen liggen vast.";
+  if (m.modus === "gesloten") return "Je ploeg ligt vast tot de volgende transferperiode.";
   const terug = staat.mijnSelecties.find((s) => s.cq_riderid === riderid && s.tot_periode === m.huidige);
   if (m.modus === "transfers" && !terug && transfersVoorDoel(m).in.length >= staat.inst.max_transfers) {
     return `Je gebruikte al je ${staat.inst.max_transfers} transfers voor periode ${m.doel}.`;
@@ -276,9 +281,12 @@ function statusTekst(m, ploeg) {
   }
   if (m.modus === "transfers") {
     const t = transfersVoorDoel(m);
-    return `Transfers voor periode ${m.doel} (vanaf ${datumLang(m.deadline)}): ${t.uit.length} verkocht en ${t.in.length} gekocht, ` +
+    return `Transferperiode tot en met ${datumLang(m.sluit)}, voor periode ${m.doel}: ${t.uit.length} verkocht en ${t.in.length} gekocht, ` +
       `maximaal ${inst.max_transfers}. ` +
       "Verkochte renners rijden nog voor je tot het einde van deze periode.";
+  }
+  if (m.volgende) {
+    return `Je ploeg ligt vast. Volgende transferperiode: ${datumLang(m.volgende.open)} tot en met ${datumLang(m.volgende.sluit)}, voor periode ${m.volgende.nr + 1}.`;
   }
   return "De ploegen liggen vast tot het einde van het seizoen.";
 }

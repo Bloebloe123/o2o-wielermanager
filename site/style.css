@@ -150,6 +150,7 @@ ul.koersen li.voorbij { color: var(--o2o-gray); }
 .badge.gt { background: var(--o2o-orange); color: var(--o2o-text); }
 .badge.wt { background: var(--o2o-tint-blue); color: var(--o2o-blue); }
 .badge.ps { background: var(--o2o-tint-purple); color: var(--o2o-purple); }
+.transfermoment.open { border-left-color: var(--o2o-blue); background: var(--o2o-tint-blue); }
 .transfermoment { display: grid; gap: 2px; padding: 10px 20px; border-left: 4px solid var(--o2o-orange); background: var(--o2o-tint-orange); border-radius: 12px; font-size: 0.9rem; }
 .stand-filters { display: flex; gap: 8px; flex-wrap: wrap; }
 #tab-admin { display: grid; gap: 24px; }

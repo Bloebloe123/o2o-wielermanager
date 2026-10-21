@@ -31,21 +31,65 @@ export function periodeVan(datum, inst) {
   return inst.periodes.find((p) => datum >= p.start && datum <= p.eind) || null;
 }
 
-// Wat kan een deelnemer vandaag met zijn ploeg doen?
-// - "inschrijving": voor periode 1 stel je je ploeg vrij samen (doel = periode 1);
-// - "transfers": tijdens periode N plan je transfers voor periode N+1 (doel = N+1),
-//   tot periode N+1 begint;
-// - "gesloten": tijdens de laatste periode of na het seizoen.
-export function ploegModus(inst, vandaag = vandaagISO()) {
-  const periodes = [...inst.periodes].sort((a, b) => a.nr - b.nr);
-  if (!periodes.length) return { modus: "gesloten", huidige: null };
-  if (vandaag < periodes[0].start) {
-    return { modus: "inschrijving", huidige: null, doel: periodes[0].nr, deadline: periodes[0].start };
+// "JJJJ-MM-DD" van de dag erna.
+export function dagNa(iso) {
+  const d = new Date(`${iso}T12:00:00Z`);
+  d.setUTCDate(d.getUTCDate() + 1);
+  return d.toISOString().slice(0, 10);
+}
+
+// De periodes volgen uit de transferperiodes: periode 1 loopt van de seizoensstart
+// tot en met het einde van transferperiode 1, periode 2 begint de dag erna, …,
+// en de laatste periode loopt tot het seizoenseinde.
+// Transferperiode N ligt in periode N en bepaalt de ploeg voor periode N+1.
+export function periodesUit(inst) {
+  const periodes = [];
+  let start = inst.seizoen_start;
+  for (const tp of inst.transferperiodes) {
+    periodes.push({ nr: periodes.length + 1, start, eind: tp.sluit });
+    start = dagNa(tp.sluit);
   }
-  const komende = periodes.find((p) => p.start > vandaag);
-  const huidige = periodeVan(vandaag, inst)?.nr ?? (komende ? komende.nr - 1 : periodes[periodes.length - 1].nr);
-  if (komende) return { modus: "transfers", huidige, doel: komende.nr, deadline: komende.start };
-  return { modus: "gesloten", huidige };
+  periodes.push({ nr: periodes.length + 1, start, eind: inst.seizoen_einde });
+  return periodes;
+}
+
+// Zet de instellingen klaar voor gebruik: transferperiodes gesorteerd en genummerd,
+// en de periodes daaruit berekend. Oudere instellingen met enkel periodes worden
+// omgezet (elk transfervenster: de laatste 4 dagen van de periode).
+export function normaliseer(inst) {
+  const uit = { ...inst };
+  if (!uit.transferperiodes && uit.periodes?.length) {
+    const p = [...uit.periodes].sort((a, b) => a.nr - b.nr);
+    uit.seizoen_start = p[0].start;
+    uit.seizoen_einde = p[p.length - 1].eind;
+    uit.transferperiodes = p.slice(0, -1).map((x) => {
+      const open = new Date(`${x.eind}T12:00:00Z`);
+      open.setUTCDate(open.getUTCDate() - 3);
+      return { open: open.toISOString().slice(0, 10), sluit: x.eind };
+    });
+  }
+  uit.transferperiodes = [...uit.transferperiodes]
+    .sort((a, b) => a.open.localeCompare(b.open))
+    .map((tp, i) => ({ nr: i + 1, open: tp.open, sluit: tp.sluit }));
+  uit.periodes = periodesUit(uit);
+  return uit;
+}
+
+// Wat kan een deelnemer vandaag met zijn ploeg doen?
+// - "inschrijving": voor de seizoensstart stel je je ploeg vrij samen (doel = periode 1);
+// - "transfers": tijdens transferperiode N doe je transfers voor periode N+1;
+// - "gesloten": buiten de transferperiodes ligt je ploeg vast (`volgende` = het volgende venster).
+export function ploegModus(inst, vandaag = vandaagISO()) {
+  const periodes = inst.periodes;
+  if (vandaag < periodes[0].start) {
+    return { modus: "inschrijving", huidige: null, doel: 1, deadline: periodes[0].start };
+  }
+  const huidige = periodeVan(vandaag, inst)?.nr ?? periodes[periodes.length - 1].nr;
+  const venster = inst.transferperiodes.find((tp) => tp.open <= vandaag && vandaag <= tp.sluit);
+  if (venster) {
+    return { modus: "transfers", huidige: venster.nr, doel: venster.nr + 1, sluit: venster.sluit, deadline: dagNa(venster.sluit) };
+  }
+  return { modus: "gesloten", huidige, volgende: inst.transferperiodes.find((tp) => tp.open > vandaag) || null };
 }
 
 // Transfers, afgeleid uit de selecties: per periode P (vanaf 2) welke renners
