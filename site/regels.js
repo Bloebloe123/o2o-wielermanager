@@ -60,6 +60,18 @@ export function tekenRegels({ staat, maak, pt }) {
       "De andere renners vallen in een prijsschijf:"),
     tabel([`CQ-punten ${vorig}`, "Credits"], schijfRijen),
 
+    h("Type renner"),
+    p(`In de rennerspool krijgt elke renner een type, op basis van zijn uitslagen in ${vorig} (met de puntentelling van dit spel). ` +
+      "Per soort koers kijken we naar zijn aandeel in alle punten van het peloton:"),
+    lijst([
+      "Ronderenner: vooral sterk in eindklassementen (en bergklassementen) van rittenkoersen.",
+      "Klassiekerrenner: vooral sterk in eendagskoersen. Sprinters die veel eendagskoersen winnen, komen hier ook terecht.",
+      "Sprinter: vooral sterk in ritten (en puntenklassementen).",
+      `Allrounder: sterk in meerdere soorten, zonder duidelijke voorkeur (het sterkste aandeel is minder dan ${pt(inst.type_marge)} keer het tweede).`,
+      `Knecht: minder dan ${inst.type_drempel_punten} punten in ${vorig}.`,
+    ]),
+    p("Het type is alleen een hulpmiddel om je ploeg samen te stellen. Het heeft geen invloed op de punten."),
+
     h("Punten"),
     p("Een renner scoort volgens zijn plaats in de uitslag. Daarna gaat de score maal de factor van de koers:"),
     lijst([

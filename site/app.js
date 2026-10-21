@@ -1,5 +1,6 @@
 import {
-  berekenPrijzen, berekenStand, magToevoegen, normaliseer, ploegInPeriode, ploegModus, rennerResultaten, transfersVan, vandaagISO,
+  berekenPrijzen, berekenStand, magToevoegen, normaliseer, ploegInPeriode, ploegModus, rennerResultaten, rennerTypes, transfersVan,
+  TYPES, vandaagISO,
 } from "./spel.js";
 import { toonAdmin } from "./admin.js";
 import { tekenKalender } from "./kalender.js";
@@ -99,7 +100,7 @@ async function start() {
   try {
     staat.ik = await window.vibers.me();
     staat.inst = await laadInstellingen();
-    const [renners, koersen, mijnProfielen, mijn, alleCorrecties, kalender, alleNaamwijzigingen] = await Promise.all([
+    const [renners, koersen, mijnProfielen, mijn, alleCorrecties, kalender, alleNaamwijzigingen, koersenVorig] = await Promise.all([
       haalJson(staat.inst.renners_url),
       haalJson(staat.inst.koersen_url),
       profielen.find({ mine: true, limit: 1 }),
@@ -108,11 +109,14 @@ async function start() {
       // De kalender is mooi meegenomen; lukt hij niet, dan werkt de rest gewoon verder.
       haalJson(staat.inst.kalender_url).catch(() => null),
       alleRecords(ploegnamen, {}),
+      // Uitslagen van vorig seizoen, om de renners in te delen per type.
+      haalJson(staat.inst.koersen_vorig_url.replace("{vorig}", staat.inst.seizoen - 1)).catch(() => null),
     ]);
     staat.renners = renners.renners;
     staat.rennerOpId = new Map(staat.renners.map((r) => [r.cq_riderid, r]));
     staat.koersen = koersen;
     staat.kalender = kalender;
+    staat.koersenVorig = koersenVorig?.koersen || [];
     staat.alleCorrecties = alleCorrecties;
     staat.alleNaamwijzigingen = alleNaamwijzigingen;
     herbereken();
@@ -140,6 +144,11 @@ function herbereken() {
     if (staat.inst.admins.includes(w.createdBy?.email)) staat.nieuweNaam.set(w.email, w.ploegnaam);
   }
   staat.resultaten = rennerResultaten(staat.koersen.koersen, staat.correcties, staat.inst, staat.kalender?.koersen);
+  staat.types = rennerTypes(staat.koersenVorig, staat.inst);
+}
+
+function typeVan(riderid) {
+  return staat.types.get(riderid) || "Knecht";
 }
 
 // De ploegnaam van een deelnemer: die van de admin als die hem wijzigde, anders die uit het profiel.
@@ -249,7 +258,8 @@ function toonPloeg() {
   $("mijn-ploegnaam").textContent = ploegnaamVan(staat.ik.email, staat.profiel.ploegnaam) || "Mijn ploeg";
   const ploegen = [...new Set(staat.renners.map((r) => r.ploeg))].sort();
   for (const p of ploegen) $("filter-ploeg").append(maak("option", { tekst: p }));
-  for (const id of ["zoek", "filter-type", "filter-ploeg", "filter-betaalbaar"]) {
+  for (const t of TYPES) $("filter-categorie").append(maak("option", { tekst: t }));
+  for (const id of ["zoek", "filter-type", "filter-ploeg", "filter-categorie", "filter-betaalbaar"]) {
     $(id).addEventListener("input", tekenPool);
   }
   document.querySelectorAll("th[data-sort]").forEach((th) => {
@@ -334,7 +344,7 @@ function tekenMijnPloeg() {
         maak("div", { klasse: "renner-naam", tekst: r ? r.naam : `Renner ${sel.cq_riderid}` }),
         maak("div", {
           klasse: "renner-sub",
-          tekst: `${r ? `${r.land} · ${r.ploeg}` : "Niet meer in de rennerslijst"} · ${pt(puntenVan.get(sel.cq_riderid) || 0)} pt${label}`,
+          tekst: `${r ? `${r.land} · ${r.ploeg}` : "Niet meer in de rennerslijst"} · ${typeVan(sel.cq_riderid)} · ${pt(puntenVan.get(sel.cq_riderid) || 0)} pt${label}`,
         }),
       ]),
       maak("span", { klasse: "prijs", tekst: `${staat.prijzen.get(sel.cq_riderid) ?? "?"} cr` }),
@@ -377,16 +387,18 @@ function tekenPool() {
   const type = $("filter-type").value;
   const ploegnaam = $("filter-ploeg").value;
   const betaalbaar = $("filter-betaalbaar").checked;
+  const categorie = $("filter-categorie").value;
 
   let rijen = staat.renners.filter((r) =>
     (!zoek || `${r.naam} ${r.land} ${r.ploeg}`.toLowerCase().includes(zoek)) &&
     (!type || r.ploegtype === type) &&
     (!ploegnaam || r.ploeg === ploegnaam) &&
+    (!categorie || typeVan(r.cq_riderid) === categorie) &&
     (!betaalbaar || !redenNiet(r.cq_riderid, m)),
   );
   const { veld, af } = staat.sorteer;
   const waarde = {
-    naam: (r) => r.naam, land: (r) => r.land, ploeg: (r) => r.ploeg,
+    naam: (r) => r.naam, land: (r) => r.land, ploeg: (r) => r.ploeg, type: (r) => typeVan(r.cq_riderid),
     punten: (r) => r.cq_punten_vorig_seizoen, prijs: (r) => staat.prijzen.get(r.cq_riderid),
   }[veld];
   rijen.sort((a, b) => {
@@ -405,6 +417,7 @@ function tekenPool() {
       maak("td", {}, [maak("span", { klasse: "renner-naam", tekst: r.naam })]),
       maak("td", { tekst: r.land }),
       maak("td", { tekst: r.ploeg }),
+      maak("td", {}, [maak("span", { klasse: `type type-${typeVan(r.cq_riderid).toLowerCase()}`, tekst: typeVan(r.cq_riderid) })]),
       maak("td", { klasse: "getal", tekst: r.cq_punten_vorig_seizoen }),
       maak("td", { klasse: "getal prijs", tekst: staat.prijzen.get(r.cq_riderid) }),
       maak("td", {}, [gekozen.has(r.cq_riderid)

@@ -104,6 +104,11 @@ ul.transfers .uit { color: var(--o2o-purple); }
 ul.transfers .in { color: var(--o2o-blue); }
 .detail h4 { margin-top: 12px; }
 .renner-naam { font-weight: 500; }
+.type { font-family: var(--o2o-font-ui); font-size: 0.75rem; font-weight: 500; padding: 2px 8px; border-radius: 999px; white-space: nowrap; background: var(--o2o-gray-light); color: var(--o2o-gray); }
+.type-ronderenner { background: var(--o2o-tint-purple); color: var(--o2o-purple); }
+.type-klassiekerrenner { background: var(--o2o-tint-blue); color: var(--o2o-blue); }
+.type-sprinter { background: var(--o2o-tint-orange); color: #8a5600; }
+.type-allrounder { background: var(--o2o-blue); color: var(--o2o-white); }
 .renner-sub { font-size: 0.78rem; color: var(--o2o-gray); }
 .prijs { font-family: var(--o2o-font-ui); font-weight: 600; color: var(--o2o-blue); white-space: nowrap; }
 

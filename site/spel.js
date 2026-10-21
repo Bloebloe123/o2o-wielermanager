@@ -222,6 +222,43 @@ export function berekenStand(selecties, resultaten, periodeNr = null) {
   return rijen;
 }
 
+// ---------- Type renner ----------
+
+// Waar haalde een renner zijn punten (volgens de spelregels) in de uitslagen van vorig seizoen?
+const SOORT = { eindklassement: "rondes", berg: "rondes", jongeren: "rondes", eendags: "klassiekers", rit: "ritten", punten: "ritten" };
+const TYPE = { rondes: "Ronderenner", klassiekers: "Klassiekerrenner", ritten: "Sprinter" };
+export const TYPES = ["Ronderenner", "Klassiekerrenner", "Sprinter", "Allrounder", "Knecht"];
+
+// Geeft een Map cq_riderid -> type. Per soort koers vergelijken we de renner met het hele
+// peloton (zijn aandeel in alle punten van die soort), anders zou een ronderenner die in
+// elke bergrit vooraan zit, als sprinter tellen.
+// - minder dan `type_drempel_punten` punten in totaal: Knecht;
+// - het sterkste aandeel minder dan `type_marge` keer het tweede: Allrounder.
+export function rennerTypes(koersenVorig, inst) {
+  const perRenner = new Map();
+  const totaal = { rondes: 0, klassiekers: 0, ritten: 0 };
+  for (const koers of koersenVorig) {
+    if (koers.geannuleerd) continue;
+    const schaal = schaalVoor(koers, inst);
+    const factor = factorVoor(koers, inst);
+    const soort = SOORT[koers.type];
+    for (const { cq_riderid, positie } of koers.uitslag) {
+      const punten = (schaal[positie - 1] || 0) * factor;
+      if (!punten) continue;
+      if (!perRenner.has(cq_riderid)) perRenner.set(cq_riderid, { rondes: 0, klassiekers: 0, ritten: 0 });
+      perRenner.get(cq_riderid)[soort] += punten;
+      totaal[soort] += punten;
+    }
+  }
+  const types = new Map();
+  for (const [id, p] of perRenner) {
+    if (p.rondes + p.klassiekers + p.ritten < inst.type_drempel_punten) continue;
+    const aandeel = Object.keys(totaal).map((s) => [s, totaal[s] ? p[s] / totaal[s] : 0]).sort((a, b) => b[1] - a[1]);
+    types.set(id, aandeel[0][1] < inst.type_marge * aandeel[1][1] ? "Allrounder" : TYPE[aandeel[0][0]]);
+  }
+  return types; // renners die er niet in staan: Knecht
+}
+
 // Controleert of een renner bij de ploeg mag. Geeft null of de reden waarom niet.
 export function magToevoegen(riderid, ploeg, prijzen, inst) {
   if (ploeg.some((s) => s.cq_riderid === riderid)) return "Deze renner zit al in je ploeg.";

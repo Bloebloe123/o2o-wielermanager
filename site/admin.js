@@ -222,6 +222,8 @@ const VELDEN = [
   ["budget", "Budget (credits)", "getal"],
   ["ploeggrootte", "Renners per ploeg", "getal"],
   ["max_transfers", "Transfers per periode", "getal"],
+  ["type_drempel_punten", "Type renner: minimum punten vorig seizoen (anders Knecht)", "getal"],
+  ["type_marge", "Type renner: marge voor een duidelijk type (anders Allrounder)", "getal"],
   ["klassefactoren.grote_ronde", "Factor grote ronde", "getal"],
   ["klassefactoren.WT", "Factor WorldTour", "getal"],
   ["klassefactoren.PS", "Factor ProSeries", "getal"],
@@ -235,6 +237,7 @@ const VELDEN = [
   ["renners_url", "Adres renners.json", "tekst"],
   ["koersen_url", "Adres koersen.json", "tekst"],
   ["kalender_url", "Adres kalender.json", "tekst"],
+  ["koersen_vorig_url", "Adres uitslagen vorig seizoen ({vorig} = jaartal)", "tekst"],
   ["workflow_url", "Adres van de GitHub-workflow", "tekst"],
 ];
 
