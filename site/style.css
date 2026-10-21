@@ -93,6 +93,16 @@ label.keuze { display: flex; align-items: center; gap: 8px; }
   padding: 8px 12px; background: var(--o2o-tint-blue); border-radius: 12px;
 }
 .ploeg-lijst .leeg { display: block; background: var(--o2o-off-white); color: var(--o2o-gray); text-align: center; }
+.ploeg-lijst li.nieuw { background: var(--o2o-tint-orange); }
+.ploeg-lijst li.vertrekt { background: var(--o2o-off-white); }
+.ploeg-lijst li.vertrekt .renner-naam { text-decoration: line-through; color: var(--o2o-gray); }
+.transfer-blok { margin-top: 20px; }
+.transfer-blok h3, .detail h4 { font-family: var(--o2o-font-heading); font-size: 0.95rem; color: var(--o2o-blue); margin: 0 0 8px; }
+ul.transfers { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; }
+ul.transfers li { display: grid !important; gap: 2px; font-size: 0.85rem; padding: 8px 12px; background: var(--o2o-off-white); border-radius: 12px; }
+ul.transfers .uit { color: var(--o2o-purple); }
+ul.transfers .in { color: var(--o2o-blue); }
+.detail h4 { margin-top: 12px; }
 .renner-naam { font-weight: 500; }
 .renner-sub { font-size: 0.78rem; color: var(--o2o-gray); }
 .prijs { font-family: var(--o2o-font-ui); font-weight: 600; color: var(--o2o-blue); white-space: nowrap; }

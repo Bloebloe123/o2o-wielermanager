@@ -1,5 +1,5 @@
 import {
-  berekenPrijzen, berekenStand, inschrijvingOpen, magToevoegen, ploegInPeriode, rennerResultaten,
+  berekenPrijzen, berekenStand, magToevoegen, ploegInPeriode, ploegModus, rennerResultaten, transfersVan, vandaagISO,
 } from "./spel.js";
 
 const $ = (id) => document.getElementById(id);
@@ -156,10 +156,32 @@ function toonProfielformulier() {
 
 // ---------- Ploeg ----------
 
-// De ploeg zoals ze nu is: de selecties die geldig zijn in periode 1.
-// (Transfers in latere periodes komen in een volgende fase.)
-function huidigePloeg() {
-  return ploegInPeriode(staat.mijnSelecties, 1);
+// De modus van vandaag (zie ploegModus in spel.js) en de ploeg waaraan je werkt:
+// voor het seizoen de ploeg van periode 1, tijdens periode N die van periode N+1.
+function modus() {
+  return ploegModus(staat.inst);
+}
+
+function doelPloeg(m = modus()) {
+  return ploegInPeriode(staat.mijnSelecties, m.doel ?? m.huidige ?? 1);
+}
+
+function transfersVoorDoel(m) {
+  return transfersVan(staat.mijnSelecties).find((t) => t.periode === m.doel) || { uit: [], in: [] };
+}
+
+function datumLang(iso) {
+  return new Date(iso).toLocaleDateString("nl-BE", { day: "numeric", month: "long", year: "numeric" });
+}
+
+// Waarom mag deze renner er niet bij? null als het wel mag.
+function redenNiet(riderid, m = modus()) {
+  if (m.modus === "gesloten") return "De ploegen liggen vast.";
+  const terug = staat.mijnSelecties.find((s) => s.cq_riderid === riderid && s.tot_periode === m.huidige);
+  if (m.modus === "transfers" && !terug && transfersVoorDoel(m).in.length >= staat.inst.max_transfers) {
+    return `Je gebruikte al je ${staat.inst.max_transfers} transfers voor periode ${m.doel}.`;
+  }
+  return magToevoegen(riderid, doelPloeg(m), staat.prijzen, staat.inst);
 }
 
 // ---------- Tabs ----------
@@ -203,57 +225,97 @@ function besteed(ploeg) {
   return ploeg.reduce((som, s) => som + (staat.prijzen.get(s.cq_riderid) ?? 0), 0);
 }
 
+function statusTekst(m, ploeg) {
+  const { inst } = staat;
+  if (m.modus === "inschrijving") {
+    const tekort = inst.ploeggrootte - ploeg.length;
+    return tekort > 0
+      ? `Kies ${tekort} renners meer. Je kunt je ploeg vrij aanpassen tot ${datumLang(m.deadline)}.`
+      : `Je ploeg is compleet. Je kunt ze nog aanpassen tot ${datumLang(m.deadline)}.`;
+  }
+  if (m.modus === "transfers") {
+    const t = transfersVoorDoel(m);
+    return `Transfers voor periode ${m.doel} (vanaf ${datumLang(m.deadline)}): ${t.uit.length} verkocht en ${t.in.length} gekocht, ` +
+      `maximaal ${inst.max_transfers}. ` +
+      "Verkochte renners rijden nog voor je tot het einde van deze periode.";
+  }
+  return "De ploegen liggen vast tot het einde van het seizoen.";
+}
+
 function tekenMijnPloeg() {
   const { inst } = staat;
-  const ploeg = huidigePloeg();
+  const m = modus();
+  const ploeg = doelPloeg(m);
   const uit = besteed(ploeg);
-  const open = inschrijvingOpen(inst);
-  const eerste = [...inst.periodes].sort((a, b) => a.nr - b.nr)[0];
 
   $("budget-tekst").textContent = `${uit} / ${inst.budget} credits`;
   $("budget-balk").style.width = `${Math.min(100, (uit / inst.budget) * 100)}%`;
   $("aantal-tekst").textContent = `${ploeg.length} / ${inst.ploeggrootte}`;
   $("aantal-balk").style.width = `${Math.min(100, (ploeg.length / inst.ploeggrootte) * 100)}%`;
 
-  const datum = new Date(eerste.start).toLocaleDateString("nl-BE", { day: "numeric", month: "long", year: "numeric" });
-  if (!open) {
-    $("ploeg-status").textContent = `Je ploeg ligt vast sinds ${datum}.`;
-  } else if (ploeg.length < inst.ploeggrootte) {
-    $("ploeg-status").textContent = `Kies ${inst.ploeggrootte - ploeg.length} renners meer. Je kunt je ploeg vrij aanpassen tot ${datum}.`;
-  } else {
-    $("ploeg-status").textContent = `Je ploeg is compleet. Je kunt ze nog aanpassen tot ${datum}.`;
-  }
-
   // Punten die elke renner al voor jou verdiende (enkel in de periodes dat hij in je ploeg zat).
   const mijnStand = berekenStand(staat.mijnSelecties, staat.resultaten)[0];
   const puntenVan = new Map((mijnStand?.renners || []).map((r) => [r.cq_riderid, r.punten]));
-  $("ploeg-status").textContent += mijnStand ? ` Totaal: ${pt(mijnStand.punten)} punten.` : "";
+  $("ploeg-status").textContent = statusTekst(m, ploeg) + (mijnStand ? ` Totaal: ${pt(mijnStand.punten)} punten.` : "");
+
+  // In de transferperiode tonen we ook wie eruit gaat, met een knop om dat ongedaan te maken.
+  const vertrekkers = m.modus === "transfers"
+    ? ploegInPeriode(staat.mijnSelecties, m.huidige).filter((s) => s.tot_periode === m.huidige)
+    : [];
+  const t = m.modus === "transfers" ? transfersVoorDoel(m) : { uit: [] };
 
   const lijst = $("ploeg-lijst");
   lijst.replaceChildren();
-  const gesorteerd = [...ploeg].sort((a, b) => staat.prijzen.get(b.cq_riderid) - staat.prijzen.get(a.cq_riderid));
-  for (const sel of gesorteerd) {
+  const rijen = [...ploeg, ...vertrekkers].sort((a, b) => staat.prijzen.get(b.cq_riderid) - staat.prijzen.get(a.cq_riderid));
+  for (const sel of rijen) {
     const r = staat.rennerOpId.get(sel.cq_riderid);
-    lijst.append(maak("li", {}, [
+    const vertrekt = vertrekkers.includes(sel);
+    const nieuw = m.modus === "transfers" && sel.vanaf_periode === m.doel;
+    let knop;
+    if (vertrekt) {
+      knop = maak("button", {
+        klasse: "knop-klein knop-plus", tekst: "↺", title: "Toch houden",
+        disabled: staat.bezig || !!redenNiet(sel.cq_riderid, m), onclick: () => houd(sel),
+      });
+    } else {
+      const magNiet = m.modus === "gesloten" ||
+        (m.modus === "transfers" && !nieuw && t.uit.length >= inst.max_transfers);
+      knop = maak("button", {
+        klasse: "knop-klein knop-min", tekst: "−",
+        title: m.modus === "inschrijving" || nieuw ? "Uit je ploeg halen" : magNiet ? "Geen transfers meer over" : "Verkopen na deze periode",
+        disabled: staat.bezig || magNiet, onclick: () => verwijder(sel, m),
+      });
+    }
+    const label = vertrekt ? ` · gaat eruit na periode ${m.huidige}` : nieuw ? ` · nieuw vanaf periode ${m.doel}` : "";
+    lijst.append(maak("li", { klasse: vertrekt ? "vertrekt" : nieuw ? "nieuw" : "" }, [
       maak("div", {}, [
         maak("div", { klasse: "renner-naam", tekst: r ? r.naam : `Renner ${sel.cq_riderid}` }),
-        maak("div", { klasse: "renner-sub", tekst: `${r ? `${r.land} · ${r.ploeg}` : "Niet meer in de rennerslijst"} · ${pt(puntenVan.get(sel.cq_riderid) || 0)} pt` }),
+        maak("div", {
+          klasse: "renner-sub",
+          tekst: `${r ? `${r.land} · ${r.ploeg}` : "Niet meer in de rennerslijst"} · ${pt(puntenVan.get(sel.cq_riderid) || 0)} pt${label}`,
+        }),
       ]),
       maak("span", { klasse: "prijs", tekst: `${staat.prijzen.get(sel.cq_riderid) ?? "?"} cr` }),
-      maak("button", {
-        klasse: "knop-klein knop-min", tekst: "−", title: "Uit je ploeg halen",
-        disabled: !open || staat.bezig, onclick: () => verwijder(sel),
-      }),
+      m.modus === "gesloten" ? maak("span") : knop,
     ]));
   }
-  if (!ploeg.length) lijst.append(maak("li", { klasse: "leeg", tekst: "Nog geen renners gekozen. Kies ze in de rennerspool." }));
+  if (!rijen.length) lijst.append(maak("li", { klasse: "leeg", tekst: "Nog geen renners gekozen. Kies ze in de rennerspool." }));
+
+  // Je eigen transfers, ook de geplande.
+  const blok = $("mijn-transfers");
+  blok.replaceChildren();
+  const alle = transfersVan(staat.mijnSelecties);
+  blok.hidden = !alle.length;
+  if (alle.length) {
+    blok.append(maak("h3", { tekst: "Mijn transfers" }), transferLijst(alle));
+  }
 }
 
 function tekenPool() {
   const { inst } = staat;
-  const ploeg = huidigePloeg();
+  const m = modus();
+  const ploeg = doelPloeg(m);
   const gekozen = new Set(ploeg.map((s) => s.cq_riderid));
-  const open = inschrijvingOpen(inst);
   const zoek = $("zoek").value.trim().toLowerCase();
   const type = $("filter-type").value;
   const ploegnaam = $("filter-ploeg").value;
@@ -263,7 +325,7 @@ function tekenPool() {
     (!zoek || `${r.naam} ${r.land} ${r.ploeg}`.toLowerCase().includes(zoek)) &&
     (!type || r.ploegtype === type) &&
     (!ploegnaam || r.ploeg === ploegnaam) &&
-    (!betaalbaar || !magToevoegen(r.cq_riderid, ploeg, staat.prijzen, inst)),
+    (!betaalbaar || !redenNiet(r.cq_riderid, m)),
   );
   const { veld, af } = staat.sorteer;
   const waarde = {
@@ -281,7 +343,7 @@ function tekenPool() {
   const tbody = $("pool-lijst");
   tbody.replaceChildren();
   for (const r of rijen.slice(0, maxRijen)) {
-    const reden = magToevoegen(r.cq_riderid, ploeg, staat.prijzen, inst);
+    const reden = redenNiet(r.cq_riderid, m);
     tbody.append(maak("tr", { klasse: gekozen.has(r.cq_riderid) ? "gekozen" : "" }, [
       maak("td", {}, [maak("span", { klasse: "renner-naam", tekst: r.naam })]),
       maak("td", { tekst: r.land }),
@@ -290,8 +352,8 @@ function tekenPool() {
       maak("td", { klasse: "getal prijs", tekst: staat.prijzen.get(r.cq_riderid) }),
       maak("td", {}, [maak("button", {
         klasse: "knop-klein knop-plus", tekst: gekozen.has(r.cq_riderid) ? "✓" : "+",
-        title: !open ? "De ploegen liggen vast" : reden || "In je ploeg zetten",
-        disabled: !open || !!reden || staat.bezig, onclick: () => voegToe(r.cq_riderid),
+        title: reden || (m.modus === "transfers" ? `Kopen voor periode ${m.doel}` : "In je ploeg zetten"),
+        disabled: !!reden || staat.bezig, onclick: () => voegToe(r.cq_riderid),
       })]),
     ]));
   }
@@ -300,37 +362,68 @@ function tekenPool() {
     : `${rijen.length} renners.`;
 }
 
-async function voegToe(riderid) {
-  const reden = magToevoegen(riderid, huidigePloeg(), staat.prijzen, staat.inst);
-  if (reden || !inschrijvingOpen(staat.inst)) return melding(reden || "De ploegen liggen vast.", true);
+// Voert een wijziging uit, met de knoppen uitgeschakeld zolang ze loopt.
+async function bewaar(actie, foutTekst) {
   staat.bezig = true;
   tekenAlles();
   try {
-    const record = await selecties.create({ cq_riderid: riderid, vanaf_periode: 1, tot_periode: null });
-    staat.mijnSelecties.push(record);
+    await actie();
     melding("");
   } catch (fout) {
-    melding(`Toevoegen lukte niet: ${fout.message}`, true);
+    melding(`${foutTekst}: ${fout.message}`, true);
   } finally {
     staat.bezig = false;
     tekenAlles();
   }
 }
 
-async function verwijder(selectie) {
-  if (!inschrijvingOpen(staat.inst)) return;
-  staat.bezig = true;
-  tekenAlles();
-  try {
-    await selecties.delete(selectie.id);
-    staat.mijnSelecties = staat.mijnSelecties.filter((s) => s.id !== selectie.id);
-    melding("");
-  } catch (fout) {
-    melding(`Verwijderen lukte niet: ${fout.message}`, true);
-  } finally {
-    staat.bezig = false;
-    tekenAlles();
+function vervang(record) {
+  staat.mijnSelecties = staat.mijnSelecties.map((s) => (s.id === record.id ? record : s));
+}
+
+// Een renner kopen (of voor het seizoen: kiezen).
+async function voegToe(riderid) {
+  const m = modus();
+  const reden = redenNiet(riderid, m);
+  if (reden) return melding(reden, true);
+  // Verkocht je deze renner net? Dan maken we de verkoop ongedaan in plaats van hem opnieuw te kopen.
+  const verkocht = staat.mijnSelecties.find((s) => s.cq_riderid === riderid && m.modus === "transfers" && s.tot_periode === m.huidige);
+  if (verkocht) return houd(verkocht);
+  await bewaar(async () => {
+    const record = await selecties.create({ cq_riderid: riderid, vanaf_periode: m.doel, tot_periode: null });
+    staat.mijnSelecties.push(record);
+  }, "Toevoegen lukte niet");
+}
+
+// Een renner uit de ploeg halen: voor het seizoen of bij een nieuwe aankoop gewoon schrappen,
+// anders verkopen na de lopende periode.
+async function verwijder(selectie, m = modus()) {
+  if (m.modus === "gesloten") return;
+  if (m.modus === "inschrijving" || selectie.vanaf_periode === m.doel) {
+    return bewaar(async () => {
+      await selecties.delete(selectie.id);
+      staat.mijnSelecties = staat.mijnSelecties.filter((s) => s.id !== selectie.id);
+    }, "Verwijderen lukte niet");
   }
+  if (transfersVoorDoel(m).uit.length >= staat.inst.max_transfers) {
+    return melding(`Je gebruikte al je ${staat.inst.max_transfers} transfers voor periode ${m.doel}.`, true);
+  }
+  await bewaar(async () => vervang(await selecties.update(selectie.id, { tot_periode: m.huidige })), "Verkopen lukte niet");
+}
+
+// Een verkoop ongedaan maken.
+async function houd(selectie) {
+  await bewaar(async () => vervang(await selecties.update(selectie.id, { tot_periode: null })), "Terugzetten lukte niet");
+}
+
+// Transfers als lijst per periode: "Periode 3 · Uit: … · In: …".
+function transferLijst(transfers) {
+  const naam = (id) => `${staat.rennerOpId.get(id)?.naam ?? `Renner ${id}`} (${staat.prijzen.get(id) ?? "?"} cr)`;
+  return maak("ul", { klasse: "transfers" }, transfers.map((t) => maak("li", {}, [
+    maak("strong", { tekst: `Periode ${t.periode}` }),
+    maak("span", { klasse: "uit", tekst: `Uit: ${t.uit.map(naam).join(", ") || "–"}` }),
+    maak("span", { klasse: "in", tekst: `In: ${t.in.map(naam).join(", ") || "–"}` }),
+  ])));
 }
 
 // ---------- Stand ----------
@@ -369,7 +462,7 @@ function tekenStand() {
     return;
   }
   for (const rij of rijen) {
-    const detail = maak("tr", { klasse: "detail", hidden: true }, [maak("td", { colSpan: 5 }, [detailLijst(rij)])]);
+    const detail = maak("tr", { klasse: "detail", hidden: true }, [maak("td", { colSpan: 5 }, detailBlok(rij, periodeNr))]);
     tbody.append(
       maak("tr", { klasse: `deelnemer${rij.email === staat.ik.email ? " ik" : ""}`, onclick: () => { detail.hidden = !detail.hidden; } }, [
         maak("td", { klasse: `getal plaats plaats-${rij.plaats}`, tekst: rij.plaats }),
@@ -381,6 +474,24 @@ function tekenStand() {
       detail,
     );
   }
+}
+
+// Wat je ziet als je een ploeg openklikt: de renners met hun punten en de transfers.
+function detailBlok(rij, periodeNr) {
+  return [maak("h4", { tekst: "Renners" }), detailLijst(rij), maak("h4", { tekst: "Transfers" }), transfersVanDeelnemer(rij.email, periodeNr)];
+}
+
+// Transfers van één deelnemer, voor één periode of (algemeen klassement) allemaal.
+// Transfers voor een periode die nog niet begonnen is, zie je enkel bij je eigen ploeg.
+function transfersVanDeelnemer(email, periodeNr) {
+  const vandaag = vandaagISO();
+  const gestart = new Set(staat.inst.periodes.filter((p) => p.start <= vandaag).map((p) => p.nr));
+  const transfers = transfersVan(staat.alleSelecties.filter((s) => s.createdBy?.email === email))
+    .filter((t) => (periodeNr == null || t.periode === periodeNr) && (email === staat.ik.email || gestart.has(t.periode)));
+  if (!transfers.length) {
+    return maak("p", { klasse: "klein", tekst: periodeNr ? `Geen transfers bij de start van periode ${periodeNr}.` : "Nog geen transfers." });
+  }
+  return transferLijst(transfers);
 }
 
 // De renners van een deelnemer met hun punten, en per renner de koersen waar ze scoorden.

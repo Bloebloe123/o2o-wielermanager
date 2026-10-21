@@ -31,10 +31,36 @@ export function periodeVan(datum, inst) {
   return inst.periodes.find((p) => datum >= p.start && datum <= p.eind) || null;
 }
 
-// Mag je je ploeg nog vrij samenstellen? Ja, zolang periode 1 niet begonnen is.
-export function inschrijvingOpen(inst, vandaag = vandaagISO()) {
-  const eerste = [...inst.periodes].sort((a, b) => a.nr - b.nr)[0];
-  return !eerste || vandaag < eerste.start;
+// Wat kan een deelnemer vandaag met zijn ploeg doen?
+// - "inschrijving": voor periode 1 stel je je ploeg vrij samen (doel = periode 1);
+// - "transfers": tijdens periode N plan je transfers voor periode N+1 (doel = N+1),
+//   tot periode N+1 begint;
+// - "gesloten": tijdens de laatste periode of na het seizoen.
+export function ploegModus(inst, vandaag = vandaagISO()) {
+  const periodes = [...inst.periodes].sort((a, b) => a.nr - b.nr);
+  if (!periodes.length) return { modus: "gesloten", huidige: null };
+  if (vandaag < periodes[0].start) {
+    return { modus: "inschrijving", huidige: null, doel: periodes[0].nr, deadline: periodes[0].start };
+  }
+  const komende = periodes.find((p) => p.start > vandaag);
+  const huidige = periodeVan(vandaag, inst)?.nr ?? (komende ? komende.nr - 1 : periodes[periodes.length - 1].nr);
+  if (komende) return { modus: "transfers", huidige, doel: komende.nr, deadline: komende.start };
+  return { modus: "gesloten", huidige };
+}
+
+// Transfers, afgeleid uit de selecties: per periode P (vanaf 2) welke renners
+// eruit gingen (tot_periode = P - 1) en welke erbij kwamen (vanaf_periode = P).
+export function transfersVan(selecties) {
+  const perPeriode = new Map();
+  const groep = (p) => {
+    if (!perPeriode.has(p)) perPeriode.set(p, { periode: p, uit: [], in: [] });
+    return perPeriode.get(p);
+  };
+  for (const s of selecties) {
+    if (s.vanaf_periode > 1) groep(s.vanaf_periode).in.push(s.cq_riderid);
+    if (s.tot_periode != null) groep(s.tot_periode + 1).uit.push(s.cq_riderid);
+  }
+  return [...perPeriode.values()].sort((a, b) => a.periode - b.periode);
 }
 
 // Selecties die in een bepaalde periode in de ploeg zitten.
