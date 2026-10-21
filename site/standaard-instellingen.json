@@ -5,7 +5,7 @@
   "workflow_url": "https://github.com/Bloebloe123/o2o-wielermanager/actions/workflows/import.yml",
   "budget": 125,
   "ploeggrootte": 25,
-  "max_transfers": 3,
+  "max_transfers": 5,
   "prijzen_top": [22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8],
   "prijsschijven": [
     { "vanaf_punten": 800, "prijs": 7 },
