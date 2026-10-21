@@ -256,7 +256,14 @@ def main():
 
     oud = json.loads(uitvoer.read_text()) if uitvoer.exists() else {}
     if oud.get("seizoen") != seizoen:
-        oud = {}  # nieuw seizoen: begin met een lege lijst
+        # Nieuw seizoen: bewaar de uitslagen van het vorige in data/archief (de spelsite
+        # deelt de renners daarmee in volgens type) en begin met een lege lijst.
+        if oud.get("koersen"):
+            archief = MAP / "data" / "archief" / f"koersen-{oud['seizoen']}.json"
+            archief.parent.mkdir(parents=True, exist_ok=True)
+            archief.write_text(json.dumps(oud, ensure_ascii=False, indent=1) + "\n")
+            print(f"Uitslagen van {oud['seizoen']} gearchiveerd in {archief.name}")
+        oud = {}
     koersen = {k["cq_raceid"]: k for k in oud.get("koersen", [])}
     afgeronde_tours = set(oud.get("afgeronde_tours", []))
 
