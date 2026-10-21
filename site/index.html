@@ -21,6 +21,7 @@
     </div>
     <nav class="tabs" id="tabs">
       <button class="tab actief" data-tab="ploeg">Mijn ploeg</button>
+      <button class="tab" data-tab="stand">Stand</button>
     </nav>
   </header>
 
@@ -87,6 +88,27 @@
           </table>
         </div>
         <p id="pool-info" class="klein"></p>
+      </div>
+    </section>
+    <section id="tab-stand" class="kaart" hidden>
+      <div class="stand-kop">
+        <h2>Stand</h2>
+        <select id="stand-keuze"></select>
+      </div>
+      <p class="klein">Gelijke stand? Dan beslist het aantal overwinningen (ritten, eendagskoersen en eindklassementen). Klik op een ploeg om te zien waar de punten vandaan komen.</p>
+      <div class="tabel-wrap">
+        <table class="tabel stand">
+          <thead>
+            <tr>
+              <th class="getal">#</th>
+              <th>Ploeg</th>
+              <th>Deelnemer</th>
+              <th class="getal">Overwinningen</th>
+              <th class="getal">Punten</th>
+            </tr>
+          </thead>
+          <tbody id="stand-lijst"></tbody>
+        </table>
       </div>
     </section>
   </main>

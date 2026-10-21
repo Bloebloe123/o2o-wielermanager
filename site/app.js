@@ -1,8 +1,11 @@
-import { berekenPrijzen, inschrijvingOpen, magToevoegen, ploegInPeriode } from "./spel.js";
+import {
+  berekenPrijzen, berekenStand, inschrijvingOpen, magToevoegen, ploegInPeriode, rennerResultaten,
+} from "./spel.js";
 
 const $ = (id) => document.getElementById(id);
 const profielen = window.vibers.db.collection("profielen");
 const selecties = window.vibers.db.collection("selecties");
+const correcties = window.vibers.db.collection("correcties");
 
 const staat = {
   ik: null,
@@ -11,6 +14,7 @@ const staat = {
   rennerOpId: new Map(),
   prijzen: new Map(),
   koersen: null,
+  resultaten: new Map(), // cq_riderid -> punten per koers (zie spel.js)
   profiel: null,
   mijnSelecties: [],
   sorteer: { veld: "prijs", af: true },
@@ -48,6 +52,11 @@ async function alleRecords(collectie, query) {
   return items;
 }
 
+// Punten tonen: halve punten (ProSeries) met een komma, anders een geheel getal.
+function pt(n) {
+  return n.toLocaleString("nl-BE", { maximumFractionDigits: 1 });
+}
+
 function datumTijd(iso) {
   return new Date(iso).toLocaleString("nl-BE", {
     timeZone: "Europe/Brussels", day: "numeric", month: "long", hour: "2-digit", minute: "2-digit",
@@ -78,16 +87,18 @@ async function start() {
   try {
     staat.ik = await window.vibers.me();
     staat.inst = await laadInstellingen();
-    const [renners, koersen, mijnProfielen, mijn] = await Promise.all([
+    const [renners, koersen, mijnProfielen, mijn, alleCorrecties] = await Promise.all([
       haalJson(staat.inst.renners_url),
       haalJson(staat.inst.koersen_url),
       profielen.find({ mine: true, limit: 1 }),
       alleRecords(selecties, { mine: true }),
+      alleRecords(correcties, {}),
     ]);
     staat.renners = renners.renners;
     staat.rennerOpId = new Map(staat.renners.map((r) => [r.cq_riderid, r]));
     staat.prijzen = berekenPrijzen(staat.renners, staat.inst);
     staat.koersen = koersen;
+    staat.resultaten = rennerResultaten(koersen.koersen, alleCorrecties, staat.inst);
     staat.profiel = mijnProfielen.items[0] || null;
     staat.mijnSelecties = mijn;
     toonKop(renners);
@@ -151,7 +162,21 @@ function huidigePloeg() {
   return ploegInPeriode(staat.mijnSelecties, 1);
 }
 
+// ---------- Tabs ----------
+
+function zetTabsKlaar() {
+  document.querySelectorAll(".tab").forEach((knop) => {
+    knop.addEventListener("click", () => {
+      document.querySelectorAll(".tab").forEach((k) => k.classList.toggle("actief", k === knop));
+      $("tab-ploeg").hidden = knop.dataset.tab !== "ploeg";
+      $("tab-stand").hidden = knop.dataset.tab !== "stand";
+      if (knop.dataset.tab === "stand") toonStand();
+    });
+  });
+}
+
 function toonPloeg() {
+  zetTabsKlaar();
   $("tab-ploeg").hidden = false;
   $("mijn-ploegnaam").textContent = staat.profiel.ploegnaam || "Mijn ploeg";
   const ploegen = [...new Set(staat.renners.map((r) => r.ploeg))].sort();
@@ -199,6 +224,11 @@ function tekenMijnPloeg() {
     $("ploeg-status").textContent = `Je ploeg is compleet. Je kunt ze nog aanpassen tot ${datum}.`;
   }
 
+  // Punten die elke renner al voor jou verdiende (enkel in de periodes dat hij in je ploeg zat).
+  const mijnStand = berekenStand(staat.mijnSelecties, staat.resultaten)[0];
+  const puntenVan = new Map((mijnStand?.renners || []).map((r) => [r.cq_riderid, r.punten]));
+  $("ploeg-status").textContent += mijnStand ? ` Totaal: ${pt(mijnStand.punten)} punten.` : "";
+
   const lijst = $("ploeg-lijst");
   lijst.replaceChildren();
   const gesorteerd = [...ploeg].sort((a, b) => staat.prijzen.get(b.cq_riderid) - staat.prijzen.get(a.cq_riderid));
@@ -207,7 +237,7 @@ function tekenMijnPloeg() {
     lijst.append(maak("li", {}, [
       maak("div", {}, [
         maak("div", { klasse: "renner-naam", tekst: r ? r.naam : `Renner ${sel.cq_riderid}` }),
-        maak("div", { klasse: "renner-sub", tekst: r ? `${r.land} · ${r.ploeg}` : "Niet meer in de rennerslijst" }),
+        maak("div", { klasse: "renner-sub", tekst: `${r ? `${r.land} · ${r.ploeg}` : "Niet meer in de rennerslijst"} · ${pt(puntenVan.get(sel.cq_riderid) || 0)} pt` }),
       ]),
       maak("span", { klasse: "prijs", tekst: `${staat.prijzen.get(sel.cq_riderid) ?? "?"} cr` }),
       maak("button", {
@@ -301,6 +331,82 @@ async function verwijder(selectie) {
     staat.bezig = false;
     tekenAlles();
   }
+}
+
+// ---------- Stand ----------
+
+async function toonStand() {
+  const keuze = $("stand-keuze");
+  if (!keuze.options.length) {
+    keuze.append(maak("option", { value: "", tekst: "Algemeen klassement" }));
+    for (const p of staat.inst.periodes) {
+      const van = new Date(p.start).toLocaleDateString("nl-BE", { day: "numeric", month: "short" });
+      const tot = new Date(p.eind).toLocaleDateString("nl-BE", { day: "numeric", month: "short" });
+      keuze.append(maak("option", { value: p.nr, tekst: `Periode ${p.nr} (${van} – ${tot})` }));
+    }
+    keuze.addEventListener("input", tekenStand);
+  }
+  $("stand-lijst").replaceChildren(maak("tr", {}, [maak("td", { colSpan: 5, tekst: "Stand wordt berekend…" })]));
+  try {
+    // Altijd vers ophalen: de ploegen van iedereen en hun ploegnamen.
+    const [alleSelecties, alleProfielen] = await Promise.all([alleRecords(selecties, {}), alleRecords(profielen, {})]);
+    staat.alleSelecties = alleSelecties;
+    staat.ploegnaamVan = new Map(alleProfielen.filter((p) => p.createdBy).map((p) => [p.createdBy.email, p.ploegnaam]));
+    staat.naamVan = new Map(alleSelecties.filter((s) => s.createdBy).map((s) => [s.createdBy.email, s.createdBy.name]));
+    tekenStand();
+  } catch (fout) {
+    melding(`De stand laden lukte niet: ${fout.message}`, true);
+  }
+}
+
+function tekenStand() {
+  const periodeNr = $("stand-keuze").value ? Number($("stand-keuze").value) : null;
+  const rijen = berekenStand(staat.alleSelecties, staat.resultaten, periodeNr);
+  const tbody = $("stand-lijst");
+  tbody.replaceChildren();
+  if (!rijen.length) {
+    tbody.append(maak("tr", {}, [maak("td", { colSpan: 5, tekst: "Nog geen ploegen." })]));
+    return;
+  }
+  for (const rij of rijen) {
+    const detail = maak("tr", { klasse: "detail", hidden: true }, [maak("td", { colSpan: 5 }, [detailLijst(rij)])]);
+    tbody.append(
+      maak("tr", { klasse: `deelnemer${rij.email === staat.ik.email ? " ik" : ""}`, onclick: () => { detail.hidden = !detail.hidden; } }, [
+        maak("td", { klasse: `getal plaats plaats-${rij.plaats}`, tekst: rij.plaats }),
+        maak("td", { tekst: staat.ploegnaamVan.get(rij.email) || "(nog geen ploegnaam)" }),
+        maak("td", { tekst: staat.naamVan.get(rij.email) || rij.email }),
+        maak("td", { klasse: "getal", tekst: rij.overwinningen }),
+        maak("td", { klasse: "getal punten", tekst: pt(rij.punten) }),
+      ]),
+      detail,
+    );
+  }
+}
+
+// De renners van een deelnemer met hun punten, en per renner de koersen waar ze scoorden.
+function detailLijst(rij) {
+  const lijst = maak("ul");
+  for (const renner of rij.renners.filter((r) => r.punten > 0)) {
+    const r = staat.rennerOpId.get(renner.cq_riderid);
+    const resultaten = [...renner.resultaten].sort((a, b) => b.punten - a.punten);
+    const kort = resultaten.slice(0, 3).map((k) => `${k.naam} (${k.positie}e)`).join(" · ");
+    const alles = maak("ul", { klasse: "resultaten" }, resultaten.map((k) => maak("li", {}, [
+      maak("span", { tekst: `${k.datum.slice(8, 10)}/${k.datum.slice(5, 7)} · ${k.naam} · ${k.positie}e` }),
+      maak("span", { klasse: "punten-renner", tekst: pt(k.punten) }),
+    ])));
+    lijst.append(maak("li", {}, [
+      maak("details", {}, [
+        maak("summary", {}, [
+          maak("strong", { tekst: r ? r.naam : `Renner ${renner.cq_riderid}` }),
+          maak("span", { klasse: "klein", tekst: `${resultaten.length} resultaten · ${kort}${resultaten.length > 3 ? " …" : ""}` }),
+          maak("span", { klasse: "punten-renner", tekst: `${pt(renner.punten)} pt` }),
+        ]),
+        alles,
+      ]),
+    ]));
+  }
+  if (!lijst.children.length) lijst.append(maak("li", { tekst: "Nog geen punten in deze periode." }));
+  return lijst;
 }
 
 start();

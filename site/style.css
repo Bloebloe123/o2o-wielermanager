@@ -115,6 +115,30 @@ label.keuze { display: flex; align-items: center; gap: 8px; }
 .getal { text-align: right; }
 .klein { font-size: 0.8rem; color: var(--o2o-gray); }
 
+.stand-kop { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.stand-kop select { padding: 8px 12px; border: 1px solid var(--o2o-gray-light); border-radius: 999px; }
+.tabel.stand { table-layout: fixed; }
+.tabel.stand th:nth-child(1) { width: 50px; }
+.tabel.stand th:nth-child(4) { width: 130px; }
+.tabel.stand th:nth-child(5) { width: 100px; }
+.detail summary, .detail .klein { min-width: 0; }
+.tabel.stand tbody tr.deelnemer { cursor: pointer; }
+.tabel.stand tbody tr.deelnemer:hover td { background: var(--o2o-tint-blue); }
+.tabel.stand tr.ik td { font-weight: 600; }
+.tabel.stand td.punten { font-family: var(--o2o-font-ui); font-weight: 600; color: var(--o2o-blue); }
+.plaats { font-family: var(--o2o-font-heading); font-weight: 800; }
+.plaats-1 { color: var(--o2o-orange); }
+.detail td { background: var(--o2o-off-white); }
+.detail ul { list-style: none; margin: 0; padding: 4px 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; }
+.detail li { display: flex; justify-content: space-between; gap: 12px; font-size: 0.85rem; }
+.detail .klein { margin-left: 8px; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.detail > td > ul > li { display: block; }
+.detail summary { display: flex; align-items: baseline; gap: 8px; cursor: pointer; padding: 4px 0; }
+.detail summary strong { white-space: nowrap; }
+.detail ul.resultaten { padding: 4px 0 8px 22px; }
+.detail ul.resultaten li { color: var(--o2o-gray); font-size: 0.8rem; }
+.punten-renner { font-family: var(--o2o-font-ui); color: var(--o2o-gray); font-size: 0.8rem; white-space: nowrap; }
+
 @media (max-width: 900px) {
   .kop-binnen, .tabs, .inhoud { padding-left: 30px; padding-right: 30px; }
   .raster { grid-template-columns: 1fr; }
