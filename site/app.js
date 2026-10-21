@@ -25,6 +25,7 @@ const staat = {
   profiel: null,
   mijnSelecties: [],
   sorteer: { veld: "prijs", af: true },
+  typeFilter: "", // "" = alle types
   bezig: false,
 };
 
@@ -258,8 +259,7 @@ function toonPloeg() {
   $("mijn-ploegnaam").textContent = ploegnaamVan(staat.ik.email, staat.profiel.ploegnaam) || "Mijn ploeg";
   const ploegen = [...new Set(staat.renners.map((r) => r.ploeg))].sort();
   for (const p of ploegen) $("filter-ploeg").append(maak("option", { tekst: p }));
-  for (const t of TYPES) $("filter-categorie").append(maak("option", { tekst: t }));
-  for (const id of ["zoek", "filter-type", "filter-ploeg", "filter-categorie", "filter-betaalbaar"]) {
+  for (const id of ["zoek", "filter-type", "filter-ploeg", "filter-betaalbaar"]) {
     $(id).addEventListener("input", tekenPool);
   }
   document.querySelectorAll("th[data-sort]").forEach((th) => {
@@ -387,15 +387,16 @@ function tekenPool() {
   const type = $("filter-type").value;
   const ploegnaam = $("filter-ploeg").value;
   const betaalbaar = $("filter-betaalbaar").checked;
-  const categorie = $("filter-categorie").value;
 
-  let rijen = staat.renners.filter((r) =>
+  // Eerst de gewone filters; de typeknoppen tonen hoeveel renners daarvan per type overblijven.
+  const gefilterd = staat.renners.filter((r) =>
     (!zoek || `${r.naam} ${r.land} ${r.ploeg}`.toLowerCase().includes(zoek)) &&
     (!type || r.ploegtype === type) &&
     (!ploegnaam || r.ploeg === ploegnaam) &&
-    (!categorie || typeVan(r.cq_riderid) === categorie) &&
     (!betaalbaar || !redenNiet(r.cq_riderid, m)),
   );
+  tekenTypeKnoppen(gefilterd);
+  let rijen = gefilterd.filter((r) => !staat.typeFilter || typeVan(r.cq_riderid) === staat.typeFilter);
   const { veld, af } = staat.sorteer;
   const waarde = {
     naam: (r) => r.naam, land: (r) => r.land, ploeg: (r) => r.ploeg, type: (r) => typeVan(r.cq_riderid),
@@ -432,6 +433,22 @@ function tekenPool() {
   $("pool-info").textContent = rijen.length > maxRijen
     ? `${maxRijen} van ${rijen.length} renners getoond. Zoek of filter om de rest te zien.`
     : `${rijen.length} renners.`;
+}
+
+// Knoppen om op type renner te filteren, met het aantal renners per type.
+function tekenTypeKnoppen(renners) {
+  const aantal = new Map(TYPES.map((t) => [t, 0]));
+  for (const r of renners) aantal.set(typeVan(r.cq_riderid), aantal.get(typeVan(r.cq_riderid)) + 1);
+  const knop = (waarde, tekst, n) => maak("button", {
+    type: "button",
+    klasse: `type-knop${waarde ? ` type-${waarde.toLowerCase()}` : ""}${staat.typeFilter === waarde ? " actief" : ""}`,
+    tekst: `${tekst} (${n})`,
+    onclick: () => { staat.typeFilter = staat.typeFilter === waarde ? "" : waarde; tekenPool(); },
+  });
+  $("type-knoppen").replaceChildren(
+    knop("", "Alle", renners.length),
+    ...TYPES.map((t) => knop(t, t, aantal.get(t))),
+  );
 }
 
 // Voert een wijziging uit, met de knoppen uitgeschakeld zolang ze loopt.

@@ -109,6 +109,14 @@ ul.transfers .in { color: var(--o2o-blue); }
 .type-klassiekerrenner { background: var(--o2o-tint-blue); color: var(--o2o-blue); }
 .type-sprinter { background: var(--o2o-tint-orange); color: #8a5600; }
 .type-allrounder { background: var(--o2o-blue); color: var(--o2o-white); }
+.type-knoppen { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.type-knop {
+  border: 2px solid transparent; border-radius: 999px; padding: 4px 12px; cursor: pointer;
+  font-family: var(--o2o-font-ui); font-size: 0.8rem; font-weight: 500;
+  background: var(--o2o-gray-light); color: var(--o2o-gray); opacity: 0.75; transition: opacity 0.2s;
+}
+.type-knop:hover { opacity: 1; }
+.type-knop.actief { opacity: 1; border-color: var(--o2o-text); }
 .renner-sub { font-size: 0.78rem; color: var(--o2o-gray); }
 .prijs { font-family: var(--o2o-font-ui); font-weight: 600; color: var(--o2o-blue); white-space: nowrap; }
 
