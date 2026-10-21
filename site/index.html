@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>o2o Wielermanager</title>
+  <title>Be like José</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@400;500;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
     <div class="kop-binnen">
       <img src="./logo-wit.svg" alt="o2o" class="logo">
       <div class="kop-titel">
-        <h1>Wielermanager <span id="seizoen"></span></h1>
+        <h1>Be like José <span id="seizoen"></span></h1>
         <p id="import-info" class="kop-sub"></p>
       </div>
       <div id="wie" class="wie"></div>
@@ -33,7 +33,7 @@
     <section id="laden" class="kaart">Even geduld, renners en uitslagen worden geladen…</section>
 
     <section id="profiel" class="kaart profiel" hidden>
-      <h2>Welkom bij de Wielermanager</h2>
+      <h2>Welkom bij Be like José</h2>
       <p>Nog twee vragen voor je begint. Je kunt dit later niet zelf meer wijzigen.</p>
       <form id="profiel-form">
         <label>Hoe heet je ploeg?
@@ -154,6 +154,17 @@
           <button type="submit" class="knop">Correctie opslaan</button>
         </form>
         <datalist id="renners-lijst"></datalist>
+      </div>
+
+      <div class="kaart">
+        <h2>Ploegnamen</h2>
+        <p class="klein">Pas de naam van een ploeg aan. Elke naam mag maar één keer voorkomen.</p>
+        <div class="tabel-wrap kort">
+          <table class="tabel">
+            <thead><tr><th>Deelnemer</th><th>Ploegnaam</th><th></th></tr></thead>
+            <tbody id="admin-ploegnamen"></tbody>
+          </table>
+        </div>
       </div>
 
       <div class="kaart">

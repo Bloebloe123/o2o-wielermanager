@@ -164,6 +164,8 @@ ul.correcties li { display: flex; justify-content: space-between; align-items: c
 .correctie-form .breed, .instellingen-form .breed { grid-column: 1 / -1; }
 .correctie-form input, .instellingen-form input { padding: 8px 12px; border: 1px solid var(--o2o-gray-light); border-radius: 12px; font-family: var(--o2o-font-ui); }
 .correctie-form .knop, .instellingen-form .knop { justify-self: start; }
+#admin-ploegnamen input { width: 100%; padding: 6px 10px; border: 1px solid var(--o2o-gray-light); border-radius: 10px; font-family: var(--o2o-font-ui); }
+.knop-klein-tekst { padding: 6px 14px; font-size: 0.8rem; }
 .periode-rij { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 0.9rem; }
 .periode-rij strong { width: 80px; }
 .stand-kop select { padding: 8px 12px; border: 1px solid var(--o2o-gray-light); border-radius: 999px; }

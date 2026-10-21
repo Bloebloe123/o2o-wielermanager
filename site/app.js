@@ -9,6 +9,8 @@ const $ = (id) => document.getElementById(id);
 const profielen = window.vibers.db.collection("profielen");
 const selecties = window.vibers.db.collection("selecties");
 const correcties = window.vibers.db.collection("correcties");
+// Ploegnamen die een admin wijzigde: { email, ploegnaam }. Die gaan voor op de naam in het profiel.
+const ploegnamen = window.vibers.db.collection("ploegnamen");
 
 const staat = {
   ik: null,
@@ -92,7 +94,7 @@ async function start() {
   try {
     staat.ik = await window.vibers.me();
     staat.inst = await laadInstellingen();
-    const [renners, koersen, mijnProfielen, mijn, alleCorrecties, kalender] = await Promise.all([
+    const [renners, koersen, mijnProfielen, mijn, alleCorrecties, kalender, alleNaamwijzigingen] = await Promise.all([
       haalJson(staat.inst.renners_url),
       haalJson(staat.inst.koersen_url),
       profielen.find({ mine: true, limit: 1 }),
@@ -100,12 +102,14 @@ async function start() {
       alleRecords(correcties, {}),
       // De kalender is mooi meegenomen; lukt hij niet, dan werkt de rest gewoon verder.
       haalJson(staat.inst.kalender_url).catch(() => null),
+      alleRecords(ploegnamen, {}),
     ]);
     staat.renners = renners.renners;
     staat.rennerOpId = new Map(staat.renners.map((r) => [r.cq_riderid, r]));
     staat.koersen = koersen;
     staat.kalender = kalender;
     staat.alleCorrecties = alleCorrecties;
+    staat.alleNaamwijzigingen = alleNaamwijzigingen;
     herbereken();
     staat.profiel = mijnProfielen.items[0] || null;
     staat.mijnSelecties = mijn;
@@ -125,6 +129,16 @@ async function start() {
 function herbereken() {
   staat.prijzen = berekenPrijzen(staat.renners, staat.inst);
   staat.correcties = staat.alleCorrecties.filter((c) => staat.inst.admins.includes(c.createdBy?.email));
+  // Enkel naamwijzigingen van een admin tellen; per deelnemer de recentste.
+  staat.nieuweNaam = new Map();
+  for (const w of [...staat.alleNaamwijzigingen].sort((a, b) => (a.updatedAt || "").localeCompare(b.updatedAt || ""))) {
+    if (staat.inst.admins.includes(w.createdBy?.email)) staat.nieuweNaam.set(w.email, w.ploegnaam);
+  }
+}
+
+// De ploegnaam van een deelnemer: die van de admin als die hem wijzigde, anders die uit het profiel.
+function ploegnaamVan(email, profielnaam) {
+  return staat.nieuweNaam.get(email) ?? profielnaam;
   staat.resultaten = rennerResultaten(staat.koersen.koersen, staat.correcties, staat.inst, staat.kalender?.koersen);
 }
 
@@ -159,7 +173,8 @@ function toonProfielformulier() {
     try {
       // Elke ploegnaam mag maar één keer voorkomen (hoofdletters tellen niet mee).
       const bestaande = await alleRecords(profielen, {});
-      if (bestaande.some((p) => (p.ploegnaam || "").toLowerCase() === ploegnaam.toLowerCase())) {
+      const bezet = [...bestaande.map((p) => p.ploegnaam || ""), ...staat.nieuweNaam.values()];
+      if (bezet.some((naam) => naam.toLowerCase() === ploegnaam.toLowerCase())) {
         knop.disabled = false;
         return melding(`De naam "${ploegnaam}" is al gekozen. Kies een andere naam.`, true);
       }
@@ -217,7 +232,7 @@ function zetTabsKlaar() {
       if (knop.dataset.tab === "kalender") tekenKalender({ staat, maak, pt });
       if (knop.dataset.tab === "regels") tekenRegels({ staat, maak, pt });
       if (knop.dataset.tab === "admin") {
-        toonAdmin({ staat, maak, melding, pt, datumTijd, correcties, alleRecords, herbereken, tekenAlles });
+        toonAdmin({ staat, maak, melding, pt, datumTijd, correcties, profielen, ploegnamen, alleRecords, herbereken, tekenAlles, ploegnaamVan });
       }
     });
   });
@@ -226,7 +241,7 @@ function zetTabsKlaar() {
 function toonPloeg() {
   zetTabsKlaar();
   $("tab-ploeg").hidden = false;
-  $("mijn-ploegnaam").textContent = staat.profiel.ploegnaam || "Mijn ploeg";
+  $("mijn-ploegnaam").textContent = ploegnaamVan(staat.ik.email, staat.profiel.ploegnaam) || "Mijn ploeg";
   const ploegen = [...new Set(staat.renners.map((r) => r.ploeg))].sort();
   for (const p of ploegen) $("filter-ploeg").append(maak("option", { tekst: p }));
   for (const id of ["zoek", "filter-type", "filter-ploeg", "filter-betaalbaar"]) {
@@ -471,7 +486,7 @@ async function toonStand() {
     // Altijd vers ophalen: de ploegen van iedereen en hun ploegnamen.
     const [alleSelecties, alleProfielen] = await Promise.all([alleRecords(selecties, {}), alleRecords(profielen, {})]);
     staat.alleSelecties = alleSelecties;
-    staat.ploegnaamVan = new Map(alleProfielen.filter((p) => p.createdBy).map((p) => [p.createdBy.email, p.ploegnaam]));
+    staat.ploegnaamVan = new Map(alleProfielen.filter((p) => p.createdBy).map((p) => [p.createdBy.email, ploegnaamVan(p.createdBy.email, p.ploegnaam)]));
     staat.debutanten = new Set(alleProfielen.filter((p) => p.createdBy && p.debuutjaar === staat.inst.seizoen).map((p) => p.createdBy.email));
     staat.naamVan = new Map(alleSelecties.filter((s) => s.createdBy).map((s) => [s.createdBy.email, s.createdBy.name]));
     tekenStand();

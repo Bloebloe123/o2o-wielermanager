@@ -15,6 +15,57 @@ export function toonAdmin(context) {
   }
   tekenKoerskeuze();
   tekenInstellingen();
+  tekenPloegnamen();
+}
+
+// ---------- Ploegnamen ----------
+
+async function tekenPloegnamen() {
+  const { staat, maak, melding, profielen, alleRecords, ploegnaamVan } = ctx;
+  const tbody = $("admin-ploegnamen");
+  let alle;
+  try {
+    alle = (await alleRecords(profielen, {})).filter((p) => p.createdBy);
+  } catch (fout) {
+    return melding(`De ploegen laden lukte niet: ${fout.message}`, true);
+  }
+  alle.sort((a, b) => (a.createdBy.name || a.createdBy.email).localeCompare(b.createdBy.name || b.createdBy.email));
+  tbody.replaceChildren(...alle.map((p) => {
+    const email = p.createdBy.email;
+    const veld = maak("input", { type: "text", value: ploegnaamVan(email, p.ploegnaam) || "", maxLength: 40 });
+    const knop = maak("button", { klasse: "knop knop-klein-tekst", tekst: "Opslaan", onclick: () => bewaarPloegnaam(email, veld, knop, alle) });
+    return maak("tr", {}, [
+      maak("td", { tekst: p.createdBy.name || email }),
+      maak("td", {}, [veld]),
+      maak("td", {}, [knop]),
+    ]);
+  }));
+  if (!alle.length) tbody.append(maak("tr", {}, [maak("td", { colSpan: 3, tekst: "Nog geen deelnemers." })]));
+}
+
+async function bewaarPloegnaam(email, veld, knop, alle) {
+  const { staat, melding, ploegnamen, ploegnaamVan } = ctx;
+  const naam = veld.value.trim().replace(/\s+/g, " ");
+  if (!naam) return melding("Een ploegnaam mag niet leeg zijn.", true);
+  const bezet = alle.filter((p) => p.createdBy.email !== email)
+    .some((p) => (ploegnaamVan(p.createdBy.email, p.ploegnaam) || "").toLowerCase() === naam.toLowerCase());
+  if (bezet) return melding(`De naam "${naam}" is al gekozen door een andere ploeg.`, true);
+  knop.disabled = true;
+  try {
+    // Wijzigde je deze ploegnaam al eerder? Dan passen we die wijziging aan.
+    const bestaand = staat.alleNaamwijzigingen.find((w) => w.mine && w.email === email);
+    const record = bestaand
+      ? await ploegnamen.update(bestaand.id, { ploegnaam: naam })
+      : await ploegnamen.create({ email, ploegnaam: naam });
+    staat.alleNaamwijzigingen = [...staat.alleNaamwijzigingen.filter((w) => w.id !== record.id), record];
+    ctx.herbereken();
+    if (email === staat.ik.email) $("mijn-ploegnaam").textContent = naam;
+    melding(`Ploegnaam gewijzigd in "${naam}".`);
+  } catch (fout) {
+    melding(`Opslaan lukte niet: ${fout.message}`, true);
+  } finally {
+    knop.disabled = false;
+  }
 }
 
 // ---------- Import ----------
