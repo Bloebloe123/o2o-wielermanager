@@ -77,34 +77,56 @@ def kandidaten_uit_rss(klassen, seizoen):
     return ids
 
 
-def kandidaten_uit_kalender(klassen, seizoen, vandaag, afgeronde_tours):
-    """Geeft ({raceid: datum}, {tourid: einddatum}) voor alle koersen tot vandaag."""
+def lees_kalender(klassen, seizoen):
+    """Alle WorldTour- en ProSeries-koersen van het seizoen op de CQ-kalender, ook de
+    nog te rijden koersen. Geeft None als CQ nog geen kalender heeft voor dat jaar."""
     pagina = soep("asp/gen/RaceCal.asp")
     jaren = {o["value"] for o in pagina.select("select[name=listYears] option")}
     if str(seizoen) not in jaren:
         print(f"CQ heeft nog geen kalender voor {seizoen}.")
-        return {}, {}
+        return None
 
-    laatste_maand = 12 if vandaag.year > seizoen else vandaag.month
-    races, tours = {}, {}
-    for maand in range(1, laatste_maand + 1):
-        kalender = soep("asp/gen/RaceCal.asp", {"listYears": seizoen, "listMonths": maand})
-        for rij in kalender.find_all("tr"):
+    kalender = []
+    for maand in range(1, 13):
+        maandpagina = soep("asp/gen/RaceCal.asp", {"listYears": seizoen, "listMonths": maand})
+        for rij in maandpagina.find_all("tr"):
             race = rij.find("a", href=re.compile(r"race\.asp\?raceid=\d+"))
             if not race:
                 continue
             cellen = [td.get_text(" ", strip=True) for td in rij.find_all("td")]
             categorie = next((c for c in cellen if klassen.klasse(c)), None)
             datums = [d for d in (lees_datum(c) for c in cellen if re.fullmatch(r"\d{1,2}/\d{1,2}/\d{4}", c)) if d]
-            if not categorie or not datums or datums[0] > vandaag:
+            if not categorie or not datums:
                 continue
             tour = rij.find("a", href=re.compile(r"tour\.asp\?tourid=\d+"))
-            if tour:
-                tourid = int(re.search(r"tourid=(\d+)", tour["href"]).group(1))
-                if tourid not in afgeronde_tours:
-                    tours[tourid] = datums[-1]
-            else:
-                races[int(re.search(r"raceid=(\d+)", race["href"]).group(1))] = datums[0]
+            klasse = klassen.klasse(categorie)
+            kalender.append({
+                "naam": " ".join(race.get_text().split()),
+                "start": datums[0].isoformat(),
+                "eind": datums[-1].isoformat(),
+                "klasse": "WT" if klasse == "GT" else klasse,
+                "cq_categorie": categorie,
+                "is_grote_ronde": klasse == "GT",
+                "soort": "rittenkoers" if tour else "eendags",
+                "cq_raceid": int(re.search(r"raceid=(\d+)", race["href"]).group(1)),
+                "cq_tourid": int(re.search(r"tourid=(\d+)", tour["href"]).group(1)) if tour else None,
+            })
+    # Dezelfde koers kan in twee maanden staan (een rittenkoers over de maandgrens).
+    uniek = {k["cq_raceid"]: k for k in kalender}
+    return sorted(uniek.values(), key=lambda k: (k["start"], k["naam"]))
+
+
+def kandidaten_uit_kalender(kalender, seizoen, vandaag, afgeronde_tours):
+    """Geeft ({raceid: datum}, {tourid: einddatum}) voor alle koersen tot vandaag."""
+    races, tours = {}, {}
+    for koers in kalender:
+        if date.fromisoformat(koers["start"]) > vandaag:
+            continue
+        if koers["cq_tourid"]:
+            if koers["cq_tourid"] not in afgeronde_tours:
+                tours[koers["cq_tourid"]] = date.fromisoformat(koers["eind"])
+        else:
+            races[koers["cq_raceid"]] = date.fromisoformat(koers["start"])
 
     # Van elke lopende of nog niet afgewerkte rittenkoers: alle ritten en klassementen.
     for tourid in tours:
@@ -116,6 +138,17 @@ def kandidaten_uit_kalender(klassen, seizoen, vandaag, afgeronde_tours):
             if race and datum and datum <= vandaag:
                 races[int(re.search(r"raceid=(\d+)", race["href"]).group(1))] = datum
     return races, tours
+
+
+def schrijf_kalender(pad, seizoen, kalender):
+    """Schrijft kalender.json, enkel als de inhoud veranderd is."""
+    inhoud = {"seizoen": seizoen, "aantal": len(kalender), "koersen": kalender}
+    if pad.exists() and json.loads(pad.read_text()) == inhoud:
+        print("kalender.json: geen wijzigingen")
+        return
+    pad.parent.mkdir(parents=True, exist_ok=True)
+    pad.write_text(json.dumps(inhoud, ensure_ascii=False, indent=1) + "\n")
+    print(f"kalender.json geschreven: {len(kalender)} koersen")
 
 
 def soort_en_rit(categorie, titel):
@@ -213,6 +246,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--seizoen", type=int, default=config["seizoen"])
     parser.add_argument("--uitvoer", default=str(MAP / "data" / "koersen.json"))
+    parser.add_argument("--kalender", default=str(MAP / "data" / "kalender.json"))
     parser.add_argument("--alles", action="store_true", help="ook koersen ouder dan opgeven_na_dagen")
     args = parser.parse_args()
     opgeven_na = 10**6 if args.alles else config["opgeven_na_dagen"]
@@ -229,7 +263,9 @@ def main():
     renners = json.loads((MAP / "data" / "renners.json").read_text())["renners"]
     ploegcodes = {r["cq_riderid"]: r["ploegcode"] for r in renners}
 
-    kandidaten, tours = kandidaten_uit_kalender(klassen, seizoen, vandaag, afgeronde_tours)
+    kalender = lees_kalender(klassen, seizoen)
+    schrijf_kalender(Path(args.kalender), seizoen, kalender or [])
+    kandidaten, tours = kandidaten_uit_kalender(kalender or [], seizoen, vandaag, afgeronde_tours)
     for raceid in kandidaten_uit_rss(klassen, seizoen):
         kandidaten.setdefault(raceid, vandaag)
 
