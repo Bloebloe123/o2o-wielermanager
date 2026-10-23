@@ -20,7 +20,8 @@
       <div id="wie" class="wie"></div>
     </div>
     <nav class="tabs" id="tabs">
-      <button class="tab actief" data-tab="ploeg">Mijn ploeg</button>
+      <button class="tab actief" data-tab="overzicht">Overzicht</button>
+      <button class="tab" data-tab="ploeg">Mijn ploeg</button>
       <button class="tab" data-tab="stand">Stand</button>
       <button class="tab" data-tab="kalender">Kalender</button>
       <button class="tab" data-tab="regels">Spelregels</button>
@@ -58,6 +59,32 @@
         </label>
         <button type="submit" class="knop">Opslaan en ploeg kiezen</button>
       </form>
+    </section>
+
+    <section id="tab-overzicht" class="overzicht" hidden>
+      <div class="kaart">
+        <div class="kaart-kop">
+          <h2 id="ov-ploegnaam">Mijn ploeg</h2>
+          <strong id="ov-ploeg-totaal" class="prijs"></strong>
+        </div>
+        <ul id="ov-ploeg" class="ov-lijst ov-ploeg"></ul>
+      </div>
+      <div class="ov-rechts">
+        <div class="kaart">
+          <h2>Volgende koers</h2>
+          <ul id="ov-volgende" class="ov-lijst ov-koersen"></ul>
+        </div>
+        <div class="kaart">
+          <h2 id="ov-laatste-titel">Laatste uitslag</h2>
+          <ul id="ov-laatste" class="ov-lijst ov-koersen"></ul>
+          <p id="ov-laatste-later" class="klein"></p>
+        </div>
+        <div class="kaart">
+          <h2>Top 5</h2>
+          <ul id="ov-top" class="ov-lijst ov-top"></ul>
+          <p id="ov-mijn-plaats" class="status"></p>
+        </div>
+      </div>
     </section>
 
     <section id="tab-ploeg" class="raster" hidden>

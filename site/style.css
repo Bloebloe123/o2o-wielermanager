@@ -174,6 +174,21 @@ ul.koersen li.voorbij { color: var(--o2o-gray); }
 .badge.ps { background: var(--o2o-tint-purple); color: var(--o2o-purple); }
 .transfermoment.open { border-left-color: var(--o2o-blue); background: var(--o2o-tint-blue); }
 .transfermoment { display: grid; gap: 2px; padding: 10px 20px; border-left: 4px solid var(--o2o-orange); background: var(--o2o-tint-orange); border-radius: 12px; font-size: 0.9rem; }
+.overzicht { display: grid; grid-template-columns: minmax(300px, 1fr) minmax(300px, 1.2fr); gap: 24px; align-items: start; }
+.ov-rechts { display: grid; gap: 24px; }
+.kaart-kop { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.ov-lijst { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; grid-template-columns: minmax(0, 1fr); }
+.ov-ploeg li { display: grid; grid-template-columns: minmax(0, 1fr) auto 64px; gap: 10px; align-items: center; padding: 6px 12px; background: var(--o2o-tint-blue); border-radius: 12px; font-size: 0.9rem; }
+.ov-ploeg li .punten-renner { text-align: right; }
+.ov-ploeg li.leeg { display: block; background: var(--o2o-off-white); }
+.ov-koersen > li { display: grid; gap: 2px; padding: 10px 14px; background: var(--o2o-off-white); border-radius: 12px; }
+.mijn-uitslag { list-style: none; padding: 6px 0 0; margin: 0; display: grid; gap: 2px; }
+.mijn-uitslag li { display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--o2o-blue); font-weight: 500; }
+.ov-koersen .geen { font-style: italic; }
+.ov-top li { display: grid; grid-template-columns: 32px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 6px 12px; border-radius: 12px; }
+.ov-top li.ik { background: var(--o2o-tint-blue); font-weight: 600; }
+.ov-top li.puntjes { display: block; text-align: center; padding: 0; }
+.link-knop { background: none; border: 0; padding: 0; color: var(--o2o-blue); font-weight: 600; text-decoration: underline; cursor: pointer; font-family: inherit; font-size: inherit; }
 .stand-filters { display: flex; gap: 8px; flex-wrap: wrap; }
 #tab-admin { display: grid; gap: 24px; }
 #tab-admin .knop { display: inline-block; text-decoration: none; margin-bottom: 8px; }
@@ -218,7 +233,7 @@ ul.correcties li { display: flex; justify-content: space-between; align-items: c
 
 @media (max-width: 900px) {
   .kop-binnen, .tabs, .inhoud { padding-left: 30px; padding-right: 30px; }
-  .raster { grid-template-columns: 1fr; }
+  .raster, .overzicht { grid-template-columns: 1fr; }
   ul.koersen li { grid-template-columns: 1fr auto; }
   .koers-status { display: none; }
 }

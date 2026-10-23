@@ -5,6 +5,7 @@ import {
 import { toonAdmin } from "./admin.js";
 import { tekenKalender } from "./kalender.js";
 import { tekenRegels } from "./regels.js";
+import { tekenOverzicht } from "./overzicht.js";
 
 const $ = (id) => document.getElementById(id);
 const profielen = window.vibers.db.collection("profielen");
@@ -317,7 +318,8 @@ function zetTabsKlaar() {
   document.querySelectorAll(".tab").forEach((knop) => {
     knop.addEventListener("click", () => {
       document.querySelectorAll(".tab").forEach((k) => k.classList.toggle("actief", k === knop));
-      for (const tab of ["ploeg", "stand", "kalender", "regels", "admin"]) $(`tab-${tab}`).hidden = knop.dataset.tab !== tab;
+      for (const tab of ["overzicht", "ploeg", "stand", "kalender", "regels", "admin"]) $(`tab-${tab}`).hidden = knop.dataset.tab !== tab;
+      if (knop.dataset.tab === "overzicht") toonOverzicht();
       if (knop.dataset.tab === "stand") toonStand();
       if (knop.dataset.tab === "kalender") tekenKalender({ staat, maak, pt });
       if (knop.dataset.tab === "regels") tekenRegels({ staat, maak, pt });
@@ -330,9 +332,18 @@ function zetTabsKlaar() {
   });
 }
 
+// Naar een tab gaan, alsof je erop klikt.
+function naarTab(tab) {
+  document.querySelector(`.tab[data-tab="${tab}"]`).click();
+}
+
+function toonOverzicht() {
+  tekenOverzicht({ staat, maak, pt, typeVan, laadDeelnemers, naarTab })
+    .catch((fout) => melding(`Het overzicht laden lukte niet: ${fout.message}`, true));
+}
+
 function toonPloeg() {
   zetTabsKlaar();
-  $("tab-ploeg").hidden = false;
   $("mijn-ploegnaam").textContent = ploegnaamVan(staat.ik.email, staat.profiel.ploegnaam) || "Mijn ploeg";
   const ploegen = [...new Set(staat.renners.map((r) => r.ploeg))].sort();
   for (const p of ploegen) $("filter-ploeg").append(maak("option", { tekst: p }));
@@ -355,6 +366,7 @@ function toonPloeg() {
   $("pagina-vorige").onclick = () => blader(-1);
   $("pagina-volgende").onclick = () => blader(1);
   tekenAlles();
+  naarTab("overzicht");
 }
 
 function tekenAlles() {
@@ -677,17 +689,21 @@ async function toonStand() {
   }
   $("stand-lijst").replaceChildren(maak("tr", {}, [maak("td", { colSpan: 5, tekst: "Stand wordt berekend…" })]));
   try {
-    // Altijd vers ophalen: de ploegen van iedereen en hun ploegnamen.
-    const [alleSelecties, alleProfielen] = (await Promise.all([alleRecords(selecties, {}), alleRecords(profielen, {})]))
-      .map((lijst) => lijst.filter((r) => geldig(r)));
-    staat.alleSelecties = alleSelecties;
-    staat.ploegnaamVan = new Map(alleProfielen.filter((p) => p.createdBy).map((p) => [p.createdBy.email, ploegnaamVan(p.createdBy.email, p.ploegnaam)]));
-    staat.debutanten = new Set(alleProfielen.filter((p) => p.createdBy && p.debuutjaar === staat.inst.seizoen).map((p) => p.createdBy.email));
-    staat.naamVan = new Map(alleSelecties.filter((s) => s.createdBy).map((s) => [s.createdBy.email, s.createdBy.name]));
+    await laadDeelnemers();
     tekenStand();
   } catch (fout) {
     melding(`De stand laden lukte niet: ${fout.message}`, true);
   }
+}
+
+// Haalt (altijd vers) de ploegen van iedereen en hun ploegnamen op, voor de stand en het overzicht.
+async function laadDeelnemers() {
+  const [alleSelecties, alleProfielen] = (await Promise.all([alleRecords(selecties, {}), alleRecords(profielen, {})]))
+    .map((lijst) => lijst.filter((r) => geldig(r)));
+  staat.alleSelecties = alleSelecties;
+  staat.ploegnaamVan = new Map(alleProfielen.filter((p) => p.createdBy).map((p) => [p.createdBy.email, ploegnaamVan(p.createdBy.email, p.ploegnaam)]));
+  staat.debutanten = new Set(alleProfielen.filter((p) => p.createdBy && p.debuutjaar === staat.inst.seizoen).map((p) => p.createdBy.email));
+  staat.naamVan = new Map(alleSelecties.filter((s) => s.createdBy).map((s) => [s.createdBy.email, s.createdBy.name]));
 }
 
 function tekenStand() {
