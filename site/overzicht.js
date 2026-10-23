@@ -79,7 +79,7 @@ export async function tekenOverzicht(ctx) {
   // ---- Top 5 van de stand, en waar jouw ploeg staat ----
   $("ov-top").replaceChildren(maak("li", { klasse: "klein", tekst: "Stand wordt berekend…" }));
   await laadDeelnemers();
-  const stand = berekenStand(staat.alleSelecties, staat.resultaten);
+  const stand = berekenStand(staat.alleSelecties, staat.resultaten, null, staat.deelnemers);
   const ikIndex = stand.findIndex((r) => r.email === staat.ik.email);
   const standRij = (r) => maak("li", { klasse: r.email === staat.ik.email ? "ik" : "" }, [
     maak("span", { klasse: `plaats plaats-${r.plaats}`, tekst: r.plaats }),

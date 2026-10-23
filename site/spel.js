@@ -199,8 +199,9 @@ export function rennerResultaten(koersen, correcties, inst, kalender = []) {
 // Een renner scoort voor een deelnemer enkel in de periodes waarin hij in diens ploeg zat.
 // Geeft rijen { email, punten, overwinningen, renners: [{ cq_riderid, punten, resultaten }], plaats },
 // gesorteerd op punten en dan op aantal overwinningen.
-export function berekenStand(selecties, resultaten, periodeNr = null) {
-  const perDeelnemer = new Map();
+// `deelnemers`: e-mails van ploegen die ook zonder renners in de stand moeten (met 0 punten).
+export function berekenStand(selecties, resultaten, periodeNr = null, deelnemers = []) {
+  const perDeelnemer = new Map(deelnemers.map((email) => [email, { email, punten: 0, overwinningen: 0, renners: new Map() }]));
   for (const sel of selecties) {
     const email = sel.createdBy?.email;
     if (!email) continue;

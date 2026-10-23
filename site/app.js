@@ -708,7 +708,9 @@ async function laadDeelnemers() {
   staat.alleSelecties = alleSelecties;
   staat.ploegnaamVan = new Map(alleProfielen.filter((p) => p.createdBy).map((p) => [p.createdBy.email, ploegnaamVan(p.createdBy.email, p.ploegnaam)]));
   staat.debutanten = new Set(alleProfielen.filter((p) => p.createdBy && p.debuutjaar === staat.inst.seizoen).map((p) => p.createdBy.email));
-  staat.naamVan = new Map(alleSelecties.filter((s) => s.createdBy).map((s) => [s.createdBy.email, s.createdBy.name]));
+  staat.naamVan = new Map([...alleSelecties, ...alleProfielen].filter((r) => r.createdBy).map((r) => [r.createdBy.email, r.createdBy.name]));
+  // Iedereen met een ploeg (profiel), ook wie nog geen renners koos.
+  staat.deelnemers = [...new Set(alleProfielen.filter((p) => p.createdBy).map((p) => p.createdBy.email))];
 }
 
 function tekenStand() {
@@ -718,7 +720,8 @@ function tekenStand() {
   const meetellend = enkelDebutanten
     ? staat.alleSelecties.filter((s) => staat.debutanten.has(s.createdBy?.email))
     : staat.alleSelecties;
-  const rijen = berekenStand(meetellend, staat.resultaten, periodeNr);
+  const deelnemers = enkelDebutanten ? staat.deelnemers.filter((e) => staat.debutanten.has(e)) : staat.deelnemers;
+  const rijen = berekenStand(meetellend, staat.resultaten, periodeNr, deelnemers);
   const tbody = $("stand-lijst");
   tbody.replaceChildren();
   if (!rijen.length) {
