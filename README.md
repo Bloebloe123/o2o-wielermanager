@@ -94,3 +94,10 @@ python3 -m venv .venv
 .venv/bin/python scripts/import_renners.py
 .venv/bin/python scripts/import_koersen.py
 ```
+
+## Spelsite op vibers
+
+- Echt spel: https://vibers.o2o.bike/s/be-like-jose/ (bestanden in `site/`)
+- Testversie: https://vibers.o2o.bike/s/be-like-jose-test/ — dezelfde bestanden, maar met
+  `test/standaard-instellingen.json` als `standaard-instellingen.json`. Die speelt seizoen 2026
+  na met een gesimuleerde datum (knop "Volgende koers rijden" voor admins).
