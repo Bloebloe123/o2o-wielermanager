@@ -6,6 +6,7 @@ import { toonAdmin } from "./admin.js";
 import { tekenKalender } from "./kalender.js";
 import { tekenRegels } from "./regels.js";
 import { tekenOverzicht } from "./overzicht.js";
+import { tekenStatistieken } from "./statistieken.js";
 
 const $ = (id) => document.getElementById(id);
 const profielen = window.vibers.db.collection("profielen");
@@ -318,8 +319,12 @@ function zetTabsKlaar() {
   document.querySelectorAll(".tab").forEach((knop) => {
     knop.addEventListener("click", () => {
       document.querySelectorAll(".tab").forEach((k) => k.classList.toggle("actief", k === knop));
-      for (const tab of ["overzicht", "ploeg", "stand", "kalender", "regels", "admin"]) $(`tab-${tab}`).hidden = knop.dataset.tab !== tab;
+      for (const tab of ["overzicht", "ploeg", "stand", "statistieken", "kalender", "regels", "admin"]) $(`tab-${tab}`).hidden = knop.dataset.tab !== tab;
       if (knop.dataset.tab === "overzicht") toonOverzicht();
+      if (knop.dataset.tab === "statistieken") {
+        tekenStatistieken({ staat, maak, pt, typeVan, laadDeelnemers })
+          .catch((fout) => melding(`De statistieken laden lukte niet: ${fout.message}`, true));
+      }
       if (knop.dataset.tab === "stand") toonStand();
       if (knop.dataset.tab === "kalender") tekenKalender({ staat, maak, pt });
       if (knop.dataset.tab === "regels") tekenRegels({ staat, maak, pt });

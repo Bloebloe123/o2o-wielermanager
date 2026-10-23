@@ -189,6 +189,11 @@ ul.koersen li.voorbij { color: var(--o2o-gray); }
 .ov-top li.ik { background: var(--o2o-tint-blue); font-weight: 600; }
 .ov-top li.puntjes { display: block; text-align: center; padding: 0; }
 .link-knop { background: none; border: 0; padding: 0; color: var(--o2o-blue); font-weight: 600; text-decoration: underline; cursor: pointer; font-family: inherit; font-size: inherit; }
+.stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 24px; align-items: start; }
+.stat h3 { font-family: var(--o2o-font-heading); color: var(--o2o-blue); font-size: 1.05rem; margin: 0 0 4px; }
+.stat .tabel-wrap { max-height: none; }
+.stats-tabel th { position: static; cursor: default; }
+.stats-twee { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .stand-filters { display: flex; gap: 8px; flex-wrap: wrap; }
 #tab-admin { display: grid; gap: 24px; }
 #tab-admin .knop { display: inline-block; text-decoration: none; margin-bottom: 8px; }
@@ -233,7 +238,7 @@ ul.correcties li { display: flex; justify-content: space-between; align-items: c
 
 @media (max-width: 900px) {
   .kop-binnen, .tabs, .inhoud { padding-left: 30px; padding-right: 30px; }
-  .raster, .overzicht { grid-template-columns: 1fr; }
+  .raster, .overzicht, .stats { grid-template-columns: 1fr; }
   ul.koersen li { grid-template-columns: 1fr auto; }
   .koers-status { display: none; }
 }
