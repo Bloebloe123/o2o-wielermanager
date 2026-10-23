@@ -1,6 +1,6 @@
 // Adminpagina: import starten, correcties op uitslagen en de instellingen.
 // Enkel admins krijgen deze tab te zien (zie zetTabsKlaar in app.js).
-import { factorVoor, normaliseer, schaalVoor, uitslagMetCorrecties } from "./spel.js";
+import { factorVoor, normaliseer, ploegInPeriode, ploegModus, schaalVoor, uitslagMetCorrecties } from "./spel.js";
 
 const $ = (id) => document.getElementById(id);
 let ctx = null;
@@ -21,11 +21,12 @@ export function toonAdmin(context) {
 // ---------- Ploegnamen ----------
 
 async function tekenPloegnamen() {
-  const { maak, melding, profielen, alleRecords, ploegnaamVan, geldig } = ctx;
+  const { staat, maak, melding, profielen, alleRecords, ploegnaamVan, geldig, laadDeelnemers } = ctx;
   const tbody = $("admin-ploegnamen");
   let alle;
   try {
     alle = (await alleRecords(profielen, {})).filter((p) => p.createdBy && geldig(p));
+    await laadDeelnemers();
   } catch (fout) {
     return melding(`De ploegen laden lukte niet: ${fout.message}`, true);
   }
@@ -38,13 +39,22 @@ async function tekenPloegnamen() {
       klasse: "knop knop-klein-tekst knop-gevaar", tekst: "Verwijderen",
       onclick: () => verwijderPloeg(email, p.createdBy.name || email, ploegnaamVan(email, p.ploegnaam), weg),
     });
+    // Hoeveel renners heeft de ploeg (voor het seizoen: gekozen; daarna: in de lopende periode)?
+    const m = ploegModus(staat.inst);
+    const aantal = ploegInPeriode(staat.alleSelecties.filter((s) => s.createdBy?.email === email), m.huidige ?? m.doel ?? 1).length;
+    const compleet = aantal >= staat.inst.ploeggrootte;
     return maak("tr", {}, [
       maak("td", { tekst: p.createdBy.name || email }),
       maak("td", {}, [veld]),
+      maak("td", {
+        klasse: `getal ${compleet ? "compleet" : "onvolledig"}`,
+        tekst: compleet ? `✓ ${aantal}` : `${aantal} / ${staat.inst.ploeggrootte}`,
+        title: compleet ? "Ploeg is compleet" : "Ploeg is nog niet compleet",
+      }),
       maak("td", { klasse: "knoppen-cel" }, [knop, weg]),
     ]);
   }));
-  if (!alle.length) tbody.append(maak("tr", {}, [maak("td", { colSpan: 3, tekst: "Nog geen deelnemers." })]));
+  if (!alle.length) tbody.append(maak("tr", {}, [maak("td", { colSpan: 4, tekst: "Nog geen deelnemers." })]));
 }
 
 // Een ploeg verwijderen: we bewaren enkel dat een admin ze verwijderde. Alles wat de

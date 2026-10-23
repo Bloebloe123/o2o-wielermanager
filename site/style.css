@@ -210,6 +210,8 @@ ul.correcties li { display: flex; justify-content: space-between; align-items: c
 #admin-ploegnamen input { width: 100%; padding: 6px 10px; border: 1px solid var(--o2o-gray-light); border-radius: 10px; font-family: var(--o2o-font-ui); }
 .knop-klein-tekst { padding: 6px 14px; font-size: 0.8rem; }
 .knop-gevaar { background: var(--o2o-purple); }
+#admin-ploegnamen td.compleet { color: var(--o2o-blue); font-weight: 600; white-space: nowrap; }
+#admin-ploegnamen td.onvolledig { color: var(--o2o-purple); white-space: nowrap; }
 .knoppen-cel { display: flex; gap: 6px; white-space: nowrap; }
 .periode-rij { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 0.9rem; }
 .periode-rij strong { width: 80px; }

@@ -331,6 +331,7 @@ function zetTabsKlaar() {
       if (knop.dataset.tab === "admin") {
         toonAdmin({
           staat, maak, melding, pt, datumTijd, correcties, profielen, ploegnamen, verwijderingen, alleRecords, herbereken, tekenAlles, ploegnaamVan, geldig,
+          laadDeelnemers,
         });
       }
     });
