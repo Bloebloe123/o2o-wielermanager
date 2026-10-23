@@ -361,6 +361,13 @@ function tekenMijnPloeg() {
   const puntenVan = new Map((mijnStand?.renners || []).map((r) => [r.cq_riderid, r.punten]));
   $("ploeg-status").textContent = statusTekst(m, ploeg) + (mijnStand ? ` Totaal: ${pt(mijnStand.punten)} punten.` : "");
 
+  // Voor het seizoen: een willekeurig voorstel om de lege plaatsen te vullen.
+  const voorstel = $("voorstel");
+  voorstel.hidden = m.modus !== "inschrijving";
+  voorstel.disabled = staat.bezig || ploeg.length >= inst.ploeggrootte;
+  voorstel.title = ploeg.length >= inst.ploeggrootte ? "Je ploeg is al compleet." : "Vult de lege plaatsen met willekeurige renners, binnen je budget.";
+  voorstel.onclick = doeVoorstel;
+
   // In de transferperiode tonen we ook wie eruit gaat, met een knop om dat ongedaan te maken.
   const vertrekkers = m.modus === "transfers"
     ? ploegInPeriode(staat.mijnSelecties, m.huidige).filter((s) => s.tot_periode === m.huidige)
@@ -515,6 +522,35 @@ function vervang(record) {
 }
 
 // Een renner kopen (of voor het seizoen: kiezen).
+// Vult de lege plaatsen van de ploeg met willekeurige renners. Per plaats kiezen we een
+// willekeurige renner rond het bedrag dat gemiddeld nog per lege plaats over is, zodat
+// het budget zo goed als op gaat. Elke renner moet de gewone controle doorstaan
+// (budget, genoeg overhouden voor de rest), zodat de ploeg altijd past.
+async function doeVoorstel() {
+  const m = modus();
+  if (m.modus !== "inschrijving") return;
+  const { inst, prijzen } = staat;
+  const proef = doelPloeg(m).map((s) => ({ cq_riderid: s.cq_riderid }));
+  const gekozen = [];
+  const willekeurig = (lijst) => lijst[Math.floor(Math.random() * lijst.length)];
+  while (proef.length < inst.ploeggrootte) {
+    const mogelijk = staat.renners.filter((r) => !magToevoegen(r.cq_riderid, proef, prijzen, inst));
+    if (!mogelijk.length) break;
+    const over = inst.budget - proef.reduce((som, s) => som + prijzen.get(s.cq_riderid), 0);
+    const doel = over / (inst.ploeggrootte - proef.length);
+    const rond = mogelijk.filter((r) => Math.abs(prijzen.get(r.cq_riderid) - doel) <= 1.5);
+    const r = willekeurig(rond.length ? rond : mogelijk);
+    proef.push({ cq_riderid: r.cq_riderid });
+    gekozen.push(r.cq_riderid);
+  }
+  await bewaar(async () => {
+    for (const id of gekozen) {
+      melding(`Voorstel wordt opgeslagen: ${gekozen.indexOf(id) + 1} van ${gekozen.length} renners…`);
+      staat.mijnSelecties.push(await selecties.create({ cq_riderid: id, vanaf_periode: m.doel, tot_periode: null }));
+    }
+  }, "Het voorstel opslaan lukte niet helemaal");
+}
+
 async function voegToe(riderid) {
   const m = modus();
   const reden = redenNiet(riderid, m);

@@ -85,6 +85,7 @@ label.keuze { display: flex; align-items: center; gap: 8px; }
 .knop-min:hover:not(:disabled) { background: var(--o2o-purple); color: var(--o2o-white); }
 .knop-klein:disabled { opacity: 0.35; cursor: not-allowed; }
 
+.voorstel-knop { margin: -4px 0 16px; }
 .status { margin: 0 0 16px; font-size: 0.9rem; color: var(--o2o-gray); }
 .meters { display: grid; gap: 12px; margin-bottom: 16px; }
 .meter-label { display: flex; justify-content: space-between; font-family: var(--o2o-font-ui); font-size: 0.85rem; margin-bottom: 4px; }
