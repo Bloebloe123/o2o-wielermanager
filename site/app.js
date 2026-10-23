@@ -63,7 +63,15 @@ async function alleRecords(collectie, query) {
     pagina = await collectie.find({ ...query, limit: 200, cursor: pagina.nextCursor });
     items.push(...pagina.items);
   }
-  return items;
+  // Testploegen (enkel in de testversie) tellen als aparte deelnemers, niet als die van de admin.
+  const metTest = items.map(alsTestdeelnemer);
+  return query?.mine ? metTest.filter((r) => !r.testdeelnemer) : metTest;
+}
+
+// Een record van een testploeg krijgt de testploeg als maker.
+function alsTestdeelnemer(record) {
+  if (!record.testdeelnemer) return record;
+  return { ...record, mine: false, createdBy: { email: record.testdeelnemer, name: record.testnaam } };
 }
 
 // Punten tonen: halve punten (ProSeries) met een komma, anders een geheel getal.
@@ -223,9 +231,38 @@ async function zetTestmodusKlaar() {
   $("test-volgende").disabled = !volgende;
   $("test-volgende").onclick = () => zet(volgende);
   $("test-dag").onclick = () => zet(dagNaTest(datum));
+  $("test-ploegen").onclick = maakTestploegen;
   $("test-reset").onclick = () => {
     if (confirm("Terug naar de startdatum? De ploegen blijven bewaard.")) zet(staat.inst.testmodus_startdatum);
   };
+}
+
+// Maakt 3 testploegen (A, B, C) met elk een volledige ploeg, volgens "Doe een voorstel".
+// Bestaat een testploeg al, dan slaan we die over.
+async function maakTestploegen() {
+  const knop = $("test-ploegen");
+  knop.disabled = true;
+  try {
+    const bestaande = new Set((await alleRecords(profielen, {})).filter((p) => geldig(p)).map((p) => p.createdBy?.email));
+    let gemaakt = 0;
+    for (const letter of ["A", "B", "C"]) {
+      const testdeelnemer = `testploeg-${letter.toLowerCase()}@test.o2o`;
+      if (bestaande.has(testdeelnemer)) continue;
+      const testnaam = `Testploeg ${letter}`;
+      melding(`${testnaam} wordt aangemaakt…`);
+      await profielen.create({ ploegnaam: testnaam, debuutjaar: staat.inst.seizoen, testdeelnemer, testnaam });
+      for (const id of maakVoorstel([])) {
+        await selecties.create({ cq_riderid: id, vanaf_periode: 1, tot_periode: null, testdeelnemer, testnaam });
+      }
+      gemaakt += 1;
+    }
+    melding(gemaakt ? `${gemaakt} testploegen aangemaakt.` : "De 3 testploegen bestaan al.");
+    if (gemaakt) setTimeout(() => location.reload(), 800);
+  } catch (fout) {
+    melding(`Testploegen aanmaken lukte niet: ${fout.message}`, true);
+  } finally {
+    knop.disabled = false;
+  }
 }
 
 function dagNaTest(iso) {
@@ -598,8 +635,20 @@ function vervang(record) {
 async function doeVoorstel() {
   const m = modus();
   if (m.modus !== "inschrijving") return;
+  const gekozen = maakVoorstel(doelPloeg(m).map((s) => s.cq_riderid));
+  await bewaar(async () => {
+    for (const id of gekozen) {
+      melding(`Voorstel wordt opgeslagen: ${gekozen.indexOf(id) + 1} van ${gekozen.length} renners…`);
+      staat.mijnSelecties.push(await selecties.create({ cq_riderid: id, vanaf_periode: m.doel, tot_periode: null }));
+    }
+  }, "Het voorstel opslaan lukte niet helemaal");
+}
+
+// Kiest renners om een ploeg met deze renners (`bestaand`, lijst van id's) aan te vullen.
+// Geeft de id's van de gekozen renners.
+function maakVoorstel(bestaand) {
   const { inst, prijzen } = staat;
-  const proef = doelPloeg(m).map((s) => ({ cq_riderid: s.cq_riderid }));
+  const proef = bestaand.map((id) => ({ cq_riderid: id }));
   const gekozen = [];
   const willekeurig = (lijst) => lijst[Math.floor(Math.random() * lijst.length)];
   const neem = (r) => { proef.push({ cq_riderid: r.cq_riderid }); gekozen.push(r.cq_riderid); };
@@ -627,12 +676,7 @@ async function doeVoorstel() {
     const rond = vanType.filter((r) => Math.abs(prijzen.get(r.cq_riderid) - doel) <= 1.5);
     neem(willekeurig(rond.length ? rond : vanType));
   }
-  await bewaar(async () => {
-    for (const id of gekozen) {
-      melding(`Voorstel wordt opgeslagen: ${gekozen.indexOf(id) + 1} van ${gekozen.length} renners…`);
-      staat.mijnSelecties.push(await selecties.create({ cq_riderid: id, vanaf_periode: m.doel, tot_periode: null }));
-    }
-  }, "Het voorstel opslaan lukte niet helemaal");
+  return gekozen;
 }
 
 async function voegToe(riderid) {
