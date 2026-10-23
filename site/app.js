@@ -385,8 +385,32 @@ function toonOverzicht() {
     .catch((fout) => melding(`Het overzicht laden lukte niet: ${fout.message}`, true));
 }
 
+// Notities: een eigen kladblok, bewaard per persoon (vibers' localStorage volgt je naar elke browser).
+function zetNotitiesKlaar() {
+  const veld = $("notities");
+  try {
+    veld.value = localStorage.getItem("notities") || "";
+  } catch {
+    veld.value = "";
+  }
+  let wacht;
+  veld.addEventListener("input", () => {
+    $("notities-status").textContent = "…";
+    clearTimeout(wacht);
+    wacht = setTimeout(() => {
+      try {
+        localStorage.setItem("notities", veld.value);
+        $("notities-status").textContent = "Opgeslagen";
+      } catch {
+        $("notities-status").textContent = "Opslaan lukte niet";
+      }
+    }, 500);
+  });
+}
+
 function toonPloeg() {
   zetTabsKlaar();
+  zetNotitiesKlaar();
   $("mijn-ploegnaam").textContent = ploegnaamVan(staat.ik.email, staat.profiel.ploegnaam) || "Mijn ploeg";
   const ploegen = [...new Set(staat.renners.map((r) => r.ploeg))].sort();
   for (const p of ploegen) $("filter-ploeg").append(maak("option", { tekst: p }));
@@ -471,7 +495,12 @@ function tekenMijnPloeg() {
 
   const lijst = $("ploeg-lijst");
   lijst.replaceChildren();
-  const rijen = [...ploeg, ...vertrekkers].sort((a, b) => staat.prijzen.get(b.cq_riderid) - staat.prijzen.get(a.cq_riderid));
+  // Ligt de ploeg vast (geen transferperiode), dan tonen we enkel je ploeg, breed en op punten gesorteerd.
+  const vast = m.modus === "gesloten";
+  $("tab-ploeg").classList.toggle("vast", vast);
+  const rijen = [...ploeg, ...vertrekkers].sort(vast
+    ? (a, b) => (puntenVan.get(b.cq_riderid) || 0) - (puntenVan.get(a.cq_riderid) || 0)
+    : (a, b) => staat.prijzen.get(b.cq_riderid) - staat.prijzen.get(a.cq_riderid));
   for (const sel of rijen) {
     const r = staat.rennerOpId.get(sel.cq_riderid);
     const vertrekt = vertrekkers.includes(sel);
@@ -491,10 +520,12 @@ function tekenMijnPloeg() {
         maak("div", { klasse: "renner-naam", tekst: r ? r.naam : `Renner ${sel.cq_riderid}` }),
         maak("div", {
           klasse: "renner-sub",
-          tekst: `${r ? `${r.land} · ${r.ploeg}` : "Niet meer in de rennerslijst"} · ${typeVan(sel.cq_riderid)} · ${pt(puntenVan.get(sel.cq_riderid) || 0)} pt${label}`,
+          // Ligt de ploeg vast, dan staan de punten groot en de prijs in de onderregel; anders omgekeerd.
+          tekst: `${r ? `${r.land} · ${r.ploeg}` : "Niet meer in de rennerslijst"} · ${typeVan(sel.cq_riderid)} · ${
+            vast ? `${staat.prijzen.get(sel.cq_riderid) ?? "?"} cr` : `${pt(puntenVan.get(sel.cq_riderid) || 0)} pt`}${label}`,
         }),
       ]),
-      maak("span", { klasse: "prijs", tekst: `${staat.prijzen.get(sel.cq_riderid) ?? "?"} cr` }),
+      maak("span", { klasse: "prijs", tekst: vast ? `${pt(puntenVan.get(sel.cq_riderid) || 0)} pt` : `${staat.prijzen.get(sel.cq_riderid) ?? "?"} cr` }),
       m.modus === "gesloten" ? maak("span") : knop,
     ]));
   }
@@ -790,7 +821,7 @@ function tekenStand() {
 
 // Wat je ziet als je een ploeg openklikt: de renners met hun punten en de transfers.
 function detailBlok(rij, periodeNr) {
-  return [maak("h4", { tekst: "Renners" }), detailLijst(rij), maak("h4", { tekst: "Transfers" }), transfersVanDeelnemer(rij.email, periodeNr)];
+  return [maak("h4", { tekst: "Renners" }), detailLijst(rij, periodeNr), maak("h4", { tekst: "Transfers" }), transfersVanDeelnemer(rij.email, periodeNr)];
 }
 
 // Transfers van één deelnemer, voor één periode of (algemeen klassement) allemaal.
@@ -806,30 +837,52 @@ function transfersVanDeelnemer(email, periodeNr) {
   return transferLijst(transfers);
 }
 
-// De renners van een deelnemer met hun punten, en per renner de koersen waar ze scoorden.
-function detailLijst(rij) {
-  const lijst = maak("ul");
-  for (const renner of rij.renners.filter((r) => r.punten > 0)) {
+// Alle renners van een ploeg (in de gekozen periode, of nu), met type, prijs en punten.
+// Klik op een renner voor zijn resultaten. Renners die vroeger in de ploeg zaten en punten
+// haalden, staan apart onderaan.
+function detailLijst(rij, periodeNr) {
+  const m = modus();
+  const nr = periodeNr ?? m.huidige ?? m.doel ?? 1;
+  const sel = staat.alleSelecties.filter((s) => s.createdBy?.email === rij.email);
+  const nu = ploegInPeriode(sel, nr).map((s) => s.cq_riderid);
+  const perRenner = new Map(rij.renners.map((r) => [r.cq_riderid, r]));
+  const leeg = (id) => ({ cq_riderid: id, punten: 0, resultaten: [] });
+  const opPunten = (a, b) => b.punten - a.punten || (staat.prijzen.get(b.cq_riderid) ?? 0) - (staat.prijzen.get(a.cq_riderid) ?? 0);
+  const inPloeg = nu.map((id) => perRenner.get(id) || leeg(id)).sort(opPunten);
+  const vroeger = rij.renners.filter((r) => !nu.includes(r.cq_riderid) && r.punten > 0).sort(opPunten);
+
+  const rennerRij = (renner, weg) => {
     const r = staat.rennerOpId.get(renner.cq_riderid);
-    const resultaten = [...renner.resultaten].sort((a, b) => b.punten - a.punten);
-    const kort = resultaten.slice(0, 3).map((k) => `${k.naam} (${k.positie}e)`).join(" · ");
-    const alles = maak("ul", { klasse: "resultaten" }, resultaten.map((k) => maak("li", {}, [
-      maak("span", { tekst: `${k.datum.slice(8, 10)}/${k.datum.slice(5, 7)} · ${k.naam} · ${k.positie}e` }),
-      maak("span", { klasse: "punten-renner", tekst: pt(k.punten) }),
-    ])));
-    lijst.append(maak("li", {}, [
-      maak("details", {}, [
-        maak("summary", {}, [
-          maak("strong", { tekst: r ? r.naam : `Renner ${renner.cq_riderid}` }),
-          maak("span", { klasse: "klein", tekst: `${resultaten.length} resultaten · ${kort}${resultaten.length > 3 ? " …" : ""}` }),
-          maak("span", { klasse: "punten-renner", tekst: `${pt(renner.punten)} pt` }),
-        ]),
-        alles,
+    const resultaten = [...renner.resultaten].sort((a, b) => b.datum.localeCompare(a.datum));
+    return maak("li", { klasse: weg ? "weg" : "" }, [maak("details", {}, [
+      maak("summary", {}, [
+        maak("span", { klasse: "renner-naam", tekst: r ? r.naam : `Renner ${renner.cq_riderid}` }),
+        maak("span", { klasse: `type type-${typeVan(renner.cq_riderid).toLowerCase()}`, tekst: typeVan(renner.cq_riderid) }),
+        maak("span", { klasse: "klein", tekst: `${staat.prijzen.get(renner.cq_riderid) ?? "?"} cr` }),
+        maak("span", { klasse: "punten-renner", tekst: `${pt(renner.punten)} pt` }),
       ]),
-    ]));
+      resultaten.length
+        ? maak("table", { klasse: "tabel renner-resultaten" }, [maak("tbody", {}, resultaten.map((k) => maak("tr", {}, [
+          maak("td", { klasse: "klein", tekst: `${k.datum.slice(8, 10)}/${k.datum.slice(5, 7)}` }),
+          maak("td", { tekst: k.naam }),
+          maak("td", { klasse: "getal", tekst: `${k.positie}e` }),
+          maak("td", { klasse: "getal", tekst: pt(k.punten) }),
+        ])))])
+        : maak("p", { klasse: "klein geen-resultaten", tekst: "Nog geen punten." }),
+    ])]);
+  };
+
+  const blok = maak("div", { klasse: "ploeg-detail" }, [
+    maak("ul", { klasse: "ploeg-renners" }, inPloeg.map((r) => rennerRij(r, false))),
+  ]);
+  if (!inPloeg.length) blok.append(maak("p", { klasse: "klein", tekst: "Nog geen renners gekozen." }));
+  if (vroeger.length) {
+    blok.append(
+      maak("p", { klasse: "klein vroeger-kop", tekst: "Vroeger in de ploeg (punten voor deze ploeg):" }),
+      maak("ul", { klasse: "ploeg-renners" }, vroeger.map((r) => rennerRij(r, true))),
+    );
   }
-  if (!lijst.children.length) lijst.append(maak("li", { tekst: "Nog geen punten in deze periode." }));
-  return lijst;
+  return blok;
 }
 
 start();

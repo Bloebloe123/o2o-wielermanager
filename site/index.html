@@ -73,13 +73,12 @@
       </div>
       <div class="ov-rechts">
         <div class="kaart">
-          <h2>Volgende koers</h2>
-          <ul id="ov-volgende" class="ov-lijst ov-koersen"></ul>
+          <h2>Laatste uitslagen</h2>
+          <div id="ov-uitslagen"></div>
         </div>
         <div class="kaart">
-          <h2 id="ov-laatste-titel">Laatste uitslag</h2>
-          <ul id="ov-laatste" class="ov-lijst ov-koersen"></ul>
-          <p id="ov-laatste-later" class="klein"></p>
+          <h2>Volgende koers</h2>
+          <ul id="ov-volgende" class="ov-lijst ov-koersen"></ul>
         </div>
         <div class="kaart">
           <h2>Top 5</h2>
@@ -106,6 +105,11 @@
         </div>
         <ol id="ploeg-lijst" class="ploeg-lijst"></ol>
         <div id="mijn-transfers" class="transfer-blok" hidden></div>
+        <div class="notities">
+          <label for="notities">Mijn notities <span id="notities-status" class="klein"></span></label>
+          <textarea id="notities" rows="5" maxlength="5000" placeholder="Bijvoorbeeld: Kooij kopen voor de Giro-sprints, Pogačar verkopen na de Tour…"></textarea>
+          <p class="klein">Enkel jij ziet deze notities.</p>
+        </div>
       </div>
 
       <div class="kaart pool">
@@ -179,6 +183,8 @@
     </section>
 
     <section id="tab-kalender" class="kaart" hidden>
+      <h2>Laatste uitslagen</h2>
+      <div id="kalender-uitslagen" class="kalender-uitslagen"></div>
       <h2>Kalender</h2>
       <p class="klein">Alle WorldTour- en ProSeries-koersen van het seizoen, per periode. Tussen de periodes zie je tot wanneer je transfers kunt doen.</p>
       <div id="kalender-lijst"></div>

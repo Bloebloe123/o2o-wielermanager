@@ -130,8 +130,18 @@ export function schaalVoor(koers, inst) {
   return s.eendags_en_eindklassement; // eendagskoers of eindklassement van een andere rittenkoers
 }
 
+// Is dit een monument (een eendagskoers uit de lijst in de instellingen)?
+export function isMonument(naam, inst) {
+  const namen = (inst.monumenten?.namen || []).map((n) => n.toLowerCase());
+  return namen.includes((naam || "").toLowerCase());
+}
+
+// De factor van een koers (of een kalenderregel): grote ronde, monument of de klasse.
 export function factorVoor(koers, inst) {
-  return koers.is_grote_ronde ? inst.klassefactoren.grote_ronde : inst.klassefactoren[koers.klasse] ?? 0;
+  if (koers.is_grote_ronde) return inst.klassefactoren.grote_ronde;
+  const eendags = koers.type === "eendags" || koers.soort === "eendags";
+  if (eendags && isMonument(koers.naam, inst)) return inst.monumenten.factor;
+  return inst.klassefactoren[koers.klasse] ?? 0;
 }
 
 // De uitslag van een koers, met de correcties van de admin erover.

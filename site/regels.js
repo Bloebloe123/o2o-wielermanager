@@ -76,6 +76,7 @@ export function tekenRegels({ staat, maak, pt }) {
     p("Een renner scoort volgens zijn plaats in de uitslag. Daarna gaat de score maal de factor van de koers:"),
     lijst([
       `Grote ronde (Giro, Tour, Vuelta): ×${pt(f.grote_ronde)}`,
+      `Monumenten (${(inst.monumenten?.namen || []).join(", ")}): ×${pt(inst.monumenten?.factor ?? f.WT)}`,
       `Andere WorldTour-koersen: ×${pt(f.WT)}`,
       `ProSeries-koersen: ×${pt(f.PS)}`,
     ]),

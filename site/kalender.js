@@ -1,5 +1,6 @@
 // Kalender: alle koersen van het seizoen, per periode, met wanneer je transfers kunt doen.
-import { periodeVan, vandaagISO } from "./spel.js";
+import { factorVoor, isMonument, periodeVan, vandaagISO } from "./spel.js";
+import { laatsteUitslagen } from "./uitslagen.js";
 
 const $ = (id) => document.getElementById(id);
 
@@ -19,6 +20,7 @@ export function tekenKalender({ staat, maak, pt }) {
   const metUitslag = new Set(staat.koersen.koersen.filter((k) => !k.geannuleerd).map((k) => k.cq_raceid));
   const geschrapt = new Set(staat.koersen.koersen.filter((k) => k.geannuleerd).map((k) => k.cq_raceid));
   const vak = $("kalender-lijst");
+  $("kalender-uitslagen").replaceChildren(laatsteUitslagen({ staat, maak, pt }));
 
   if (!koersen.length) {
     vak.replaceChildren(maak("p", { tekst: `CQ heeft de kalender van ${inst.seizoen} nog niet gepubliceerd. Hij verschijnt hier vanzelf zodra hij er is.` }));
@@ -26,7 +28,8 @@ export function tekenKalender({ staat, maak, pt }) {
     vak.replaceChildren();
   }
 
-  const factor = (k) => (k.is_grote_ronde ? inst.klassefactoren.grote_ronde : inst.klassefactoren[k.klasse] ?? 0);
+  const factor = (k) => factorVoor(k, inst);
+  const monument = (k) => k.soort === "eendags" && isMonument(k.naam, inst);
   const rij = (k) => {
     const periodeEind = periodeVan(k.eind, inst);
     const periodeStart = periodeVan(k.start, inst);
@@ -43,8 +46,8 @@ export function tekenKalender({ staat, maak, pt }) {
         ...(opmerking ? [maak("span", { klasse: "klein", tekst: opmerking })] : []),
       ]),
       maak("span", {
-        klasse: `badge ${k.is_grote_ronde ? "gt" : k.klasse.toLowerCase()}`,
-        tekst: `${k.is_grote_ronde ? "Grote ronde" : k.klasse === "WT" ? "WorldTour" : "ProSeries"} ×${pt(factor(k))}`,
+        klasse: `badge ${k.is_grote_ronde ? "gt" : monument(k) ? "mon" : k.klasse.toLowerCase()}`,
+        tekst: `${k.is_grote_ronde ? "Grote ronde" : monument(k) ? "Monument" : k.klasse === "WT" ? "WorldTour" : "ProSeries"} ×${pt(factor(k))}`,
       }),
       maak("span", { klasse: "koers-status", tekst: status }),
     ]);

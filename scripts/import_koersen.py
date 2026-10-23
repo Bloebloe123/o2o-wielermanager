@@ -188,17 +188,17 @@ def lees_uitslag(pagina, ploegcodes, max_positie):
             # Rij met een ploeg (ploegentijdrit); de renner op de volgende rij hoort erbij.
             ploegentijdrit, vorige_positie = True, int(positie.group(1))
         elif positie and link:
-            uitslag.append({"cq_riderid": riderid, "positie": int(positie.group(1))})
+            uitslag.append({"cq_riderid": riderid, "positie": int(positie.group(1)), "naam": link.get_text(" ", strip=True)})
         elif ploegentijdrit and link and len(cellen) == 1 and vorige_positie:
             code = ploegcodes.get(riderid)
             if code:
                 ploegposities[code] = vorige_positie
-            uitslag.append({"cq_riderid": riderid, "positie": vorige_positie})
+            uitslag.append({"cq_riderid": riderid, "positie": vorige_positie, "naam": link.get_text(" ", strip=True)})
             vorige_positie = None
         elif ploegentijdrit and link and cellen[0] == "-" and len(cellen) > 2:
             positie_ploeg = ploegposities.get(cellen[2])
             if positie_ploeg:
-                uitslag.append({"cq_riderid": riderid, "positie": positie_ploeg})
+                uitslag.append({"cq_riderid": riderid, "positie": positie_ploeg, "naam": link.get_text(" ", strip=True)})
 
     gezien, resultaat = set(), []
     for regel in sorted(uitslag, key=lambda r: r["positie"]):

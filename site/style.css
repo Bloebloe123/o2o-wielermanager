@@ -170,6 +170,7 @@ ul.koersen li.voorbij { color: var(--o2o-gray); }
 .koers-status { font-size: 0.8rem; color: var(--o2o-gray); text-align: right; }
 .badge { font-family: var(--o2o-font-ui); font-size: 0.75rem; font-weight: 600; padding: 2px 10px; border-radius: 999px; white-space: nowrap; }
 .badge.gt { background: var(--o2o-orange); color: var(--o2o-text); }
+.badge.mon { background: var(--o2o-purple); color: var(--o2o-white); }
 .badge.wt { background: var(--o2o-tint-blue); color: var(--o2o-blue); }
 .badge.ps { background: var(--o2o-tint-purple); color: var(--o2o-purple); }
 .transfermoment.open { border-left-color: var(--o2o-blue); background: var(--o2o-tint-blue); }
@@ -194,6 +195,42 @@ ul.koersen li.voorbij { color: var(--o2o-gray); }
 .stat .tabel-wrap { max-height: none; }
 .stats-tabel th { position: static; cursor: default; }
 .stats-twee { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul.uitslagen { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; grid-template-columns: minmax(0, 1fr); }
+ul.uitslagen > li { background: var(--o2o-off-white); border-radius: 12px; }
+ul.uitslagen summary { display: grid; gap: 2px; padding: 10px 14px; cursor: pointer; list-style: none; position: relative; padding-right: 36px; }
+ul.uitslagen summary::-webkit-details-marker { display: none; }
+ul.uitslagen summary::after { content: "+"; position: absolute; right: 14px; top: 10px; font-family: var(--o2o-font-ui); font-weight: 600; color: var(--o2o-blue); }
+ul.uitslagen details[open] summary::after { content: "−"; }
+.uitslag-kop { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+.uitslag-top3 { white-space: pre-wrap; }
+.mijn-teller { font-family: var(--o2o-font-ui); font-size: 0.75rem; font-weight: 600; color: var(--o2o-blue); }
+.uitslag-tabel { margin: 0 14px 4px; width: calc(100% - 28px); font-size: 0.85rem; }
+.uitslag-tabel th { position: static; cursor: default; }
+.uitslag-tabel tr.mijn td { background: var(--o2o-tint-blue); color: var(--o2o-blue); font-weight: 600; }
+ul.uitslagen details > p { margin: 4px 14px 10px; }
+.kalender-uitslagen { margin: 8px 0 24px; }
+.ploeg-detail { padding: 4px 0 8px; }
+.detail ul.ploeg-renners, ul.ploeg-renners { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 6px; }
+.detail ul.ploeg-renners > li, ul.ploeg-renners > li { display: block; background: var(--o2o-white); border: 1px solid var(--o2o-gray-light); border-radius: 12px; }
+ul.ploeg-renners > li.weg { opacity: 0.7; }
+ul.ploeg-renners summary { display: grid; grid-template-columns: minmax(0, 1fr) auto 44px 64px; gap: 8px; align-items: center; padding: 8px 12px; cursor: pointer; list-style: none; font-size: 0.85rem; }
+ul.ploeg-renners summary::-webkit-details-marker { display: none; }
+ul.ploeg-renners summary .renner-naam { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+ul.ploeg-renners summary .punten-renner { text-align: right; color: var(--o2o-blue); font-weight: 600; }
+ul.ploeg-renners details[open] { box-shadow: 0 2px 10px rgba(0, 41, 214, 0.08); border-radius: 12px; }
+.renner-resultaten { margin: 0 12px 8px; width: calc(100% - 24px); font-size: 0.8rem; }
+.renner-resultaten td { padding: 4px 6px; }
+.geen-resultaten { margin: 0 12px 8px; }
+.vroeger-kop { margin: 12px 0 6px; }
+#tab-ploeg.vast { grid-template-columns: 1fr; }
+#tab-ploeg.vast .pool { display: none; }
+#tab-ploeg.vast .ploeg-lijst { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+#tab-ploeg.vast .meters { grid-template-columns: 1fr 1fr; max-width: 700px; }
+.notities { margin-top: 20px; display: grid; gap: 6px; }
+.notities label { font-family: var(--o2o-font-heading); font-weight: 700; color: var(--o2o-blue); font-size: 0.95rem; }
+.notities textarea { width: 100%; resize: vertical; padding: 10px 12px; border: 1px solid var(--o2o-gray-light); border-radius: 12px; font-family: var(--o2o-font-body); font-size: 0.9rem; background: var(--o2o-tint-orange); }
+.notities p { margin: 0; }
+#tab-ploeg.vast .notities { max-width: 700px; }
 .stand-filters { display: flex; gap: 8px; flex-wrap: wrap; }
 #tab-admin { display: grid; gap: 24px; }
 #tab-admin .knop { display: inline-block; text-decoration: none; margin-bottom: 8px; }

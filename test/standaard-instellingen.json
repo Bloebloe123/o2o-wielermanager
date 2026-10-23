@@ -142,6 +142,16 @@
     "WT": 1,
     "PS": 0.5
   },
+  "monumenten": {
+    "factor": 1.5,
+    "namen": [
+      "Milano - Sanremo",
+      "Ronde van Vlaanderen",
+      "Paris - Roubaix",
+      "Liège - Bastogne - Liège",
+      "Il Lombardia"
+    ]
+  },
   "seizoen_start": "2026-01-18",
   "seizoen_einde": "2026-10-31",
   "transferperiodes": [

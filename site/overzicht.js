@@ -1,5 +1,6 @@
 // Overzicht: de startpagina met je ploeg, de volgende koers, de laatste uitslag en de top 5.
 import { berekenStand, ploegInPeriode, ploegModus, vandaagISO } from "./spel.js";
+import { laatsteUitslagen } from "./uitslagen.js";
 
 const $ = (id) => document.getElementById(id);
 
@@ -49,32 +50,8 @@ export async function tekenOverzicht(ctx) {
     klasse: "klein", tekst: kalender.length ? "Geen koersen meer dit seizoen." : "De kalender is nog niet bekend.",
   })]));
 
-  // ---- Laatste uitslag van je ploeg: de koersen van de laatste dag waarop je renners scoorden ----
-  const gereden = staat.koersen.koersen.filter((k) => !k.geannuleerd);
-  const laatsteKoersdag = gereden.map((k) => k.datum).sort().pop();
-  const gescoord = new Set([...puntenVan.values()].flatMap((r) => r.resultaten.map((x) => x.cq_raceid)));
-  const laatsteDag = gereden.filter((k) => gescoord.has(k.cq_raceid)).map((k) => k.datum).sort().pop() ?? laatsteKoersdag;
-  // Enkel de koersen waarin je ploeg scoorde; scoorde ze nog nergens, dan de laatste koersdag.
-  const laatste = gereden.filter((k) => k.datum === laatsteDag && (gescoord.has(k.cq_raceid) || !gescoord.size));
-  $("ov-laatste-titel").textContent = laatsteDag ? `Laatste uitslag van je ploeg · ${kort(laatsteDag)}` : "Laatste uitslag van je ploeg";
-  $("ov-laatste-later").textContent = laatsteKoersdag && laatsteKoersdag !== laatsteDag
-    ? `Op latere koersdagen (laatste: ${kort(laatsteKoersdag)}) haalde je ploeg geen punten.` : "";
-  $("ov-laatste").replaceChildren(...(laatste.length ? laatste.map((k) => {
-    const podium = k.uitslag.slice(0, 3).map((u) => `${u.positie}. ${naam(u.cq_riderid)}`).join("  ");
-    const mijn = [...puntenVan.values()]
-      .flatMap((r) => r.resultaten.filter((x) => x.cq_raceid === k.cq_raceid).map((x) => ({ ...x, id: r.cq_riderid })))
-      .sort((a, b) => a.positie - b.positie);
-    return maak("li", {}, [
-      maak("strong", { tekst: k.naam }),
-      maak("span", { klasse: "klein", tekst: podium }),
-      mijn.length
-        ? maak("ul", { klasse: "mijn-uitslag" }, mijn.map((x) => maak("li", {}, [
-          maak("span", { tekst: `${x.positie}. ${naam(x.id)}` }),
-          maak("span", { klasse: "punten-renner", tekst: `+${pt(x.punten)} pt` }),
-        ])))
-        : maak("span", { klasse: "klein geen", tekst: "Geen renners van je ploeg in de punten." }),
-    ]);
-  }) : [maak("li", { klasse: "klein", tekst: "Nog geen uitslagen dit seizoen." })]));
+  // ---- Laatste uitslagen ----
+  $("ov-uitslagen").replaceChildren(laatsteUitslagen({ staat, maak, pt }));
 
   // ---- Top 5 van de stand, en waar jouw ploeg staat ----
   $("ov-top").replaceChildren(maak("li", { klasse: "klein", tekst: "Stand wordt berekend…" }));

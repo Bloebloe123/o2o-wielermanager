@@ -261,6 +261,8 @@ const VELDEN = [
   ["klassefactoren.grote_ronde", "Factor grote ronde", "getal"],
   ["klassefactoren.WT", "Factor WorldTour", "getal"],
   ["klassefactoren.PS", "Factor ProSeries", "getal"],
+  ["monumenten.factor", "Factor monumenten", "getal"],
+  ["monumenten.namen", "Monumenten (namen zoals op CQ Ranking)", "tekstlijst"],
   ["prijzen_top", "Prijzen van de top (nr 1, nr 2, …)", "lijst"],
   ["prijsschijven", "Prijsschijven (punten:prijs)", "schijven"],
   ["puntenschaal.eindklassement_grote_ronde", "Punten eindklassement grote ronde", "lijst"],
@@ -283,7 +285,7 @@ function zet(obj, pad, waarde) {
 }
 
 function alsTekst(waarde, soort) {
-  if (soort === "lijst" || soort === "emails") return waarde.join(", ");
+  if (soort === "lijst" || soort === "emails" || soort === "tekstlijst") return (waarde || []).join(", ");
   if (soort === "schijven") return waarde.map((s) => `${s.vanaf_punten}:${s.prijs}`).join(", ");
   return String(waarde);
 }
@@ -308,6 +310,7 @@ function uitTekst(tekst, soort, label) {
       return { vanaf_punten: getal(punten), prijs: getal(prijs) };
     }).sort((a, b) => b.vanaf_punten - a.vanaf_punten);
   }
+  if (soort === "tekstlijst") return stukken;
   if (soort === "emails") {
     for (const s of stukken) if (!/^[^@\s]+@[^@\s]+$/.test(s)) throw new Error(`${label}: "${s}" is geen e-mailadres.`);
     return stukken.map((s) => s.toLowerCase());
