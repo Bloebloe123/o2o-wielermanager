@@ -1,6 +1,6 @@
 import {
   berekenPrijzen, berekenStand, magToevoegen, normaliseer, ploegInPeriode, ploegModus, rennerResultaten, rennerTypes, transfersVan,
-  TYPES, vandaagISO,
+  TYPES, vandaagISO, zetTestdatum,
 } from "./spel.js";
 import { toonAdmin } from "./admin.js";
 import { tekenKalender } from "./kalender.js";
@@ -116,6 +116,7 @@ async function start() {
     staat.renners = renners.renners;
     staat.rennerOpId = new Map(staat.renners.map((r) => [r.cq_riderid, r]));
     staat.koersen = koersen;
+    if (staat.inst.testmodus) await zetTestmodusKlaar();
     staat.kalender = kalender;
     staat.koersenVorig = koersenVorig?.koersen || [];
     staat.alleCorrecties = alleCorrecties;
@@ -161,11 +162,54 @@ function isAdmin() {
   return staat.inst.admins.includes(staat.ik.email);
 }
 
+// ---------- Testversie ----------
+
+// In de testversie (instelling testmodus) speelt de site een oud seizoen na met een
+// gesimuleerde datum, gedeeld door iedereen. Enkel koersen tot die datum tellen.
+async function zetTestmodusKlaar() {
+  const rij = await window.storage.get("testdatum", true);
+  const datum = rij?.value || staat.inst.testmodus_startdatum;
+  zetTestdatum(datum);
+  staat.alleKoersen = staat.koersen.koersen;
+  const gereden = staat.alleKoersen.filter((k) => k.datum <= datum);
+  staat.koersen = { ...staat.koersen, koersen: gereden, aantal: gereden.length };
+
+  $("testbalk").hidden = false;
+  const volgende = staat.alleKoersen.filter((k) => k.datum > datum).map((k) => k.datum).sort()[0];
+  const vandaag = staat.alleKoersen.filter((k) => k.datum === datum).map((k) => k.naam);
+  $("test-datum").textContent = new Date(datum).toLocaleDateString("nl-BE", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+  $("test-info").textContent = vandaag.length
+    ? `Vandaag gereden: ${vandaag.slice(0, 3).join(" · ")}${vandaag.length > 3 ? ` en nog ${vandaag.length - 3}` : ""}.`
+    : "Vandaag geen koersen.";
+  const admin = staat.inst.admins.includes(staat.ik.email);
+  $("test-knoppen").hidden = !admin;
+  const zet = async (nieuw) => {
+    await window.storage.set("testdatum", nieuw, true);
+    location.reload();
+  };
+  $("test-volgende").disabled = !volgende;
+  $("test-volgende").onclick = () => zet(volgende);
+  $("test-dag").onclick = () => zet(dagNaTest(datum));
+  $("test-reset").onclick = () => {
+    if (confirm("Terug naar de startdatum? De ploegen blijven bewaard.")) zet(staat.inst.testmodus_startdatum);
+  };
+}
+
+function dagNaTest(iso) {
+  const d = new Date(`${iso}T12:00:00Z`);
+  d.setUTCDate(d.getUTCDate() + 1);
+  return d.toISOString().slice(0, 10);
+}
+
 function toonKop(renners) {
   $("seizoen").textContent = staat.inst.seizoen;
   $("wie").textContent = staat.ik.name || staat.ik.email;
   $("kop-punten").textContent = `CQ ${renners.punten_van_seizoen}`;
   const laatste = staat.koersen.laatste_import;
+  if (staat.inst.testmodus) {
+    $("import-info").textContent = `Testversie · ${staat.koersen.aantal} van ${staat.alleKoersen.length} uitslagen van ${staat.inst.seizoen} gereden`;
+    return;
+  }
   $("import-info").textContent = laatste && staat.koersen.aantal
     ? `Laatste nieuwe uitslagen: ${datumTijd(laatste)} · ${staat.koersen.aantal} uitslagen verwerkt`
     : `Nog geen uitslagen van ${staat.inst.seizoen}`;

@@ -48,6 +48,11 @@ button, input, select { font-family: var(--o2o-font-ui); font-size: 0.9rem; }
 .tab.actief { background: var(--o2o-off-white); color: var(--o2o-blue); }
 
 .inhoud { max-width: var(--o2o-max-width); margin: 0 auto; padding: 30px 60px 60px; }
+.testbalk { background: var(--o2o-orange); color: var(--o2o-text); }
+.testbalk-binnen { max-width: var(--o2o-max-width); margin: 0 auto; padding: 12px 60px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+.test-knoppen { display: flex; gap: 8px; flex-wrap: wrap; }
+.knop-licht { background: var(--o2o-white); color: var(--o2o-text); }
+.knop:disabled { opacity: 0.5; cursor: not-allowed; }
 .kaart {
   background: var(--o2o-white); border-radius: var(--o2o-radius-card);
   padding: 24px; box-shadow: 0 2px 12px rgba(0, 41, 214, 0.06);

@@ -22,8 +22,15 @@ export function berekenPrijzen(renners, inst) {
 }
 
 // Datum als "JJJJ-MM-DD" in Belgische tijd.
+// In de testversie kan "vandaag" een gesimuleerde datum zijn (zie zetTestdatum).
+let testdatum = null;
+
+export function zetTestdatum(datum) {
+  testdatum = datum;
+}
+
 export function vandaagISO(nu = new Date()) {
-  return nu.toLocaleDateString("sv-SE", { timeZone: "Europe/Brussels" });
+  return testdatum ?? nu.toLocaleDateString("sv-SE", { timeZone: "Europe/Brussels" });
 }
 
 // De periode waarin een datum valt, of null (voor de eerste of na de laatste).

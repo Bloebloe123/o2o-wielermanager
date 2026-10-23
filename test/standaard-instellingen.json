@@ -1,0 +1,180 @@
+{
+  "testmodus": true,
+  "testmodus_startdatum": "2026-01-15",
+  "seizoen": 2026,
+  "renners_url": "https://bloebloe123.github.io/o2o-wielermanager/data/renners.json",
+  "koersen_url": "https://bloebloe123.github.io/o2o-wielermanager/data/voorbeeld/koersen-2026.json",
+  "koersen_vorig_url": "https://bloebloe123.github.io/o2o-wielermanager/data/archief/koersen-2026.json",
+  "kalender_url": "https://bloebloe123.github.io/o2o-wielermanager/data/voorbeeld/kalender-2026.json",
+  "workflow_url": "https://github.com/Bloebloe123/o2o-wielermanager/actions/workflows/import.yml",
+  "budget": 125,
+  "ploeggrootte": 25,
+  "max_transfers": 5,
+  "type_drempel_punten": 20,
+  "type_marge": 1.3,
+  "prijzen_top": [
+    22,
+    21,
+    20,
+    19,
+    18,
+    17,
+    16,
+    15,
+    14,
+    13,
+    12,
+    11,
+    10,
+    9,
+    8
+  ],
+  "prijsschijven": [
+    {
+      "vanaf_punten": 800,
+      "prijs": 7
+    },
+    {
+      "vanaf_punten": 500,
+      "prijs": 6
+    },
+    {
+      "vanaf_punten": 300,
+      "prijs": 5
+    },
+    {
+      "vanaf_punten": 150,
+      "prijs": 4
+    },
+    {
+      "vanaf_punten": 60,
+      "prijs": 3
+    },
+    {
+      "vanaf_punten": 15,
+      "prijs": 2
+    },
+    {
+      "vanaf_punten": 0,
+      "prijs": 1
+    }
+  ],
+  "puntenschaal": {
+    "eindklassement_grote_ronde": [
+      100,
+      80,
+      65,
+      55,
+      48,
+      42,
+      36,
+      31,
+      27,
+      23,
+      20,
+      17,
+      14,
+      12,
+      11,
+      10,
+      9,
+      8,
+      7,
+      6,
+      5,
+      4,
+      3,
+      2,
+      1
+    ],
+    "eendags_en_eindklassement": [
+      100,
+      80,
+      65,
+      55,
+      48,
+      42,
+      36,
+      31,
+      27,
+      23,
+      20,
+      17,
+      14,
+      12,
+      11,
+      10,
+      9,
+      8,
+      7,
+      6
+    ],
+    "rit": [
+      20,
+      16,
+      13,
+      11,
+      10,
+      9,
+      8,
+      7,
+      6,
+      5,
+      5,
+      4,
+      4,
+      3,
+      3,
+      2,
+      2,
+      1,
+      1,
+      1
+    ],
+    "trui": [
+      40,
+      25,
+      15
+    ]
+  },
+  "klassefactoren": {
+    "grote_ronde": 2,
+    "WT": 1,
+    "PS": 0.5
+  },
+  "seizoen_start": "2026-01-18",
+  "seizoen_einde": "2026-10-31",
+  "transferperiodes": [
+    {
+      "open": "2026-02-25",
+      "sluit": "2026-02-28"
+    },
+    {
+      "open": "2026-03-18",
+      "sluit": "2026-03-21"
+    },
+    {
+      "open": "2026-04-15",
+      "sluit": "2026-04-18"
+    },
+    {
+      "open": "2026-05-28",
+      "sluit": "2026-05-31"
+    },
+    {
+      "open": "2026-06-27",
+      "sluit": "2026-06-30"
+    },
+    {
+      "open": "2026-07-28",
+      "sluit": "2026-07-31"
+    },
+    {
+      "open": "2026-08-28",
+      "sluit": "2026-08-31"
+    }
+  ],
+  "admins": [
+    "bram.serpieters@o2o.be"
+  ]
+}
