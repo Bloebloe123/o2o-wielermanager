@@ -85,6 +85,9 @@ label.keuze { display: flex; align-items: center; gap: 8px; }
 .knop-min:hover:not(:disabled) { background: var(--o2o-purple); color: var(--o2o-white); }
 .knop-klein:disabled { opacity: 0.35; cursor: not-allowed; }
 
+.pool-voet { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; }
+.paginas { display: flex; align-items: center; gap: 10px; }
+.knop-licht-rand { background: var(--o2o-white); color: var(--o2o-blue); box-shadow: inset 0 0 0 2px var(--o2o-blue); }
 .voorstel-knop { margin: -4px 0 16px; }
 .status { margin: 0 0 16px; font-size: 0.9rem; color: var(--o2o-gray); }
 .meters { display: grid; gap: 12px; margin-bottom: 16px; }
@@ -186,6 +189,8 @@ ul.correcties li { display: flex; justify-content: space-between; align-items: c
 .correctie-form .knop, .instellingen-form .knop { justify-self: start; }
 #admin-ploegnamen input { width: 100%; padding: 6px 10px; border: 1px solid var(--o2o-gray-light); border-radius: 10px; font-family: var(--o2o-font-ui); }
 .knop-klein-tekst { padding: 6px 14px; font-size: 0.8rem; }
+.knop-gevaar { background: var(--o2o-purple); }
+.knoppen-cel { display: flex; gap: 6px; white-space: nowrap; }
 .periode-rij { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 0.9rem; }
 .periode-rij strong { width: 80px; }
 .stand-kop select { padding: 8px 12px; border: 1px solid var(--o2o-gray-light); border-radius: 999px; }

@@ -21,11 +21,11 @@ export function toonAdmin(context) {
 // ---------- Ploegnamen ----------
 
 async function tekenPloegnamen() {
-  const { staat, maak, melding, profielen, alleRecords, ploegnaamVan } = ctx;
+  const { maak, melding, profielen, alleRecords, ploegnaamVan, geldig } = ctx;
   const tbody = $("admin-ploegnamen");
   let alle;
   try {
-    alle = (await alleRecords(profielen, {})).filter((p) => p.createdBy);
+    alle = (await alleRecords(profielen, {})).filter((p) => p.createdBy && geldig(p));
   } catch (fout) {
     return melding(`De ploegen laden lukte niet: ${fout.message}`, true);
   }
@@ -34,13 +34,37 @@ async function tekenPloegnamen() {
     const email = p.createdBy.email;
     const veld = maak("input", { type: "text", value: ploegnaamVan(email, p.ploegnaam) || "", maxLength: 40 });
     const knop = maak("button", { klasse: "knop knop-klein-tekst", tekst: "Opslaan", onclick: () => bewaarPloegnaam(email, veld, knop, alle) });
+    const weg = maak("button", {
+      klasse: "knop knop-klein-tekst knop-gevaar", tekst: "Verwijderen",
+      onclick: () => verwijderPloeg(email, p.createdBy.name || email, ploegnaamVan(email, p.ploegnaam), weg),
+    });
     return maak("tr", {}, [
       maak("td", { tekst: p.createdBy.name || email }),
       maak("td", {}, [veld]),
-      maak("td", {}, [knop]),
+      maak("td", { klasse: "knoppen-cel" }, [knop, weg]),
     ]);
   }));
   if (!alle.length) tbody.append(maak("tr", {}, [maak("td", { colSpan: 3, tekst: "Nog geen deelnemers." })]));
+}
+
+// Een ploeg verwijderen: we bewaren enkel dat een admin ze verwijderde. Alles wat de
+// deelnemer daarvoor maakte, telt vanaf dan niet meer (zie geldig in app.js).
+async function verwijderPloeg(email, wie, ploegnaam, knop) {
+  const { staat, melding, verwijderingen } = ctx;
+  if (!confirm(`De ploeg "${ploegnaam}" van ${wie} verwijderen? Alle renners, transfers en punten van die ploeg verdwijnen. ${wie} kan daarna opnieuw beginnen.`)) return;
+  knop.disabled = true;
+  try {
+    const record = await verwijderingen.create({ email });
+    staat.alleVerwijderingen = [...staat.alleVerwijderingen, record];
+    if (email === staat.ik.email) return location.reload();
+    ctx.herbereken();
+    ctx.tekenAlles();
+    tekenPloegnamen();
+    melding(`De ploeg "${ploegnaam}" is verwijderd.`);
+  } catch (fout) {
+    melding(`Verwijderen lukte niet: ${fout.message}`, true);
+    knop.disabled = false;
+  }
 }
 
 async function bewaarPloegnaam(email, veld, knop, alle) {

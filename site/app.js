@@ -12,6 +12,9 @@ const selecties = window.vibers.db.collection("selecties");
 const correcties = window.vibers.db.collection("correcties");
 // Ploegnamen die een admin wijzigde: { email, ploegnaam }. Die gaan voor op de naam in het profiel.
 const ploegnamen = window.vibers.db.collection("ploegnamen");
+// Ploegen die een admin verwijderde: { email }. Alles wat die deelnemer voordien maakte
+// (profiel, renners, ploegnaam) telt niet meer; daarna kan die opnieuw beginnen.
+const verwijderingen = window.vibers.db.collection("verwijderingen");
 
 const staat = {
   ik: null,
@@ -26,6 +29,7 @@ const staat = {
   mijnSelecties: [],
   sorteer: { veld: "prijs", af: true },
   typeFilter: "", // "" = alle types
+  poolPagina: 0, // welke pagina van de rennerspool (telt vanaf 0)
   bezig: false,
 };
 
@@ -101,10 +105,10 @@ async function start() {
   try {
     staat.ik = await window.vibers.me();
     staat.inst = await laadInstellingen();
-    const [renners, koersen, mijnProfielen, mijn, alleCorrecties, kalender, alleNaamwijzigingen, koersenVorig] = await Promise.all([
+    const [renners, koersen, mijnProfielen, mijn, alleCorrecties, kalender, alleNaamwijzigingen, koersenVorig, alleVerwijderingen] = await Promise.all([
       haalJson(staat.inst.renners_url),
       haalJson(staat.inst.koersen_url),
-      profielen.find({ mine: true, limit: 1 }),
+      alleRecords(profielen, { mine: true }),
       alleRecords(selecties, { mine: true }),
       alleRecords(correcties, {}),
       // De kalender is mooi meegenomen; lukt hij niet, dan werkt de rest gewoon verder.
@@ -112,6 +116,7 @@ async function start() {
       alleRecords(ploegnamen, {}),
       // Uitslagen van vorig seizoen, om de renners in te delen per type.
       haalJson(staat.inst.koersen_vorig_url.replace("{vorig}", staat.inst.seizoen - 1)).catch(() => null),
+      alleRecords(verwijderingen, {}),
     ]);
     staat.renners = renners.renners;
     staat.rennerOpId = new Map(staat.renners.map((r) => [r.cq_riderid, r]));
@@ -121,9 +126,14 @@ async function start() {
     staat.koersenVorig = koersenVorig?.koersen || [];
     staat.alleCorrecties = alleCorrecties;
     staat.alleNaamwijzigingen = alleNaamwijzigingen;
+    staat.alleVerwijderingen = alleVerwijderingen;
     herbereken();
-    staat.profiel = mijnProfielen.items[0] || null;
-    staat.mijnSelecties = mijn;
+    staat.profiel = mijnProfielen.filter((r) => geldig(r)).sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0] || null;
+    staat.mijnSelecties = mijn.filter((r) => geldig(r));
+    if (!staat.profiel && mijnProfielen.length) {
+      melding("Een admin heeft je vorige ploeg verwijderd. Je kunt opnieuw beginnen.");
+      ruimOudeRecordsOp([...mijnProfielen, ...mijn].filter((r) => !geldig(r)));
+    }
     toonKop(renners);
     $("laden").hidden = true;
     if (staat.profiel) toonPloeg();
@@ -137,13 +147,34 @@ async function start() {
 
 // Prijzen en punten opnieuw berekenen (na laden, na een correctie of na nieuwe instellingen).
 // Correcties tellen enkel als een admin ze maakte.
+// Telt dit record nog mee? Niet als een admin de ploeg van `email` (standaard: de maker)
+// nadien verwijderde.
+function geldig(record, email = record.createdBy?.email) {
+  const op = staat.verwijderdOp.get(email);
+  return !op || record.createdAt > op;
+}
+
+// Je eigen records van een verwijderde ploeg opruimen (lukt dat niet, dan tellen ze toch niet mee).
+async function ruimOudeRecordsOp(records) {
+  for (const r of records) {
+    const collectie = "ploegnaam" in r ? profielen : selecties;
+    await collectie.delete(r.id).catch(() => {});
+  }
+}
+
 function herbereken() {
+  // Enkel verwijderingen door een admin tellen; per deelnemer de recentste.
+  staat.verwijderdOp = new Map();
+  for (const v of staat.alleVerwijderingen) {
+    if (!staat.inst.admins.includes(v.createdBy?.email)) continue;
+    if (!staat.verwijderdOp.has(v.email) || v.createdAt > staat.verwijderdOp.get(v.email)) staat.verwijderdOp.set(v.email, v.createdAt);
+  }
   staat.prijzen = berekenPrijzen(staat.renners, staat.inst);
   staat.correcties = staat.alleCorrecties.filter((c) => staat.inst.admins.includes(c.createdBy?.email));
   // Enkel naamwijzigingen van een admin tellen; per deelnemer de recentste.
   staat.nieuweNaam = new Map();
   for (const w of [...staat.alleNaamwijzigingen].sort((a, b) => (a.updatedAt || "").localeCompare(b.updatedAt || ""))) {
-    if (staat.inst.admins.includes(w.createdBy?.email)) staat.nieuweNaam.set(w.email, w.ploegnaam);
+    if (staat.inst.admins.includes(w.createdBy?.email) && geldig(w, w.email)) staat.nieuweNaam.set(w.email, w.ploegnaam);
   }
   staat.resultaten = rennerResultaten(staat.koersen.koersen, staat.correcties, staat.inst, staat.kalender?.koersen);
   staat.types = rennerTypes(staat.koersenVorig, staat.inst);
@@ -231,7 +262,7 @@ function toonProfielformulier() {
     knop.disabled = true;
     try {
       // Elke ploegnaam mag maar één keer voorkomen (hoofdletters tellen niet mee).
-      const bestaande = await alleRecords(profielen, {});
+      const bestaande = (await alleRecords(profielen, {})).filter((r) => geldig(r));
       const bezet = [...bestaande.map((p) => p.ploegnaam || ""), ...staat.nieuweNaam.values()];
       if (bezet.some((naam) => naam.toLowerCase() === ploegnaam.toLowerCase())) {
         knop.disabled = false;
@@ -291,7 +322,9 @@ function zetTabsKlaar() {
       if (knop.dataset.tab === "kalender") tekenKalender({ staat, maak, pt });
       if (knop.dataset.tab === "regels") tekenRegels({ staat, maak, pt });
       if (knop.dataset.tab === "admin") {
-        toonAdmin({ staat, maak, melding, pt, datumTijd, correcties, profielen, ploegnamen, alleRecords, herbereken, tekenAlles, ploegnaamVan });
+        toonAdmin({
+          staat, maak, melding, pt, datumTijd, correcties, profielen, ploegnamen, verwijderingen, alleRecords, herbereken, tekenAlles, ploegnaamVan, geldig,
+        });
       }
     });
   });
@@ -304,15 +337,23 @@ function toonPloeg() {
   const ploegen = [...new Set(staat.renners.map((r) => r.ploeg))].sort();
   for (const p of ploegen) $("filter-ploeg").append(maak("option", { tekst: p }));
   for (const id of ["zoek", "filter-type", "filter-ploeg", "filter-betaalbaar"]) {
-    $(id).addEventListener("input", tekenPool);
+    $(id).addEventListener("input", () => { staat.poolPagina = 0; tekenPool(); });
   }
   document.querySelectorAll("th[data-sort]").forEach((th) => {
     th.addEventListener("click", () => {
       const veld = th.dataset.sort;
       staat.sorteer = { veld, af: staat.sorteer.veld === veld ? !staat.sorteer.af : veld === "prijs" || veld === "punten" };
+      staat.poolPagina = 0;
       tekenPool();
     });
   });
+  const blader = (stap) => {
+    staat.poolPagina += stap;
+    tekenPool();
+    document.querySelector(".pool .tabel-wrap").scrollTop = 0;
+  };
+  $("pagina-vorige").onclick = () => blader(-1);
+  $("pagina-volgende").onclick = () => blader(1);
   tekenAlles();
 }
 
@@ -460,10 +501,14 @@ function tekenPool() {
   });
   document.querySelectorAll("th[data-sort]").forEach((th) => th.classList.toggle("gesorteerd", th.dataset.sort === veld));
 
-  const maxRijen = 300;
+  // Per pagina een vast aantal renners, met knoppen Vorige en Volgende.
+  const perPagina = 100;
+  const paginas = Math.max(1, Math.ceil(rijen.length / perPagina));
+  staat.poolPagina = Math.min(staat.poolPagina, paginas - 1);
+  const vanaf = staat.poolPagina * perPagina;
   const tbody = $("pool-lijst");
   tbody.replaceChildren();
-  for (const r of rijen.slice(0, maxRijen)) {
+  for (const r of rijen.slice(vanaf, vanaf + perPagina)) {
     const reden = redenNiet(r.cq_riderid, m);
     tbody.append(maak("tr", { klasse: gekozen.has(r.cq_riderid) ? "gekozen" : "" }, [
       maak("td", {}, [maak("span", { klasse: "renner-naam", tekst: r.naam })]),
@@ -481,9 +526,13 @@ function tekenPool() {
         })]),
     ]));
   }
-  $("pool-info").textContent = rijen.length > maxRijen
-    ? `${maxRijen} van ${rijen.length} renners getoond. Zoek of filter om de rest te zien.`
-    : `${rijen.length} renners.`;
+  $("pool-info").textContent = rijen.length
+    ? `Renners ${vanaf + 1} tot ${Math.min(vanaf + perPagina, rijen.length)} van ${rijen.length}.`
+    : "Geen renners gevonden.";
+  $("pagina-tekst").textContent = `Pagina ${staat.poolPagina + 1} van ${paginas}`;
+  $("pagina-vorige").disabled = staat.poolPagina === 0;
+  $("pagina-volgende").disabled = staat.poolPagina >= paginas - 1;
+  $("paginas").hidden = paginas <= 1;
 }
 
 // Knoppen om op type renner te filteren, met het aantal renners per type.
@@ -494,7 +543,7 @@ function tekenTypeKnoppen(renners) {
     type: "button",
     klasse: `type-knop${waarde ? ` type-${waarde.toLowerCase()}` : ""}${staat.typeFilter === waarde ? " actief" : ""}`,
     tekst: `${tekst} (${n})`,
-    onclick: () => { staat.typeFilter = staat.typeFilter === waarde ? "" : waarde; tekenPool(); },
+    onclick: () => { staat.typeFilter = staat.typeFilter === waarde ? "" : waarde; staat.poolPagina = 0; tekenPool(); },
   });
   $("type-knoppen").replaceChildren(
     knop("", "Alle", renners.length),
@@ -522,10 +571,12 @@ function vervang(record) {
 }
 
 // Een renner kopen (of voor het seizoen: kiezen).
-// Vult de lege plaatsen van de ploeg met willekeurige renners. Per plaats kiezen we een
-// willekeurige renner rond het bedrag dat gemiddeld nog per lege plaats over is, zodat
-// het budget zo goed als op gaat. Elke renner moet de gewone controle doorstaan
-// (budget, genoeg overhouden voor de rest), zodat de ploeg altijd past.
+// Vult de lege plaatsen van de ploeg met willekeurige renners:
+// - eerst 1 of 2 toppers (renners met een eigen topprijs), tenzij je er al zoveel hebt;
+// - daarna telkens een renner van het type dat nu het minst in de ploeg zit, zodat alle
+//   types gemengd worden, met een prijs rond wat gemiddeld nog per lege plaats over is
+//   (zo gaat het budget zo goed als op).
+// Elke renner moet de gewone controle doorstaan, zodat de ploeg altijd past.
 async function doeVoorstel() {
   const m = modus();
   if (m.modus !== "inschrijving") return;
@@ -533,15 +584,30 @@ async function doeVoorstel() {
   const proef = doelPloeg(m).map((s) => ({ cq_riderid: s.cq_riderid }));
   const gekozen = [];
   const willekeurig = (lijst) => lijst[Math.floor(Math.random() * lijst.length)];
+  const neem = (r) => { proef.push({ cq_riderid: r.cq_riderid }); gekozen.push(r.cq_riderid); };
+  const mogelijk = () => staat.renners.filter((r) => !magToevoegen(r.cq_riderid, proef, prijzen, inst));
+
+  const topprijs = Math.min(...inst.prijzen_top);
+  const isTopper = (id) => prijzen.get(id) >= topprijs;
+  const toppersNodig = 1 + Math.floor(Math.random() * 2) - proef.filter((s) => isTopper(s.cq_riderid)).length;
+  for (let i = 0; i < toppersNodig && proef.length < inst.ploeggrootte; i++) {
+    const toppers = mogelijk().filter((r) => isTopper(r.cq_riderid));
+    if (toppers.length) neem(willekeurig(toppers));
+  }
+
   while (proef.length < inst.ploeggrootte) {
-    const mogelijk = staat.renners.filter((r) => !magToevoegen(r.cq_riderid, proef, prijzen, inst));
-    if (!mogelijk.length) break;
+    const kandidaten = mogelijk().filter((r) => !isTopper(r.cq_riderid));
+    if (!kandidaten.length) break;
     const over = inst.budget - proef.reduce((som, s) => som + prijzen.get(s.cq_riderid), 0);
     const doel = over / (inst.ploeggrootte - proef.length);
-    const rond = mogelijk.filter((r) => Math.abs(prijzen.get(r.cq_riderid) - doel) <= 1.5);
-    const r = willekeurig(rond.length ? rond : mogelijk);
-    proef.push({ cq_riderid: r.cq_riderid });
-    gekozen.push(r.cq_riderid);
+    // Het type dat het minst voorkomt (bij gelijkstand willekeurig), als er een renner van bestaat.
+    const telling = new Map(TYPES.map((t) => [t, 0]));
+    for (const s of proef) telling.set(typeVan(s.cq_riderid), telling.get(typeVan(s.cq_riderid)) + 1);
+    const types = TYPES.filter((t) => kandidaten.some((r) => typeVan(r.cq_riderid) === t))
+      .sort((a, b) => telling.get(a) - telling.get(b) || Math.random() - 0.5);
+    const vanType = kandidaten.filter((r) => typeVan(r.cq_riderid) === types[0]);
+    const rond = vanType.filter((r) => Math.abs(prijzen.get(r.cq_riderid) - doel) <= 1.5);
+    neem(willekeurig(rond.length ? rond : vanType));
   }
   await bewaar(async () => {
     for (const id of gekozen) {
@@ -612,7 +678,8 @@ async function toonStand() {
   $("stand-lijst").replaceChildren(maak("tr", {}, [maak("td", { colSpan: 5, tekst: "Stand wordt berekend…" })]));
   try {
     // Altijd vers ophalen: de ploegen van iedereen en hun ploegnamen.
-    const [alleSelecties, alleProfielen] = await Promise.all([alleRecords(selecties, {}), alleRecords(profielen, {})]);
+    const [alleSelecties, alleProfielen] = (await Promise.all([alleRecords(selecties, {}), alleRecords(profielen, {})]))
+      .map((lijst) => lijst.filter((r) => geldig(r)));
     staat.alleSelecties = alleSelecties;
     staat.ploegnaamVan = new Map(alleProfielen.filter((p) => p.createdBy).map((p) => [p.createdBy.email, ploegnaamVan(p.createdBy.email, p.ploegnaam)]));
     staat.debutanten = new Set(alleProfielen.filter((p) => p.createdBy && p.debuutjaar === staat.inst.seizoen).map((p) => p.createdBy.email));
