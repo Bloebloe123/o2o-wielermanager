@@ -61,7 +61,9 @@ async function tekenPloegnamen() {
 // deelnemer daarvoor maakte, telt vanaf dan niet meer (zie geldig in app.js).
 async function verwijderPloeg(email, wie, ploegnaam, knop) {
   const { staat, melding, verwijderingen } = ctx;
-  if (!confirm(`De ploeg "${ploegnaam}" van ${wie} verwijderen? Alle renners, transfers en punten van die ploeg verdwijnen. ${wie} kan daarna opnieuw beginnen.`)) return;
+  if (!ctx.bevestigd(knop, "Zeker?")) {
+    return melding(`Klik nogmaals op "Zeker?" om de ploeg "${ploegnaam}" van ${wie} te verwijderen. Alle renners, transfers en punten van die ploeg verdwijnen; ${wie} kan daarna opnieuw beginnen.`);
+  }
   knop.disabled = true;
   try {
     const record = await verwijderingen.create({ email });
@@ -398,8 +400,9 @@ async function bewaarInstellingen(e) {
     });
     nieuw.transferperiodes = vensters;
     delete nieuw.periodes; // die worden berekend, niet bewaard
-    if (!nieuw.admins.includes(staat.ik.email) &&
-        !confirm("Je staat niet meer bij de admins. Daarna zie je deze pagina niet meer. Doorgaan?")) return;
+    if (!nieuw.admins.includes(staat.ik.email) && !ctx.bevestigd(e.submitter, "Zeker? Klik nogmaals")) {
+      return melding("Je staat niet meer bij de admins: daarna zie je deze pagina niet meer. Klik nogmaals op de knop om toch op te slaan.", true);
+    }
   } catch (fout) {
     return melding(fout.message, true);
   }

@@ -233,7 +233,8 @@ async function zetTestmodusKlaar() {
   $("test-dag").onclick = () => zet(dagNaTest(datum));
   $("test-ploegen").onclick = maakTestploegen;
   $("test-reset").onclick = () => {
-    if (confirm("Terug naar de startdatum? De ploegen blijven bewaard.")) zet(staat.inst.testmodus_startdatum);
+    if (bevestigd($("test-reset"), "Zeker? Klik nogmaals")) zet(staat.inst.testmodus_startdatum);
+    else melding("Klik nogmaals op de knop om terug te gaan naar de startdatum. De ploegen blijven bewaard; alle punten gaan terug naar 0.");
   };
 }
 
@@ -368,11 +369,30 @@ function zetTabsKlaar() {
       if (knop.dataset.tab === "admin") {
         toonAdmin({
           staat, maak, melding, pt, datumTijd, correcties, profielen, ploegnamen, verwijderingen, alleRecords, herbereken, tekenAlles, ploegnaamVan, geldig,
-          laadDeelnemers,
+          laadDeelnemers, bevestigd,
         });
       }
     });
   });
+}
+
+// Vraagt bevestiging in de knop zelf, want vensters zoals confirm() werken niet op vibers.
+// De eerste klik zet een vraag in de knop en geeft false; een tweede klik binnen 5 seconden geeft true.
+function bevestigd(knop, vraag) {
+  if (knop.dataset.bevestig === "ja") {
+    clearTimeout(Number(knop.dataset.wacht));
+    delete knop.dataset.bevestig;
+    knop.textContent = knop.dataset.tekst;
+    return true;
+  }
+  knop.dataset.tekst = knop.textContent;
+  knop.dataset.bevestig = "ja";
+  knop.textContent = vraag;
+  knop.dataset.wacht = setTimeout(() => {
+    delete knop.dataset.bevestig;
+    knop.textContent = knop.dataset.tekst;
+  }, 5000);
+  return false;
 }
 
 // Naar een tab gaan, alsof je erop klikt.
