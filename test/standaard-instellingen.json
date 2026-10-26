@@ -10,6 +10,8 @@
   "budget": 125,
   "ploeggrootte": 25,
   "max_transfers": 5,
+  "jokers": 3,
+  "joker_bonus": 50,
   "type_drempel_punten": 20,
   "type_marge": 1.3,
   "prijzen_top": [

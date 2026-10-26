@@ -1,12 +1,15 @@
 import {
-  berekenPrijzen, berekenStand, magToevoegen, normaliseer, ploegInPeriode, ploegModus, rennerResultaten, rennerTypes, transfersVan,
+  berekenPrijzen, berekenStand, jokerBonus, jokersGebruikt, magToevoegen, normaliseer, ploegInPeriode, ploegModus, rennerResultaten,
+  rennerTypes, transfersVan, dagNa,
   TYPES, vandaagISO, zetTestdatum,
 } from "./spel.js";
 import { toonAdmin } from "./admin.js";
 import { tekenKalender } from "./kalender.js";
 import { tekenRegels } from "./regels.js";
 import { tekenOverzicht } from "./overzicht.js";
+import { truiDragers, truiIcoon } from "./truien.js";
 import { tekenStatistieken } from "./statistieken.js";
+import { tekenSpiegel } from "./spiegel.js";
 
 const $ = (id) => document.getElementById(id);
 const profielen = window.vibers.db.collection("profielen");
@@ -31,6 +34,7 @@ const staat = {
   mijnSelecties: [],
   sorteer: { veld: "prijs", af: true },
   typeFilter: "", // "" = alle types
+  jokerModus: false, // speelt de deelnemer nu een joker uit (buiten een transferperiode)?
   poolPagina: 0, // welke pagina van de rennerspool (telt vanaf 0)
   bezig: false,
 };
@@ -323,16 +327,32 @@ function toonProfielformulier() {
 
 // De modus van vandaag (zie ploegModus in spel.js) en de ploeg waaraan je werkt:
 // voor het seizoen de ploeg van periode 1, tijdens periode N die van periode N+1.
+// Buiten een transferperiode kan een deelnemer een joker uitspelen: dan is de modus "joker".
+// Een joker-wissel geldt vanaf morgen; tot dan kun je hem nog ongedaan maken.
 function modus() {
-  return ploegModus(staat.inst);
+  const m = ploegModus(staat.inst);
+  const vandaag = vandaagISO();
+  const kanJoker = m.modus === "gesloten" && m.huidige && vandaag <= staat.inst.seizoen_einde && staat.inst.jokers > 0;
+  if (kanJoker && staat.jokerModus) return { ...m, modus: "joker", vandaag, morgen: dagNa(vandaag) };
+  return { ...m, kanJoker, vandaag, morgen: dagNa(vandaag) };
 }
 
+// De ploeg waaraan je werkt. Bij een joker: de ploeg zoals ze er morgen uitziet.
 function doelPloeg(m = modus()) {
+  if (m.modus === "joker" || m.modus === "gesloten") return ploegInPeriode(staat.mijnSelecties, m.huidige ?? 1, m.morgen);
   return ploegInPeriode(staat.mijnSelecties, m.doel ?? m.huidige ?? 1);
 }
 
 function transfersVoorDoel(m) {
-  return transfersVan(staat.mijnSelecties).find((t) => t.periode === m.doel) || { uit: [], in: [] };
+  return transfersVan(staat.mijnSelecties).find((t) => t.periode === m.doel && !t.joker) || { uit: [], in: [] };
+}
+
+// Jokers: hoeveel heb je nog, en welke wissels staan voor morgen klaar?
+function jokerStand(m = modus()) {
+  const gebruikt = jokersGebruikt(staat.mijnSelecties);
+  const uitVandaag = staat.mijnSelecties.filter((s) => s.tot_datum === m.vandaag);
+  const inMorgen = staat.mijnSelecties.filter((s) => s.vanaf_datum === m.morgen);
+  return { gebruikt, over: staat.inst.jokers - gebruikt, uitVandaag, inMorgen };
 }
 
 function datumLang(iso) {
@@ -341,8 +361,13 @@ function datumLang(iso) {
 
 // Waarom mag deze renner er niet bij? null als het wel mag.
 function redenNiet(riderid, m = modus()) {
-  if (m.modus === "gesloten") return "Je ploeg ligt vast tot de volgende transferperiode.";
-  const terug = staat.mijnSelecties.find((s) => s.cq_riderid === riderid && s.tot_periode === m.huidige);
+  if (m.modus === "gesloten") return "Je ploeg ligt vast tot de volgende transferperiode. Je kunt wel een joker inzetten.";
+  if (m.modus === "joker") {
+    const terugJoker = staat.mijnSelecties.find((s) => s.cq_riderid === riderid && s.tot_datum === m.vandaag);
+    if (!terugJoker && jokerStand(m).over <= 0) return `Je gebruikte al je ${staat.inst.jokers} jokers.`;
+    return magToevoegen(riderid, doelPloeg(m), staat.prijzen, staat.inst);
+  }
+  const terug = staat.mijnSelecties.find((s) => s.cq_riderid === riderid && s.tot_periode === m.huidige && !s.tot_datum);
   if (m.modus === "transfers" && !terug && transfersVoorDoel(m).in.length >= staat.inst.max_transfers) {
     return `Je gebruikte al je ${staat.inst.max_transfers} transfers voor periode ${m.doel}.`;
   }
@@ -357,8 +382,12 @@ function zetTabsKlaar() {
   document.querySelectorAll(".tab").forEach((knop) => {
     knop.addEventListener("click", () => {
       document.querySelectorAll(".tab").forEach((k) => k.classList.toggle("actief", k === knop));
-      for (const tab of ["overzicht", "ploeg", "stand", "statistieken", "kalender", "regels", "admin"]) $(`tab-${tab}`).hidden = knop.dataset.tab !== tab;
+      for (const tab of ["overzicht", "ploeg", "stand", "spiegel", "statistieken", "kalender", "regels", "admin"]) $(`tab-${tab}`).hidden = knop.dataset.tab !== tab;
       if (knop.dataset.tab === "overzicht") toonOverzicht();
+      if (knop.dataset.tab === "spiegel") {
+        tekenSpiegel({ staat, maak, pt, typeVan, laadDeelnemers })
+          .catch((fout) => melding(`De spiegel laden lukte niet: ${fout.message}`, true));
+      }
       if (knop.dataset.tab === "statistieken") {
         tekenStatistieken({ staat, maak, pt, typeVan, laadDeelnemers })
           .catch((fout) => melding(`De statistieken laden lukte niet: ${fout.message}`, true));
@@ -479,6 +508,11 @@ function statusTekst(m, ploeg) {
       `maximaal ${inst.max_transfers}. ` +
       "Verkochte renners rijden nog voor je tot het einde van deze periode.";
   }
+  if (m.modus === "joker") {
+    const j = jokerStand(m);
+    return `Joker: wissel een renner buiten de transferperiode. De wissel geldt vanaf morgen; tot dan kun je hem ongedaan maken. ` +
+      `Je hebt nog ${j.over} van ${inst.jokers} jokers. Verkoop een renner met −, kies dan een vervanger in de rennerspool.`;
+  }
   if (m.volgende) {
     return `Je ploeg ligt vast. Volgende transferperiode: ${datumLang(m.volgende.open)} tot en met ${datumLang(m.volgende.sluit)}, voor periode ${m.volgende.nr + 1}.`;
   }
@@ -510,13 +544,22 @@ function tekenMijnPloeg() {
 
   // In de transferperiode tonen we ook wie eruit gaat, met een knop om dat ongedaan te maken.
   const vertrekkers = m.modus === "transfers"
-    ? ploegInPeriode(staat.mijnSelecties, m.huidige).filter((s) => s.tot_periode === m.huidige)
-    : [];
+    ? ploegInPeriode(staat.mijnSelecties, m.huidige).filter((s) => s.tot_periode === m.huidige && !s.tot_datum)
+    : m.modus === "joker" || m.modus === "gesloten" ? jokerStand(m).uitVandaag : [];
+
+  // Jokerknop: buiten een transferperiode kun je een joker inzetten (of stoppen met wisselen).
+  const jokerKnop = $("joker-knop");
+  const j = jokerStand(m);
+  jokerKnop.hidden = !(m.kanJoker || m.modus === "joker");
+  jokerKnop.textContent = m.modus === "joker" ? "Klaar met wisselen" : `Joker inzetten (${j.over} van ${inst.jokers} over)`;
+  jokerKnop.disabled = m.modus !== "joker" && j.over <= 0;
+  jokerKnop.onclick = () => { staat.jokerModus = !staat.jokerModus; tekenAlles(); };
 
   const lijst = $("ploeg-lijst");
   lijst.replaceChildren();
   // Ligt de ploeg vast (geen transferperiode), dan tonen we enkel je ploeg, breed en op punten gesorteerd.
   const vast = m.modus === "gesloten";
+  const jokerNieuw = (sel) => sel.vanaf_datum === m.morgen;
   $("tab-ploeg").classList.toggle("vast", vast);
   const rijen = [...ploeg, ...vertrekkers].sort(vast
     ? (a, b) => (puntenVan.get(b.cq_riderid) || 0) - (puntenVan.get(a.cq_riderid) || 0)
@@ -524,17 +567,19 @@ function tekenMijnPloeg() {
   for (const sel of rijen) {
     const r = staat.rennerOpId.get(sel.cq_riderid);
     const vertrekt = vertrekkers.includes(sel);
-    const nieuw = m.modus === "transfers" && sel.vanaf_periode === m.doel;
+    const nieuw = (m.modus === "transfers" && sel.vanaf_periode === m.doel) || jokerNieuw(sel);
     let knop;
     if (vertrekt) {
       knop = maak("button", {
         klasse: "knop-klein knop-plus", tekst: "↺", title: "Toch houden",
-        disabled: staat.bezig || !!redenNiet(sel.cq_riderid, m), onclick: () => houd(sel),
+        disabled: staat.bezig || !!redenNiet(sel.cq_riderid, m.modus === "gesloten" ? { ...m, modus: "joker" } : m), onclick: () => houd(sel),
       });
     } else {
       knop = minKnop(sel, m);
     }
-    const label = vertrekt ? ` · gaat eruit na periode ${m.huidige}` : nieuw ? ` · nieuw vanaf periode ${m.doel}` : "";
+    const label = vertrekt
+      ? (sel.tot_datum ? " · gaat eruit vanaf morgen (joker)" : ` · gaat eruit na periode ${m.huidige}`)
+      : jokerNieuw(sel) ? " · nieuw vanaf morgen (joker)" : nieuw ? ` · nieuw vanaf periode ${m.doel}` : "";
     lijst.append(maak("li", { klasse: vertrekt ? "vertrekt" : nieuw ? "nieuw" : "" }, [
       maak("div", {}, [
         maak("div", { klasse: "renner-naam", tekst: r ? r.naam : `Renner ${sel.cq_riderid}` }),
@@ -546,7 +591,7 @@ function tekenMijnPloeg() {
         }),
       ]),
       maak("span", { klasse: "prijs", tekst: vast ? `${pt(puntenVan.get(sel.cq_riderid) || 0)} pt` : `${staat.prijzen.get(sel.cq_riderid) ?? "?"} cr` }),
-      m.modus === "gesloten" ? maak("span") : knop,
+      m.modus === "gesloten" && !vertrekt && !jokerNieuw(sel) ? maak("span") : knop,
     ]));
   }
   if (!rijen.length) lijst.append(maak("li", { klasse: "leeg", tekst: "Nog geen renners gekozen. Kies ze in de rennerspool." }));
@@ -564,6 +609,18 @@ function tekenMijnPloeg() {
 // De knop om een renner uit je ploeg te halen (in je ploeg én in de rennerspool).
 // Voor het seizoen of bij een nieuwe aankoop: schrappen. Anders: verkopen na de lopende periode.
 function minKnop(sel, m) {
+  if (m.modus === "joker" || (m.modus === "gesloten" && sel.vanaf_datum === m.morgen)) {
+    const nieuwJoker = sel.vanaf_datum === m.morgen;
+    // Niet meer renners verkopen dan je jokers hebt (wissels van vandaag tellen al mee).
+    const j = jokerStand(m);
+    const ruimte = staat.inst.jokers - (j.gebruikt - j.inMorgen.length);
+    const magNiet = !nieuwJoker && (m.modus !== "joker" || j.uitVandaag.length >= ruimte);
+    return maak("button", {
+      klasse: "knop-klein knop-min", tekst: "−",
+      title: nieuwJoker ? "Jokerwissel ongedaan maken" : "Verkopen met een joker (vanaf morgen)",
+      disabled: staat.bezig || magNiet, onclick: () => verwijder(sel, m),
+    });
+  }
   const nieuw = m.modus === "transfers" && sel.vanaf_periode === m.doel;
   const magNiet = m.modus === "gesloten" ||
     (m.modus === "transfers" && !nieuw && transfersVoorDoel(m).uit.length >= staat.inst.max_transfers);
@@ -735,10 +792,14 @@ async function voegToe(riderid) {
   const reden = redenNiet(riderid, m);
   if (reden) return melding(reden, true);
   // Verkocht je deze renner net? Dan maken we de verkoop ongedaan in plaats van hem opnieuw te kopen.
-  const verkocht = staat.mijnSelecties.find((s) => s.cq_riderid === riderid && m.modus === "transfers" && s.tot_periode === m.huidige);
+  const verkocht = staat.mijnSelecties.find((s) => s.cq_riderid === riderid && (
+    (m.modus === "transfers" && s.tot_periode === m.huidige && !s.tot_datum) || (m.modus === "joker" && s.tot_datum === m.vandaag)));
   if (verkocht) return houd(verkocht);
   await bewaar(async () => {
-    const record = await selecties.create({ cq_riderid: riderid, vanaf_periode: m.doel, tot_periode: null });
+    // Een joker: de nieuwe renner telt vanaf morgen, nog in de lopende periode.
+    const record = await selecties.create(m.modus === "joker"
+      ? { cq_riderid: riderid, vanaf_periode: m.huidige, tot_periode: null, vanaf_datum: m.morgen }
+      : { cq_riderid: riderid, vanaf_periode: m.doel, tot_periode: null });
     staat.mijnSelecties.push(record);
   }, "Toevoegen lukte niet");
 }
@@ -746,6 +807,16 @@ async function voegToe(riderid) {
 // Een renner uit de ploeg halen: voor het seizoen of bij een nieuwe aankoop gewoon schrappen,
 // anders verkopen na de lopende periode.
 async function verwijder(selectie, m = modus()) {
+  // Een jokerwissel van vandaag ongedaan maken, of met een joker verkopen.
+  if (selectie.vanaf_datum && selectie.vanaf_datum === m.morgen) {
+    return bewaar(async () => {
+      await selecties.delete(selectie.id);
+      staat.mijnSelecties = staat.mijnSelecties.filter((s) => s.id !== selectie.id);
+    }, "Ongedaan maken lukte niet");
+  }
+  if (m.modus === "joker") {
+    return bewaar(async () => vervang(await selecties.update(selectie.id, { tot_periode: m.huidige, tot_datum: m.vandaag })), "Verkopen lukte niet");
+  }
   if (m.modus === "gesloten") return;
   if (m.modus === "inschrijving" || selectie.vanaf_periode === m.doel) {
     return bewaar(async () => {
@@ -761,14 +832,18 @@ async function verwijder(selectie, m = modus()) {
 
 // Een verkoop ongedaan maken.
 async function houd(selectie) {
-  await bewaar(async () => vervang(await selecties.update(selectie.id, { tot_periode: null })), "Terugzetten lukte niet");
+  await bewaar(async () => vervang(await selecties.update(selectie.id, { tot_periode: null, tot_datum: null })), "Terugzetten lukte niet");
 }
 
 // Transfers als lijst per periode: "Periode 3 · Uit: … · In: …".
 function transferLijst(transfers) {
   const naam = (id) => `${staat.rennerOpId.get(id)?.naam ?? `Renner ${id}`} (${staat.prijzen.get(id) ?? "?"} cr)`;
   return maak("ul", { klasse: "transfers" }, transfers.map((t) => maak("li", {}, [
-    maak("strong", { tekst: `Periode ${t.periode}` }),
+    maak("strong", {
+      tekst: t.joker
+        ? `Joker · vanaf ${new Date(t.joker).toLocaleDateString("nl-BE", { day: "numeric", month: "long" })} (periode ${t.periode})`
+        : `Periode ${t.periode}`,
+    }),
     maak("span", { klasse: "uit", tekst: `Uit: ${t.uit.map(naam).join(", ") || "–"}` }),
     maak("span", { klasse: "in", tekst: `In: ${t.in.map(naam).join(", ") || "–"}` }),
   ])));
@@ -817,7 +892,13 @@ function tekenStand() {
     ? staat.alleSelecties.filter((s) => staat.debutanten.has(s.createdBy?.email))
     : staat.alleSelecties;
   const deelnemers = enkelDebutanten ? staat.deelnemers.filter((e) => staat.debutanten.has(e)) : staat.deelnemers;
-  const rijen = berekenStand(meetellend, staat.resultaten, periodeNr, deelnemers);
+  // Groene trui: enkel eendagskoersen; bolletjestrui: enkel rittenkoersen.
+  // De jokerbonus (na het seizoen) telt enkel in het algemeen klassement.
+  const groep = $("stand-groep").value;
+  const soort = { groen: "eendags", bolletjes: "meerdaags" }[groep] ?? null;
+  const bonus = !soort && periodeNr == null ? jokerBonus(meetellend, staat.inst) : new Map();
+  const rijen = berekenStand(meetellend, staat.resultaten, periodeNr, deelnemers, bonus, soort);
+  const dragers = truiDragers(staat);
   const tbody = $("stand-lijst");
   tbody.replaceChildren();
   if (!rijen.length) {
@@ -829,7 +910,10 @@ function tekenStand() {
     tbody.append(
       maak("tr", { klasse: `deelnemer${rij.email === staat.ik.email ? " ik" : ""}`, onclick: () => { detail.hidden = !detail.hidden; } }, [
         maak("td", { klasse: `getal plaats plaats-${rij.plaats}`, tekst: rij.plaats }),
-        maak("td", { tekst: staat.ploegnaamVan.get(rij.email) || "(nog geen ploegnaam)" }),
+        maak("td", {}, [
+          maak("span", { tekst: staat.ploegnaamVan.get(rij.email) || "(nog geen ploegnaam)" }),
+          ...(dragers.get(rij.email) || []).map(truiIcoon),
+        ]),
         maak("td", { tekst: staat.naamVan.get(rij.email) || rij.email }),
         maak("td", { klasse: "getal", tekst: rij.overwinningen }),
         maak("td", { klasse: "getal punten", tekst: pt(rij.punten) }),
@@ -850,7 +934,9 @@ function transfersVanDeelnemer(email, periodeNr) {
   const vandaag = vandaagISO();
   const gestart = new Set(staat.inst.periodes.filter((p) => p.start <= vandaag).map((p) => p.nr));
   const transfers = transfersVan(staat.alleSelecties.filter((s) => s.createdBy?.email === email))
-    .filter((t) => (periodeNr == null || t.periode === periodeNr) && (email === staat.ik.email || gestart.has(t.periode)));
+    .filter((t) => (periodeNr == null || t.periode === periodeNr) &&
+      // Andermans transfers zie je pas als ze gelden (een joker: vanaf zijn datum).
+      (email === staat.ik.email || (t.joker ? t.joker <= vandaag : gestart.has(t.periode))));
   if (!transfers.length) {
     return maak("p", { klasse: "klein", tekst: periodeNr ? `Geen transfers bij de start van periode ${periodeNr}.` : "Nog geen transfers." });
   }
@@ -864,7 +950,8 @@ function detailLijst(rij, periodeNr) {
   const m = modus();
   const nr = periodeNr ?? m.huidige ?? m.doel ?? 1;
   const sel = staat.alleSelecties.filter((s) => s.createdBy?.email === rij.email);
-  const nu = ploegInPeriode(sel, nr).map((s) => s.cq_riderid);
+  // Zonder gekozen periode: de ploeg van vandaag (met jokers); anders de ploeg van die periode.
+  const nu = ploegInPeriode(sel, nr, periodeNr == null && m.huidige ? m.vandaag : null).map((s) => s.cq_riderid);
   const perRenner = new Map(rij.renners.map((r) => [r.cq_riderid, r]));
   const leeg = (id) => ({ cq_riderid: id, punten: 0, resultaten: [] });
   const opPunten = (a, b) => b.punten - a.punten || (staat.prijzen.get(b.cq_riderid) ?? 0) - (staat.prijzen.get(a.cq_riderid) ?? 0);

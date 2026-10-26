@@ -1,6 +1,6 @@
 // Adminpagina: import starten, correcties op uitslagen en de instellingen.
 // Enkel admins krijgen deze tab te zien (zie zetTabsKlaar in app.js).
-import { factorVoor, normaliseer, ploegInPeriode, ploegModus, schaalVoor, uitslagMetCorrecties } from "./spel.js";
+import { factorVoor, normaliseer, ploegInPeriode, ploegModus, schaalVoor, uitslagMetCorrecties, vandaagISO } from "./spel.js";
 
 const $ = (id) => document.getElementById(id);
 let ctx = null;
@@ -41,7 +41,7 @@ async function tekenPloegnamen() {
     });
     // Hoeveel renners heeft de ploeg (voor het seizoen: gekozen; daarna: in de lopende periode)?
     const m = ploegModus(staat.inst);
-    const aantal = ploegInPeriode(staat.alleSelecties.filter((s) => s.createdBy?.email === email), m.huidige ?? m.doel ?? 1).length;
+    const aantal = ploegInPeriode(staat.alleSelecties.filter((s) => s.createdBy?.email === email), m.huidige ?? m.doel ?? 1, m.huidige ? vandaagISO() : null).length;
     const compleet = aantal >= staat.inst.ploeggrootte;
     return maak("tr", {}, [
       maak("td", { tekst: p.createdBy.name || email }),
@@ -258,6 +258,8 @@ const VELDEN = [
   ["budget", "Budget (credits)", "getal"],
   ["ploeggrootte", "Renners per ploeg", "getal"],
   ["max_transfers", "Transfers per periode", "getal"],
+  ["jokers", "Jokers per deelnemer (wissels buiten een transferperiode)", "getal"],
+  ["joker_bonus", "Punten per niet-gebruikte joker (na het seizoen)", "getal"],
   ["type_drempel_punten", "Type renner: minimum punten vorig seizoen (anders Knecht)", "getal"],
   ["type_marge", "Type renner: marge voor een duidelijk type (anders Allrounder)", "getal"],
   ["klassefactoren.grote_ronde", "Factor grote ronde", "getal"],

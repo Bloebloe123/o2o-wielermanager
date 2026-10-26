@@ -1,6 +1,8 @@
 // Overzicht: de startpagina met je ploeg, de volgende koers, de laatste uitslag en de top 5.
 import { berekenStand, ploegInPeriode, ploegModus, vandaagISO } from "./spel.js";
 import { laatsteUitslagen } from "./uitslagen.js";
+import { truiDragers, truiIcoon } from "./truien.js";
+import { jokerBonus } from "./spel.js";
 
 const $ = (id) => document.getElementById(id);
 
@@ -19,7 +21,7 @@ export async function tekenOverzicht(ctx) {
   const naam = (id) => staat.rennerOpId.get(id)?.naam ?? `Renner ${id}`;
 
   // ---- Mijn ploeg (zoals ze nu rijdt; voor het seizoen: zoals je ze koos) ----
-  const ploeg = ploegInPeriode(staat.mijnSelecties, m.huidige ?? m.doel ?? 1)
+  const ploeg = ploegInPeriode(staat.mijnSelecties, m.huidige ?? m.doel ?? 1, m.huidige ? vandaag : null)
     .sort((a, b) => (puntenVan.get(b.cq_riderid)?.punten || 0) - (puntenVan.get(a.cq_riderid)?.punten || 0) ||
       staat.prijzen.get(b.cq_riderid) - staat.prijzen.get(a.cq_riderid));
   $("ov-ploegnaam").textContent = $("mijn-ploegnaam").textContent;
@@ -56,11 +58,15 @@ export async function tekenOverzicht(ctx) {
   // ---- Top 5 van de stand, en waar jouw ploeg staat ----
   $("ov-top").replaceChildren(maak("li", { klasse: "klein", tekst: "Stand wordt berekend…" }));
   await laadDeelnemers();
-  const stand = berekenStand(staat.alleSelecties, staat.resultaten, null, staat.deelnemers);
+  const stand = berekenStand(staat.alleSelecties, staat.resultaten, null, staat.deelnemers, jokerBonus(staat.alleSelecties, staat.inst));
+  const dragers = truiDragers(staat);
   const ikIndex = stand.findIndex((r) => r.email === staat.ik.email);
   const standRij = (r) => maak("li", { klasse: r.email === staat.ik.email ? "ik" : "" }, [
     maak("span", { klasse: `plaats plaats-${r.plaats}`, tekst: r.plaats }),
-    maak("span", { tekst: staat.ploegnaamVan.get(r.email) || staat.naamVan.get(r.email) || r.email }),
+    maak("span", {}, [
+      maak("span", { tekst: staat.ploegnaamVan.get(r.email) || staat.naamVan.get(r.email) || r.email }),
+      ...(dragers.get(r.email) || []).map(truiIcoon),
+    ]),
     maak("span", { klasse: "punten-renner", tekst: `${pt(r.punten)} pt` }),
   ]);
   const rijen = stand.slice(0, 5).map(standRij);

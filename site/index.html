@@ -23,6 +23,7 @@
       <button class="tab actief" data-tab="overzicht">Overzicht</button>
       <button class="tab" data-tab="ploeg">Mijn ploeg</button>
       <button class="tab" data-tab="stand">Stand</button>
+      <button class="tab" data-tab="spiegel">Spiegel</button>
       <button class="tab" data-tab="statistieken">Statistieken</button>
       <button class="tab" data-tab="kalender">Kalender</button>
       <button class="tab" data-tab="regels">Spelregels</button>
@@ -93,6 +94,7 @@
         <h2 id="mijn-ploegnaam">Mijn ploeg</h2>
         <p id="ploeg-status" class="status"></p>
         <button id="voorstel" class="knop voorstel-knop" type="button" hidden>Doe een voorstel</button>
+        <button id="joker-knop" class="knop voorstel-knop joker-knop" type="button" hidden>Joker inzetten</button>
         <div class="meters">
           <div class="meter">
             <div class="meter-label"><span>Budget</span><strong id="budget-tekst"></strong></div>
@@ -156,7 +158,9 @@
         <h2>Stand</h2>
         <div class="stand-filters">
           <select id="stand-groep">
-            <option value="">Alle deelnemers</option>
+            <option value="">Algemeen (gele trui)</option>
+            <option value="groen">Eendagskoersen (groene trui)</option>
+            <option value="bolletjes">Rittenkoersen (bolletjestrui)</option>
             <option value="debutanten">Debutanten</option>
           </select>
           <select id="stand-keuze"></select>
@@ -178,6 +182,14 @@
         </table>
       </div>
     </section>
+    <section id="tab-spiegel" hidden>
+      <div class="kaart spiegel-keuze">
+        <h2>Spiegel</h2>
+        <label>Vergelijk je ploeg met <select id="spiegel-keuze"></select></label>
+      </div>
+      <div id="spiegel-inhoud" class="spiegel"></div>
+    </section>
+
     <section id="tab-statistieken" hidden>
       <div id="stats-inhoud" class="stats"></div>
     </section>

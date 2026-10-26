@@ -101,22 +101,49 @@ export function ploegModus(inst, vandaag = vandaagISO()) {
 
 // Transfers, afgeleid uit de selecties: per periode P (vanaf 2) welke renners
 // eruit gingen (tot_periode = P - 1) en welke erbij kwamen (vanaf_periode = P).
+// Een joker (zie spelregels) is een wissel midden in een periode: de renner die eruit gaat,
+// krijgt tot_datum, de nieuwe vanaf_datum. Jokers staan als aparte groep met hun datum.
 export function transfersVan(selecties) {
-  const perPeriode = new Map();
-  const groep = (p) => {
-    if (!perPeriode.has(p)) perPeriode.set(p, { periode: p, uit: [], in: [] });
-    return perPeriode.get(p);
+  const groepen = new Map();
+  const groep = (periode, joker = null) => {
+    const sleutel = joker ? `${periode}-joker-${joker}` : `${periode}`;
+    if (!groepen.has(sleutel)) groepen.set(sleutel, { periode, joker, uit: [], in: [] });
+    return groepen.get(sleutel);
   };
   for (const s of selecties) {
-    if (s.vanaf_periode > 1) groep(s.vanaf_periode).in.push(s.cq_riderid);
-    if (s.tot_periode != null) groep(s.tot_periode + 1).uit.push(s.cq_riderid);
+    if (s.vanaf_datum) groep(s.vanaf_periode, s.vanaf_datum).in.push(s.cq_riderid);
+    else if (s.vanaf_periode > 1) groep(s.vanaf_periode).in.push(s.cq_riderid);
+    if (s.tot_datum) groep(s.tot_periode, dagNa(s.tot_datum)).uit.push(s.cq_riderid);
+    else if (s.tot_periode != null) groep(s.tot_periode + 1).uit.push(s.cq_riderid);
   }
-  return [...perPeriode.values()].sort((a, b) => a.periode - b.periode);
+  return [...groepen.values()].sort((a, b) => a.periode - b.periode || (a.joker || "").localeCompare(b.joker || ""));
 }
 
-// Selecties die in een bepaalde periode in de ploeg zitten.
-export function ploegInPeriode(selecties, nr) {
-  return selecties.filter((s) => s.vanaf_periode <= nr && (s.tot_periode == null || s.tot_periode >= nr));
+// Hoeveel jokers gebruikte een deelnemer al?
+export function jokersGebruikt(selecties) {
+  return selecties.filter((s) => s.vanaf_datum).length;
+}
+
+// Bonus voor niet-gebruikte jokers, enkel als het seizoen voorbij is: Map e-mail -> punten.
+export function jokerBonus(selecties, inst, vandaag = vandaagISO()) {
+  const bonus = new Map();
+  if (!inst.jokers || vandaag <= inst.seizoen_einde) return bonus;
+  const perDeelnemer = new Map();
+  for (const s of selecties) {
+    const email = s.createdBy?.email;
+    if (email) perDeelnemer.set(email, [...(perDeelnemer.get(email) || []), s]);
+  }
+  for (const [email, sel] of perDeelnemer) {
+    bonus.set(email, Math.max(0, inst.jokers - jokersGebruikt(sel)) * inst.joker_bonus);
+  }
+  return bonus;
+}
+
+// Selecties die in een bepaalde periode in de ploeg zitten. Met `datum` ook rekening houdend
+// met jokers: wie er met een joker uit ging of in kwam, telt enkel binnen zijn datums.
+export function ploegInPeriode(selecties, nr, datum = null) {
+  return selecties.filter((s) => s.vanaf_periode <= nr && (s.tot_periode == null || s.tot_periode >= nr) &&
+    (!datum || ((!s.vanaf_datum || s.vanaf_datum <= datum) && (!s.tot_datum || s.tot_datum >= datum))));
 }
 
 // ---------- Punten ----------
@@ -198,6 +225,7 @@ export function rennerResultaten(koersen, correcties, inst, kalender = []) {
       if (!perRenner.has(cq_riderid)) perRenner.set(cq_riderid, []);
       perRenner.get(cq_riderid).push({
         cq_raceid: koers.cq_raceid, naam: koers.naam, datum: koers.datum, periode: periode.nr,
+        peildatum: peildatum.get(koers.cq_raceid), soort: koers.type === "eendags" ? "eendags" : "meerdaags",
         positie, punten: basis * factor, overwinning: positie === 1 && OVERWINNING.has(koers.type),
       });
     }
@@ -210,7 +238,9 @@ export function rennerResultaten(koersen, correcties, inst, kalender = []) {
 // Geeft rijen { email, punten, overwinningen, renners: [{ cq_riderid, punten, resultaten }], plaats },
 // gesorteerd op punten en dan op aantal overwinningen.
 // `deelnemers`: e-mails van ploegen die ook zonder renners in de stand moeten (met 0 punten).
-export function berekenStand(selecties, resultaten, periodeNr = null, deelnemers = []) {
+// `bonus`: Map e-mail -> extra punten (bv. voor niet-gebruikte jokers).
+// `soort`: "eendags" of "meerdaags" om enkel die punten te tellen (groene trui, bolletjestrui).
+export function berekenStand(selecties, resultaten, periodeNr = null, deelnemers = [], bonus = new Map(), soort = null) {
   const perDeelnemer = new Map(deelnemers.map((email) => [email, { email, punten: 0, overwinningen: 0, renners: new Map() }]));
   for (const sel of selecties) {
     const email = sel.createdBy?.email;
@@ -219,7 +249,9 @@ export function berekenStand(selecties, resultaten, periodeNr = null, deelnemers
     const rij = perDeelnemer.get(email);
     const geteld = (resultaten.get(sel.cq_riderid) || []).filter((r) =>
       r.periode >= sel.vanaf_periode && (sel.tot_periode == null || r.periode <= sel.tot_periode) &&
-      (periodeNr == null || r.periode === periodeNr));
+      (periodeNr == null || r.periode === periodeNr) && (!soort || r.soort === soort) &&
+      // Jokers: een renner telt enkel binnen zijn datums (de peildatum van een rittenkoers is haar eerste rit).
+      (!sel.vanaf_datum || r.peildatum >= sel.vanaf_datum) && (!sel.tot_datum || r.peildatum <= sel.tot_datum));
     const renner = rij.renners.get(sel.cq_riderid) || { cq_riderid: sel.cq_riderid, punten: 0, resultaten: [] };
     for (const r of geteld) {
       renner.punten += r.punten;
@@ -230,7 +262,8 @@ export function berekenStand(selecties, resultaten, periodeNr = null, deelnemers
     rij.renners.set(sel.cq_riderid, renner);
   }
   const rijen = [...perDeelnemer.values()].map((r) => ({
-    ...r, renners: [...r.renners.values()].sort((a, b) => b.punten - a.punten),
+    ...r, bonus: bonus.get(r.email) || 0, punten: r.punten + (bonus.get(r.email) || 0),
+    renners: [...r.renners.values()].sort((a, b) => b.punten - a.punten),
   }));
   rijen.sort((a, b) => b.punten - a.punten || b.overwinningen - a.overwinningen);
   rijen.forEach((r, i) => {

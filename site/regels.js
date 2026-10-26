@@ -98,13 +98,23 @@ export function tekenRegels({ staat, maak, pt }) {
       "Een renner scoort voor jou enkel in de periodes waarin hij in je ploeg zat.",
       "Een koers telt in de periode waarin ze plaatsvindt. Een rittenkoers telt volledig in de periode van haar eerste rit: " +
         "de ploeg die je had bij de eerste rit, geldt voor de hele koers, ook als er tussendoor een nieuwe periode begint.",
-      "Tijdens de laatste periode liggen de ploegen vast.",
+      "Tijdens de laatste periode is er geen transferperiode meer.",
       "Transfers van anderen zie je zodra hun periode begonnen is.",
+    ]),
+
+    h("Jokers"),
+    lijst([
+      `Je krijgt ${inst.jokers} jokers. Met een joker wissel je één renner buiten een transferperiode: één renner eruit, één erin, binnen het budget.`,
+      "Een jokerwissel geldt vanaf de dag erna. Tot dan kun je hem nog ongedaan maken. De renner die eruit gaat, scoort nog voor jou tot en met de dag van de wissel.",
+      "Ook bij een joker geldt: een rittenkoers telt volledig voor de ploeg die je had bij de eerste rit.",
+      `Elke joker die je niet gebruikt, levert aan het einde van het seizoen ${inst.joker_bonus} punten op in het algemeen klassement.`,
     ]),
 
     h("Klassementen"),
     lijst([
-      "Algemeen klassement: alle punten van het seizoen.",
+      "Algemeen klassement: alle punten van het seizoen. De leider draagt de gele trui.",
+      "Klassement eendagskoersen: enkel de punten uit eendagskoersen. De leider draagt de groene trui.",
+      "Klassement rittenkoersen: enkel de punten uit rittenkoersen (ritten, eindklassementen en truien). De leider draagt de bolletjestrui.",
       "Klassement per periode: enkel de punten van die periode.",
       `Debutanten: wie in ${inst.seizoen} voor het eerst meespeelt.`,
       "Bij gelijke stand beslist het aantal overwinningen: eerste plaatsen in ritten, eendagskoersen en eindklassementen.",

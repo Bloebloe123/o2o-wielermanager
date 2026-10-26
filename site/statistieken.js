@@ -33,7 +33,7 @@ export async function tekenStatistieken(ctx) {
   const gekozen = new Map();
   const huidigePloeg = new Map();
   for (const [email, sel] of perDeelnemer) {
-    const ploeg = ploegInPeriode(sel, periodeNu).map((s) => s.cq_riderid);
+    const ploeg = ploegInPeriode(sel, periodeNu, m.huidige ? vandaagISO() : null).map((s) => s.cq_riderid);
     huidigePloeg.set(email, ploeg);
     for (const id of ploeg) gekozen.set(id, (gekozen.get(id) || 0) + 1);
   }
@@ -115,7 +115,7 @@ export async function tekenStatistieken(ctx) {
   const gestart = new Set(staat.inst.periodes.filter((p) => p.start <= vandaag).map((p) => p.nr));
   const gekocht = new Map(), verkocht = new Map();
   for (const sel of perDeelnemer.values()) {
-    for (const t of transfersVan(sel).filter((x) => gestart.has(x.periode))) {
+    for (const t of transfersVan(sel).filter((x) => (x.joker ? x.joker <= vandaag : gestart.has(x.periode)))) {
       for (const id of t.in) gekocht.set(id, (gekocht.get(id) || 0) + 1);
       for (const id of t.uit) verkocht.set(id, (verkocht.get(id) || 0) + 1);
     }
