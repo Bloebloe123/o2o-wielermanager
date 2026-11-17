@@ -48,9 +48,9 @@
   }
 
   const storage = {
-    async get(key, shared) { await pauze(); const v = lees((shared ? "deel:" : "eigen:") + key); return v == null ? null : { key, value: v, shared: !!shared, updatedBy: null }; },
-    async set(key, value, shared) { await pauze(); schrijf((shared ? "deel:" : "eigen:") + key, value); return { key, value, shared: !!shared }; },
-    async delete(key, shared) { await pauze(); localStorage.removeItem("stub:" + (shared ? "deel:" : "eigen:") + key); return { key, deleted: true, shared: !!shared }; },
+    async get(key, shared) { await pauze(); const v = lees((shared ? "deel:" : `eigen:${ik.email}:`) + key); return v == null ? null : { key, value: v, shared: !!shared, updatedBy: null }; },
+    async set(key, value, shared) { await pauze(); schrijf((shared ? "deel:" : `eigen:${ik.email}:`) + key, value); return { key, value, shared: !!shared }; },
+    async delete(key, shared) { await pauze(); localStorage.removeItem("stub:" + (shared ? "deel:" : `eigen:${ik.email}:`) + key); return { key, deleted: true, shared: !!shared }; },
     async list() { return { keys: [], prefix: "", shared: false, changesCursor: "stub" }; },
   };
 

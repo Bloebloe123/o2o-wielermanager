@@ -210,9 +210,10 @@ function isAdmin() {
 // ---------- Testversie ----------
 
 // In de testversie (instelling testmodus) speelt de site een oud seizoen na met een
-// gesimuleerde datum, gedeeld door iedereen. Enkel koersen tot die datum tellen.
+// gesimuleerde datum. Elke deelnemer heeft zijn eigen datum en zet die zelf verder, op
+// eigen tempo. Enkel koersen tot die datum tellen.
 async function zetTestmodusKlaar() {
-  const rij = await window.storage.get("testdatum", true);
+  const rij = await window.storage.get("testdatum", false);
   const datum = rij?.value || staat.inst.testmodus_startdatum;
   zetTestdatum(datum);
   staat.alleKoersen = staat.koersen.koersen;
@@ -226,10 +227,10 @@ async function zetTestmodusKlaar() {
   $("test-info").textContent = vandaag.length
     ? `Vandaag gereden: ${vandaag.slice(0, 3).join(" · ")}${vandaag.length > 3 ? ` en nog ${vandaag.length - 3}` : ""}.`
     : "Vandaag geen koersen.";
-  const admin = staat.inst.admins.includes(staat.ik.email);
-  $("test-knoppen").hidden = !admin;
+  // Iedereen mag zijn eigen datum verderzetten; testploegen aanmaken blijft voor admins.
+  $("test-ploegen").hidden = !staat.inst.admins.includes(staat.ik.email);
   const zet = async (nieuw) => {
-    await window.storage.set("testdatum", nieuw, true);
+    await window.storage.set("testdatum", nieuw, false);
     location.reload();
   };
   $("test-volgende").disabled = !volgende;
