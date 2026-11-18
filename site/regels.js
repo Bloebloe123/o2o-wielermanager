@@ -55,10 +55,13 @@ export function tekenRegels({ staat, maak, pt }) {
     ]),
 
     h("Prijzen"),
-    p(`De prijs van een renner hangt af van zijn CQ-punten in ${vorig} en blijft het hele seizoen hetzelfde. ` +
+    p(`De prijs van een renner hangt af van zijn score: een gewogen gemiddelde van zijn CQ-punten in ${
+      (inst.prijs_gewichten || [1]).map((g, i) => `${inst.seizoen - 1 - i} (${Math.round(g * 100)}%)`).join(", ")}. ` +
+      "Telt een renner in een jaar niet mee in de CQ-ranglijst (bv. nog geen prof), dan worden de gewichten verdeeld over de jaren waarin hij wel punten had. " +
+      "De prijs blijft het hele seizoen hetzelfde. " +
       `De ${top.length} beste renners krijgen elk een eigen prijs: nr. 1 kost ${top[0]} credits, nr. ${top.length} kost ${top[top.length - 1]} credits. ` +
       "De andere renners vallen in een prijsschijf:"),
-    tabel([`CQ-punten ${vorig}`, "Credits"], schijfRijen),
+    tabel(["Score", "Credits"], schijfRijen),
 
     h("Type renner"),
     p(`In de rennerspool krijgt elke renner een type, op basis van zijn uitslagen in ${vorig} (met de puntentelling van dit spel). ` +

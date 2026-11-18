@@ -31,29 +31,34 @@
     9,
     8
   ],
+  "prijs_gewichten": [
+    0.5,
+    0.3,
+    0.2
+  ],
   "prijsschijven": [
     {
-      "vanaf_punten": 800,
+      "vanaf_punten": 756,
       "prijs": 7
     },
     {
-      "vanaf_punten": 500,
+      "vanaf_punten": 489,
       "prijs": 6
     },
     {
-      "vanaf_punten": 300,
+      "vanaf_punten": 296,
       "prijs": 5
     },
     {
-      "vanaf_punten": 150,
+      "vanaf_punten": 159,
       "prijs": 4
     },
     {
-      "vanaf_punten": 60,
+      "vanaf_punten": 68,
       "prijs": 3
     },
     {
-      "vanaf_punten": 15,
+      "vanaf_punten": 23,
       "prijs": 2
     },
     {

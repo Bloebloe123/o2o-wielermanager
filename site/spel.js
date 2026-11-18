@@ -4,16 +4,33 @@
 // Geeft een Map cq_riderid -> prijs (credits).
 // De beste renners (volgens CQ-punten vorig seizoen) krijgen een unieke prijs uit
 // `prijzen_top`; de rest valt in de eerste prijsschijf waarvan ze de grens halen.
+// De prijsscore van een renner: een gewogen gemiddelde van zijn CQ-punten in de vorige
+// seizoenen (`prijs_gewichten`: eerst vorig seizoen, dan het jaar ervoor, …). Jaren waarin
+// hij niet in de CQ-ranglijst staat (bv. nog geen prof), tellen niet mee: de gewichten worden
+// dan verdeeld over de jaren met punten.
+export function prijsScore(renner, inst) {
+  const per = renner.cq_punten_per_seizoen;
+  const gewichten = inst.prijs_gewichten || [1];
+  if (!per) return renner.cq_punten_vorig_seizoen;
+  let som = 0, gewicht = 0;
+  gewichten.forEach((g, i) => {
+    const punten = per[String(inst.seizoen - 1 - i)] || 0;
+    if (punten > 0) { som += g * punten; gewicht += g; }
+  });
+  return gewicht ? som / gewicht : 0;
+}
+
 export function berekenPrijzen(renners, inst) {
+  const score = new Map(renners.map((r) => [r.cq_riderid, prijsScore(r, inst)]));
   const volgorde = [...renners].sort(
-    (a, b) => b.cq_punten_vorig_seizoen - a.cq_punten_vorig_seizoen || a.naam.localeCompare(b.naam),
+    (a, b) => score.get(b.cq_riderid) - score.get(a.cq_riderid) || a.naam.localeCompare(b.naam),
   );
   const schijven = [...inst.prijsschijven].sort((a, b) => b.vanaf_punten - a.vanaf_punten);
   const prijzen = new Map();
   volgorde.forEach((renner, i) => {
     let prijs = inst.prijzen_top[i];
     if (prijs === undefined) {
-      const schijf = schijven.find((s) => renner.cq_punten_vorig_seizoen >= s.vanaf_punten);
+      const schijf = schijven.find((s) => score.get(renner.cq_riderid) >= s.vanaf_punten);
       prijs = schijf ? schijf.prijs : schijven[schijven.length - 1].prijs;
     }
     prijzen.set(renner.cq_riderid, prijs);

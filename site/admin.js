@@ -267,6 +267,7 @@ const VELDEN = [
   ["klassefactoren.PS", "Factor ProSeries", "getal"],
   ["monumenten.factor", "Factor monumenten", "getal"],
   ["monumenten.namen", "Monumenten (namen zoals op CQ Ranking)", "tekstlijst"],
+  ["prijs_gewichten", "Gewichten prijsscore (vorig seizoen, jaar ervoor, …)", "lijst"],
   ["prijzen_top", "Prijzen van de top (nr 1, nr 2, …)", "lijst"],
   ["prijsschijven", "Prijsschijven (punten:prijs)", "schijven"],
   ["puntenschaal.eindklassement_grote_ronde", "Punten eindklassement grote ronde", "lijst"],

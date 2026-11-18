@@ -1,5 +1,5 @@
 import {
-  berekenPrijzen, berekenStand, jokerBonus, jokersGebruikt, magToevoegen, normaliseer, ploegInPeriode, ploegModus, rennerResultaten,
+  berekenPrijzen, berekenStand, jokerBonus, prijsScore, jokersGebruikt, magToevoegen, normaliseer, ploegInPeriode, ploegModus, rennerResultaten,
   rennerTypes, transfersVan, dagNa,
   TYPES, vandaagISO, zetTestdatum,
 } from "./spel.js";
@@ -101,6 +101,9 @@ async function laadInstellingen() {
     const opgeslagen = JSON.parse(rij.value);
     // Oude instellingen met enkel periodes: geen standaard-transferperiodes eroverheen leggen.
     if (opgeslagen.periodes && !opgeslagen.transferperiodes) delete standaard.transferperiodes;
+    // Instellingen van voor de prijs over meerdere seizoenen: neem ook de nieuwe prijsschijven over,
+    // want de oude grenzen hoorden bij de punten van één seizoen.
+    if (!opgeslagen.prijs_gewichten) delete opgeslagen.prijsschijven;
     return normaliseer({ ...standaard, ...opgeslagen });
   }
   if (standaard.admins.includes(staat.ik.email)) {
@@ -184,6 +187,7 @@ function herbereken() {
     if (!staat.verwijderdOp.has(v.email) || v.createdAt > staat.verwijderdOp.get(v.email)) staat.verwijderdOp.set(v.email, v.createdAt);
   }
   staat.prijzen = berekenPrijzen(staat.renners, staat.inst);
+  staat.scores = new Map(staat.renners.map((r) => [r.cq_riderid, prijsScore(r, staat.inst)]));
   staat.correcties = staat.alleCorrecties.filter((c) => staat.inst.admins.includes(c.createdBy?.email));
   // Enkel naamwijzigingen van een admin tellen; per deelnemer de recentste.
   staat.nieuweNaam = new Map();
@@ -280,7 +284,8 @@ function dagNaTest(iso) {
 function toonKop(renners) {
   $("seizoen").textContent = staat.inst.seizoen;
   $("wie").textContent = staat.ik.name || staat.ik.email;
-  $("kop-punten").textContent = `CQ ${renners.punten_van_seizoen}`;
+  $("kop-punten").textContent = "Score";
+  $("kop-punten").title = "Gewogen gemiddelde van de CQ-punten van de vorige seizoenen; bepaalt de prijs.";
   const laatste = staat.koersen.laatste_import;
   if (staat.inst.testmodus) {
     $("import-info").textContent = `Testversie · ${staat.koersen.aantal} van ${staat.alleKoersen.length} uitslagen van ${staat.inst.seizoen} gereden`;
@@ -656,12 +661,12 @@ function tekenPool() {
   const { veld, af } = staat.sorteer;
   const waarde = {
     naam: (r) => r.naam, land: (r) => r.land, ploeg: (r) => r.ploeg, type: (r) => typeVan(r.cq_riderid),
-    punten: (r) => r.cq_punten_vorig_seizoen, prijs: (r) => staat.prijzen.get(r.cq_riderid),
+    punten: (r) => staat.scores.get(r.cq_riderid), prijs: (r) => staat.prijzen.get(r.cq_riderid),
   }[veld];
   rijen.sort((a, b) => {
     const x = waarde(a), y = waarde(b);
     const verschil = typeof x === "number" ? x - y : String(x).localeCompare(String(y));
-    return (af ? -verschil : verschil) || b.cq_punten_vorig_seizoen - a.cq_punten_vorig_seizoen;
+    return (af ? -verschil : verschil) || staat.scores.get(b.cq_riderid) - staat.scores.get(a.cq_riderid);
   });
   document.querySelectorAll("th[data-sort]").forEach((th) => th.classList.toggle("gesorteerd", th.dataset.sort === veld));
 
@@ -679,7 +684,12 @@ function tekenPool() {
       maak("td", { tekst: r.land }),
       maak("td", { tekst: r.ploeg }),
       maak("td", {}, [maak("span", { klasse: `type type-${typeVan(r.cq_riderid).toLowerCase()}`, tekst: typeVan(r.cq_riderid) })]),
-      maak("td", { klasse: "getal", tekst: r.cq_punten_vorig_seizoen }),
+      maak("td", {
+        klasse: "getal", tekst: Math.round(staat.scores.get(r.cq_riderid)),
+        // Enkel de seizoenen die meetellen voor de prijs.
+        title: (staat.inst.prijs_gewichten || [1]).map((g, i) => staat.inst.seizoen - 1 - i)
+          .map((j) => `${j}: ${r.cq_punten_per_seizoen?.[j] ?? (j === staat.inst.seizoen - 1 ? r.cq_punten_vorig_seizoen : 0)}`).join(" · "),
+      }),
       maak("td", { klasse: "getal prijs", tekst: staat.prijzen.get(r.cq_riderid) }),
       maak("td", {}, [gekozen.has(r.cq_riderid)
         ? minKnop(ploeg.find((s) => s.cq_riderid === r.cq_riderid), m)
