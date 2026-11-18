@@ -1143,7 +1143,6 @@ function detailLijst(rij, periodeNr) {
     return maak("li", { klasse: weg ? "weg" : "" }, [maak("details", {}, [
       maak("summary", {}, [
         maak("span", { klasse: "renner-naam", tekst: r ? r.naam : `Renner ${renner.cq_riderid}` }),
-        maak("span", { klasse: `type type-${typeVan(renner.cq_riderid).toLowerCase()}`, tekst: typeVan(renner.cq_riderid) }),
         maak("span", { klasse: "klein", tekst: `${staat.prijzen.get(renner.cq_riderid) ?? "?"} cr` }),
         maak("span", { klasse: "punten-renner", tekst: `${pt(renner.punten)} pt` }),
       ]),
