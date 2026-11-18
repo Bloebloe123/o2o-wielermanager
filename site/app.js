@@ -239,7 +239,7 @@ async function zetTestmodusKlaar() {
   $("test-ploegen").onclick = maakTestploegen;
   $("test-reset").onclick = () => {
     if (bevestigd($("test-reset"), "Zeker? Klik nogmaals")) zet(staat.inst.testmodus_startdatum);
-    else melding("Klik nogmaals op de knop om terug te gaan naar de startdatum. De ploegen blijven bewaard; alle punten gaan terug naar 0.");
+    else melding("Klik nogmaals op de knop om terug te gaan naar de seizoensstart. De ploegen blijven bewaard; alle punten gaan terug naar 0.");
   };
 }
 
