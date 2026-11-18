@@ -225,12 +225,22 @@ async function zetTestmodusKlaar() {
   staat.koersen = { ...staat.koersen, koersen: gereden, aantal: gereden.length };
 
   $("testbalk").hidden = false;
-  const volgende = staat.alleKoersen.filter((k) => k.datum > datum).map((k) => k.datum).sort()[0];
+  // De volgende koersdagen. Een sprong stopt altijd aan het begin van een transferperiode,
+  // zodat je er niet overheen springt en je transfers kunt doen.
+  const koersdagen = [...new Set(staat.alleKoersen.filter((k) => k.datum > datum).map((k) => k.datum))].sort();
+  const stopBijTransfers = (doel) => {
+    const venster = staat.inst.transferperiodes.find((tp) => tp.open > datum && tp.open <= doel);
+    return venster ? venster.open : doel;
+  };
+  const volgende = koersdagen[0] && stopBijTransfers(koersdagen[0]);
+  const vijfde = koersdagen.length && stopBijTransfers(koersdagen[Math.min(4, koersdagen.length - 1)]);
   const vandaag = staat.alleKoersen.filter((k) => k.datum === datum).map((k) => k.naam);
+  const openVenster = staat.inst.transferperiodes.find((tp) => tp.open <= datum && datum <= tp.sluit);
   $("test-datum").textContent = new Date(datum).toLocaleDateString("nl-BE", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
-  $("test-info").textContent = vandaag.length
+  $("test-info").textContent = (vandaag.length
     ? `Vandaag gereden: ${vandaag.slice(0, 3).join(" · ")}${vandaag.length > 3 ? ` en nog ${vandaag.length - 3}` : ""}.`
-    : "Vandaag geen koersen.";
+    : "Vandaag geen koersen.") +
+    (openVenster ? ` Transferperiode ${openVenster.nr} is open tot en met ${new Date(openVenster.sluit).toLocaleDateString("nl-BE", { day: "numeric", month: "long" })}.` : "");
   // Iedereen mag zijn eigen datum verderzetten; testploegen aanmaken blijft voor admins.
   $("test-ploegen").hidden = !staat.inst.admins.includes(staat.ik.email);
   const zet = async (nieuw) => {
@@ -239,7 +249,8 @@ async function zetTestmodusKlaar() {
   };
   $("test-volgende").disabled = !volgende;
   $("test-volgende").onclick = () => zet(volgende);
-  $("test-dag").onclick = () => zet(dagNaTest(datum));
+  $("test-vijf").disabled = !vijfde;
+  $("test-vijf").onclick = () => zet(vijfde);
   $("test-ploegen").onclick = maakTestploegen;
   $("test-reset").onclick = () => {
     if (bevestigd($("test-reset"), "Zeker? Klik nogmaals")) zet(staat.inst.testmodus_startdatum);
@@ -273,12 +284,6 @@ async function maakTestploegen() {
   } finally {
     knop.disabled = false;
   }
-}
-
-function dagNaTest(iso) {
-  const d = new Date(`${iso}T12:00:00Z`);
-  d.setUTCDate(d.getUTCDate() + 1);
-  return d.toISOString().slice(0, 10);
 }
 
 function toonKop(renners) {
