@@ -1079,7 +1079,25 @@ function tekenStand() {
 
 // Wat je ziet als je een ploeg openklikt: de renners met hun punten en de transfers.
 function detailBlok(rij, periodeNr) {
-  return [maak("h4", { tekst: "Renners" }), detailLijst(rij, periodeNr), maak("h4", { tekst: "Transfers" }), transfersVanDeelnemer(rij.email, periodeNr)];
+  return [
+    maak("h4", { tekst: `Overwinningen (${rij.overwinningen})` }), overwinningenLijst(rij),
+    maak("h4", { tekst: "Renners" }), detailLijst(rij, periodeNr),
+    maak("h4", { tekst: "Transfers" }), transfersVanDeelnemer(rij.email, periodeNr),
+  ];
+}
+
+// De overwinningen van een ploeg (ritten, eendagskoersen, eindklassementen), recentste eerst.
+// Enkel van renners die toen in de ploeg zaten, en binnen de gekozen periode.
+function overwinningenLijst(rij) {
+  const zeges = rij.renners.flatMap((r) => r.resultaten.filter((x) => x.overwinning).map((x) => ({ ...x, renner: r.cq_riderid })))
+    .sort((a, b) => b.datum.localeCompare(a.datum));
+  if (!zeges.length) return maak("p", { klasse: "klein", tekst: "Nog geen overwinningen." });
+  return maak("ul", { klasse: "zeges" }, zeges.map((z) => maak("li", {}, [
+    maak("span", { klasse: "klein zege-datum", tekst: new Date(z.datum).toLocaleDateString("nl-BE", { day: "numeric", month: "short" }) }),
+    maak("span", { tekst: z.naam }),
+    maak("strong", { tekst: staat.rennerOpId.get(z.renner)?.naam ?? `Renner ${z.renner}` }),
+    maak("span", { klasse: "punten-renner", tekst: `${pt(z.punten)} pt` }),
+  ])));
 }
 
 // Transfers van één deelnemer, voor één periode of (algemeen klassement) allemaal.

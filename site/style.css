@@ -241,6 +241,16 @@ ul.uitslagen details[open] summary::after { content: "−"; }
 ul.uitslagen details > p { margin: 4px 14px 10px; }
 .kalender-uitslagen { margin: 8px 0 24px; }
 .ploeg-detail { padding: 4px 0 8px; }
+.detail ul.zeges { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px; margin-bottom: 4px; }
+/* Overwinning: datum | renner | punten, met de koers eronder. */
+.detail ul.zeges li {
+  display: grid; grid-template-columns: 56px minmax(0, 1fr) 60px; column-gap: 10px; align-items: baseline;
+  grid-template-areas: "datum renner punten" ". koers koers"; font-size: 0.85rem; padding: 4px 0;
+}
+.detail ul.zeges li .zege-datum { grid-area: datum; }
+.detail ul.zeges li strong { grid-area: renner; overflow-wrap: anywhere; }
+.detail ul.zeges li span:nth-child(2) { grid-area: koers; color: var(--o2o-gray); overflow-wrap: anywhere; }
+.detail ul.zeges li .punten-renner { grid-area: punten; text-align: right; }
 .detail ul.ploeg-renners, ul.ploeg-renners { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 6px; }
 .detail ul.ploeg-renners > li, ul.ploeg-renners > li { display: block; background: var(--o2o-white); border: 1px solid var(--o2o-gray-light); border-radius: 12px; }
 ul.ploeg-renners > li.weg { opacity: 0.7; }
@@ -369,3 +379,12 @@ body.rustig .alleen-rustig { display: inline-block; }
 @media (max-width: 520px) { .gepland-kolommen { grid-template-columns: 1fr; } }
 .meter-label { gap: 8px; }
 @media (max-width: 520px) { #tab-ploeg.vast .meters { grid-template-columns: 1fr; } }
+
+/* Stand op gsm: kolom Deelnemer verbergen, zodat de ploegnaam plaats heeft. */
+@media (max-width: 520px) {
+  .tabel.stand th:nth-child(3), .tabel.stand tr.deelnemer td:nth-child(3) { display: none; }
+  .tabel.stand th:nth-child(1) { width: 32px; }
+  .tabel.stand th:nth-child(4) { width: 52px; font-size: 0; }
+  .tabel.stand th:nth-child(4)::after { content: "Zeges"; font-size: 0.75rem; }
+  .tabel.stand th:nth-child(5) { width: 72px; }
+}
