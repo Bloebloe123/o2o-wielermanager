@@ -1,6 +1,6 @@
 {
   "seizoen": 2027,
-  "layout": "klassiek",
+  "layout": "gemengd",
   "renners_url": "https://bloebloe123.github.io/o2o-wielermanager/data/renners.json",
   "koersen_url": "https://bloebloe123.github.io/o2o-wielermanager/data/koersen.json",
   "koersen_vorig_url": "https://bloebloe123.github.io/o2o-wielermanager/data/archief/koersen-{vorig}.json",
