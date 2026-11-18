@@ -346,3 +346,8 @@ ul.correcties li { display: flex; justify-content: space-between; align-items: c
 .kaart .tabel-wrap { max-width: 100%; }
 .profiel > *, .profiel form > * { min-width: 0; }
 .profiel select, .profiel input[type=text] { width: 100%; max-width: 100%; }
+
+/* Onderdelen die enkel in de rustige lay-out bestaan (zie rustig.css). */
+.alleen-rustig, .logo-kleur { display: none; }
+body.rustig .alleen-rustig { display: inline-block; }
+.subtabs[hidden] { display: none; }

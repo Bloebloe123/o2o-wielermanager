@@ -255,6 +255,7 @@ function naWijziging() {
 // Elk veld: [sleutel in de instellingen, label, soort].
 const VELDEN = [
   ["seizoen", "Seizoen", "getal"],
+  ["layout", "Lay-out: rustig of klassiek", "tekst"],
   ["budget", "Budget (credits)", "getal"],
   ["ploeggrootte", "Renners per ploeg", "getal"],
   ["max_transfers", "Transfers per periode", "getal"],

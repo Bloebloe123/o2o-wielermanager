@@ -8,11 +8,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@400;500;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./rustig.css">
 </head>
 <body>
+  <script>
+    // Laatst gebruikte lay-out meteen toepassen, zodat de pagina niet eerst in de andere verschijnt.
+    try { if (localStorage.getItem("layout") === "rustig") document.body.classList.add("rustig"); } catch {}
+  </script>
   <header class="kop">
     <div class="kop-binnen">
-      <img src="./logo-wit.svg" alt="o2o" class="logo">
+      <img src="./logo-wit.svg" alt="o2o" class="logo logo-wit">
+      <img src="./logo-kleur.svg" alt="o2o" class="logo logo-kleur">
       <div class="kop-titel">
         <h1>Be like José <span id="seizoen"></span></h1>
         <p id="import-info" class="kop-sub"></p>
@@ -28,6 +34,7 @@
       <button class="tab" data-tab="kalender">Kalender</button>
       <button class="tab" data-tab="regels">Spelregels</button>
       <button class="tab" data-tab="admin">Admin</button>
+      <button class="tab alleen-rustig" data-tab="meer">Meer</button>
     </nav>
   </header>
 
@@ -47,6 +54,7 @@
   </div>
 
   <main class="inhoud">
+    <nav id="subtabs" class="subtabs" hidden></nav>
     <div id="melding" class="melding" hidden></div>
     <section id="laden" class="kaart">Even geduld, renners en uitslagen worden geladen…</section>
 

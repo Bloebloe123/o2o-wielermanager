@@ -1,0 +1,112 @@
+/* Rustige lay-out. Werkt enkel als <body class="rustig"> (instelling "layout": "rustig").
+   Eén accentkleur (o2o-blauw), grijstinten voor de rest, lijsten in plaats van blokjes,
+   kleinere titels en meer witruimte. Kleur enkel waar ze iets betekent. */
+
+body.rustig {
+  --rustig-lijn: #E6E8EF;
+  --rustig-zacht: #6B6E7B;
+  --rustig-vlak: #FFFFFF;
+  --rustig-achtergrond: #F7F8FB;
+  background: var(--rustig-achtergrond);
+}
+
+/* ---------- Kop: wit, met blauwe accenten ---------- */
+body.rustig .kop { background: var(--rustig-vlak); color: var(--o2o-text); border-bottom: 1px solid var(--rustig-lijn); }
+body.rustig .logo-wit { display: none; }
+body.rustig .logo-kleur { display: block; }
+body.rustig .kop-binnen { padding-top: 18px; padding-bottom: 6px; }
+body.rustig .kop-titel h1 { font-size: 1.35rem; color: var(--o2o-text); }
+body.rustig .kop-sub { color: var(--rustig-zacht); font-size: 0.8rem; }
+body.rustig .wie { color: var(--rustig-zacht); }
+
+/* Tabbladen: tekst met een blauwe lijn onder het actieve. */
+body.rustig .tab { color: var(--rustig-zacht); border-radius: 0; padding: 10px 14px; border-bottom: 2px solid transparent; }
+body.rustig .tab:hover { color: var(--o2o-text); }
+body.rustig .tab.actief { background: transparent; color: var(--o2o-blue); border-bottom-color: var(--o2o-blue); }
+body.rustig .tab[data-tab="spiegel"],
+body.rustig .tab[data-tab="statistieken"],
+body.rustig .tab[data-tab="regels"],
+body.rustig .tab[data-tab="admin"] { display: none; }
+
+/* Subtabs binnen een groep (Stand, Meer). */
+body.rustig .subtabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+body.rustig .subtabs[hidden] { display: none; }
+body.rustig .subtab {
+  border: 1px solid var(--rustig-lijn); background: var(--rustig-vlak); color: var(--rustig-zacht);
+  border-radius: 999px; padding: 6px 14px; font-family: var(--o2o-font-ui); font-size: 0.85rem; cursor: pointer;
+}
+body.rustig .subtab.actief { border-color: var(--o2o-blue); color: var(--o2o-blue); background: var(--o2o-tint-blue); }
+
+/* Testbalk: één dunne regel. */
+body.rustig .testbalk { background: var(--o2o-tint-orange); border-bottom: 1px solid #F3DDB3; }
+body.rustig .testbalk-binnen { padding-top: 8px; padding-bottom: 8px; font-size: 0.85rem; }
+body.rustig .test-knoppen .knop { background: transparent; color: var(--o2o-text); box-shadow: inset 0 0 0 1px #E2C58E; padding: 5px 12px; font-size: 0.8rem; font-weight: 500; }
+body.rustig .test-knoppen .knop:hover { transform: none; background: #FFF0D6; }
+body.rustig .test-knoppen #test-volgende { background: var(--o2o-text); color: var(--o2o-white); box-shadow: none; }
+
+/* ---------- Kaarten en titels ---------- */
+body.rustig .inhoud { padding-top: 24px; }
+body.rustig .kaart { box-shadow: none; border: 1px solid var(--rustig-lijn); border-radius: 14px; padding: 20px; }
+body.rustig h2 { font-size: 1.05rem; font-weight: 700; color: var(--o2o-text); }
+body.rustig .regels h3, body.rustig .stat h3, body.rustig #tab-admin h3, body.rustig .spiegel-lijst h3,
+body.rustig .transfer-blok h3, body.rustig .detail h4 { color: var(--o2o-text); font-size: 0.95rem; }
+body.rustig .status { color: var(--rustig-zacht); }
+
+/* ---------- Knoppen: één opvallende, de rest omlijnd ---------- */
+body.rustig .knop:hover { transform: none; filter: brightness(1.08); }
+body.rustig .knop-licht, body.rustig .knop-licht-rand, body.rustig .joker-knop, body.rustig #plan-knop {
+  background: var(--rustig-vlak); color: var(--o2o-blue); box-shadow: inset 0 0 0 1px var(--o2o-blue);
+}
+body.rustig .joker-knop { color: var(--o2o-purple); box-shadow: inset 0 0 0 1px var(--o2o-purple); }
+body.rustig .knop-gevaar { background: var(--rustig-vlak); color: var(--o2o-purple); box-shadow: inset 0 0 0 1px var(--o2o-purple); }
+body.rustig .knop-plus { background: transparent; box-shadow: inset 0 0 0 1px var(--rustig-lijn); }
+body.rustig .knop-min { background: transparent; box-shadow: inset 0 0 0 1px var(--rustig-lijn); }
+
+/* ---------- Lijsten: rijen met een dunne lijn in plaats van gekleurde blokjes ---------- */
+body.rustig .ploeg-lijst { gap: 0; }
+body.rustig .ploeg-lijst li { background: transparent; border-radius: 0; border-bottom: 1px solid var(--rustig-lijn); padding: 9px 4px; }
+body.rustig .ploeg-lijst li:last-child { border-bottom: 0; }
+body.rustig .ploeg-lijst li.nieuw { background: transparent; box-shadow: inset 3px 0 0 var(--o2o-orange); padding-left: 10px; }
+body.rustig .ploeg-lijst li.vertrekt { background: transparent; }
+body.rustig #tab-ploeg.vast .ploeg-lijst { column-gap: 32px; }
+body.rustig .prijs { color: var(--o2o-text); }
+
+body.rustig .ov-lijst { gap: 0; }
+body.rustig .ov-ploeg li { background: transparent; border-radius: 0; border-bottom: 1px solid var(--rustig-lijn); padding: 8px 2px; }
+body.rustig .ov-koersen > li, body.rustig ul.uitslagen > li { background: transparent; border-radius: 0; border-bottom: 1px solid var(--rustig-lijn); }
+body.rustig ul.uitslagen { gap: 0; }
+body.rustig ul.uitslagen summary { padding-left: 2px; }
+body.rustig ul.koersen li:nth-child(odd) { background: transparent; }
+body.rustig ul.koersen li { border-bottom: 1px solid var(--rustig-lijn); border-radius: 0; }
+body.rustig .periode-blok { border-color: var(--rustig-lijn); }
+body.rustig .transfermoment { background: transparent; border-left-width: 3px; border-radius: 0; padding: 6px 16px; }
+body.rustig ul.transfers li, body.rustig .ploeg-tips { background: var(--rustig-achtergrond); }
+body.rustig ul.ploeg-renners > li { border-color: var(--rustig-lijn); }
+
+/* ---------- Labels: grijs met een gekleurd bolletje ---------- */
+body.rustig .type { background: transparent; color: var(--rustig-zacht); padding: 0; font-weight: 400; }
+body.rustig .type::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; background: #C9CCD6; vertical-align: 1px; }
+body.rustig .type-ronderenner::before { background: var(--o2o-purple); }
+body.rustig .type-klassiekerrenner::before { background: var(--o2o-blue); }
+body.rustig .type-sprinter::before { background: var(--o2o-orange); }
+body.rustig .type-allrounder::before { background: var(--o2o-text); }
+body.rustig .type-knop { background: var(--rustig-vlak); border: 1px solid var(--rustig-lijn); color: var(--rustig-zacht); opacity: 1; }
+body.rustig .type-knop.actief { border-color: var(--o2o-blue); color: var(--o2o-blue); }
+body.rustig .badge { background: transparent; color: var(--rustig-zacht); font-weight: 500; padding: 0; }
+body.rustig .badge.gt, body.rustig .badge.mon { color: var(--o2o-text); font-weight: 600; }
+
+/* ---------- Kleinere accenten ---------- */
+body.rustig .ov-start { background: var(--o2o-tint-orange); border: 1px solid #F3DDB3; border-left-width: 1px; }
+body.rustig .melding { border-left-width: 3px; }
+body.rustig .tabel.stand td.punten, body.rustig .spiegel-punten { color: var(--o2o-text); }
+body.rustig .notities textarea { background: var(--rustig-vlak); }
+body.rustig .notities label, body.rustig .ploeg-tips summary { font-family: var(--o2o-font-ui); font-weight: 600; color: var(--o2o-text); }
+
+@media (max-width: 700px) {
+  body.rustig .kop-binnen { padding-top: 12px; }
+  body.rustig .kop-titel h1 { font-size: 1.15rem; }
+}
+
+/* Mijn ploeg: punten en meters rustiger. */
+body.rustig .ploeg-lijst .prijs { font-size: 0.95rem; font-weight: 600; }
+body.rustig .balk-vulling.oranje { background: var(--o2o-blue-light); }

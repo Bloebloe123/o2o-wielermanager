@@ -123,6 +123,9 @@ async function start() {
   try {
     staat.ik = await window.vibers.me();
     staat.inst = await laadInstellingen();
+    // Rustigere lay-out (voorlopig enkel op de testsite): aan of uit via de instelling "layout".
+    document.body.classList.toggle("rustig", staat.inst.layout === "rustig");
+    try { localStorage.setItem("layout", staat.inst.layout || "klassiek"); } catch { /* geen opslag: niet erg */ }
     const [renners, koersen, mijnProfielen, mijn, alleCorrecties, kalender, alleNaamwijzigingen, koersenVorig, alleVerwijderingen] = await Promise.all([
       haalJson(staat.inst.renners_url),
       haalJson(staat.inst.koersen_url),
@@ -398,12 +401,32 @@ function redenNiet(riderid, m = modus()) {
 
 // ---------- Tabs ----------
 
+// In de rustige lay-out staan sommige tabbladen samen onder één hoofdtab, met subtabs.
+const GROEPEN = { stand: ["stand", "spiegel", "statistieken"], meer: ["regels", "admin"] };
+const SUBNAAM = { stand: "Klassement", spiegel: "Spiegel", statistieken: "Statistieken", regels: "Spelregels", admin: "Admin" };
+
+function toonSubtabs(tab) {
+  const rustig = document.body.classList.contains("rustig");
+  const groep = rustig ? Object.keys(GROEPEN).find((g) => GROEPEN[g].includes(tab)) : null;
+  // De hoofdtab van de groep oplichten (bv. "Stand" ook bij Spiegel).
+  if (groep) document.querySelectorAll(".tab").forEach((k) => k.classList.toggle("actief", k.dataset.tab === groep));
+  const nav = $("subtabs");
+  nav.hidden = !groep;
+  if (!groep) return;
+  const beschikbaar = GROEPEN[groep].filter((t) => document.querySelector(`.tab[data-tab="${t}"]`));
+  nav.replaceChildren(...beschikbaar.map((t) => maak("button", {
+    type: "button", klasse: `subtab${t === tab ? " actief" : ""}`, tekst: SUBNAAM[t], onclick: () => naarTab(t),
+  })));
+}
+
 function zetTabsKlaar() {
   // De adminpagina bestaat enkel voor admins: voor anderen komt de tab er niet.
   if (!isAdmin()) document.querySelector('.tab[data-tab="admin"]').remove();
   document.querySelectorAll(".tab").forEach((knop) => {
     knop.addEventListener("click", () => {
+      if (knop.dataset.tab === "meer") return naarTab(GROEPEN.meer[0]);
       document.querySelectorAll(".tab").forEach((k) => k.classList.toggle("actief", k === knop));
+      toonSubtabs(knop.dataset.tab);
       for (const tab of ["overzicht", "ploeg", "stand", "spiegel", "statistieken", "kalender", "regels", "admin"]) $(`tab-${tab}`).hidden = knop.dataset.tab !== tab;
       if (knop.dataset.tab === "overzicht") toonOverzicht();
       if (knop.dataset.tab === "spiegel") {
