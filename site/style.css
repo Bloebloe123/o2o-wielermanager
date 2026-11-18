@@ -388,3 +388,11 @@ body.rustig .alleen-rustig { display: inline-block; }
   .tabel.stand th:nth-child(4)::after { content: "Zeges"; font-size: 0.75rem; }
   .tabel.stand th:nth-child(5) { width: 72px; }
 }
+
+/* Overwinningen in de standdetail: inklapbaar. */
+.detail .zeges-blok > summary { display: flex; align-items: center; gap: 8px; list-style: none; padding: 0; }
+.detail .zeges-blok > summary::-webkit-details-marker { display: none; }
+.detail .zeges-blok > summary h4 { margin: 12px 0 8px; }
+.detail .zeges-blok > summary::after { content: "+"; font-family: var(--o2o-font-ui); font-weight: 600; color: var(--o2o-blue); }
+.detail .zeges-blok[open] > summary::after { content: "−"; }
+.detail .zeges-blok[open] { margin-bottom: 8px; }

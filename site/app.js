@@ -1080,10 +1080,17 @@ function tekenStand() {
 // Wat je ziet als je een ploeg openklikt: de renners met hun punten en de transfers.
 function detailBlok(rij, periodeNr) {
   return [
-    maak("h4", { tekst: `Overwinningen (${rij.overwinningen})` }), overwinningenLijst(rij),
+    zegesBlok(rij),
     maak("h4", { tekst: "Renners" }), detailLijst(rij, periodeNr),
     maak("h4", { tekst: "Transfers" }), transfersVanDeelnemer(rij.email, periodeNr),
   ];
+}
+
+// De overwinningen als inklapbaar blok (standaard dicht), zodat de renners meteen zichtbaar zijn.
+function zegesBlok(rij) {
+  const titel = maak("h4", { tekst: `Overwinningen (${rij.overwinningen})` });
+  if (!rij.overwinningen) return maak("div", { klasse: "zeges-blok" }, [titel, overwinningenLijst(rij)]);
+  return maak("details", { klasse: "zeges-blok" }, [maak("summary", {}, [titel]), overwinningenLijst(rij)]);
 }
 
 // De overwinningen van een ploeg (ritten, eendagskoersen, eindklassementen), recentste eerst.
