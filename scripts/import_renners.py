@@ -121,6 +121,11 @@ def main():
 
     punten, punten_datum = punten_vorig_seizoen(vorig)
     print(f"CQ-punten {vorig}: {len(punten)} renners (stand {punten_datum})")
+    # Ook de seizoenen daarvoor: de spelsite berekent de prijs uit een gewogen gemiddelde.
+    historiek = {vorig: punten}
+    for jaar in range(vorig - 1, vorig - config["prijs_jaren"], -1):
+        historiek[jaar], _ = punten_vorig_seizoen(jaar)
+        print(f"CQ-punten {jaar}: {len(historiek[jaar])} renners")
 
     renners = {}
     for code, ploegnaam, ploegtype in ploegen(ploegjaar, config["ploegklassen"]):
@@ -139,6 +144,7 @@ def main():
                 "ploegcode": code,
                 "ploegtype": ploegtype,
                 "cq_punten_vorig_seizoen": punten.get(riderid, 0),
+                "cq_punten_per_seizoen": {str(j): p.get(riderid, 0) for j, p in historiek.items()},
             }
 
     if len(renners) < 500:

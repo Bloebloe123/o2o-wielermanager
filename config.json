@@ -10,5 +10,6 @@
     "PS": "^[12]\\.PS$"
   },
   "uitslag_max_positie": 30,
+  "prijs_jaren": 4,
   "opgeven_na_dagen": 60
 }
