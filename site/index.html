@@ -13,7 +13,11 @@
 <body>
   <script>
     // Laatst gebruikte lay-out meteen toepassen, zodat de pagina niet eerst in de andere verschijnt.
-    try { if (localStorage.getItem("layout") === "rustig") document.body.classList.add("rustig"); } catch {}
+    try {
+      const layout = localStorage.getItem("layout");
+      if (layout === "rustig" || layout === "gemengd") document.body.classList.add("rustig");
+      if (layout === "gemengd") document.body.classList.add("gemengd");
+    } catch {}
   </script>
   <header class="kop">
     <div class="kop-binnen">

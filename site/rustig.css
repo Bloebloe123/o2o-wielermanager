@@ -110,3 +110,41 @@ body.rustig .notities label, body.rustig .ploeg-tips summary { font-family: var(
 /* Mijn ploeg: punten en meters rustiger. */
 body.rustig .ploeg-lijst .prijs { font-size: 0.95rem; font-weight: 600; }
 body.rustig .balk-vulling.oranje { background: var(--o2o-blue-light); }
+
+/* ---------- Gemengd: de rustige structuur met het karakter van de klassieke lay-out ----------
+   Blauwe kop (slanker), blauwe titels in Montserrat, zachte gekleurde labels,
+   punten in blauw en een lichtblauwe achtergrond. */
+body.rustig.gemengd { --rustig-achtergrond: var(--o2o-tint-blue); --rustig-lijn: #E1E6F7; }
+
+body.rustig.gemengd .kop { background: var(--o2o-blue); color: var(--o2o-white); border-bottom: 0; }
+body.rustig.gemengd .logo-wit { display: block; }
+body.rustig.gemengd .logo-kleur { display: none; }
+body.rustig.gemengd .kop-titel h1 { color: var(--o2o-white); font-size: 1.45rem; font-weight: 800; }
+body.rustig.gemengd .kop-sub, body.rustig.gemengd .wie { color: var(--o2o-blue-light); }
+body.rustig.gemengd .tab { color: rgba(255, 255, 255, 0.78); border-bottom: 3px solid transparent; }
+body.rustig.gemengd .tab:hover { color: var(--o2o-white); }
+body.rustig.gemengd .tab.actief { color: var(--o2o-white); border-bottom-color: var(--o2o-orange); font-weight: 600; }
+
+body.rustig.gemengd h2 { font-family: var(--o2o-font-heading); font-weight: 800; color: var(--o2o-blue); font-size: 1.15rem; }
+body.rustig.gemengd .regels h3, body.rustig.gemengd .stat h3, body.rustig.gemengd #tab-admin h3,
+body.rustig.gemengd .spiegel-lijst h3, body.rustig.gemengd .transfer-blok h3 { color: var(--o2o-blue); }
+
+body.rustig.gemengd .subtab.actief { background: var(--o2o-blue); color: var(--o2o-white); border-color: var(--o2o-blue); }
+
+/* Zachte gekleurde labels voor de types renner (zoals klassiek, maar kleiner). */
+body.rustig.gemengd .type { padding: 2px 8px; border-radius: 999px; background: var(--o2o-gray-light); font-weight: 500; font-size: 0.72rem; }
+body.rustig.gemengd .type::before { display: none; }
+body.rustig.gemengd .type-ronderenner { background: var(--o2o-tint-purple); color: var(--o2o-purple); }
+body.rustig.gemengd .type-klassiekerrenner { background: var(--o2o-white); color: var(--o2o-blue); box-shadow: inset 0 0 0 1px var(--o2o-blue-light); }
+body.rustig.gemengd .type-sprinter { background: var(--o2o-tint-orange); color: #8a5600; }
+body.rustig.gemengd .type-allrounder { background: var(--o2o-blue); color: var(--o2o-white); }
+body.rustig.gemengd .badge.gt { background: var(--o2o-orange); color: var(--o2o-text); padding: 2px 10px; border-radius: 999px; }
+body.rustig.gemengd .badge.mon { background: var(--o2o-purple); color: var(--o2o-white); padding: 2px 10px; border-radius: 999px; }
+
+/* Punten in blauw, de leider in oranje. */
+body.rustig.gemengd .ploeg-lijst .prijs, body.rustig.gemengd .punten-renner,
+body.rustig.gemengd .tabel.stand td.punten, body.rustig.gemengd .spiegel-punten { color: var(--o2o-blue); }
+body.rustig.gemengd .balk-vulling.oranje { background: var(--o2o-orange); }
+body.rustig.gemengd .ov-start { border-left: 4px solid var(--o2o-orange); }
+body.rustig.gemengd .test-knoppen #test-volgende { background: var(--o2o-blue); }
+body.rustig .detail ul.ploeg-renners { grid-template-columns: repeat(auto-fill, minmax(min(380px, 100%), 1fr)); }

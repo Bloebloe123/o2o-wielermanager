@@ -124,7 +124,9 @@ async function start() {
     staat.ik = await window.vibers.me();
     staat.inst = await laadInstellingen();
     // Rustigere lay-out (voorlopig enkel op de testsite): aan of uit via de instelling "layout".
-    document.body.classList.toggle("rustig", staat.inst.layout === "rustig");
+    // "gemengd" = de rustige structuur met het karakter van de klassieke lay-out.
+    document.body.classList.toggle("rustig", ["rustig", "gemengd"].includes(staat.inst.layout));
+    document.body.classList.toggle("gemengd", staat.inst.layout === "gemengd");
     try { localStorage.setItem("layout", staat.inst.layout || "klassiek"); } catch { /* geen opslag: niet erg */ }
     const [renners, koersen, mijnProfielen, mijn, alleCorrecties, kalender, alleNaamwijzigingen, koersenVorig, alleVerwijderingen] = await Promise.all([
       haalJson(staat.inst.renners_url),
