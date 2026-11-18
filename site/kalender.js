@@ -80,7 +80,7 @@ export function tekenKalender({ staat, maak, pt }) {
       vak.append(maak("div", { klasse: `transfermoment${open ? " open" : ""}` }, [
         maak("strong", { tekst: `Transferperiode ${tp.nr}: ${lang(tp.open)} tot en met ${lang(tp.sluit)}${open ? " · nu open" : ""}` }),
         maak("span", {
-          tekst: `Maximaal ${inst.max_transfers} transfers voor periode ${tp.nr + 1}. Buiten deze dagen ligt je ploeg vast. ` +
+          tekst: `Laatste kans voor je transfers voor periode ${tp.nr + 1} (maximaal ${inst.max_transfers}). Je kunt ze ook al eerder plannen. ` +
             `Wie je verkoopt, rijdt nog voor je tot en met ${kort(p.eind)}, en ook in een rittenkoers die in periode ${p.nr} begon.`,
         }),
       ]));

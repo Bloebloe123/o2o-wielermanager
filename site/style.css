@@ -93,6 +93,9 @@ label.keuze { display: flex; align-items: center; gap: 8px; }
 .paginas { display: flex; align-items: center; gap: 10px; }
 .knop-licht-rand { background: var(--o2o-white); color: var(--o2o-blue); box-shadow: inset 0 0 0 2px var(--o2o-blue); }
 .joker-knop { background: var(--o2o-purple); }
+.ploeg-knoppen { display: flex; flex-wrap: wrap; gap: 8px; }
+.ploeg-knoppen:has(> :not([hidden])) { margin-bottom: 16px; }
+.ploeg-knoppen .voorstel-knop { margin: 0; }
 .ploeg-tips { background: var(--o2o-tint-orange); border-radius: 12px; padding: 10px 14px; margin-bottom: 16px; font-size: 0.88rem; }
 .ploeg-tips summary { cursor: pointer; font-family: var(--o2o-font-heading); font-weight: 700; color: var(--o2o-text); }
 .ploeg-tips ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 6px; }

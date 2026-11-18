@@ -35,6 +35,7 @@ const staat = {
   sorteer: { veld: "prijs", af: true },
   typeFilter: "", // "" = alle types
   jokerModus: false, // speelt de deelnemer nu een joker uit (buiten een transferperiode)?
+  planModus: false, // zet de deelnemer nu transfers klaar voor de volgende transferperiode?
   poolPagina: 0, // welke pagina van de rennerspool (telt vanaf 0)
   bezig: false,
 };
@@ -339,14 +340,23 @@ function toonProfielformulier() {
 
 // De modus van vandaag (zie ploegModus in spel.js) en de ploeg waaraan je werkt:
 // voor het seizoen de ploeg van periode 1, tijdens periode N die van periode N+1.
-// Buiten een transferperiode kan een deelnemer een joker uitspelen: dan is de modus "joker".
-// Een joker-wissel geldt vanaf morgen; tot dan kun je hem nog ongedaan maken.
+// Buiten een transferperiode kan een deelnemer:
+// - een joker uitspelen (modus "joker"): de wissel geldt vanaf morgen;
+// - transfers plannen voor de volgende transferperiode (modus "transfers" met `gepland`): die werken
+//   precies zoals transfers in de transferperiode (ze gaan in bij de start van de volgende periode)
+//   en kunnen aangepast worden tot het einde van die transferperiode.
 function modus() {
   const m = ploegModus(staat.inst);
   const vandaag = vandaagISO();
+  const morgen = dagNa(vandaag);
   const kanJoker = m.modus === "gesloten" && m.huidige && vandaag <= staat.inst.seizoen_einde && staat.inst.jokers > 0;
-  if (kanJoker && staat.jokerModus) return { ...m, modus: "joker", vandaag, morgen: dagNa(vandaag) };
-  return { ...m, kanJoker, vandaag, morgen: dagNa(vandaag) };
+  const kanPlannen = m.modus === "gesloten" && !!m.volgende;
+  if (kanJoker && staat.jokerModus) return { ...m, modus: "joker", vandaag, morgen, kanPlannen };
+  if (kanPlannen && staat.planModus) {
+    return { ...m, modus: "transfers", gepland: true, doel: m.volgende.nr + 1, sluit: m.volgende.sluit,
+      deadline: dagNa(m.volgende.sluit), vandaag, morgen, kanJoker };
+  }
+  return { ...m, kanJoker, kanPlannen, vandaag, morgen };
 }
 
 // De ploeg waaraan je werkt. Bij een joker: de ploeg zoals ze er morgen uitziet.
@@ -515,6 +525,13 @@ function statusTekst(m, ploeg) {
       ? `Kies ${tekort} renners meer. Je kunt je ploeg vrij aanpassen tot ${datumLang(m.deadline)}.`
       : `Je ploeg is compleet. Je kunt ze nog aanpassen tot ${datumLang(m.deadline)}.`;
   }
+  if (m.modus === "transfers" && m.gepland) {
+    const t = transfersVoorDoel(m);
+    return `Transfers plannen voor periode ${m.doel}: ze gaan in op ${datumLang(m.deadline)}. ` +
+      `Je kunt ze aanpassen tot het einde van de transferperiode (${datumLang(m.sluit)}). ` +
+      `${t.uit.length} verkocht en ${t.in.length} gekocht, maximaal ${inst.max_transfers}. ` +
+      "Verkochte renners rijden nog voor je tot het einde van deze periode.";
+  }
   if (m.modus === "transfers") {
     const t = transfersVoorDoel(m);
     return `Transferperiode tot en met ${datumLang(m.sluit)}, voor periode ${m.doel}: ${t.uit.length} verkocht en ${t.in.length} gekocht, ` +
@@ -527,7 +544,12 @@ function statusTekst(m, ploeg) {
       `Je hebt nog ${j.over} van ${inst.jokers} jokers. Verkoop een renner met −, kies dan een vervanger in de rennerspool.`;
   }
   if (m.volgende) {
-    return `Je ploeg ligt vast. Volgende transferperiode: ${datumLang(m.volgende.open)} tot en met ${datumLang(m.volgende.sluit)}, voor periode ${m.volgende.nr + 1}.`;
+    const gepland = transfersVan(staat.mijnSelecties).find((t) => t.periode === m.volgende.nr + 1 && !t.joker);
+    return `Volgende transferperiode: ${datumLang(m.volgende.open)} tot en met ${datumLang(m.volgende.sluit)}, voor periode ${m.volgende.nr + 1}. ` +
+      (gepland
+        ? `Je hebt al ${gepland.uit.length} ${gepland.uit.length === 1 ? "verkoop" : "verkopen"} en ` +
+          `${gepland.in.length} ${gepland.in.length === 1 ? "aankoop" : "aankopen"} gepland.`
+        : "Je kunt je transfers al plannen.");
   }
   return "De ploegen liggen vast tot het einde van het seizoen.";
 }
@@ -573,10 +595,16 @@ function tekenMijnPloeg() {
   // Jokerknop: buiten een transferperiode kun je een joker inzetten (of stoppen met wisselen).
   const jokerKnop = $("joker-knop");
   const j = jokerStand(m);
-  jokerKnop.hidden = !(m.kanJoker || m.modus === "joker");
+  jokerKnop.hidden = !(m.kanJoker || m.modus === "joker") || !!m.gepland;
   jokerKnop.textContent = m.modus === "joker" ? "Klaar met wisselen" : `Joker inzetten (${j.over} van ${inst.jokers} over)`;
   jokerKnop.disabled = m.modus !== "joker" && j.over <= 0;
-  jokerKnop.onclick = () => { staat.jokerModus = !staat.jokerModus; tekenAlles(); };
+  jokerKnop.onclick = () => { staat.jokerModus = !staat.jokerModus; staat.planModus = false; tekenAlles(); };
+
+  // Transfers plannen: buiten een transferperiode al transfers voor de volgende klaarzetten.
+  const planKnop = $("plan-knop");
+  planKnop.hidden = !(m.kanPlannen || m.gepland) || m.modus === "joker";
+  planKnop.textContent = m.gepland ? "Klaar met plannen" : "Transfers plannen";
+  planKnop.onclick = () => { staat.planModus = !staat.planModus; staat.jokerModus = false; tekenAlles(); };
 
   const lijst = $("ploeg-lijst");
   lijst.replaceChildren();

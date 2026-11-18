@@ -15,7 +15,7 @@ export function inHetKort({ inst, maak }) {
       `voor ${datum(eerste.start)}.`),
     stap("Punten scoren", `je renners verdienen punten met hun echte uitslagen in de WorldTour- en ProSeries-koersen van ${inst.seizoen}. ` +
       `Al je ${inst.ploeggrootte} renners tellen altijd mee: je stelt geen ploeg op per koers.`),
-    stap("Ploeg aanpassen", `wissel renners in de transferperiodes (hoogstens ${inst.max_transfers} per keer)` +
+    stap("Ploeg aanpassen", `wissel renners voor de volgende periode (hoogstens ${inst.max_transfers} per keer, aan te passen tot het einde van de transferperiode)` +
       (inst.jokers ? ` of met een van je ${inst.jokers} jokers, op eender welk moment.` : ".")),
     stap("Winnen", "wie op het einde van het seizoen de meeste punten heeft, wint en draagt de gele trui. " +
       "Er zijn ook truien voor eendagskoersen (groen) en rittenkoersen (bolletjes)."),
@@ -132,8 +132,9 @@ export function tekenRegels({ staat, maak, pt }) {
       return [`${x.nr}`, datum(x.start), datum(x.eind), tp ? `${datum(tp.open)} – ${datum(tp.sluit)}` : "–"];
     })),
     lijst([
-      `Enkel tijdens een transferperiode kun je transfers doen voor de volgende periode: hoogstens ${inst.max_transfers} renners verkopen en ${inst.max_transfers} kopen, binnen het budget. Daarbuiten ligt je ploeg vast.`,
-      "Zolang de transferperiode loopt, kun je je transfers nog aanpassen of ongedaan maken.",
+      `Per periode kun je transfers doen voor de volgende periode: hoogstens ${inst.max_transfers} renners verkopen en ${inst.max_transfers} kopen, binnen het budget.`,
+      "Je kunt je transfers op elk moment plannen. Ze gaan in bij de start van de volgende periode, ook als je ze vroeg klaarzet.",
+      "De transferperiode op het einde van elke periode is je laatste kans: tot het einde ervan kun je je transfers nog aanpassen of ongedaan maken.",
       "Een renner scoort voor jou enkel in de periodes waarin hij in je ploeg zat.",
       "Een koers telt in de periode waarin ze plaatsvindt. Een rittenkoers telt volledig in de periode van haar eerste rit: " +
         "de ploeg die je had bij de eerste rit, geldt voor de hele koers, ook als er tussendoor een nieuwe periode begint.",
