@@ -93,6 +93,19 @@ label.keuze { display: flex; align-items: center; gap: 8px; }
 .paginas { display: flex; align-items: center; gap: 10px; }
 .knop-licht-rand { background: var(--o2o-white); color: var(--o2o-blue); box-shadow: inset 0 0 0 2px var(--o2o-blue); }
 .joker-knop { background: var(--o2o-purple); }
+.prijs-filter { gap: 6px; }
+.prijs-filter select { padding: 6px 8px; border: 1px solid var(--o2o-gray-light); border-radius: 999px; background: var(--o2o-white); }
+.gepland-kader { border: 2px solid var(--o2o-blue); border-radius: 14px; padding: 14px 16px; margin-bottom: 16px; background: var(--o2o-white); display: grid; gap: 8px; }
+.gepland-kop { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.gepland-kop h3 { margin: 0; font-family: var(--o2o-font-heading); color: var(--o2o-blue); font-size: 1rem; }
+.gepland-kader p { margin: 0; }
+.gepland-kolommen { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.gepland-kolom h4 { margin: 0 0 6px; font-family: var(--o2o-font-ui); font-size: 0.85rem; }
+.gepland-kolom.eruit h4 { color: var(--o2o-purple); }
+.gepland-kolom.erin h4 { color: var(--o2o-blue); }
+.gepland-kolom ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.gepland-kolom li { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 8px; align-items: center; font-size: 0.88rem; }
+.gepland-kolom li span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ploeg-knoppen { display: flex; flex-wrap: wrap; gap: 8px; }
 .ploeg-knoppen:has(> :not([hidden])) { margin-bottom: 16px; }
 .ploeg-knoppen .voorstel-knop { margin: 0; }
@@ -351,3 +364,8 @@ ul.correcties li { display: flex; justify-content: space-between; align-items: c
 .alleen-rustig, .logo-kleur { display: none; }
 body.rustig .alleen-rustig { display: inline-block; }
 .subtabs[hidden] { display: none; }
+
+/* Geplande transfers: kolommen onder elkaar op smalle schermen. */
+@media (max-width: 520px) { .gepland-kolommen { grid-template-columns: 1fr; } }
+.meter-label { gap: 8px; }
+@media (max-width: 520px) { #tab-ploeg.vast .meters { grid-template-columns: 1fr; } }

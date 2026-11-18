@@ -511,7 +511,14 @@ function toonPloeg() {
   $("mijn-ploegnaam").textContent = ploegnaamVan(staat.ik.email, staat.profiel.ploegnaam) || "Mijn ploeg";
   const ploegen = [...new Set(staat.renners.map((r) => r.ploeg))].sort();
   for (const p of ploegen) $("filter-ploeg").append(maak("option", { tekst: p }));
-  for (const id of ["zoek", "filter-type", "filter-ploeg", "filter-betaalbaar"]) {
+  // Prijsfilter: van … tot … credits (standaard alle prijzen).
+  const hoogste = Math.max(...staat.prijzen.values());
+  for (const id of ["filter-prijs-van", "filter-prijs-tot"]) {
+    $(id).replaceChildren(...Array.from({ length: hoogste }, (_, i) => maak("option", { value: i + 1, tekst: i + 1 })));
+  }
+  $("filter-prijs-van").value = 1;
+  $("filter-prijs-tot").value = hoogste;
+  for (const id of ["zoek", "filter-type", "filter-ploeg", "filter-betaalbaar", "filter-prijs-van", "filter-prijs-tot"]) {
     $(id).addEventListener("input", () => { staat.poolPagina = 0; tekenPool(); });
   }
   document.querySelectorAll("th[data-sort]").forEach((th) => {
@@ -647,7 +654,8 @@ function tekenMijnPloeg() {
     let knop;
     if (vertrekt) {
       knop = maak("button", {
-        klasse: "knop-klein knop-plus", tekst: "↺", title: "Toch houden",
+        klasse: "knop-klein knop-plus", tekst: "↺",
+        title: redenNiet(sel.cq_riderid, m.modus === "gesloten" ? { ...m, modus: "joker" } : m) || "Toch houden",
         disabled: staat.bezig || !!redenNiet(sel.cq_riderid, m.modus === "gesloten" ? { ...m, modus: "joker" } : m), onclick: () => houd(sel),
       });
     } else {
@@ -672,14 +680,76 @@ function tekenMijnPloeg() {
   }
   if (!rijen.length) lijst.append(maak("li", { klasse: "leeg", tekst: "Nog geen renners gekozen. Kies ze in de rennerspool." }));
 
-  // Je eigen transfers, ook de geplande.
+  // Geplande transfers in een eigen kader; hieronder enkel de transfers die al ingingen.
+  const plan = tekenGeplandeTransfers(m);
   const blok = $("mijn-transfers");
   blok.replaceChildren();
-  const alle = transfersVan(staat.mijnSelecties);
-  blok.hidden = !alle.length;
-  if (alle.length) {
-    blok.append(maak("h3", { tekst: "Mijn transfers" }), transferLijst(alle));
+  const eerder = transfersVan(staat.mijnSelecties).filter((t) => t.joker || !plan || t.periode !== plan.doel);
+  blok.hidden = !eerder.length;
+  if (eerder.length) {
+    blok.append(maak("h3", { tekst: "Eerdere transfers" }), transferLijst(eerder));
   }
+}
+
+// De modus om transfers voor de volgende periode te bekijken of te wijzigen, of null als dat niet kan.
+function planModusVoor(m) {
+  if (m.modus === "transfers") return m;
+  if (m.modus === "gesloten" && m.volgende) {
+    return { ...m, modus: "transfers", gepland: true, doel: m.volgende.nr + 1, sluit: m.volgende.sluit, deadline: dagNa(m.volgende.sluit) };
+  }
+  return null;
+}
+
+// Kader "Geplande transfers": wie eruit gaat en wie erbij komt in de volgende periode,
+// met een knop om elke transfer ongedaan te maken. Geeft de planmodus terug (of null).
+function tekenGeplandeTransfers(m) {
+  const kader = $("gepland");
+  const pm = planModusVoor(m);
+  const uit = pm ? staat.mijnSelecties.filter((s) => s.tot_periode === pm.huidige && !s.tot_datum) : [];
+  const erin = pm ? staat.mijnSelecties.filter((s) => s.vanaf_periode === pm.doel && !s.vanaf_datum) : [];
+  // Tonen tijdens het plannen of in de transferperiode, en anders zodra er iets gepland is.
+  kader.hidden = !pm || (m.modus !== "transfers" && !uit.length && !erin.length);
+  if (kader.hidden) return pm;
+
+  const naam = (s) => staat.rennerOpId.get(s.cq_riderid)?.naam ?? `Renner ${s.cq_riderid}`;
+  const prijs = (s) => staat.prijzen.get(s.cq_riderid) ?? 0;
+  const saldo = uit.reduce((som, s) => som + prijs(s), 0) - erin.reduce((som, s) => som + prijs(s), 0);
+  const kolom = (titel, klasse, lijst, knop) => maak("div", { klasse: `gepland-kolom ${klasse}` }, [
+    maak("h4", { tekst: `${titel} (${lijst.length})` }),
+    lijst.length
+      ? maak("ul", {}, lijst.map((s) => maak("li", {}, [
+        maak("span", { tekst: naam(s) }),
+        maak("span", { klasse: "klein", tekst: `${prijs(s)} cr` }),
+        knop(s),
+      ])))
+      : maak("p", { klasse: "klein", tekst: "Nog niemand." }),
+  ]);
+  const terugKnop = (s) => {
+    const reden = redenNiet(s.cq_riderid, pm);
+    return maak("button", {
+      type: "button", klasse: "knop-klein knop-plus", tekst: "↺", title: reden || "Toch houden",
+      disabled: staat.bezig || !!reden, onclick: () => houd(s),
+    });
+  };
+  const schrapKnop = (s) => maak("button", {
+    type: "button", klasse: "knop-klein knop-min", tekst: "×", title: "Aankoop schrappen",
+    disabled: staat.bezig, onclick: () => verwijder(s, pm),
+  });
+  kader.replaceChildren(
+    maak("div", { klasse: "gepland-kop" }, [
+      maak("h3", { tekst: `Geplande transfers voor periode ${pm.doel}` }),
+      maak("span", { klasse: "klein", tekst: `${Math.max(uit.length, erin.length)} van ${staat.inst.max_transfers}` }),
+    ]),
+    maak("p", { klasse: "klein", tekst: `Ze gaan in op ${datumLang(pm.deadline)}. Aanpassen kan tot en met ${datumLang(pm.sluit)}. ` +
+      (saldo ? `Budget na deze transfers: ${saldo > 0 ? "+" : "−"}${Math.abs(saldo)} credits.` : "") }),
+    maak("div", { klasse: "gepland-kolommen" }, [
+      kolom("Eruit", "eruit", uit, terugKnop),
+      kolom("Erin", "erin", erin, schrapKnop),
+    ]),
+    ...(!uit.length && !erin.length
+      ? [maak("p", { klasse: "klein", tekst: "Verkoop een renner met − in je ploeg en kies een vervanger met + in de rennerspool." })] : []),
+  );
+  return pm;
 }
 
 // De knop om een renner uit je ploeg te halen (in je ploeg én in de rennerspool).
@@ -718,12 +788,15 @@ function tekenPool() {
   const type = $("filter-type").value;
   const ploegnaam = $("filter-ploeg").value;
   const betaalbaar = $("filter-betaalbaar").checked;
+  const prijsVan = Number($("filter-prijs-van").value) || 0;
+  const prijsTot = Number($("filter-prijs-tot").value) || Infinity;
 
   // Eerst de gewone filters; de typeknoppen tonen hoeveel renners daarvan per type overblijven.
   const gefilterd = staat.renners.filter((r) =>
     (!zoek || `${r.naam} ${r.land} ${r.ploeg}`.toLowerCase().includes(zoek)) &&
     (!type || r.ploegtype === type) &&
     (!ploegnaam || r.ploeg === ploegnaam) &&
+    staat.prijzen.get(r.cq_riderid) >= prijsVan && staat.prijzen.get(r.cq_riderid) <= prijsTot &&
     (!betaalbaar || !redenNiet(r.cq_riderid, m)),
   );
   tekenTypeKnoppen(gefilterd);

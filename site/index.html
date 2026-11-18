@@ -115,6 +115,7 @@
           <button id="plan-knop" class="knop voorstel-knop" type="button" hidden>Transfers plannen</button>
           <button id="joker-knop" class="knop voorstel-knop joker-knop" type="button" hidden>Joker inzetten</button>
         </div>
+        <section id="gepland" class="gepland-kader" hidden></section>
         <details id="ploeg-tips" class="ploeg-tips" open hidden>
           <summary>Zo stel je je ploeg samen</summary>
           <ul id="ploeg-tips-lijst"></ul>
@@ -148,6 +149,10 @@
             <option>ProTeam</option>
           </select>
           <select id="filter-ploeg"><option value="">Alle ploegen</option></select>
+          <label class="keuze prijs-filter">Credits
+            <select id="filter-prijs-van" aria-label="Credits vanaf"></select> tot
+            <select id="filter-prijs-tot" aria-label="Credits tot en met"></select>
+          </label>
           <label class="keuze"><input id="filter-betaalbaar" type="checkbox"> Alleen betaalbaar</label>
         </div>
         <div id="type-knoppen" class="type-knoppen"></div>
