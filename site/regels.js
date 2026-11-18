@@ -40,30 +40,57 @@ export function tekenRegels({ staat, maak, pt }) {
     return [bereik, `${sch.prijs}`];
   });
 
+  // Een genummerde stap met een vetgedrukte titel en verdere inhoud.
+  const stap = (titel, ...inhoud) => maak("li", {}, [maak("strong", { tekst: `${titel}: ` }), ...inhoud.map((x) => (typeof x === "string" ? maak("span", { tekst: x }) : x))]);
+  const formule = (tekst) => maak("div", { klasse: "formule", tekst });
+
+  // Voorbeeld van de toppremie met de echte cijfers: nummer 1 tegenover de laatste topper.
+  const opScore = [...staat.renners].sort((a, b) => staat.scores.get(b.cq_riderid) - staat.scores.get(a.cq_riderid));
+  const eerste = opScore[0], laatsteTop = opScore[top.length - 1];
+  const sEerste = eerste ? staat.scores.get(eerste.cq_riderid) : 0;
+  const sLaatste = laatsteTop ? staat.scores.get(laatsteTop.cq_riderid) : 0;
+  const naamKort = (r) => r.naam;
+  const exponent = inst.toppremie_exponent;
+  const voorbeeld = exponent && eerste && sLaatste
+    ? `Voorbeeld: ${naamKort(eerste)} heeft een score van ${pt(sEerste)}, nr. ${top.length} (${naamKort(laatsteTop)}) ${pt(sLaatste)}. ` +
+      `${top[top.length - 1]} × (${pt(sEerste)} ÷ ${pt(sLaatste)})^${exponent.toLocaleString("nl-BE")} = ${staat.prijzen.get(eerste.cq_riderid)} credits` +
+      (staat.prijzen.get(eerste.cq_riderid) > top[0] ? `, meer dan de ${top[0]} credits van nr. 1. Hij kost dus ${staat.prijzen.get(eerste.cq_riderid)} credits.` : ".")
+    : "";
+  const gewichten = (inst.prijs_gewichten || [1]).map((g, i) => `CQ-punten ${inst.seizoen - 1 - i} × ${Math.round(g * 100)}%`).join("  +  ");
+
   $("regels-inhoud").replaceChildren(
-    h("Het idee"),
-    p(`Je stelt een ploeg samen van ${inst.ploeggrootte} echte renners uit de WorldTeams en ProTeams. ` +
-      `Ze verdienen punten met hun uitslagen in de mannenkoersen van de WorldTour en de ProSeries van ${inst.seizoen}. ` +
-      "Wie aan het einde van het seizoen de meeste punten heeft, wint."),
+    h("In het kort"),
+    maak("ol", { klasse: "stappen" }, [
+      stap("Ploeg kiezen", `${inst.ploeggrootte} echte renners uit de WorldTeams en ProTeams, samen hoogstens ${inst.budget} credits, ` +
+        `voor ${datum(periodes[0].start)}.`),
+      stap("Punten scoren", `je renners verdienen punten met hun echte uitslagen in de WorldTour- en ProSeries-koersen van ${inst.seizoen}. ` +
+        `Al je ${inst.ploeggrootte} renners tellen altijd mee: je stelt geen ploeg op per koers.`),
+      stap("Ploeg aanpassen", `wissel renners in de transferperiodes (hoogstens ${inst.max_transfers} per keer)` +
+        (inst.jokers ? ` of met een van je ${inst.jokers} jokers, op eender welk moment.` : ".")),
+      stap("Winnen", "wie op het einde van het seizoen de meeste punten heeft, wint en draagt de gele trui. " +
+        "Er zijn ook truien voor eendagskoersen (groen) en rittenkoersen (bolletjes)."),
+    ]),
 
     h("Je ploeg"),
     lijst([
-      `${inst.ploeggrootte} renners, samen hoogstens ${inst.budget} credits.`,
+      `${inst.ploeggrootte} renners, samen hoogstens ${inst.budget} credits: gemiddeld ${pt(inst.budget / inst.ploeggrootte)} credits per renner.`,
       "Iedereen mag dezelfde renners kiezen.",
       `Je kunt je ploeg vrij samenstellen tot ${datum(periodes[0].start)}, de start van periode 1.`,
       "Je moet altijd genoeg credits overhouden om de rest van je ploeg met de goedkoopste renners te vullen.",
     ]),
 
     h("Prijzen"),
-    p(`De prijs van een renner hangt af van zijn score: een gewogen gemiddelde van zijn CQ-punten in ${
-      (inst.prijs_gewichten || [1]).map((g, i) => `${inst.seizoen - 1 - i} (${Math.round(g * 100)}%)`).join(", ")}. ` +
-      "Telt een renner in een jaar niet mee in de CQ-ranglijst (bv. nog geen prof), dan worden de gewichten verdeeld over de jaren waarin hij wel punten had. " +
-      "De prijs blijft het hele seizoen hetzelfde. " +
-      `De ${top.length} beste renners krijgen elk een eigen prijs: nr. 1 kost ${top[0]} credits, nr. ${top.length} kost ${top[top.length - 1]} credits. ` +
-      (inst.toppremie_exponent
-        ? `Een topper die veel sterker is dan de rest, kost meer: minstens ${top[top.length - 1]} × (zijn score ÷ score van nr. ${top.length})^${inst.toppremie_exponent.toLocaleString("nl-BE")} credits. ` : "") +
-      "De andere renners vallen in een prijsschijf:"),
-    tabel(["Score", "Credits"], schijfRijen),
+    p("Elke renner krijgt één vaste prijs voor het hele seizoen. Die prijs komt zo tot stand:"),
+    maak("ol", { klasse: "stappen" }, [
+      stap("Score", "per renner berekenen we een gewogen gemiddelde van zijn CQ-punten in de vorige seizoenen.",
+        formule(gewichten),
+        maak("span", { klasse: "klein", tekst: "Telt een renner in een jaar niet mee in de CQ-ranglijst (bv. nog geen prof), dan worden de gewichten verdeeld over de jaren waarin hij wel punten had." })),
+      stap(`Top ${top.length}`, `de ${top.length} renners met de hoogste score krijgen elk een eigen prijs: van ${top[0]} credits (nr. 1) tot ${top[top.length - 1]} credits (nr. ${top.length}).`),
+      ...(exponent ? [stap("Toppremie", "steekt een topper ver boven de rest uit, dan kost hij meer. Zijn prijs is minstens:",
+        formule(`${top[top.length - 1]} × (zijn score ÷ score van nr. ${top.length}) ^ ${exponent.toLocaleString("nl-BE")}`),
+        ...(voorbeeld ? [maak("span", { klasse: "klein", tekst: voorbeeld })] : []))] : []),
+      stap("Prijsschijven", "alle andere renners krijgen een prijs volgens hun score.", tabel(["Score", "Credits"], schijfRijen)),
+    ]),
 
     h("Type renner"),
     p(`In de rennerspool krijgt elke renner een type, op basis van zijn uitslagen in ${vorig} (met de puntentelling van dit spel). ` +

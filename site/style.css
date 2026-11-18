@@ -150,6 +150,10 @@ ul.transfers .in { color: var(--o2o-blue); }
 
 .stand-kop { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .regels { max-width: 900px; line-height: 1.55; }
+.regels ol.stappen { padding-left: 22px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+.regels ol.stappen li { padding-left: 4px; }
+.regels ol.stappen li > .klein { display: block; margin-top: 4px; }
+.regels .formule { margin: 6px 0; padding: 8px 14px; background: var(--o2o-tint-blue); border-radius: 10px; font-family: var(--o2o-font-ui); font-weight: 500; color: var(--o2o-blue); white-space: nowrap; overflow-x: auto; width: fit-content; max-width: 100%; }
 .regels h3 { font-family: var(--o2o-font-heading); color: var(--o2o-blue); font-size: 1.05rem; margin: 24px 0 8px; }
 .regels ul { padding-left: 20px; margin: 8px 0; }
 .regels li { margin-bottom: 4px; }
@@ -191,7 +195,7 @@ ul.koersen li.voorbij { color: var(--o2o-gray); }
 .ov-top li.ik { background: var(--o2o-tint-blue); font-weight: 600; }
 .ov-top li.puntjes { display: block; text-align: center; padding: 0; }
 .link-knop { background: none; border: 0; padding: 0; color: var(--o2o-blue); font-weight: 600; text-decoration: underline; cursor: pointer; font-family: inherit; font-size: inherit; }
-.stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 24px; align-items: start; }
+.stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(380px, 100%), 1fr)); gap: 24px; align-items: start; }
 .stat h3 { font-family: var(--o2o-font-heading); color: var(--o2o-blue); font-size: 1.05rem; margin: 0 0 4px; }
 .stat .tabel-wrap { max-height: none; }
 .stats-tabel th { position: static; cursor: default; }
@@ -303,8 +307,27 @@ ul.correcties li { display: flex; justify-content: space-between; align-items: c
 @media (max-width: 900px) {
   .kop-binnen, .tabs, .inhoud { padding-left: 30px; padding-right: 30px; }
   .raster, .overzicht, .stats, .spiegel-lijsten { grid-template-columns: 1fr; }
+}
+
+/* Smalle schermen (gsm): kop compacter, tabbladen horizontaal scrollen. */
+@media (max-width: 700px) {
+  .kop-binnen { flex-wrap: wrap; gap: 6px 16px; padding: 14px 16px 8px; }
+  .logo { height: 26px; }
+  .kop-titel { order: 3; flex: 1 1 100%; }
+  .kop-titel h1 { font-size: 1.3rem; }
+  .wie { margin-left: auto; font-size: 0.8rem; }
+  .tabs { padding: 0 16px; overflow-x: auto; scrollbar-width: none; }
+  .tab { white-space: nowrap; padding: 8px 12px; }
+  .testbalk-binnen { padding: 10px 16px; }
+  .test-knoppen .knop { padding: 7px 12px; font-size: 0.8rem; }
+  .inhoud { padding: 20px 16px 40px; }
+  .kaart { padding: 18px; }
   .spiegel-kop { grid-template-columns: 1fr; }
   .spiegel-ploeg:last-child { text-align: left; }
   ul.koersen li { grid-template-columns: 1fr auto; }
   .koers-status { display: none; }
 }
+
+/* Kaarten in een raster mogen smaller worden dan hun inhoud: tabellen scrollen dan binnen hun kaart. */
+.raster > *, #tab-admin > *, .stats > *, .overzicht > *, .ov-rechts > * { min-width: 0; }
+.kaart .tabel-wrap { max-width: 100%; }
