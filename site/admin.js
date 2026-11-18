@@ -269,6 +269,7 @@ const VELDEN = [
   ["monumenten.namen", "Monumenten (namen zoals op CQ Ranking)", "tekstlijst"],
   ["prijs_gewichten", "Gewichten prijsscore (vorig seizoen, jaar ervoor, …)", "lijst"],
   ["prijzen_top", "Prijzen van de top (nr 1, nr 2, …)", "lijst"],
+  ["toppremie_exponent", "Toppremie: exponent (0 = uit)", "getal"],
   ["prijsschijven", "Prijsschijven (punten:prijs)", "schijven"],
   ["puntenschaal.eindklassement_grote_ronde", "Punten eindklassement grote ronde", "lijst"],
   ["puntenschaal.eendags_en_eindklassement", "Punten eendagskoers en eindklassement", "lijst"],

@@ -13,6 +13,7 @@
   "type_drempel_punten": 20,
   "type_marge": 1.3,
   "prijzen_top": [22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8],
+  "toppremie_exponent": 0.88,
   "prijs_gewichten": [0.5, 0.3, 0.2],
   "prijsschijven": [
     { "vanaf_punten": 756, "prijs": 7 },

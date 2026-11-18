@@ -26,9 +26,16 @@ export function berekenPrijzen(renners, inst) {
     (a, b) => score.get(b.cq_riderid) - score.get(a.cq_riderid) || a.naam.localeCompare(b.naam),
   );
   const schijven = [...inst.prijsschijven].sort((a, b) => b.vanaf_punten - a.vanaf_punten);
+  // Toppremie: een topper kost minstens wat zijn score waard is t.o.v. de laatste topprijs,
+  // zodat een uitschieter als Pogačar duidelijk duurder is dan nummer 2.
+  // minimum = laatste topprijs × (score ÷ score van de laatste topper) ^ toppremie_exponent
+  const laatste = inst.prijzen_top.length - 1;
+  const refScore = volgorde[laatste] ? score.get(volgorde[laatste].cq_riderid) : 0;
+  const minimum = (s) => (inst.toppremie_exponent && refScore > 0
+    ? Math.round(inst.prijzen_top[laatste] * (s / refScore) ** inst.toppremie_exponent) : 0);
   const prijzen = new Map();
   volgorde.forEach((renner, i) => {
-    let prijs = inst.prijzen_top[i];
+    let prijs = inst.prijzen_top[i] !== undefined ? Math.max(inst.prijzen_top[i], minimum(score.get(renner.cq_riderid))) : undefined;
     if (prijs === undefined) {
       const schijf = schijven.find((s) => score.get(renner.cq_riderid) >= s.vanaf_punten);
       prijs = schijf ? schijf.prijs : schijven[schijven.length - 1].prijs;

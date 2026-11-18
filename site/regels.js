@@ -60,6 +60,8 @@ export function tekenRegels({ staat, maak, pt }) {
       "Telt een renner in een jaar niet mee in de CQ-ranglijst (bv. nog geen prof), dan worden de gewichten verdeeld over de jaren waarin hij wel punten had. " +
       "De prijs blijft het hele seizoen hetzelfde. " +
       `De ${top.length} beste renners krijgen elk een eigen prijs: nr. 1 kost ${top[0]} credits, nr. ${top.length} kost ${top[top.length - 1]} credits. ` +
+      (inst.toppremie_exponent
+        ? `Een topper die veel sterker is dan de rest, kost meer: minstens ${top[top.length - 1]} × (zijn score ÷ score van nr. ${top.length})^${inst.toppremie_exponent.toLocaleString("nl-BE")} credits. ` : "") +
       "De andere renners vallen in een prijsschijf:"),
     tabel(["Score", "Credits"], schijfRijen),
 
