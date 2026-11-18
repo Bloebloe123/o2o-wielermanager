@@ -251,15 +251,17 @@ ul.uitslagen details > p { margin: 4px 14px 10px; }
 .detail ul.zeges li strong { grid-area: renner; overflow-wrap: anywhere; }
 .detail ul.zeges li span:nth-child(2) { grid-area: koers; color: var(--o2o-gray); overflow-wrap: anywhere; }
 .detail ul.zeges li .punten-renner { grid-area: punten; text-align: right; }
-.detail ul.ploeg-renners, ul.ploeg-renners { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 6px; }
-.detail ul.ploeg-renners > li, ul.ploeg-renners > li { display: block; background: var(--o2o-white); border: 1px solid var(--o2o-gray-light); border-radius: 12px; }
+/* Renners in de standdetail: een eenvoudige lijst, van meeste naar minste punten, van boven naar beneden. */
+.detail ul.ploeg-renners, ul.ploeg-renners { list-style: none; margin: 0; padding: 0; display: block; max-width: 620px; }
+.detail ul.ploeg-renners > li, ul.ploeg-renners > li { display: block; background: transparent; border: 0; border-bottom: 1px solid var(--o2o-gray-light); border-radius: 0; }
+ul.ploeg-renners > li:last-child { border-bottom: 0; }
 ul.ploeg-renners > li.weg { opacity: 0.7; }
-ul.ploeg-renners summary { display: grid; grid-template-columns: minmax(0, 1fr) 44px 64px; gap: 8px; align-items: center; padding: 8px 12px; cursor: pointer; list-style: none; font-size: 0.85rem; }
+ul.ploeg-renners summary { display: grid; grid-template-columns: minmax(0, 1fr) 44px 64px; gap: 8px; align-items: center; padding: 7px 2px; cursor: pointer; list-style: none; font-size: 0.85rem; }
 ul.ploeg-renners summary::-webkit-details-marker { display: none; }
 ul.ploeg-renners summary .renner-naam { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 ul.ploeg-renners summary .punten-renner { text-align: right; color: var(--o2o-blue); font-weight: 600; }
-ul.ploeg-renners details[open] { box-shadow: 0 2px 10px rgba(0, 41, 214, 0.08); border-radius: 12px; }
-.renner-resultaten { margin: 0 12px 8px; width: calc(100% - 24px); font-size: 0.8rem; }
+ul.ploeg-renners details[open] > summary .renner-naam { color: var(--o2o-blue); }
+.renner-resultaten { margin: 0 0 8px 14px; width: calc(100% - 14px); font-size: 0.8rem; }
 .renner-resultaten td { padding: 4px 6px; }
 .geen-resultaten { margin: 0 12px 8px; }
 .vroeger-kop { margin: 12px 0 6px; }

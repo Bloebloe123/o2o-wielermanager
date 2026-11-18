@@ -81,7 +81,7 @@ body.rustig ul.koersen li { border-bottom: 1px solid var(--rustig-lijn); border-
 body.rustig .periode-blok { border-color: var(--rustig-lijn); }
 body.rustig .transfermoment { background: transparent; border-left-width: 3px; border-radius: 0; padding: 6px 16px; }
 body.rustig ul.transfers li, body.rustig .ploeg-tips { background: var(--rustig-achtergrond); }
-body.rustig ul.ploeg-renners > li { border-color: var(--rustig-lijn); }
+body.rustig ul.ploeg-renners > li { border-color: var(--rustig-lijn); background: transparent; }
 
 /* ---------- Labels: grijs met een gekleurd bolletje ---------- */
 body.rustig .type { background: transparent; color: var(--rustig-zacht); padding: 0; font-weight: 400; }
@@ -147,4 +147,3 @@ body.rustig.gemengd .tabel.stand td.punten, body.rustig.gemengd .spiegel-punten 
 body.rustig.gemengd .balk-vulling.oranje { background: var(--o2o-orange); }
 body.rustig.gemengd .ov-start { border-left: 4px solid var(--o2o-orange); }
 body.rustig.gemengd .test-knoppen #test-volgende { background: var(--o2o-blue); }
-body.rustig .detail ul.ploeg-renners { grid-template-columns: repeat(auto-fill, minmax(min(380px, 100%), 1fr)); }
