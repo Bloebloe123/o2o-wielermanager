@@ -6,6 +6,22 @@ function datum(iso) {
   return new Date(iso).toLocaleDateString("nl-BE", { day: "numeric", month: "long" });
 }
 
+// "In het kort": het spel in vier stappen. Ook gebruikt op het welkomstscherm.
+export function inHetKort({ inst, maak }) {
+  const eerste = [...inst.periodes].sort((a, b) => a.nr - b.nr)[0];
+  const stap = (titel, tekst) => maak("li", {}, [maak("strong", { tekst: `${titel}: ` }), maak("span", { tekst })]);
+  return maak("ol", { klasse: "stappen" }, [
+    stap("Ploeg kiezen", `${inst.ploeggrootte} echte renners uit de WorldTeams en ProTeams, samen hoogstens ${inst.budget} credits, ` +
+      `voor ${datum(eerste.start)}.`),
+    stap("Punten scoren", `je renners verdienen punten met hun echte uitslagen in de WorldTour- en ProSeries-koersen van ${inst.seizoen}. ` +
+      `Al je ${inst.ploeggrootte} renners tellen altijd mee: je stelt geen ploeg op per koers.`),
+    stap("Ploeg aanpassen", `wissel renners in de transferperiodes (hoogstens ${inst.max_transfers} per keer)` +
+      (inst.jokers ? ` of met een van je ${inst.jokers} jokers, op eender welk moment.` : ".")),
+    stap("Winnen", "wie op het einde van het seizoen de meeste punten heeft, wint en draagt de gele trui. " +
+      "Er zijn ook truien voor eendagskoersen (groen) en rittenkoersen (bolletjes)."),
+  ]);
+}
+
 export function tekenRegels({ staat, maak, pt }) {
   const { inst } = staat;
   const s = inst.puntenschaal;
@@ -60,16 +76,7 @@ export function tekenRegels({ staat, maak, pt }) {
 
   $("regels-inhoud").replaceChildren(
     h("In het kort"),
-    maak("ol", { klasse: "stappen" }, [
-      stap("Ploeg kiezen", `${inst.ploeggrootte} echte renners uit de WorldTeams en ProTeams, samen hoogstens ${inst.budget} credits, ` +
-        `voor ${datum(periodes[0].start)}.`),
-      stap("Punten scoren", `je renners verdienen punten met hun echte uitslagen in de WorldTour- en ProSeries-koersen van ${inst.seizoen}. ` +
-        `Al je ${inst.ploeggrootte} renners tellen altijd mee: je stelt geen ploeg op per koers.`),
-      stap("Ploeg aanpassen", `wissel renners in de transferperiodes (hoogstens ${inst.max_transfers} per keer)` +
-        (inst.jokers ? ` of met een van je ${inst.jokers} jokers, op eender welk moment.` : ".")),
-      stap("Winnen", "wie op het einde van het seizoen de meeste punten heeft, wint en draagt de gele trui. " +
-        "Er zijn ook truien voor eendagskoersen (groen) en rittenkoersen (bolletjes)."),
-    ]),
+    inHetKort({ inst, maak }),
 
     h("Je ploeg"),
     lijst([

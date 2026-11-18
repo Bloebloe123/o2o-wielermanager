@@ -11,7 +11,7 @@ function kort(iso) {
 }
 
 export async function tekenOverzicht(ctx) {
-  const { staat, maak, pt, typeVan, laadDeelnemers, naarTab } = ctx;
+  const { staat, maak, pt, typeVan, laadDeelnemers, naarTab, vulAan } = ctx;
   const vandaag = vandaagISO();
   const m = ploegModus(staat.inst);
 
@@ -25,6 +25,29 @@ export async function tekenOverzicht(ctx) {
     .sort((a, b) => (puntenVan.get(b.cq_riderid)?.punten || 0) - (puntenVan.get(a.cq_riderid)?.punten || 0) ||
       staat.prijzen.get(b.cq_riderid) - staat.prijzen.get(a.cq_riderid));
   $("ov-ploegnaam").textContent = $("mijn-ploegnaam").textContent;
+
+  // ---- Startkaart: zolang je ploeg voor het seizoen nog niet compleet is ----
+  const inst = staat.inst;
+  const startkaart = $("ov-start");
+  startkaart.hidden = !(m.modus === "inschrijving" && ploeg.length < inst.ploeggrootte);
+  if (!startkaart.hidden) {
+    const over = inst.budget - ploeg.reduce((som, s) => som + (staat.prijzen.get(s.cq_riderid) ?? 0), 0);
+    const tekort = inst.ploeggrootte - ploeg.length;
+    const tot = new Date(m.deadline).toLocaleDateString("nl-BE", { day: "numeric", month: "long" });
+    startkaart.replaceChildren(
+      maak("h2", { tekst: ploeg.length ? "Je ploeg is nog niet compleet" : "Kies je ploeg" }),
+      maak("p", { tekst: `Kies nog ${tekort} ${tekort === 1 ? "renner" : "renners"}. Je hebt nog ${over} van de ${inst.budget} credits. ` +
+        `Je kunt je ploeg vrij aanpassen tot ${tot}.` }),
+      maak("div", { klasse: "start-knoppen" }, [
+        maak("button", { klasse: "knop", type: "button", tekst: "Naar mijn ploeg", onclick: () => naarTab("ploeg") }),
+        maak("button", {
+          klasse: "knop knop-licht-rand", type: "button", tekst: "Vul mijn ploeg aan",
+          title: "Vult de lege plaatsen met willekeurige renners binnen je budget. Je kunt ze daarna nog wisselen.",
+          onclick: async (e) => { e.target.disabled = true; await vulAan(); },
+        }),
+      ]),
+    );
+  }
   $("ov-ploeg-totaal").textContent = mijnStand ? `${pt(mijnStand.punten)} punten` : "0 punten";
   $("ov-ploeg").replaceChildren(...(ploeg.length ? ploeg.map((s) => maak("li", {}, [
     maak("span", { klasse: "renner-naam", tekst: naam(s.cq_riderid) }),

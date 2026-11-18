@@ -5,7 +5,7 @@ import {
 } from "./spel.js";
 import { toonAdmin } from "./admin.js";
 import { tekenKalender } from "./kalender.js";
-import { tekenRegels } from "./regels.js";
+import { inHetKort, tekenRegels } from "./regels.js";
 import { tekenOverzicht } from "./overzicht.js";
 import { truiDragers, truiIcoon } from "./truien.js";
 import { tekenStatistieken } from "./statistieken.js";
@@ -247,7 +247,7 @@ async function zetTestmodusKlaar() {
   };
 }
 
-// Maakt 3 testploegen (A, B, C) met elk een volledige ploeg, volgens "Doe een voorstel".
+// Maakt 3 testploegen (A, B, C) met elk een volledige ploeg, volgens "Vul mijn ploeg aan".
 // Bestaat een testploeg al, dan slaan we die over.
 async function maakTestploegen() {
   const knop = $("test-ploegen");
@@ -299,6 +299,7 @@ function toonKop(renners) {
 // ---------- Profiel ----------
 
 function toonProfielformulier() {
+  $("welkom-uitleg").replaceChildren(inHetKort({ inst: staat.inst, maak }));
   const select = $("debuutjaar");
   for (let jaar = staat.inst.seizoen; jaar >= staat.inst.seizoen - 15; jaar--) {
     select.append(maak("option", { value: jaar, tekst: jaar === staat.inst.seizoen ? `${jaar} (dit is mijn eerste keer)` : jaar }));
@@ -436,7 +437,8 @@ function naarTab(tab) {
 }
 
 function toonOverzicht() {
-  tekenOverzicht({ staat, maak, pt, typeVan, laadDeelnemers, naarTab })
+  const vulAan = async () => { await doeVoorstel(); toonOverzicht(); };
+  tekenOverzicht({ staat, maak, pt, typeVan, laadDeelnemers, naarTab, vulAan })
     .catch((fout) => melding(`Het overzicht laden lukte niet: ${fout.message}`, true));
 }
 
@@ -547,6 +549,21 @@ function tekenMijnPloeg() {
   voorstel.disabled = staat.bezig || ploeg.length >= inst.ploeggrootte;
   voorstel.title = ploeg.length >= inst.ploeggrootte ? "Je ploeg is al compleet." : "Vult de lege plaatsen met willekeurige renners, binnen je budget.";
   voorstel.onclick = doeVoorstel;
+
+  // Tips zolang je je ploeg voor het seizoen samenstelt.
+  $("ploeg-tips").hidden = m.modus !== "inschrijving";
+  if (m.modus === "inschrijving" && !$("ploeg-tips-lijst").children.length) {
+    const duurste = Math.max(...staat.prijzen.values());
+    const topMin = Math.min(...inst.prijzen_top);
+    const schijfMax = Math.max(...inst.prijsschijven.map((s) => s.prijs));
+    $("ploeg-tips-lijst").replaceChildren(...[
+      `Je hebt gemiddeld ${pt(inst.budget / inst.ploeggrootte)} credits per renner. De ${inst.prijzen_top.length} toppers kosten ${topMin} tot ${duurste} credits, alle andere renners 1 tot ${schijfMax}.`,
+      "Kies één of twee toppers en vul aan met goedkopere renners: met te veel sterren raakt je budget snel op.",
+      "Meng de types met de knoppen boven de rennerspool: ronderenners scoren vooral in rittenkoersen, klassiekerrenners in eendagskoersen, sprinters in ritten.",
+      "Al je renners tellen altijd mee, je hoeft per koers niets te kiezen. Een brede ploeg scoort dus het hele seizoen door.",
+      "Weet je niet waar te beginnen? Klik op \"Vul mijn ploeg aan\" en wissel daarna renners naar je zin.",
+    ].map((tekst) => maak("li", { tekst })));
+  }
 
   // In de transferperiode tonen we ook wie eruit gaat, met een knop om dat ongedaan te maken.
   const vertrekkers = m.modus === "transfers"

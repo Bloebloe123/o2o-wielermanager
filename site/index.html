@@ -52,7 +52,11 @@
 
     <section id="profiel" class="kaart profiel" hidden>
       <h2>Welkom bij Be like José</h2>
-      <p>Nog twee vragen voor je begint. De naam kan enkel veranderd worden door een admin.</p>
+      <p>Een wielermanager voor o2o-collega's. Zo werkt het:</p>
+      <div id="welkom-uitleg" class="regels welkom-uitleg"></div>
+      <p class="klein">De volledige spelregels vind je straks in het tabblad Spelregels.</p>
+      <h3 class="welkom-vragen">Nog twee vragen voor je begint</h3>
+      <p class="klein">De naam kan enkel veranderd worden door een admin.</p>
       <form id="profiel-form">
         <label>Hoe heet je ploeg?
           <input id="ploegnaam" type="text" required maxlength="40" placeholder="Bijvoorbeeld: De Snelle Leasers">
@@ -65,6 +69,7 @@
     </section>
 
     <section id="tab-overzicht" class="overzicht" hidden>
+      <div id="ov-start" class="kaart ov-start" hidden></div>
       <div class="kaart">
         <div class="kaart-kop">
           <h2 id="ov-ploegnaam">Mijn ploeg</h2>
@@ -93,8 +98,12 @@
       <div class="kaart mijn-ploeg">
         <h2 id="mijn-ploegnaam">Mijn ploeg</h2>
         <p id="ploeg-status" class="status"></p>
-        <button id="voorstel" class="knop voorstel-knop" type="button" hidden>Doe een voorstel</button>
+        <button id="voorstel" class="knop voorstel-knop" type="button" hidden>Vul mijn ploeg aan</button>
         <button id="joker-knop" class="knop voorstel-knop joker-knop" type="button" hidden>Joker inzetten</button>
+        <details id="ploeg-tips" class="ploeg-tips" open hidden>
+          <summary>Zo stel je je ploeg samen</summary>
+          <ul id="ploeg-tips-lijst"></ul>
+        </details>
         <div class="meters">
           <div class="meter">
             <div class="meter-label"><span>Budget</span><strong id="budget-tekst"></strong></div>

@@ -64,7 +64,11 @@ button, input, select { font-family: var(--o2o-font-ui); font-size: 0.9rem; }
 }
 .melding.fout { background: var(--o2o-tint-purple); border-color: var(--o2o-purple); }
 
-.profiel { max-width: 560px; }
+.profiel { max-width: 640px; display: grid; gap: 10px; }
+.profiel > p, .profiel > h2 { margin: 0; }
+.welkom-uitleg { background: var(--o2o-tint-blue); border-radius: 14px; padding: 12px 16px 12px 8px; line-height: 1.5; }
+.welkom-uitleg ol.stappen { margin: 0; }
+.welkom-vragen { font-family: var(--o2o-font-heading); color: var(--o2o-blue); font-size: 1rem; margin: 10px 0 0; }
 .profiel form { display: grid; gap: 16px; }
 .profiel label { display: grid; gap: 6px; }
 fieldset { border: 1px solid var(--o2o-gray-light); border-radius: 12px; padding: 12px 16px; display: grid; gap: 8px; }
@@ -89,6 +93,9 @@ label.keuze { display: flex; align-items: center; gap: 8px; }
 .paginas { display: flex; align-items: center; gap: 10px; }
 .knop-licht-rand { background: var(--o2o-white); color: var(--o2o-blue); box-shadow: inset 0 0 0 2px var(--o2o-blue); }
 .joker-knop { background: var(--o2o-purple); }
+.ploeg-tips { background: var(--o2o-tint-orange); border-radius: 12px; padding: 10px 14px; margin-bottom: 16px; font-size: 0.88rem; }
+.ploeg-tips summary { cursor: pointer; font-family: var(--o2o-font-heading); font-weight: 700; color: var(--o2o-text); }
+.ploeg-tips ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 6px; }
 .voorstel-knop { margin: -4px 0 16px; }
 .status { margin: 0 0 16px; font-size: 0.9rem; color: var(--o2o-gray); }
 .meters { display: grid; gap: 12px; margin-bottom: 16px; }
@@ -182,6 +189,9 @@ ul.koersen li.voorbij { color: var(--o2o-gray); }
 .transfermoment { display: grid; gap: 2px; padding: 10px 20px; border-left: 4px solid var(--o2o-orange); background: var(--o2o-tint-orange); border-radius: 12px; font-size: 0.9rem; }
 .overzicht { display: grid; grid-template-columns: minmax(300px, 1fr) minmax(300px, 1.2fr); gap: 24px; align-items: start; }
 .ov-rechts { display: grid; gap: 24px; }
+.ov-start { grid-column: 1 / -1; background: var(--o2o-tint-orange); border-left: 6px solid var(--o2o-orange); display: grid; gap: 8px; }
+.ov-start h2, .ov-start p { margin: 0; }
+.start-knoppen { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
 .kaart-kop { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
 .ov-lijst { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; grid-template-columns: minmax(0, 1fr); }
 .ov-ploeg li { display: grid; grid-template-columns: minmax(0, 1fr) auto 64px; gap: 10px; align-items: center; padding: 6px 12px; background: var(--o2o-tint-blue); border-radius: 12px; font-size: 0.9rem; }
@@ -331,3 +341,5 @@ ul.correcties li { display: flex; justify-content: space-between; align-items: c
 /* Kaarten in een raster mogen smaller worden dan hun inhoud: tabellen scrollen dan binnen hun kaart. */
 .raster > *, #tab-admin > *, .stats > *, .overzicht > *, .ov-rechts > * { min-width: 0; }
 .kaart .tabel-wrap { max-width: 100%; }
+.profiel > *, .profiel form > * { min-width: 0; }
+.profiel select, .profiel input[type=text] { width: 100%; max-width: 100%; }
